@@ -70,17 +70,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .btn-sql-start:disabled{opacity:.35;cursor:not-allowed}
 
 /* ── QUIZ ── */
-.quiz-layout{display:flex;gap:18px;align-items:flex-start;justify-content:center}
-.research-panel{display:none;flex-direction:column;width:400px;flex-shrink:0;background:var(--surf);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;position:sticky;top:18px;height:calc(100vh - 48px)}
-.research-panel.show{display:flex}
-.research-panel-header{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;border-bottom:1px solid var(--border);font-size:.82rem;color:var(--muted);flex-shrink:0}
-.research-panel-header button{background:none;border:none;color:var(--muted);font-size:1rem;cursor:pointer;line-height:1;padding:2px 6px}
-.research-panel-header button:hover{color:var(--text)}
-.research-panel iframe{flex:1;border:none;width:100%;background:#fff}
-@media (max-width:1150px){
-  .quiz-layout{flex-direction:column;align-items:stretch}
-  .research-panel{width:100%;position:static;height:60vh}
-}
 .quiz-wrap{display:flex;flex-direction:column;min-height:calc(100vh - 48px);padding:18px;max-width:750px;margin:0 auto}
 .quiz-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
 .quiz-progress-text{color:var(--muted);font-size:.82rem}
@@ -448,7 +437,6 @@ textarea#sp-editor:focus{border-color:var(--cyan)}
 
   <!-- QUIZ -->
   <div id="ia-quiz" style="display:none">
-    <div class="quiz-layout">
     <div class="quiz-wrap">
       <div class="quiz-header">
         <span class="quiz-progress-text" id="ia-progress-text">1 / 20</span>
@@ -477,14 +465,6 @@ textarea#sp-editor:focus{border-color:var(--cyan)}
           <button class="rate-btn easy" onclick="iaRateAndNext(5)">😎 Easy</button>
         </div>
       </div>
-    </div>
-    <div class="research-panel" id="ia-research-panel">
-      <div class="research-panel-header">
-        <span>🔍 Research</span>
-        <button onclick="closeResearchPanel('ia')" aria-label="Close">✕</button>
-      </div>
-      <iframe id="ia-research-frame" title="Research"></iframe>
-    </div>
     </div>
   </div>
 
@@ -543,7 +523,6 @@ textarea#sp-editor:focus{border-color:var(--cyan)}
   </div>
 
   <!-- SQL PROBLEM VIEW -->
-  <div class="quiz-layout" id="sql-layout">
   <div id="sql-problem-view">
     <!-- Header -->
     <div class="sp-header">
@@ -614,14 +593,6 @@ textarea#sp-editor:focus{border-color:var(--cyan)}
       🔍 Research this question
     </button>
     <button class="btn-next-prob" id="sp-next-btn" onclick="sqlNextProblem()">Next Problem →</button>
-  </div>
-  <div class="research-panel" id="sql-research-panel">
-    <div class="research-panel-header">
-      <span>🔍 Research</span>
-      <button onclick="closeResearchPanel('sql')" aria-label="Close">✕</button>
-    </div>
-    <iframe id="sql-research-frame" title="Research"></iframe>
-  </div>
   </div>
 
 </div><!-- end sql section -->
@@ -781,7 +752,6 @@ function iaSelectAnswer(key){
   iaSaveState();
 }
 function iaRateAndNext(rating){
-  closeResearchPanel('ia');
   sm2(IA_STATE.cards[IA_SESSION.questions[IA_SESSION.idx].id],rating);
   if(rating===1) IA_SESSION.hard++;
   iaSaveState(); IA_SESSION.idx++;
@@ -810,7 +780,6 @@ function iaShowResults(){
   document.getElementById('ia-results').style.display='block';
 }
 function iaGoHome(){
-  closeResearchPanel('ia');
   iaUpdateHomeStats();
   document.getElementById('ia-home').style.display='flex';
   document.getElementById('ia-quiz').style.display='none';
@@ -1107,7 +1076,6 @@ function sqlShowSolution(){
 }
 
 function sqlNextProblem(){
-  closeResearchPanel('sql');
   const p=SQL_SESSION.problem;
   const probs=SQL_PROBLEMS.filter(x=>x.difficulty===p.difficulty);
   const idx=probs.findIndex(x=>x.id===p.id);
@@ -1117,7 +1085,6 @@ function sqlNextProblem(){
 }
 
 function sqlGoHome(){
-  closeResearchPanel('sql');
   document.getElementById('sql-home-view').style.display='flex';
   document.getElementById('sql-problem-view').style.display='none';
   sqlRenderHome();
@@ -1163,24 +1130,17 @@ function shuffle(a){
 
 
 // ── REVIEW ON WEB ─────────────────────────────────────────────────────────
-// Google/DuckDuckGo both refuse to render inside an <iframe> (X-Frame-Options/
-// CSP frame-ancestors), so the inline panel uses Bing, which doesn't block it.
-function showResearchPanel(prefix, text) {
-  const panel = document.getElementById(prefix + '-research-panel');
-  const frame = document.getElementById(prefix + '-research-frame');
-  if (!panel || !frame) return;
-  frame.src = 'https://www.bing.com/search?q=' + encodeURIComponent(text);
-  panel.classList.add('show');
+function copyForResearch(text, btn) {
+  const query = encodeURIComponent(text);
+  window.open('https://www.google.com/search?q=' + query, '_blank');
   if (navigator.clipboard && navigator.clipboard.writeText) {
     navigator.clipboard.writeText(text).catch(err => console.error('Clipboard write failed:', err));
   }
-}
-
-function closeResearchPanel(prefix) {
-  const panel = document.getElementById(prefix + '-research-panel');
-  const frame = document.getElementById(prefix + '-research-frame');
-  if (panel) panel.classList.remove('show');
-  if (frame) frame.src = 'about:blank';
+  if (btn) {
+    const original = btn.textContent;
+    btn.textContent = '✅ Also copied to clipboard';
+    setTimeout(() => { btn.textContent = original; }, 2000);
+  }
 }
 
 function iaReviewOnWeb() {
@@ -1188,14 +1148,14 @@ function iaReviewOnWeb() {
   if (!q) return;
   const options = Object.entries(q.alternativas).map(([k, v]) => `${k}) ${v}`).join('\n');
   const text = `Question: ${q.pregunta}\n\nOptions:\n${options}\n\nCorrect answer: ${q.correcta}) ${q.alternativas[q.correcta]}`;
-  showResearchPanel('ia', text);
+  copyForResearch(text, document.getElementById('ia-review-btn'));
 }
 
 function sqlReviewOnWeb() {
   const p = SQL_SESSION.problem;
   if (!p) return;
   const text = `Problem: ${p.title}\n\n${p.problem}\n\nKey concept: ${p.key_concept}\n\nSolution:\n${p.solution}`;
-  showResearchPanel('sql', text);
+  copyForResearch(text, document.getElementById('sp-review-btn'));
 }
 
 // ── INIT ──────────────────────────────────────────────────────────────────
@@ -1320,7 +1280,6 @@ function sparkSelectAnswer(key){
   sparkSaveState();
 }
 function sparkRateAndNext(rating){
-  closeResearchPanel('spark');
   sm2(SPARK_STATE.cards[SPARK_SESSION.questions[SPARK_SESSION.idx].id],rating);
   if(rating===1) SPARK_SESSION.hard++;
   sparkSaveState(); SPARK_SESSION.idx++;
@@ -1349,7 +1308,6 @@ function sparkShowResults(){
   document.getElementById('spark-results').style.display='block';
 }
 function sparkGoHome(){
-  closeResearchPanel('spark');
   sparkUpdateHomeStats();
   document.getElementById('spark-home').style.display='flex';
   document.getElementById('spark-quiz').style.display='none';
@@ -1373,7 +1331,7 @@ function sparkReviewOnWeb() {
   if (!q) return;
   const options = Object.entries(q.options).map(([k, v]) => `${k}) ${v}`).join('\n');
   const text = `Question: ${q.front}\n\nOptions:\n${options}\n\nCorrect answer: ${q.correct}) ${q.options[q.correct]}`;
-  showResearchPanel('spark', text);
+  copyForResearch(text, document.getElementById('sp2-review-btn'));
 }
 
 // Patch switchTab to include spark
@@ -1446,7 +1404,6 @@ sparkUpdateHomeStats();
 
   <!-- SPARK QUIZ -->
   <div id="spark-quiz" style="display:none">
-    <div class="quiz-layout">
     <div class="quiz-wrap">
       <div class="quiz-header">
         <span class="quiz-progress-text" id="sp2-progress-text">1 / 20</span>
@@ -1475,14 +1432,6 @@ sparkUpdateHomeStats();
           <button class="rate-btn easy" onclick="sparkRateAndNext(5)">😎 Easy</button>
         </div>
       </div>
-    </div>
-    <div class="research-panel" id="spark-research-panel">
-      <div class="research-panel-header">
-        <span>🔍 Research</span>
-        <button onclick="closeResearchPanel('spark')" aria-label="Close">✕</button>
-      </div>
-      <iframe id="spark-research-frame" title="Research"></iframe>
-    </div>
     </div>
   </div>
 
