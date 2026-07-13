@@ -1130,16 +1130,15 @@ function shuffle(a){
 
 
 // ── REVIEW ON WEB ─────────────────────────────────────────────────────────
-async function copyForResearch(text, btn) {
-  try {
-    await navigator.clipboard.writeText(text);
-  } catch (err) {
-    console.error('Clipboard write failed:', err);
+function copyForResearch(text, btn) {
+  const query = encodeURIComponent(text);
+  window.open('https://www.google.com/search?q=' + query, '_blank');
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).catch(err => console.error('Clipboard write failed:', err));
   }
-  window.open('https://www.google.com/', '_blank');
   if (btn) {
     const original = btn.textContent;
-    btn.textContent = '✅ Copied — paste it to search';
+    btn.textContent = '✅ Also copied to clipboard';
     setTimeout(() => { btn.textContent = original; }, 2000);
   }
 }
