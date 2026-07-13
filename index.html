@@ -1130,21 +1130,33 @@ function shuffle(a){
 
 
 // ── REVIEW ON WEB ─────────────────────────────────────────────────────────
+async function copyForResearch(text, btn) {
+  try {
+    await navigator.clipboard.writeText(text);
+  } catch (err) {
+    console.error('Clipboard write failed:', err);
+  }
+  window.open('https://www.google.com/', '_blank');
+  if (btn) {
+    const original = btn.textContent;
+    btn.textContent = '✅ Copied — paste it to search';
+    setTimeout(() => { btn.textContent = original; }, 2000);
+  }
+}
+
 function iaReviewOnWeb() {
   const q = IA_SESSION.questions[IA_SESSION.idx];
   if (!q) return;
-  const correctText = q.alternativas[q.correcta];
-  const query = encodeURIComponent(
-    '"' + q.pregunta.substring(0, 80) + '" ' + correctText.substring(0, 60)
-  );
-  window.open('https://www.google.com/search?q=' + query, '_blank');
+  const options = Object.entries(q.alternativas).map(([k, v]) => `${k}) ${v}`).join('\n');
+  const text = `Question: ${q.pregunta}\n\nOptions:\n${options}\n\nCorrect answer: ${q.correcta}) ${q.alternativas[q.correcta]}`;
+  copyForResearch(text, document.getElementById('ia-review-btn'));
 }
 
 function sqlReviewOnWeb() {
   const p = SQL_SESSION.problem;
   if (!p) return;
-  const query = encodeURIComponent('"' + p.title + '" ' + p.key_concept);
-  window.open('https://www.google.com/search?q=' + query, '_blank');
+  const text = `Problem: ${p.title}\n\n${p.problem}\n\nKey concept: ${p.key_concept}\n\nSolution:\n${p.solution}`;
+  copyForResearch(text, document.getElementById('sp-review-btn'));
 }
 
 // ── INIT ──────────────────────────────────────────────────────────────────
@@ -1318,9 +1330,9 @@ function sparkResetProgress(){
 function sparkReviewOnWeb() {
   const q = SPARK_SESSION.questions[SPARK_SESSION.idx];
   if (!q) return;
-  const correctText = q.options[q.correct];
-  const query = encodeURIComponent('"' + q.front.substring(0, 80) + '" ' + correctText.substring(0, 60));
-  window.open('https://www.google.com/search?q=' + query, '_blank');
+  const options = Object.entries(q.options).map(([k, v]) => `${k}) ${v}`).join('\n');
+  const text = `Question: ${q.front}\n\nOptions:\n${options}\n\nCorrect answer: ${q.correct}) ${q.options[q.correct]}`;
+  copyForResearch(text, document.getElementById('sp2-review-btn'));
 }
 
 // Patch switchTab to include spark
