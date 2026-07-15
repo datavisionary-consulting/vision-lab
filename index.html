@@ -22,6 +22,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .tab-bar{display:flex;background:var(--surf);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
 .tab-btn{flex:1;padding:14px;border:none;background:none;color:var(--muted);font-size:.9rem;font-weight:600;cursor:pointer;border-bottom:2px solid transparent;transition:all .15s}
 .tab-btn.active{color:var(--acc2);border-bottom-color:var(--acc2)}
+.fullscreen-btn{flex:0 0 auto;display:flex;align-items:center;justify-content:center;padding:0 16px;border:none;background:none;color:var(--muted);cursor:pointer;transition:color .15s;opacity:.6}
+.fullscreen-btn:hover{color:var(--acc2);opacity:1}
+.fullscreen-btn svg{display:block}
 
 /* ── SCREENS ── */
 .section{display:none}.section.active{display:block}
@@ -392,6 +395,10 @@ textarea#sp-editor:focus{border-color:var(--cyan)}
   <button class="tab-btn active" onclick="switchTab('ia_pc')">📚 IA & Perception</button>
   <button class="tab-btn" onclick="switchTab('sql')">🗄️ SQL Training</button>
   <button class="tab-btn" onclick="switchTab('spark')">⚡ Spark</button>
+  <button class="fullscreen-btn" id="fullscreen-btn" onclick="toggleFullscreen()" title="Toggle fullscreen" aria-label="Toggle fullscreen">
+    <svg class="icon-expand" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+    <svg class="icon-compress" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"/></svg>
+  </button>
 </div>
 
 <!-- ════════════════ IA/PC SECTION ════════════════ -->
@@ -623,6 +630,23 @@ function switchTab(tab) {
   document.getElementById('sec-sql').classList.toggle('active', tab==='sql');
   if (tab==='sql') sqlRenderHome();
 }
+
+// ── FULLSCREEN ────────────────────────────────────────────────────────────
+function toggleFullscreen() {
+  if (!document.fullscreenElement) {
+    document.documentElement.requestFullscreen().catch(err => console.error('Fullscreen request failed:', err));
+  } else {
+    document.exitFullscreen();
+  }
+}
+document.addEventListener('fullscreenchange', () => {
+  const btn = document.getElementById('fullscreen-btn');
+  if (!btn) return;
+  const isFs = !!document.fullscreenElement;
+  btn.querySelector('.icon-expand').style.display = isFs ? 'none' : 'block';
+  btn.querySelector('.icon-compress').style.display = isFs ? 'block' : 'none';
+  btn.title = isFs ? 'Exit fullscreen' : 'Toggle fullscreen';
+});
 
 // ════════════════════════════════════════════════════════
 // IA/PC — STATE & SM-2
