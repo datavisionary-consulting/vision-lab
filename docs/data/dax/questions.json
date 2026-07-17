@@ -1,0 +1,1148 @@
+[
+  {
+    "id": "dax-001",
+    "topic": "fundamentals",
+    "question": "A Power BI retail model has two ways to compute 'Total Sales': a calculated column that multiplies Quantity by Unit Price on every row of the Sales table, and a measure that sums the same product across whatever rows are currently visible. What is the key practical difference between these two?",
+    "options": {
+      "a": "A calculated column is computed once and stored physically in the table, row by row, at refresh time; a measure is computed on the fly, dynamically, for whatever filter context a visual (or another calculation) puts it in",
+      "b": "There is no real difference; DAX treats them identically at runtime",
+      "c": "Calculated columns can only contain text, and measures can only contain numbers",
+      "d": "Measures are always slower than calculated columns because they must scan the entire table on every refresh"
+    },
+    "correct": "a",
+    "theory": {
+      "text": "This distinction is one of the first things every DAX author has to internalize. A calculated column behaves like any other column in the table: DAX evaluates it once per row at data-refresh time and stores the result, so it takes up memory and doesn't react to which slicers or filters a report user has applied. A measure, by contrast, has no stored value at all — every time it appears in a visual, DAX recalculates it fresh, using whatever filter context that visual (rows, columns, slicers, page filters) currently implies. That's why 'Total Sales by Region' as a measure automatically updates when a user clicks a region slicer, while a calculated column with the same formula would show the same per-row value no matter what's filtered."
+    },
+    "tags": [
+      "measures",
+      "calculated-columns"
+    ]
+  },
+  {
+    "id": "dax-002",
+    "topic": "fundamentals",
+    "question": "A regional sales manager asks for a report card that shows, for each store, 'Total Sales' next to 'Average Sale per Transaction.' Why would both of these typically be built as measures rather than calculated columns?",
+    "options": {
+      "a": "Because calculated columns cannot use the SUM function",
+      "b": "Because both values need to aggregate across many rows (many transactions) and respond to whatever slicing the report applies (store, date range) — exactly what measures are designed to do, while a calculated column only ever describes a single row",
+      "c": "Because calculated columns can only be used in the Power Query editor, not in reports",
+      "d": "Because measures are required by Power BI's licensing terms for any numeric field"
+    },
+    "correct": "b",
+    "theory": {
+      "text": "A calculated column's formula is evaluated in a row context — it can only see values belonging to the single row it's being computed for, plus anything reachable through relationships from that row. 'Total Sales per Store' and 'Average Sale per Transaction' are both aggregations across many transaction rows, which isn't something a single row's formula can naturally express. Measures, evaluated in filter context, are built exactly for this: whatever set of rows the report's current filters narrow things down to (a specific store, a specific month), the measure recalculates its aggregation over precisely that set. This is why the general rule of thumb in DAX modeling is: reach for a measure by default, and only use a calculated column when you genuinely need a new per-row attribute (like categorizing a transaction as 'Weekend' vs 'Weekday')."
+    },
+    "tags": [
+      "measures",
+      "calculated-columns"
+    ]
+  },
+  {
+    "id": "dax-003",
+    "topic": "fundamentals",
+    "question": "A DAX calculated table is created that lists only the distinct product categories currently present in the Sales fact table, refreshed whenever the model refreshes. How does a calculated table differ from a measure?",
+    "options": {
+      "a": "Calculated tables cannot be related to other tables in the model",
+      "b": "A calculated table only works with text columns, never numeric ones",
+      "c": "A calculated table produces an entire new table of rows and columns, computed at refresh time and stored in the model, whereas a measure produces a single scalar value, computed on demand within whatever visual references it",
+      "d": "A calculated table and a measure are two names for the same underlying DAX feature"
+    },
+    "correct": "c",
+    "theory": {
+      "text": "The three main DAX authoring surfaces — calculated columns, measures, and calculated tables — differ mainly in what they produce and when. A calculated table's formula (often built with functions like DISTINCT, SUMMARIZE, or FILTER) runs once at refresh time and materializes an entirely new table in the model, which can then have its own relationships to other tables, just like an imported table. A measure, by contrast, never produces a stored table or column — it always evaluates down to one number, recalculated live for whatever context it's placed in. A practical retail use case for a calculated table is building a small standalone dimension table (like a manually curated list of promotional periods) directly from DAX instead of importing it separately."
+    },
+    "tags": [
+      "calculated-tables"
+    ]
+  },
+  {
+    "id": "dax-004",
+    "topic": "fundamentals",
+    "question": "A beginner DAX author writes: Total Margin = SUM(Sales[Revenue]) - SUM(Sales[Cost]). What kind of DAX object is this, and why does it work correctly across every level of a report (a single store, a whole region, or the entire company)?",
+    "options": {
+      "a": "It is a measure; because both SUM() calls implicitly respect whatever filter context is active, the subtraction recalculates correctly no matter how the report is sliced, without the author writing any extra logic for each level",
+      "b": "It is a calculated table, because it references two columns from the same table",
+      "c": "It is a calculated column, and it works at every level because calculated columns automatically re-aggregate",
+      "d": "It will only work correctly at the total (grand total) level, and will return errors at any more granular level"
+    },
+    "correct": "a",
+    "theory": {
+      "text": "This simple formula demonstrates why measures are so central to Power BI reporting: SUM(Sales[Revenue]) doesn't mean 'sum every row in the whole table' — it means 'sum whatever rows are visible in the current filter context,' which could be one store's June transactions or the whole company's entire history, depending on where the measure is placed in a report. Because both SUM() calls automatically respect that same context, subtracting one from the other produces a correct margin figure at literally any level of aggregation a report might request — a single formula that 'just works' whether it's dropped into a store-level table or a company-wide KPI card, with no extra logic required from the author."
+    },
+    "tags": [
+      "measures",
+      "aggregation"
+    ]
+  },
+  {
+    "id": "dax-005",
+    "topic": "fundamentals",
+    "question": "Why would a DAX author generally prefer writing a measure like Total Sales = SUM(Sales[SalesAmount]) instead of hardcoding a specific number, even if they only need that one number for a single report page right now?",
+    "options": {
+      "a": "Measures are required before a model can be published to the Power BI service",
+      "b": "DAX does not allow numeric literals to be typed directly into any formula",
+      "c": "A measure recalculates automatically as new data is loaded and as the report is filtered, so it stays correct over time and across every context, while a hardcoded number would need to be manually rewritten whenever the underlying data changes",
+      "d": "Hardcoded numbers are actually preferred in DAX for performance reasons"
+    },
+    "correct": "c",
+    "theory": {
+      "text": "A hardcoded number is a snapshot frozen at the moment it was typed — it doesn't know about next month's new sales data, and it doesn't adapt if a user filters the report down to a single product category. A measure built from an aggregation function instead recomputes fresh every time the model refreshes or the filter context changes, which is precisely the point of building a data model rather than just typing numbers into a slide. This is a foundational habit for anyone coming from a spreadsheet background: in DAX, you generally want to describe how a number should be calculated from the data, not what today's specific number happens to be."
+    },
+    "tags": [
+      "measures",
+      "fundamentals"
+    ]
+  },
+  {
+    "id": "dax-006",
+    "topic": "fundamentals",
+    "question": "A supply-chain analyst writes DaysOfStock = Inventory[UnitsOnHand] / RELATED(Product[AvgDailyDemand]) as a calculated column on the Inventory table. Why must this be a calculated column here, and not simply left as a plain division typed into a visual?",
+    "options": {
+      "a": "Because division is not supported inside DAX measures",
+      "b": "Because RELATED() can only be used inside calculated columns and calculated tables, where a single-row context is available to look up the related value; it cannot be used freely inside a measure's aggregation logic in the same way",
+      "c": "Because calculated columns are always faster than measures for any formula involving division",
+      "d": "Because RELATED() requires the two tables to have no relationship at all"
+    },
+    "correct": "b",
+    "theory": {
+      "text": "RELATED() pulls a value from a related table's row that corresponds to the current row being evaluated — which only makes sense when there is a single, specific 'current row' to walk the relationship from. That single-row context is exactly what a calculated column naturally provides (or an iterator, as covered later in this course), which is why this per-item 'days of stock remaining' calculation is a good fit for a calculated column: each inventory row looks up its own product's average daily demand and divides accordingly. A plain measure, evaluated over a filter context rather than one row at a time, would need a different construction (typically an iterator like SUMX or AVERAGEX) to achieve a similar per-row calculation aggregated up."
+    },
+    "tags": [
+      "related-function",
+      "row-context"
+    ]
+  },
+  {
+    "id": "dax-007",
+    "topic": "fundamentals",
+    "question": "A finance team wants 'Gross Margin %' displayed as a percentage in every report visual, computed as Total Margin divided by Total Revenue. What DAX consideration is most important to get right here?",
+    "options": {
+      "a": "Percentages cannot be calculated in DAX at all; they must be computed in Power Query instead",
+      "b": "DAX automatically detects any ratio-shaped formula and displays it as a percentage without configuration",
+      "c": "Handling the case where Total Revenue is zero (which would otherwise cause a division error) and choosing correct formatting, since DAX itself does not know whether a raw decimal number should display as a percentage or a plain number",
+      "d": "Gross Margin % must always be built as a calculated column, never a measure"
+    },
+    "correct": "c",
+    "theory": {
+      "text": "Two practical issues come up constantly with ratio measures like margin percentage. First, if a filtered context has zero revenue (a store with no sales that period), a plain division throws an error, so DAX authors typically wrap it in DIVIDE(TotalMargin, TotalRevenue) instead of the raw / operator, since DIVIDE gracefully returns a blank (or a specified alternate value) instead of erroring. Second, DAX computes a plain decimal number (0.34) regardless of whether you intend it to be read as 34%; the percentage formatting is a display-layer setting applied to the measure, not something DAX infers automatically from the formula's shape. Getting both of these right is a small but very common source of broken-looking reports."
+    },
+    "tags": [
+      "divide-function",
+      "formatting"
+    ]
+  },
+  {
+    "id": "dax-008",
+    "topic": "row-filter-context",
+    "question": "A measure Avg Price = AVERAGE(Sales[UnitPrice]) is placed in a table visual broken out by Product Category. When the visual renders the 'Electronics' row, what determines which UnitPrice values get averaged for that row?",
+    "options": {
+      "a": "The filter context created by the visual for that row — in this case, 'Product Category = Electronics' — which narrows which Sales rows are visible before AVERAGE() aggregates them",
+      "b": "A random sample of rows chosen by DAX for performance reasons",
+      "c": "Every UnitPrice value in the entire Sales table, regardless of category, since AVERAGE() always operates on the whole column",
+      "d": "Only the single row that happens to be first in the Sales table"
+    },
+    "correct": "a",
+    "theory": {
+      "text": "Filter context is the set of active filters — from slicers, visual rows/columns, page filters, and more — that narrows down which rows of the model are 'visible' when a measure is evaluated. A table visual broken out by Product Category implicitly creates one filter context per row of that table: for the 'Electronics' row, DAX applies a filter equivalent to 'only rows where Product Category = Electronics' before evaluating AVERAGE(Sales[UnitPrice]). This is the mechanism that makes the exact same measure formula produce a different, contextually-correct number for every row, column, and total of a report without the author writing separate formulas for each breakdown."
+    },
+    "tags": [
+      "filter-context"
+    ]
+  },
+  {
+    "id": "dax-009",
+    "topic": "row-filter-context",
+    "question": "Inside a calculated column formula on the Sales table, referencing Sales[Quantity] returns a single number for each row, not a whole column of values. What context makes this possible?",
+    "options": {
+      "a": "Row context — the calculated column formula is evaluated once per row of the table, and within that evaluation, a plain column reference resolves to that specific row's value",
+      "b": "Query context, which only applies to measures placed inside a visual",
+      "c": "There is no special context; DAX simply picks the first value in the column every time",
+      "d": "Filter context, because calculated columns always inherit the report's active slicers"
+    },
+    "correct": "a",
+    "theory": {
+      "text": "Row context is the DAX evaluation mode where a formula is being computed 'for one specific row at a time,' and it's automatically present inside calculated columns (and inside iterator functions, covered later) but not inside plain measures written outside an iterator. Within that row context, referencing a column name doesn't return the whole column — it returns just the value from the current row being processed, the same way a spreadsheet formula in one row of a column only sees that row's other cells. This is the opposite default from a measure, which starts with no row context at all and instead responds to filter context; understanding when each kind of context is active is one of the most important mental models in DAX."
+    },
+    "tags": [
+      "row-context"
+    ]
+  },
+  {
+    "id": "dax-010",
+    "topic": "row-filter-context",
+    "question": "A store manager applies a slicer for 'Q2 2026' and a table visual shows Total Sales broken down by Product. For the 'Laptops' row of that table, how many distinct filters are simultaneously narrowing the rows DAX aggregates over?",
+    "options": {
+      "a": "The number of filters is fixed at exactly three regardless of the report's design",
+      "b": "Zero, because slicers only affect calculated columns, not measures",
+      "c": "Only one — either the slicer or the table row, but never both at the same time",
+      "d": "At least two, combined together: the page-level slicer filter (Q2 2026) and the visual's own row filter (Product = Laptops) — filter context accumulates from every active source at once"
+    },
+    "correct": "d",
+    "theory": {
+      "text": "Filter context isn't a single filter — it's the combined effect of every active filtering source at once: slicers, page-level and report-level filters, and the row/column breakdown of the visual itself. For the 'Laptops' row under a 'Q2 2026' slicer, DAX effectively applies both restrictions simultaneously (quarter = Q2 2026 AND product = Laptops) before aggregating. This layering is exactly why a single measure formula can sit correctly inside a complex report with multiple slicers, filters, and breakdowns all active together — each visual cell simply gets the intersection of every applicable filter, and the measure's aggregation functions respond to whatever that combined context turns out to be."
+    },
+    "tags": [
+      "filter-context"
+    ]
+  },
+  {
+    "id": "dax-011",
+    "topic": "row-filter-context",
+    "question": "SUMX(Sales, Sales[Quantity] * Sales[UnitPrice]) is a common way to compute total revenue when there is no pre-stored revenue column. What two contexts work together inside this formula?",
+    "options": {
+      "a": "SUMX introduces a row context that walks the Sales table row by row (letting Quantity * UnitPrice resolve per row), and the whole SUMX expression itself still responds to whatever outer filter context it's evaluated in — so both operate together",
+      "b": "SUMX requires a calculated column to already exist before it can be used",
+      "c": "SUMX ignores filter context entirely and always sums the full, unfiltered table",
+      "d": "SUMX only ever uses filter context and never introduces a row context of its own"
+    },
+    "correct": "a",
+    "theory": {
+      "text": "SUMX is an iterator: it takes a table (or table-shaped expression) as its first argument, then evaluates its second argument once for every row of that table, providing a row context for that evaluation. This is exactly what lets Quantity * UnitPrice resolve to a single row's values inside the expression. But that iterated table itself — Sales — is still subject to whatever filter context is active outside the SUMX call (a slicer, a visual breakdown), so if a report has filtered down to one store's June transactions, SUMX only iterates over those rows. This combination — filter context narrowing which rows are available, row context walking through them one at a time — is the core mechanic behind every iterator function in DAX."
+    },
+    "tags": [
+      "sumx",
+      "row-context",
+      "filter-context"
+    ]
+  },
+  {
+    "id": "dax-012",
+    "topic": "row-filter-context",
+    "question": "A calculated column IsHighValue = IF(Sales[Amount] > CALCULATE(AVERAGE(Sales[Amount])), \"High\", \"Normal\") is written to flag transactions above the average. Why is the CALCULATE() wrapper important here, given that a row context (from the calculated column) is already active?",
+    "options": {
+      "a": "CALCULATE() is required only when working with text columns, not numeric ones",
+      "b": "CALCULATE() is unnecessary decoration and could be removed with no change in behavior",
+      "c": "CALCULATE() converts the calculated column into a measure automatically",
+      "d": "Without CALCULATE(), AVERAGE(Sales[Amount]) inside a row context would be affected by context transition issues and ambiguity; CALCULATE() forces the row context to transition into an equivalent filter context, letting AVERAGE() correctly compute the true table-wide (or otherwise contextually filtered) average rather than something tied to the single current row"
+    },
+    "correct": "d",
+    "theory": {
+      "text": "This question touches directly on context transition: when CALCULATE (or CALCULATETABLE) is evaluated while a row context is active, DAX converts that row context into an equivalent filter context, filtering by the current row's column values before evaluating CALCULATE's expression. Wrapping AVERAGE(Sales[Amount]) in CALCULATE() here changes what 'the average' means and gives the author explicit control over it — for instance, by adding ALL(Sales) inside the same CALCULATE(), the author could deliberately compute the true unfiltered average across the whole table for comparison, ignoring the row context entirely. Without CALCULATE, a plain AVERAGE(Sales[Amount]) written inside a calculated column context still evaluates over the full column (since a bare aggregation function isn't itself affected by row context the way a column reference is), which is a subtlety that trips up many DAX beginners and is exactly why CALCULATE is used to be explicit and intentional about which context should apply."
+    },
+    "tags": [
+      "context-transition",
+      "calculate"
+    ]
+  },
+  {
+    "id": "dax-013",
+    "topic": "row-filter-context",
+    "question": "Two nearly identical formulas are compared: RankByRegion (a calculated column using RANKX inside a row context) versus RankByRegion (a measure using RANKX driven by filter context in a visual). Why might these produce different-looking rankings even on 'the same data'?",
+    "options": {
+      "a": "A calculated column's rank is computed once at refresh time based on the whole table (or whatever scope its RANKX call specifies) and stays fixed regardless of report filters; a measure's rank recalculates live based on whatever subset of rows the current filter context includes, so the two can diverge whenever a report is filtered to anything less than the full dataset",
+      "b": "The two will always produce identical results in every scenario, with no exceptions",
+      "c": "RANKX cannot be used inside calculated columns at all, so this comparison is not possible",
+      "d": "Rankings are non-deterministic in DAX and will differ randomly on every refresh"
+    },
+    "correct": "a",
+    "theory": {
+      "text": "This is a direct, practical consequence of the calculated-column-vs-measure distinction from dax-001, applied to a real gotcha many report builders run into. A calculated column's RANKX result is baked in at refresh time against whatever scope the formula specifies (often the whole table) and does not change when a user later filters the report to, say, just one region — the stored rank numbers stay exactly as they were computed. A measure-based RANKX, in contrast, recalculates fresh every time it's rendered, re-ranking only among the rows currently visible in that filter context — so filtering to one region and looking at store ranks 'within that region' only works correctly with a measure, since a calculated column's frozen ranks would still reflect their original, unfiltered ordering."
+    },
+    "tags": [
+      "rankx",
+      "calculated-columns",
+      "measures"
+    ]
+  },
+  {
+    "id": "dax-014",
+    "topic": "row-filter-context",
+    "question": "A visual shows Total Sales at the 'Grand Total' row of a table, with no slicers or filters applied anywhere on the page. What filter context is active for that Grand Total cell?",
+    "options": {
+      "a": "No filter context at all — the model is somehow uninitialized at the grand total level",
+      "b": "The broadest possible filter context available given the report's current filters: since nothing is filtering the page, the context effectively includes every row in the relevant tables, so the measure aggregates across the entire (unfiltered) dataset",
+      "c": "A filter context restricted to exactly one row, chosen arbitrarily",
+      "d": "The same filter context as a random other cell in the same table visual"
+    },
+    "correct": "b",
+    "theory": {
+      "text": "Even the 'no filters applied' case is still a filter context — just an unusually permissive one that doesn't exclude anything, so aggregation functions inside a measure operate over the full breadth of data available at that point in the model. This is worth being precise about: DAX doesn't have a special 'ignore all context' mode by default, every evaluation always happens inside some filter context, even if that context happens to be as wide open as the entire table. This matters because functions like ALL() (covered later in this course) are specifically about deliberately overriding an existing, narrower filter context back to this same maximally-broad state — which only makes sense once you understand that 'no filters' is itself just a particular (very wide) filter context, not an absence of context."
+    },
+    "tags": [
+      "filter-context"
+    ]
+  },
+  {
+    "id": "dax-015",
+    "topic": "row-filter-context",
+    "question": "In a matrix visual with Product Category on rows and Year on columns, a single cell (e.g., 'Electronics' row, '2025' column) is being rendered. How many dimensions of filtering combine to produce that cell's filter context?",
+    "options": {
+      "a": "Just one — either the row or the column, whichever the visual renders first",
+      "b": "The filter context is determined solely by the measure's DAX formula, independent of the visual's layout",
+      "c": "Matrix visuals do not use filter context; they use a separate mechanism called grid context",
+      "d": "Both the row and column headers combine (Product Category = Electronics AND Year = 2025), plus any slicers or report-level filters also active, all intersected together into that one cell's filter context"
+    },
+    "correct": "d",
+    "theory": {
+      "text": "A matrix visual is really just a two-dimensional generalization of the same single-dimension filter-context idea already covered for a simple table visual (dax-010): every axis the visual breaks data out by (rows, columns, and any additional legend or small-multiples grouping) contributes its own filter to each individual cell, and all of those filters combine with whatever slicers and page filters are also active. The 'Electronics 2025' cell's filter context is the intersection of every one of those simultaneously-active restrictions. This generalizes further to more complex visuals with multiple grouping levels — the underlying rule stays the same: every visual element that groups or filters data contributes to the combined filter context each individual value is calculated within."
+    },
+    "tags": [
+      "filter-context",
+      "matrix-visuals"
+    ]
+  },
+  {
+    "id": "dax-016",
+    "topic": "calculate-function",
+    "question": "A measure is written as Electronics Sales = CALCULATE(SUM(Sales[Amount]), Sales[Category] = \"Electronics\"). When this measure is placed in a visual that's already filtered to 'Furniture' by a slicer, what does it return?",
+    "options": {
+      "a": "Zero or blank, because the slicer's Furniture filter and the measure's Electronics filter both stay active and contradict each other, filtering out every row",
+      "b": "The total sales of Furniture, because slicers always take priority over CALCULATE's arguments",
+      "c": "An error, because CALCULATE cannot override an existing slicer filter",
+      "d": "The total sales of Electronics, because the explicit filter argument inside CALCULATE overrides the existing Category filter coming from the slicer, replacing rather than combining with it for that column"
+    },
+    "correct": "d",
+    "theory": {
+      "text": "This is one of CALCULATE's most important and most commonly misunderstood behaviors: a filter argument passed directly to CALCULATE (like Sales[Category] = \"Electronics\") doesn't add on top of whatever filter is already active for that same column — it replaces it. So even though the report-level slicer says 'Furniture only,' CALCULATE's explicit Category filter overrides that specific column's existing restriction and forces the calculation to use Electronics instead. This 'override, not combine' behavior for the same column is exactly why CALCULATE is the tool of choice whenever a measure needs to deliberately show a number that differs from what the surrounding report filters would otherwise imply — like a 'sales of our top category regardless of what's currently sliced' KPI."
+    },
+    "tags": [
+      "calculate",
+      "filter-override"
+    ]
+  },
+  {
+    "id": "dax-017",
+    "topic": "calculate-function",
+    "question": "CALCULATE(SUM(Sales[Amount]), Sales[Category] = \"Electronics\", Sales[Region] = \"West\") includes two filter arguments on two different columns. How do these two filters combine with each other?",
+    "options": {
+      "a": "They combine with OR logic — rows matching either condition are included",
+      "b": "They combine with AND logic — only rows satisfying both conditions (Electronics AND West) are included, since multiple filter arguments to CALCULATE on different columns are intersected together",
+      "c": "Only the last filter argument listed is actually applied; earlier ones are ignored",
+      "d": "The two filters cancel each other out, resulting in no filtering at all"
+    },
+    "correct": "b",
+    "theory": {
+      "text": "Multiple filter arguments passed to CALCULATE, when they apply to different columns (as opposed to the same-column override behavior from dax-016), are combined together with AND logic — every condition must hold simultaneously for a row to be included in the resulting calculation. So this formula computes total sales specifically for rows that are both in the Electronics category and the West region at the same time, not the total of Electronics sales plus the total of West region sales added together. Getting this combining logic right matters a lot in practice, since it's easy to write a CALCULATE with several conditions intending an OR relationship (e.g., 'Electronics or Furniture') and get an unexpectedly narrow AND-based result instead — which typically requires a different construction, like a filter argument built with the OR (||) operator or a table expression."
+    },
+    "tags": [
+      "calculate",
+      "and-logic"
+    ]
+  },
+  {
+    "id": "dax-018",
+    "topic": "calculate-function",
+    "question": "A KPI card measure is defined as Total Company Sales = CALCULATE(SUM(Sales[Amount]), ALL(Sales)). Why would an analyst deliberately add ALL(Sales) here, given that this measure is meant to sit right next to a filtered store-level breakdown elsewhere on the same report page?",
+    "options": {
+      "a": "ALL(Sales) has no effect inside CALCULATE and is purely decorative",
+      "b": "ALL(Sales) restricts the calculation to only the currently visible rows, the opposite of its actual behavior",
+      "c": "ALL(Sales) deletes the Sales table from the model entirely",
+      "d": "ALL(Sales) removes every existing filter on the Sales table (from slicers, page filters, and visual breakdowns alike), so this measure always shows the true company-wide total regardless of whatever else is filtered on the page — useful for a 'percent of total' style comparison"
+    },
+    "correct": "d",
+    "theory": {
+      "text": "ALL() is a table function that, used as a CALCULATE filter argument, strips away whatever filters currently apply to the table (or specific columns) it's given, effectively resetting that part of the filter context back to the 'nothing filtered' state described in dax-014. Deliberately using it here means this particular measure ignores the region slicer, the store breakdown, and any other page filter, and always computes against the entire unfiltered Sales table. This is exactly the standard pattern behind common business KPIs like 'this store's sales as a percent of total company sales' — you need one measure that stays filtered (the store's own sales) and a second, ALL()-based measure that deliberately does not, so the ratio between them is meaningful."
+    },
+    "tags": [
+      "all-function",
+      "calculate"
+    ]
+  },
+  {
+    "id": "dax-019",
+    "topic": "calculate-function",
+    "question": "A discount-analysis measure is built as Discounted Sales = CALCULATE(SUM(Sales[Amount]), Sales[Discount] > 0). Here, the filter argument is a full boolean condition rather than a simple equality. What does CALCULATE do with a condition like this?",
+    "options": {
+      "a": "It rejects the formula outright, since CALCULATE filter arguments must always be simple equality comparisons",
+      "b": "It treats the greater-than condition as text and produces an error",
+      "c": "Internally, CALCULATE evaluates this as a table filter — conceptually similar to FILTER(ALL(Sales[Discount]), Sales[Discount] > 0) — restricting the Discount column to only values satisfying the condition before the SUM aggregates",
+      "d": "It ignores the condition and simply sums the full, unfiltered Sales[Amount] column"
+    },
+    "correct": "c",
+    "theory": {
+      "text": "A simple boolean filter argument like Sales[Discount] > 0, written directly as a CALCULATE argument, is a convenient shorthand that DAX automatically expands into an equivalent table-filtering expression behind the scenes — effectively figuring out which values of that column satisfy the condition and restricting the calculation to rows matching those values. This shorthand form works for straightforward single-column conditions; more elaborate logic (conditions spanning multiple columns, or conditions that need row-by-row evaluation across a whole table) typically requires an explicit FILTER() table expression instead. Recognizing when the simple shorthand is sufficient versus when a full FILTER() is required is a common practical judgment call when writing CALCULATE-based measures."
+    },
+    "tags": [
+      "calculate",
+      "boolean-filters"
+    ]
+  },
+  {
+    "id": "dax-020",
+    "topic": "calculate-function",
+    "question": "A retail analyst wants a measure that always returns sales for exactly the top 3 best-selling products company-wide, regardless of what a report page's product slicer is set to. Which CALCULATE pattern fits this requirement?",
+    "options": {
+      "a": "SUM(Sales[Amount]) alone, with no CALCULATE, since plain SUM already restricts to the top 3 automatically",
+      "b": "CALCULATE(SUM(Sales[Amount]), Sales[Category] = \"Electronics\") — because Electronics is usually the top category",
+      "c": "CALCULATE(SUM(Sales[Amount])) with no filter arguments, relying on the report's default sorting",
+      "d": "CALCULATE(SUM(Sales[Amount]), TOPN(3, ALL(Product), [Total Sales], DESC)) — using TOPN with ALL(Product) as a table filter argument to explicitly select the top 3 products by total sales, overriding whatever the slicer would otherwise restrict to"
+    },
+    "correct": "d",
+    "theory": {
+      "text": "CALCULATE's filter arguments aren't limited to simple column conditions — they can also be entire table expressions, and TOPN(3, ALL(Product), [Total Sales], DESC) is exactly that: a table containing only the 3 rows of the Product table with the highest Total Sales measure value, computed after first removing (via ALL) whatever slicer-based product filtering was already in place. Passing that table as a filter argument to CALCULATE means the SUM(Sales[Amount]) inside only aggregates transactions belonging to those 3 specific products, deliberately overriding the report's slicer the same way the simpler examples in dax-016 and dax-018 did, just with a more sophisticated, dynamically-computed filter table instead of a fixed condition."
+    },
+    "tags": [
+      "calculate",
+      "topn"
+    ]
+  },
+  {
+    "id": "dax-021",
+    "topic": "calculate-function",
+    "question": "KEEPFILTERS(Sales[Category] = \"Electronics\") is used inside a CALCULATE call instead of a plain Sales[Category] = \"Electronics\" filter argument. What does KEEPFILTERS change about the behavior described in dax-016?",
+    "options": {
+      "a": "KEEPFILTERS converts the measure into a calculated column",
+      "b": "KEEPFILTERS has no functional effect and exists purely for code readability",
+      "c": "KEEPFILTERS makes the filter argument combine (intersect) with any existing filter on that same column, instead of overriding/replacing it — so if a slicer already restricts to 'Furniture,' the combined result (Electronics AND Furniture) would be empty, rather than the override showing plain Electronics totals",
+      "d": "KEEPFILTERS deletes all other filters in the report"
+    },
+    "correct": "c",
+    "theory": {
+      "text": "KEEPFILTERS is specifically designed to change CALCULATE's default same-column override behavior from dax-016 into an intersecting (AND) behavior instead. Without it, an Electronics filter argument to CALCULATE would replace an existing Furniture slicer filter outright, always showing Electronics numbers regardless of the slicer. With KEEPFILTERS wrapped around it, the two filters on the same column are combined instead: the calculation only includes rows that satisfy both the slicer's restriction and the CALCULATE argument simultaneously — which, for mutually exclusive categories like Furniture and Electronics, correctly produces an empty result, reflecting that no rows can be both at once. This distinction matters most in report designs where a measure needs to respect existing slicers rather than silently overriding them."
+    },
+    "tags": [
+      "keepfilters",
+      "calculate"
+    ]
+  },
+  {
+    "id": "dax-022",
+    "topic": "calculate-function",
+    "question": "A CFO dashboard needs a measure showing 'Sales excluding returns,' where the Sales table has a RowType column with values 'Sale' and 'Return.' Which is the most idiomatic CALCULATE-based way to build this?",
+    "options": {
+      "a": "SalesExcludingReturns = SUM(Sales[Amount]) - SUM(Sales[Amount]), which always returns zero regardless of intent",
+      "b": "SalesExcludingReturns = Sales[Amount], referenced directly with no aggregation function",
+      "c": "SalesExcludingReturns = COUNTROWS(Sales), which counts rows rather than summing amounts",
+      "d": "SalesExcludingReturns = CALCULATE(SUM(Sales[Amount]), Sales[RowType] = \"Sale\") — using CALCULATE with an explicit filter argument to restrict the aggregation to only rows flagged as sales, excluding returns from the sum"
+    },
+    "correct": "d",
+    "theory": {
+      "text": "This is a direct, practical application of the standard CALCULATE-plus-filter-argument pattern already established across this topic: whenever a measure needs to compute an aggregation over a deliberately restricted subset of rows — different from whatever the surrounding report context implies — CALCULATE with an explicit condition is the tool built for exactly that job. Here, restricting to RowType = \"Sale\" excludes any row flagged as a return before SUM adds up the amounts, giving a clean 'gross sales, returns excluded' figure that still behaves correctly under any other slicer or filter a report applies (since, per dax-017, filters on other columns like Region would still combine with this one via AND)."
+    },
+    "tags": [
+      "calculate",
+      "business-application"
+    ]
+  },
+  {
+    "id": "dax-023",
+    "topic": "calculate-function",
+    "question": "A measure Sales YTD is defined using CALCULATE(SUM(Sales[Amount]), DATESYTD(Calendar[Date])). What role does DATESYTD play as a CALCULATE argument here?",
+    "options": {
+      "a": "DATESYTD returns a table of dates — specifically, every date from the start of the current year up through the last date visible in the current filter context — which CALCULATE then uses as a filter argument on the Calendar table's Date column, restricting the sum to only that year-to-date range",
+      "b": "DATESYTD is a formatting function that changes how the resulting number is displayed, without affecting which rows are summed",
+      "c": "DATESYTD requires the Sales table itself to contain a Year column",
+      "d": "DATESYTD can only be used outside of CALCULATE, never as an argument to it"
+    },
+    "correct": "a",
+    "theory": {
+      "text": "DATESYTD is one of DAX's time-intelligence functions, and like the TOPN example in dax-020, it's a table-returning function used as a CALCULATE filter argument rather than a simple condition. Given a date column from a proper calendar table, it returns the table of dates spanning from January 1st of the relevant year up through whatever the latest date in the current filter context happens to be. CALCULATE then uses that returned table of dates to filter the Calendar table, which (through the model's relationships) restricts the Sales table to only transactions falling in that same year-to-date window before SUM aggregates. This pattern — a time-intelligence function returning a date table, passed into CALCULATE — is the standard shape behind essentially every DAX year-to-date, quarter-to-date, or similar cumulative calculation."
+    },
+    "tags": [
+      "datesytd",
+      "calculate",
+      "time-intelligence"
+    ]
+  },
+  {
+    "id": "dax-024",
+    "topic": "calculate-function",
+    "question": "In the DATESYTD example from dax-023, why does the formula rely on a dedicated Calendar table with one row per date, rather than just using whatever date column already exists on the Sales fact table directly?",
+    "options": {
+      "a": "DAX technically requires a separate calendar table for syntax reasons, with no deeper modeling rationale",
+      "b": "Calendar tables are only needed for CALCULATE, not for DATESYTD specifically",
+      "c": "A proper calendar table guarantees one row for every single date in a continuous range (even dates with zero transactions), which time-intelligence functions rely on to correctly compute contiguous date ranges like 'year to date'; a fact table's date column would typically be missing dates that had no sales, breaking that continuity",
+      "d": "Using the Sales table's own date column would cause a circular reference error"
+    },
+    "correct": "c",
+    "theory": {
+      "text": "This is one of the most important, easy-to-overlook data modeling rules in DAX: time-intelligence functions like DATESYTD, SAMEPERIODLASTYEAR, and DATEADD all depend on iterating across a genuinely continuous sequence of dates to compute things like 'every day from January 1st to today.' A Sales fact table's date column only contains dates on which a transaction actually happened — if a store had zero sales on some Tuesday, that date simply wouldn't appear at all, silently breaking the continuity these functions need. A dedicated calendar (date) table, built or imported specifically to contain one row per calendar date with no gaps, avoids this problem entirely, which is why building a proper calendar table and relating it to the fact table is considered a near-mandatory first step in any DAX model that needs time intelligence."
+    },
+    "tags": [
+      "calendar-table",
+      "data-modeling"
+    ]
+  },
+  {
+    "id": "dax-025",
+    "topic": "time-intelligence",
+    "question": "A retail dashboard needs to compare this year's sales to the same period last year. The formula used is Sales PY = CALCULATE([Total Sales], SAMEPERIODLASTYEAR(Calendar[Date])). What does SAMEPERIODLASTYEAR actually do?",
+    "options": {
+      "a": "It only works when the current filter context is exactly one calendar year, never a shorter period like a single month",
+      "b": "It permanently changes the underlying data in the Sales table to reflect last year's numbers",
+      "c": "It returns a table of dates shifted back exactly one year from whatever date range is currently in the filter context, which CALCULATE then uses to filter the Calendar table, so [Total Sales] recalculates against last year's equivalent period instead of this year's",
+      "d": "It multiplies the current period's sales figure by a fixed year-over-year growth rate"
+    },
+    "correct": "c",
+    "theory": {
+      "text": "SAMEPERIODLASTYEAR follows the same general pattern as DATESYTD from dax-023: it's a table-returning time-intelligence function used as a CALCULATE filter argument, and it works by taking whatever date range is currently active in the filter context (a specific month, a quarter, a full year) and shifting that entire range back by exactly one year. CALCULATE then applies that shifted date range as the new filter on the Calendar table, so the [Total Sales] measure inside recalculates against last year's equivalent period rather than the current one. This means the same formula correctly handles 'this month vs. same month last year,' 'this quarter vs. same quarter last year,' and 'this year vs. last year' — the shift always mirrors whatever granularity the report is currently displaying."
+    },
+    "tags": [
+      "sameperiodlastyear",
+      "time-intelligence"
+    ]
+  },
+  {
+    "id": "dax-026",
+    "topic": "time-intelligence",
+    "question": "Once Sales PY exists (from dax-025), a further measure YoY Growth % = DIVIDE([Total Sales] - [Sales PY], [Sales PY]) is built on top of it. What DAX principle does this layering demonstrate?",
+    "options": {
+      "a": "This pattern always causes a circular reference error since Sales PY itself depends on Total Sales",
+      "b": "Measures cannot reference other measures in DAX, so this formula would not actually work",
+      "c": "Measures can be composed from other measures, letting complex business calculations (like year-over-year growth percentage) be built as small, readable, reusable layers rather than one giant formula",
+      "d": "DIVIDE can only be used with raw columns, never with other measures as inputs"
+    },
+    "correct": "c",
+    "theory": {
+      "text": "DAX measures can freely reference other already-defined measures (using square-bracket syntax like [Sales PY]), and this compositional style is widely considered best practice rather than a special trick. Building Sales PY as its own clean, well-named measure, then referencing it inside YoY Growth %, keeps each individual formula focused and easy to audit, compared to writing one sprawling formula that redundantly recomputes the prior-year calculation inline. There's no circular reference here because Sales PY depends only on the underlying Total Sales measure and the Calendar table's dates, not on YoY Growth % itself — the dependency chain flows one direction, which is exactly the kind of layered structure well-organized DAX models are built around."
+    },
+    "tags": [
+      "measure-composition"
+    ]
+  },
+  {
+    "id": "dax-027",
+    "topic": "time-intelligence",
+    "question": "A logistics analyst wants a measure for 'sales exactly 3 months ago' (not year-over-year, but a rolling 3-month shift), to compare against the current month regardless of which specific month a user is viewing. Which function is purpose-built for an arbitrary period shift like this, as opposed to the fixed one-year shift of SAMEPERIODLASTYEAR?",
+    "options": {
+      "a": "DATEADD(Calendar[Date], -3, MONTH), which shifts the current filter context's date range back by a specified number of periods (here, 3 months) rather than being locked to exactly one year",
+      "b": "ALLSELECTED, which has nothing to do with shifting time periods",
+      "c": "TOTALYTD, which is designed only for year-to-date cumulative totals",
+      "d": "RANKX, which ranks values rather than shifting dates"
+    },
+    "correct": "a",
+    "theory": {
+      "text": "DATEADD generalizes the same underlying idea as SAMEPERIODLASTYEAR — shift the current filter context's date range and use the shifted range to filter the Calendar table via CALCULATE — but instead of a fixed one-year shift, it accepts an explicit number of periods and a unit (DAY, MONTH, QUARTER, or YEAR) to shift by. CALCULATE([Total Sales], DATEADD(Calendar[Date], -3, MONTH)) shifts whatever range is currently active back by 3 months, which correctly adapts whether the user is currently viewing a single month, a quarter, or a custom date range. This flexibility is why DATEADD is often reached for once a business requirement moves beyond the standard, fixed year-over-year comparison that SAMEPERIODLASTYEAR is specifically built for."
+    },
+    "tags": [
+      "dateadd",
+      "time-intelligence"
+    ]
+  },
+  {
+    "id": "dax-028",
+    "topic": "time-intelligence",
+    "question": "TOTALYTD([Total Sales], Calendar[Date]) is offered by DAX as a shortcut. What is its relationship to the CALCULATE(SUM(...), DATESYTD(...)) pattern from dax-023?",
+    "options": {
+      "a": "TOTALYTD produces month-to-date totals, not year-to-date totals, despite its name",
+      "b": "TOTALYTD is a convenience 'shortcut' time-intelligence function that internally does essentially the same thing as wrapping the expression in CALCULATE with DATESYTD, packaged into a single function call for the common year-to-date case",
+      "c": "TOTALYTD is an unrelated function that has nothing to do with year-to-date calculations",
+      "d": "TOTALYTD only works on calculated columns, never on measures"
+    },
+    "correct": "b",
+    "theory": {
+      "text": "DAX includes a family of these convenience time-intelligence functions (TOTALYTD, TOTALQTD, TOTALMTD) that exist specifically to package the common CALCULATE-plus-date-table-function pattern into a single, more concise call for the most frequently needed cumulative calculations. Under the hood, TOTALYTD([Total Sales], Calendar[Date]) behaves essentially like CALCULATE([Total Sales], DATESYTD(Calendar[Date])) — same underlying mechanism, shorter to type for this specific common case. Knowing both forms is useful: the shortcut functions cover the standard cases quickly, while understanding the underlying CALCULATE-plus-date-table pattern (as built up across dax-023 through dax-027) is what lets an analyst handle the less-standard cases the shortcuts don't directly cover, like the arbitrary 3-month shift in dax-027."
+    },
+    "tags": [
+      "totalytd",
+      "time-intelligence"
+    ]
+  },
+  {
+    "id": "dax-029",
+    "topic": "time-intelligence",
+    "question": "A retailer wants to compare Black Friday week sales this year against Black Friday week last year, but the two years' Black Friday weeks fall on different calendar dates (since Black Friday's date shifts each year). Why might SAMEPERIODLASTYEAR give a misleading comparison here?",
+    "options": {
+      "a": "SAMEPERIODLASTYEAR requires the Sales table to have a column literally named 'BlackFriday'",
+      "b": "SAMEPERIODLASTYEAR always shifts by exactly 365 or 366 days based on the calendar, which may not align with 'the same relative promotional week' when a recurring business event's calendar date moves from year to year — a plain one-year date shift and a true 'same business event' comparison are not always the same thing",
+      "c": "This is not actually a real limitation; SAMEPERIODLASTYEAR always aligns perfectly with any recurring named event automatically",
+      "d": "SAMEPERIODLASTYEAR cannot be used for weekly comparisons, only monthly ones"
+    },
+    "correct": "b",
+    "theory": {
+      "text": "This is a genuinely important limitation to understand rather than a corner case: SAMEPERIODLASTYEAR (and DATEADD) perform a pure calendar-date shift, which assumes 'the same period last year' means the same numeric dates one year earlier. That assumption holds fine for a comparison like 'January vs. last January,' but breaks down for business events pinned to a shifting date, like Black Friday (the day after the fourth Thursday of November, which lands on a different calendar date each year) or a retailer's own custom promotional calendar. Handling this correctly usually requires a custom calendar table with an explicit 'fiscal/promotional period' column (e.g., flagging each date's 'days before/after Black Friday') and filtering on that custom column instead of relying on the built-in date-shifting functions, which is a common real-world extension beyond the textbook time-intelligence pattern."
+    },
+    "tags": [
+      "time-intelligence",
+      "business-application"
+    ]
+  },
+  {
+    "id": "dax-030",
+    "topic": "time-intelligence",
+    "question": "A 3-month moving average measure is built as: AVERAGEX(DATESINPERIOD(Calendar[Date], LASTDATE(Calendar[Date]), -3, MONTH), [Total Sales]). What is the general strategy this formula uses?",
+    "options": {
+      "a": "AVERAGEX ignores the DATESINPERIOD argument entirely and simply averages the whole Sales table",
+      "b": "DATESINPERIOD generates the table of dates spanning the 3 months ending at the current context's last date, and AVERAGEX then iterates over that date table, evaluating [Total Sales] once per date and averaging the results — combining a time-intelligence table function with an iterator, rather than using CALCULATE directly",
+      "c": "This computes a 3-day average, not a 3-month average, despite the MONTH argument",
+      "d": "This formula is invalid DAX syntax and would not compile"
+    },
+    "correct": "b",
+    "theory": {
+      "text": "This formula combines two ideas already covered separately in this course: a time-intelligence table function (here, DATESINPERIOD, a close cousin of DATEADD that returns a contiguous span of dates rather than a shifted single period) and an iterator (AVERAGEX, from the same iterator family as SUMX). Instead of using CALCULATE to filter a single aggregation, AVERAGEX walks through each individual date in the 3-month window one at a time, evaluates the [Total Sales] measure fresh for each of those single dates (via context transition, since AVERAGEX provides a row context per date), and then averages those per-date totals together — a genuinely different computation from simply summing the 3-month window and dividing by 3, since it weights each date equally rather than each dollar equally."
+    },
+    "tags": [
+      "moving-average",
+      "datesinperiod",
+      "iterators"
+    ]
+  },
+  {
+    "id": "dax-031",
+    "topic": "time-intelligence",
+    "question": "A finance measure PARALLELPERIOD(Calendar[Date], -1, QUARTER) is used inside CALCULATE to get 'the same measure, one quarter earlier.' How does PARALLELPERIOD differ conceptually from DATEADD when both are shifting by whole periods?",
+    "options": {
+      "a": "PARALLELPERIOD and DATEADD are exactly identical in every case with no behavioral difference whatsoever",
+      "b": "PARALLELPERIOD works only with the YEAR unit, never QUARTER or MONTH",
+      "c": "PARALLELPERIOD returns the entire shifted period in full (e.g., the complete previous quarter, even if the current context is only a partial quarter-to-date), whereas DATEADD shifts the exact same span of dates that's currently in context, preserving partial-period boundaries",
+      "d": "PARALLELPERIOD can only shift forward in time, never backward"
+    },
+    "correct": "c",
+    "theory": {
+      "text": "This is a subtle but practically important distinction between DAX's time-shifting functions. DATEADD shifts the precise date range currently in the filter context — if the context is 'the first 10 days of this quarter,' DATEADD shifts to 'the first 10 days one quarter earlier,' preserving that partial-period shape. PARALLELPERIOD instead always expands to the entire boundary of the target period, regardless of how much of the current period is actually in context — so even a filter context of just 'the first 10 days of this quarter' would return the complete previous quarter, start to end, once shifted. Choosing between them depends on whether a business question wants an exact matching partial-period comparison (DATEADD) or a full-period comparison regardless of how much of the current period has elapsed (PARALLELPERIOD)."
+    },
+    "tags": [
+      "parallelperiod",
+      "dateadd"
+    ]
+  },
+  {
+    "id": "dax-032",
+    "topic": "time-intelligence",
+    "question": "A cumulative 'Running Total' measure for daily sales is built as CALCULATE([Total Sales], FILTER(ALL(Calendar), Calendar[Date] <= MAX(Calendar[Date]))). Why is ALL(Calendar) combined with FILTER here, rather than just using the Calendar table directly?",
+    "options": {
+      "a": "This formula computes an average, not a running total, despite its stated intent",
+      "b": "ALL(Calendar) first clears any existing date filtering on the Calendar table, giving FILTER access to every date in the whole table to search through; without it, FILTER would only be searching within whatever dates were already filtered, which could exclude earlier dates needed for a true cumulative total",
+      "c": "ALL(Calendar) has no purpose in this formula and could be removed without changing the result",
+      "d": "FILTER cannot be used on the Calendar table without first passing it through ALL()"
+    },
+    "correct": "b",
+    "theory": {
+      "text": "This is a classic and very common DAX running-total pattern, and the ALL(Calendar) step is essential to it working correctly. Inside a report cell for, say, 'March 15th,' the ambient filter context already restricts Calendar to just that one date; if FILTER searched within that already-narrowed table, it would find nothing before or after March 15th to include. ALL(Calendar) resets that restriction back to the full, unfiltered calendar table first (the same override mechanic explored in dax-018), giving FILTER the complete date range to search across; FILTER then keeps only the dates less than or equal to the current context's MAX(Calendar[Date]) — which, notably, is still evaluated against the original outer filter context (March 15th), not the now-unfiltered ALL(Calendar) table. The combination correctly accumulates every date up to and including the current one."
+    },
+    "tags": [
+      "running-total",
+      "all-function",
+      "filter"
+    ]
+  },
+  {
+    "id": "dax-033",
+    "topic": "iterators",
+    "question": "SUMX, AVERAGEX, MAXX, MINX, and RANKX are all examples of what DAX calls 'iterator' functions. What single defining trait do all iterator functions share?",
+    "options": {
+      "a": "They can only operate on numeric columns, never on calculated expressions",
+      "b": "They each take a table as an argument and evaluate a given expression once per row of that table (establishing a row context for each pass), then aggregate the per-row results together in whatever way the specific function defines (sum, average, max, rank, etc.)",
+      "c": "They all require the underlying data to be sorted alphabetically before use",
+      "d": "They can only be used inside calculated columns, never inside measures"
+    },
+    "correct": "b",
+    "theory": {
+      "text": "The word 'iterator' describes exactly the shared mechanism across this whole family of functions: each one walks through a table row by row, evaluating its second argument (an arbitrary expression, not just a plain column reference) fresh for every single row, with a row context active for that evaluation — then combines those individual per-row results using whatever aggregation the function name implies. SUMX adds them up, AVERAGEX averages them, MAXX/MINX take the largest/smallest, and RANKX orders them. This is precisely what makes iterators strictly more flexible than plain aggregation functions like SUM: SUM(Sales[Amount]) can only add up an existing column's raw values, but SUMX(Sales, Sales[Quantity] * Sales[UnitPrice]) can compute and sum an expression that doesn't even exist as a stored column."
+    },
+    "tags": [
+      "iterators",
+      "fundamentals"
+    ]
+  },
+  {
+    "id": "dax-034",
+    "topic": "iterators",
+    "question": "A retail analyst needs 'Average Basket Size' — the average number of distinct products per transaction, where a single transaction can span multiple rows (one row per product line-item) in the Sales table. Why is a plain AVERAGE() function insufficient here, requiring an iterator instead?",
+    "options": {
+      "a": "AVERAGE() operates directly on a single existing column's raw values; there is no column that already stores 'number of distinct products in this transaction' per row, so that value must first be computed per transaction (via an iterator like AVERAGEX combined with a grouping expression) before an average across transactions makes sense",
+      "b": "AVERAGE() is deprecated in modern DAX and should never be used for any purpose",
+      "c": "There is no actual difference; AVERAGE() would give the same correct result here",
+      "d": "AVERAGE() can only be used on the Calendar table, never on a fact table like Sales"
+    },
+    "correct": "a",
+    "theory": {
+      "text": "This scenario needs a two-step aggregation: first, group the line-item rows by transaction and count distinct products within each transaction; second, average those per-transaction counts across all transactions. A plain AVERAGE() has no way to express that first grouping step — it only knows how to average a column's existing raw values directly. An iterator like AVERAGEX solves this by taking a table of distinct transactions (often built with something like VALUES(Sales[TransactionID]) or SUMMARIZE) and, for each transaction in that table, evaluating an expression that counts distinct products for just that transaction (using context transition to correctly scope the count to each transaction one at a time) — only then averaging those per-transaction results together. This two-step 'per-group calculation, then aggregate across groups' pattern is one of the most common reasons to reach for an iterator instead of a plain aggregation function."
+    },
+    "tags": [
+      "averagex",
+      "iterators",
+      "business-application"
+    ]
+  },
+  {
+    "id": "dax-035",
+    "topic": "iterators",
+    "question": "A store-ranking measure is built as: Store Rank = RANKX(ALL(Store), [Total Sales], , DESC). Why is ALL(Store) used as RANKX's table argument here, rather than just Store?",
+    "options": {
+      "a": "ALL(Store) sorts the Store table alphabetically before ranking",
+      "b": "Using ALL(Store) would cause an error since RANKX cannot accept table functions as arguments",
+      "c": "ALL(Store) makes RANKX rank each store against the complete set of all stores, ignoring whatever the current filter context might have already narrowed the Store table down to — without it, if a report were already filtered to a single store or region, RANKX would only be comparing within that filtered subset, producing a meaningless or trivial rank",
+      "d": "ALL(Store) is required purely for syntax reasons and has no effect on the ranking result"
+    },
+    "correct": "c",
+    "theory": {
+      "text": "RANKX needs a table to rank its evaluated expression against, and by default that table is subject to whatever filter context is already active — the same override mechanic seen with ALL() in dax-018 and dax-032 applies here too. If a report visual is already filtered down to, say, just the 'West' region's stores, ranking against the plain Store table (without ALL) would only compare stores within that already-narrowed West-region subset, meaning a store might show as 'Rank 1' simply because it's the best of a small filtered group, not because it's actually the best store company-wide. Wrapping the ranking table in ALL(Store) resets the table back to every store in the model, so the ranking reflects each store's true position across the entire company, regardless of whatever else the report happens to be filtered to — which is exactly the behavior wanted for a genuine company-wide leaderboard."
+    },
+    "tags": [
+      "rankx",
+      "all-function"
+    ]
+  },
+  {
+    "id": "dax-036",
+    "topic": "iterators",
+    "question": "A commission calculation needs a different rate depending on each transaction's amount (higher amounts get a higher rate tier). The formula is: Commission = SUMX(Sales, Sales[Amount] * IF(Sales[Amount] > 1000, 0.08, 0.05)). Why does this genuinely require an iterator, rather than being achievable with CALCULATE and a plain SUM?",
+    "options": {
+      "a": "Because CALCULATE cannot be used together with the IF function under any circumstances",
+      "b": "Because SUMX and CALCULATE always produce mathematically identical results, so the choice here is arbitrary",
+      "c": "Because commission calculations are not something DAX is capable of expressing at all",
+      "d": "Because the commission rate itself depends on each individual row's own Amount value — a condition that must be evaluated separately, row by row, before the results can be summed; a single CALCULATE-plus-SUM can apply one blanket rate to a filtered set of rows, but cannot apply a genuinely different, row-dependent rate within a single aggregation"
+    },
+    "correct": "d",
+    "theory": {
+      "text": "This is a good example of the practical dividing line between what CALCULATE-plus-plain-aggregation can do versus what genuinely requires an iterator. CALCULATE is excellent at applying one uniform aggregation over a filtered set of rows (as in dax-016 through dax-022), but it has no mechanism for varying the calculation's logic differently for each individual row within that single aggregation — the rate here isn't a property of the whole filtered set, it's a property of each specific row's own Amount value. SUMX solves this directly: for each row, it evaluates the full expression (amount times whatever rate that row's own amount qualifies for) individually, with row context making Sales[Amount] resolve per row, and only sums up all those already-individually-computed results at the end. Any calculation where 'the formula itself needs to change depending on each row's own values' is a strong signal that an iterator, not a plain aggregation, is the right tool."
+    },
+    "tags": [
+      "sumx",
+      "conditional-logic",
+      "business-application"
+    ]
+  },
+  {
+    "id": "dax-037",
+    "topic": "iterators",
+    "question": "MAXX(Sales, Sales[Amount]) and MAX(Sales[Amount]) are compared for the simple case of finding the single largest transaction amount. Do they return the same result here, and why?",
+    "options": {
+      "a": "Yes, in this simple case they return the same value — MAX(Sales[Amount]) directly finds the largest value in the column, while MAXX(Sales, Sales[Amount]) iterates row by row evaluating the plain column reference each time and takes the largest, which reduces to the identical calculation when the expression being iterated is just the column itself",
+      "b": "No, MAXX always returns a table while MAX always returns a single value, so they cannot be compared",
+      "c": "No, MAXX will always be smaller than MAX because it processes rows one at a time",
+      "d": "Yes, but only if the Sales table has fewer than 1000 rows"
+    },
+    "correct": "a",
+    "theory": {
+      "text": "This comparison is a useful way to build intuition for what iterators actually add over plain aggregation functions: when the expression being iterated by MAXX is nothing more than a direct column reference, MAXX effectively degenerates into doing exactly what the plain MAX function already does, just via the more general row-by-row mechanism. The real value of MAXX only shows up once the second argument becomes a genuine expression rather than a bare column — for instance, MAXX(Sales, Sales[Quantity] * Sales[UnitPrice]) to find the single largest line-item revenue, which plain MAX (limited to an existing column's stored values) has no way to express, since 'quantity times price' isn't a column that exists in the table."
+    },
+    "tags": [
+      "maxx",
+      "iterators"
+    ]
+  },
+  {
+    "id": "dax-038",
+    "topic": "iterators",
+    "question": "A large retail fact table has 50 million rows. A report builder writes SUMX(Sales, Sales[Amount]) instead of the equivalent SUM(Sales[Amount]) out of habit. What is the practical downside of defaulting to iterators even when a plain aggregation function would do the identical job?",
+    "options": {
+      "a": "There is no downside whatsoever; iterators and plain aggregations always perform identically in every case",
+      "b": "Using SUMX instead of SUM will cause the model to fail to refresh",
+      "c": "SUMX always produces a different, incorrect numeric result compared to SUM",
+      "d": "Iterators generally carry more computational overhead than the equivalent purpose-built aggregation function, since they must set up and process a row context for every single row rather than using a more directly optimized column-scan; on very large tables this overhead can add up to a meaningful, avoidable performance cost"
+    },
+    "correct": "d",
+    "theory": {
+      "text": "This is a practical performance consideration that becomes relevant once models grow large. DAX's engine has heavily optimized paths for straightforward, purpose-built aggregation functions like SUM, AVERAGE, and COUNT operating directly on a column — these can often be computed via fast, columnar scan operations without needing to establish a row context at all. An iterator like SUMX, by contrast, is a more general mechanism that must set up row-by-row evaluation machinery every time, even when (as in this example) the expression being evaluated per row is trivial. On a 50-million-row fact table, that extra per-row overhead, multiplied across every row, can measurably slow a report down — which is why the general guidance is to prefer the plain aggregation function whenever the calculation doesn't actually require row-by-row logic, and reserve iterators for cases (like dax-034 and dax-036) that genuinely need them."
+    },
+    "tags": [
+      "performance",
+      "iterators"
+    ]
+  },
+  {
+    "id": "dax-039",
+    "topic": "iterators",
+    "question": "A weighted-average unit price measure is built as: DIVIDE(SUMX(Sales, Sales[Quantity] * Sales[UnitPrice]), SUMX(Sales, Sales[Quantity])). Why is this different from, and more correct than, simply writing AVERAGE(Sales[UnitPrice])?",
+    "options": {
+      "a": "AVERAGE(Sales[UnitPrice]) is invalid DAX syntax and would not run at all",
+      "b": "DIVIDE cannot be combined with SUMX under any circumstances",
+      "c": "The two formulas are mathematically guaranteed to always produce identical results",
+      "d": "AVERAGE(Sales[UnitPrice]) would give equal weight to every transaction line regardless of how many units each line represents, while the SUMX-based formula weights each price by the quantity actually sold at that price, giving a business-meaningful 'true average price paid per unit,' which is a genuinely different (and usually more useful) number"
+    },
+    "correct": "d",
+    "theory": {
+      "text": "This is a subtle but common real-world modeling distinction: a simple AVERAGE() of a price column treats a transaction line for 1 unit and a transaction line for 500 units as equally important data points, which usually isn't the business question being asked. The weighted-average construction — total revenue (quantity times price, summed) divided by total units sold — correctly reflects that a price applied to a large-quantity order should count more heavily toward the 'average price customers actually paid' than a price that only applied to a single unit. This is exactly the kind of calculation where reaching for an iterator (to build the numerator's revenue-per-line expression) combined with DIVIDE (to safely handle the case of zero total quantity, per dax-007) produces a materially more correct business number than the plain aggregate function would."
+    },
+    "tags": [
+      "weighted-average",
+      "sumx",
+      "divide"
+    ]
+  },
+  {
+    "id": "dax-040",
+    "topic": "iterators",
+    "question": "COUNTROWS(FILTER(Sales, Sales[Amount] > 500)) is used to count how many transactions exceeded $500. FILTER is technically also an iterator-family function. What does FILTER return, and how does that differ from SUMX or AVERAGEX?",
+    "options": {
+      "a": "FILTER returns a filtered table (a subset of rows meeting the condition), not a single aggregated value — unlike SUMX/AVERAGEX/MAXX, which reduce their row-by-row evaluations down to one scalar number, FILTER's job is purely to narrow down which rows survive, leaving further aggregation (here, via COUNTROWS) to a separate step",
+      "b": "FILTER can only be used inside calculated columns, never as an argument to another function",
+      "c": "FILTER always returns a single number representing the count of matching rows, making COUNTROWS redundant",
+      "d": "FILTER and SUMX are functionally identical and interchangeable in every formula"
+    },
+    "correct": "a",
+    "theory": {
+      "text": "FILTER shares the same row-by-row evaluation mechanism as the other iterators — it walks through a table, evaluating its condition with row context active for each row — but it's fundamentally different in what it produces: instead of reducing everything down to a single aggregated number, FILTER's whole purpose is to return a table, containing only the rows for which the condition evaluated true. That's exactly why FILTER shows up so often nested inside other functions (as seen already in the running-total pattern of dax-032) rather than being used on its own — it does the row-selection work, and something else (COUNTROWS to count them, SUMX to sum an expression across them, or CALCULATE to use them as a filter argument) does the actual aggregating afterward."
+    },
+    "tags": [
+      "filter",
+      "countrows"
+    ]
+  },
+  {
+    "id": "dax-041",
+    "topic": "relationships-modeling",
+    "question": "A retail data model has a Sales fact table (one row per transaction line-item) and a separate Product table (one row per product, with attributes like Category and Brand). Why is this 'star schema' style split generally preferred over one giant flat table with every product attribute repeated on every sales row?",
+    "options": {
+      "a": "Star schemas are required by Power BI's file format and cannot be avoided",
+      "b": "A flat table would make every DAX formula run faster than the star-schema equivalent",
+      "c": "A flat table is always technically impossible to build in Power BI",
+      "d": "Splitting into a fact table and dimension tables avoids massively repeating the same product attributes on every one of potentially millions of transaction rows, keeps each attribute defined in exactly one place (avoiding update inconsistencies), and lets DAX's relationship-based filtering (used throughout CALCULATE and RELATED) work efficiently and predictably"
+    },
+    "correct": "d",
+    "theory": {
+      "text": "This is the foundational data-modeling principle underlying essentially everything covered in this course: a star schema separates a central fact table (numeric, transactional data — one row per sale) from surrounding dimension tables (descriptive attributes — one row per product, per store, per date), connected by relationships. Flattening everything into one table would mean repeating a product's Category, Brand, and every other attribute on every single transaction line involving that product — millions of times over for popular products — bloating the model's size and creating a real risk that the same product's attributes drift out of sync across different rows. Beyond storage efficiency, the whole filter-context mechanism this course has built up (CALCULATE overriding filters, RELATED looking up related rows, time intelligence filtering a calendar table) is specifically designed to work through these relationships, which is why a well-built star schema is considered close to a prerequisite for writing clean, correct, performant DAX."
+    },
+    "tags": [
+      "star-schema",
+      "data-modeling"
+    ]
+  },
+  {
+    "id": "dax-042",
+    "topic": "relationships-modeling",
+    "question": "In a star schema with Sales (fact) related to Product (dimension) via ProductID, a slicer on Product[Category] correctly filters the Sales table down to matching transactions. What property of the relationship makes this automatic filtering work?",
+    "options": {
+      "a": "The two tables must have identical column names throughout for any filtering to propagate at all",
+      "b": "Filtering only happens if the user manually writes a CALCULATE formula referencing the relationship explicitly every time",
+      "c": "The relationship's filter direction — by default, a one-to-many relationship filters from the 'one' side (Product, the dimension) toward the 'many' side (Sales, the fact table), so selecting a value in the dimension table automatically restricts which fact rows are visible",
+      "d": "Relationships in Power BI have no effect on filter propagation; only explicit DAX formulas do"
+    },
+    "correct": "c",
+    "theory": {
+      "text": "This is the mechanism that makes star-schema modeling so powerful in practice: once a relationship is defined between two tables, Power BI's default filter propagation direction flows from the 'one' side to the 'many' side of a one-to-many relationship — so filtering Product (where each ProductID appears once) automatically restricts Sales (where each ProductID can appear many times, once per transaction). This happens without the report author writing any DAX at all; it's a structural property of the relationship itself. This default direction is exactly why dimension tables like Product, Store, and Calendar are typically the 'one' side related to a 'many' side fact table — it's what lets a slicer built on a dimension table's column correctly narrow down the fact table with zero extra formula work."
+    },
+    "tags": [
+      "relationships",
+      "filter-propagation"
+    ]
+  },
+  {
+    "id": "dax-043",
+    "topic": "relationships-modeling",
+    "question": "A model has both a Sales table and a Returns table, each with their own relationship to a shared Calendar table via a date column. A report needs 'Net Sales' combining both, filterable by a single date slicer. Why does having both fact tables relate to the same Calendar table (rather than each having its own separate date table) matter here?",
+    "options": {
+      "a": "This setup has no advantage over separate date tables; the choice is purely stylistic",
+      "b": "Having a shared Calendar table would cause a circular relationship error between Sales and Returns",
+      "c": "A single shared Calendar table lets one slicer filter both fact tables simultaneously and consistently through their respective relationships, and also ensures time-intelligence functions behave identically for both — using two separate, unrelated date tables would require two separate slicers and risk the two tables' date ranges or holiday definitions drifting out of sync",
+      "d": "DAX technically forbids more than one fact table from ever relating to the same dimension table"
+    },
+    "correct": "c",
+    "theory": {
+      "text": "This is a common and deliberate star-schema design choice sometimes called a 'conformed dimension' — one shared dimension table (Calendar, in this case) related to multiple fact tables. A single slicer built on the shared Calendar table's date column filters both Sales and Returns through their independent relationships to that same table, so a user selecting 'March 2026' automatically restricts both fact tables consistently, with no extra effort. If Sales and Returns instead each had their own separate calendar table, a report would need two separate slicers (one per fact table) that could easily fall out of sync, and any custom logic added to one calendar (like flagging holidays or fiscal periods) would need to be duplicated and kept identical in the other — exactly the kind of redundancy and inconsistency risk star-schema modeling is meant to avoid."
+    },
+    "tags": [
+      "shared-dimensions",
+      "data-modeling"
+    ]
+  },
+  {
+    "id": "dax-044",
+    "topic": "relationships-modeling",
+    "question": "A Sales table has two date columns: OrderDate and ShipDate. Only one relationship to the Calendar table can be the 'active' one at a time (Power BI enforces a single active relationship per pair of tables). How does a measure using ShipDate-based logic work if the active relationship is built on OrderDate?",
+    "options": {
+      "a": "Power BI automatically alternates between OrderDate and ShipDate relationships every time the report refreshes",
+      "b": "It is simply impossible to ever use ShipDate for any calculation once OrderDate is set as the active relationship",
+      "c": "A second, entirely separate copy of the Calendar table must be physically duplicated in the model to handle ShipDate",
+      "d": "The inactive OrderDate-vs-ShipDate relationship can be explicitly activated for a specific calculation using USERELATIONSHIP inside CALCULATE, temporarily overriding which relationship is used for just that one formula without disturbing the default active relationship elsewhere"
+    },
+    "correct": "d",
+    "theory": {
+      "text": "Power BI does allow multiple relationships between the same pair of tables, but only one can be 'active' (used automatically by default) at a time — the rest exist as inactive relationships that don't propagate filters unless explicitly invoked. USERELATIONSHIP, used as a CALCULATE argument, is the tool built exactly for this: CALCULATE([Total Sales], USERELATIONSHIP(Sales[ShipDate], Calendar[Date])) tells that specific calculation to temporarily use the ShipDate-based relationship instead of whatever the default active one is, without changing the model's default behavior for any other measure. This lets a single model correctly support both 'sales by order date' (the default) and 'sales by ship date' (via this explicit override) without needing a duplicated calendar table, which is one valid alternative some models use instead, each with its own trade-offs."
+    },
+    "tags": [
+      "userelationship",
+      "inactive-relationships"
+    ]
+  },
+  {
+    "id": "dax-045",
+    "topic": "relationships-modeling",
+    "question": "RELATEDTABLE(Sales) is used inside a calculated column on the Product table to count how many transactions involved each product: COUNTROWS(RELATEDTABLE(Sales)). Why is RELATEDTABLE the correct tool here, rather than RELATED?",
+    "options": {
+      "a": "RELATED and RELATEDTABLE are interchangeable and either would work identically here",
+      "b": "RELATED looks up a single related value by walking from the 'many' side to the 'one' side of a relationship (as in dax-006), but here the direction is reversed — from Product (the 'one' side) needing to see potentially many related Sales rows — which is exactly what RELATEDTABLE is built for, returning the whole related table of matching rows instead of a single value",
+      "c": "COUNTROWS cannot accept RELATEDTABLE as an argument",
+      "d": "RELATEDTABLE can only be used with the Calendar table, never with a Sales table"
+    },
+    "correct": "b",
+    "theory": {
+      "text": "RELATED (from dax-006) and RELATEDTABLE are mirror images of each other, matching the two different directions a one-to-many relationship can be traversed. RELATED works from the 'many' side looking up to the 'one' side, where exactly one related row is guaranteed to exist (a single sale looks up its one product). RELATEDTABLE works the opposite direction, from the 'one' side looking down to the 'many' side, where potentially many related rows exist (one product can appear in many sales transactions) — so it returns a whole table of matches rather than a single value, which is exactly why COUNTROWS(RELATEDTABLE(Sales)) works to count how many transaction rows relate to the current product row, something RELATED alone (which only ever returns one value) could never do."
+    },
+    "tags": [
+      "relatedtable",
+      "related-function"
+    ]
+  },
+  {
+    "id": "dax-046",
+    "topic": "relationships-modeling",
+    "question": "A snowflake-style model has Product related to a separate Category table (rather than Category being a plain column directly on Product). What trade-off does this normalized design introduce compared to just having Category as a column on Product directly (a plain star schema)?",
+    "options": {
+      "a": "A snowflake schema makes it impossible to filter Sales by Category under any circumstances",
+      "b": "Snowflake schemas are required whenever a model has more than 2 dimension tables",
+      "c": "Normalizing into a separate Category table can reduce redundancy if categories have many of their own additional attributes, but it adds an extra relationship hop that filters must propagate through, which can add modeling complexity and, in some cases, measurable query overhead compared to a flatter single-hop star schema",
+      "d": "Snowflake schemas are functionally identical to star schemas in every respect, with no trade-off at all"
+    },
+    "correct": "c",
+    "theory": {
+      "text": "A 'snowflake' schema takes the star-schema idea further, normalizing a dimension table's own attributes out into yet another related table, rather than keeping everything flat on one dimension table. This can genuinely make sense if Category itself has many additional attributes (a manager, a target margin, a seasonal flag) that would otherwise be awkwardly repeated across every product row in that category. But it comes at a cost: filtering Sales by Category now requires filter propagation to travel through two relationship hops (Category to Product to Sales) instead of one, which is both conceptually more to keep track of and, on very large models, can be measurably slower than a single-hop star schema — which is why the general DAX modeling guidance leans toward flatter star schemas unless there's a specific reason (like Category's own rich attribute set) to normalize further."
+    },
+    "tags": [
+      "snowflake-schema",
+      "data-modeling"
+    ]
+  },
+  {
+    "id": "dax-047",
+    "topic": "relationships-modeling",
+    "question": "A Sales table has a StoreID column, but no relationship has been defined between Sales and the Store table in the model. A measure CALCULATE([Total Sales], Store[Region] = \"West\") is written anyway. What happens?",
+    "options": {
+      "a": "The formula silently and correctly filters Sales by region, since DAX can infer relationships automatically from matching column names",
+      "b": "Without an actual relationship defined between the two tables, filtering the Store table has no effect on the Sales table at all — filter propagation only happens across relationships that have been explicitly built in the model, so the measure would return the same (unfiltered by region) total regardless of the Region condition",
+      "c": "The formula automatically creates a new relationship between Sales and Store the first time it runs",
+      "d": "DAX will throw a hard compile-time error the moment this formula is written"
+    },
+    "correct": "b",
+    "theory": {
+      "text": "This is a crucial practical point building directly on dax-042's filter-propagation mechanism: filters only flow between tables across relationships that actually exist in the model — DAX does not infer relationships from matching data or similarly-named columns on its own. If Sales and Store have no defined relationship (even though a StoreID column technically exists on both tables), filtering Store[Region] simply has no path to reach the Sales table, and the CALCULATE condition ends up having no filtering effect on the resulting total. This typically doesn't throw an error — it silently produces a technically-valid but practically wrong number, which is exactly why missing or broken relationships are one of the most common, hard-to-spot sources of subtly incorrect DAX reports, and why explicitly checking the model's relationship diagram is a standard troubleshooting step."
+    },
+    "tags": [
+      "relationships",
+      "troubleshooting"
+    ]
+  },
+  {
+    "id": "dax-048",
+    "topic": "relationships-modeling",
+    "question": "A many-to-many situation arises: a Promotions table can apply to multiple stores, and a store can run multiple promotions at once, with a bridge table PromotionStore linking the two. Why can't this be modeled as a single direct relationship between Promotions and Store, the way Sales-to-Product was modeled earlier?",
+    "options": {
+      "a": "A direct one-to-many relationship (like Product to Sales) assumes one side has at most one matching row per key; a many-to-many situation violates that assumption on both sides at once, so a bridge table (with its own two one-to-many relationships, one to each side) is needed to represent the association correctly",
+      "b": "Many-to-many relationships are entirely unsupported by Power BI in any form",
+      "c": "A bridge table is only ever needed for date-related tables, never for promotions or similar business entities",
+      "d": "This scenario should instead be modeled by merging Promotions and Store into a single flat table"
+    },
+    "correct": "a",
+    "theory": {
+      "text": "The one-to-many relationships used throughout this course (Product to Sales, Calendar to Sales) all rely on one side having a unique key that the other side references potentially many times, but with the 'one' side genuinely having just one matching row. A many-to-many relationship — where a promotion touches many stores and a store runs many promotions — doesn't fit that shape on either side. The standard modeling solution is a bridge table, sitting between the two, related to each side with its own ordinary one-to-many relationship (one promotion to many bridge rows, one store to many bridge rows), which correctly represents every valid promotion-store combination without forcing an ambiguous direct relationship between the two original tables. While Power BI does technically support marking a relationship as many-to-many directly, the bridge-table approach generally gives more explicit, predictable control over filter behavior."
+    },
+    "tags": [
+      "many-to-many",
+      "bridge-tables"
+    ]
+  },
+  {
+    "id": "dax-049",
+    "topic": "variables",
+    "question": "A DAX measure is rewritten from a single nested formula into this form: VAR TotalRev = SUM(Sales[Revenue]) VAR TotalCost = SUM(Sales[Cost]) RETURN DIVIDE(TotalRev - TotalCost, TotalRev). What two benefits does this VAR/RETURN structure provide over writing everything as one deeply nested expression?",
+    "options": {
+      "a": "Variables can only be used with text values, never with numeric aggregations like SUM",
+      "b": "VAR/RETURN blocks are only permitted inside calculated columns, never inside measures",
+      "c": "VAR/RETURN is purely a stylistic preference in DAX with absolutely no performance implications whatsoever",
+      "d": "It makes the formula noticeably more readable by giving intermediate results meaningful names, and it can improve performance, since each VAR is evaluated only once and then reused, rather than potentially recomputing the same underlying expression multiple times if it were repeated inline"
+    },
+    "correct": "d",
+    "theory": {
+      "text": "Variables address two real, practical problems with deeply nested DAX formulas. Readability: naming an intermediate result TotalRev makes the final RETURN line read almost like plain business logic, compared to a wall of nested SUM() and DIVIDE() calls referencing the same underlying expressions repeatedly. Performance: each VAR is computed exactly once, and every later reference to that variable reuses the already-computed result rather than re-evaluating the underlying expression from scratch each time it appears — which matters especially when an expensive calculation (like a CALCULATE with several filter arguments) would otherwise need to be written out, and recomputed, two or three separate times within one formula. Both benefits compound as formulas grow more complex, which is why VAR/RETURN is considered a standard best practice for anything beyond the simplest one-line measure."
+    },
+    "tags": [
+      "variables",
+      "best-practices"
+    ]
+  },
+  {
+    "id": "dax-050",
+    "topic": "variables",
+    "question": "Inside a VAR/RETURN block, a variable is defined as VAR CurrentRegionSales = [Total Sales]. What filter context does CurrentRegionSales capture — the context at the moment the VAR line is defined, or whatever context is active later when it's referenced in the RETURN line?",
+    "options": {
+      "a": "Variables have no relationship to filter context at all; they behave like plain hardcoded constants from the moment they are typed",
+      "b": "The context at the moment the VAR is defined and evaluated — a DAX variable's value is fixed once computed, so referencing it later in RETURN (even inside a nested CALCULATE that changes context for other parts of the formula) still uses that originally-captured value, not a re-evaluated one",
+      "c": "Variables can only be referenced within the exact same line they are defined on",
+      "d": "The context is re-evaluated fresh every single time the variable name is referenced, exactly like re-running the whole expression again"
+    },
+    "correct": "b",
+    "theory": {
+      "text": "This is a genuinely important and sometimes surprising DAX behavior: a variable's value is computed once, at the point it's defined, using whatever filter context is active at that moment — and that value is then frozen for every subsequent reference to it, no matter what other context-changing logic (like a nested CALCULATE) happens later in the same formula. This is actually a deliberate and useful property: it lets an author deliberately 'snapshot' a value under the original context (like capturing 'sales in the currently filtered region' before deliberately overriding to a company-wide comparison elsewhere in the same formula), producing predictable, easy-to-reason-about calculations. Without this frozen-value behavior, comparisons like 'this region's sales as a percent of the company total' inside a single formula would be far harder to write correctly, since the region-specific and company-wide parts need to reference two genuinely different contexts within the same calculation."
+    },
+    "tags": [
+      "variables",
+      "context"
+    ]
+  },
+  {
+    "id": "dax-051",
+    "topic": "variables",
+    "question": "A commission formula uses VAR SalesTier = IF([Total Sales] > 100000, \"Gold\", \"Silver\") followed by RETURN SWITCH(SalesTier, \"Gold\", 0.10, \"Silver\", 0.06, 0). What does using a variable here specifically avoid, compared to writing IF([Total Sales] > 100000, ...) directly inside the SWITCH's condition logic each time a tier check is needed?",
+    "options": {
+      "a": "SWITCH cannot technically accept a variable as its first argument, so this formula would fail to run",
+      "b": "This pattern only works if [Total Sales] is a calculated column rather than a measure",
+      "c": "Using a variable here changes the fundamental business logic of the commission calculation",
+      "d": "It avoids re-evaluating the [Total Sales] measure and re-running the same comparison logic multiple times if the tier needed to be checked in more than one place within the formula — computing it once as SalesTier and reusing that single result everywhere it's needed"
+    },
+    "correct": "d",
+    "theory": {
+      "text": "This reinforces the performance half of the VAR/RETURN benefit from dax-049 with a slightly more elaborate example: if a formula needed to check 'is this Gold or Silver tier' in more than one place (say, once to pick a commission rate and again elsewhere to pick a bonus threshold), writing the underlying [Total Sales] comparison out separately each time would mean DAX potentially re-evaluating that same measure and comparison twice. Computing SalesTier once as a variable, then referencing that already-resolved category string wherever needed, guarantees the underlying calculation happens exactly once, with every downstream use simply reading the stored result — both faster and, since a slow-changing measure result can't accidentally drift between two separately-written copies of the same logic, safer against small formula-authoring mistakes."
+    },
+    "tags": [
+      "variables",
+      "switch"
+    ]
+  },
+  {
+    "id": "dax-052",
+    "topic": "variables",
+    "question": "A financial measure uses VAR SafeDivisor = IF([Total Revenue] = 0, BLANK(), [Total Revenue]) followed by a division using SafeDivisor. What DAX principle does storing this pre-checked value in a variable, rather than checking for zero inline every time, reflect?",
+    "options": {
+      "a": "Variables must always be named starting with the word 'Safe' by DAX convention",
+      "b": "BLANK() cannot be assigned to a variable under any circumstances in DAX",
+      "c": "Breaking a formula into named, single-purpose variable steps (here, isolating the 'handle the zero case' logic into its own clearly-named variable) generally makes complex conditional logic easier to read, test, and reuse within a larger formula — a direct extension of the readability benefit already established in dax-049",
+      "d": "This pattern is functionally required because DIVIDE() does not exist as a built-in DAX function"
+    },
+    "correct": "c",
+    "theory": {
+      "text": "This example extends the same readability principle from dax-049 to conditional edge-case handling specifically: rather than embedding the zero-revenue special case directly inside a division expression (which can get visually cluttered once several such checks stack up), isolating it into a clearly-named SafeDivisor variable documents exactly what problem that piece of logic is solving, right there in the variable's name. This is purely a code-organization technique — DIVIDE() itself, as covered in dax-007, already exists specifically to handle this exact zero-denominator problem more concisely — but the broader lesson generalizes: naming meaningful intermediate steps, even ones that could technically be written inline, tends to make a DAX formula's business logic much easier for a future reader (including the original author, months later) to follow and modify correctly."
+    },
+    "tags": [
+      "variables",
+      "readability"
+    ]
+  },
+  {
+    "id": "dax-053",
+    "topic": "variables",
+    "question": "In a VAR block, VAR PriorYearSales = CALCULATE([Total Sales], SAMEPERIODLASTYEAR(Calendar[Date])) is defined before being used in a later growth-percentage calculation. Why might defining this as a named variable be especially valuable in a long, multi-step financial measure, beyond the general readability point already made?",
+    "options": {
+      "a": "This only matters for measures that will be exported to Excel, and has no effect on measures used purely within Power BI reports",
+      "b": "Defining PriorYearSales as a variable changes its numeric result compared to using the same CALCULATE expression inline",
+      "c": "It gives a self-documenting name to a nontrivial piece of business logic (a full time-intelligence CALCULATE expression) partway through a longer formula, making it far easier for a colleague reviewing or auditing the measure later to understand what that specific block accomplishes, without having to mentally re-derive what a bare, unnamed CALCULATE(...) expression buried mid-formula is doing",
+      "d": "SAMEPERIODLASTYEAR can only be used at all when wrapped inside a VAR definition"
+    },
+    "correct": "c",
+    "theory": {
+      "text": "This builds directly on the readability theme running through this whole topic, applied specifically to the kind of nontrivial time-intelligence logic covered earlier in the course. A bare CALCULATE(SUM(...), SAMEPERIODLASTYEAR(...)) expression sitting unnamed in the middle of a longer formula requires a reader to recognize the pattern and mentally work out 'oh, this is computing last year's equivalent period' every time they encounter it. Naming it PriorYearSales does that translation once, up front, and every later reference to the variable reads clearly in plain business terms. In real-world DAX models — where measures maintained by a BI team can accumulate substantial complexity over time — this kind of self-documenting structure is often what separates a measure that's easy to safely modify months later from one that quietly becomes too risky to touch."
+    },
+    "tags": [
+      "variables",
+      "time-intelligence",
+      "best-practices"
+    ]
+  },
+  {
+    "id": "dax-054",
+    "topic": "variables",
+    "question": "A formula defines VAR ThresholdSales = 50000 near the top, then references ThresholdSales in three different IF conditions later in the same measure. If the business threshold later needs to change to 75000, what does using a variable make easier compared to hardcoding 50000 in all three places directly?",
+    "options": {
+      "a": "The threshold only needs to be updated in the single VAR definition line, and all three downstream references automatically pick up the new value — versus needing to find and correctly update three separate hardcoded occurrences of 50000 if the value had been typed directly into each condition",
+      "b": "This scenario has no real advantage; three hardcoded occurrences of 50000 would be exactly as easy to maintain as one variable",
+      "c": "IF conditions cannot reference the same variable more than once within a single formula",
+      "d": "Variables in DAX automatically update themselves over time without any manual editing required at all"
+    },
+    "correct": "a",
+    "theory": {
+      "text": "This is a maintainability benefit distinct from the readability and performance points already covered, closely related to the 'don't repeat yourself' principle common across most programming and formula languages. Centralizing a business rule's specific value (here, a sales threshold) in exactly one place, then referencing that one place everywhere it's needed, means a future business rule change requires exactly one edit. Hardcoding the same literal value in multiple separate spots creates real risk: it's easy to successfully update two of the three occurrences and miss the third, silently leaving one part of the formula using the old, now-incorrect threshold — a subtle bug that can be very hard to spot just by looking at a report's output, since two-thirds of the formula would still be behaving correctly."
+    },
+    "tags": [
+      "variables",
+      "maintainability"
+    ]
+  },
+  {
+    "id": "dax-055",
+    "topic": "advanced-filters",
+    "question": "A measure Category Share % = DIVIDE([Total Sales], CALCULATE([Total Sales], ALL(Product[Category]))) is placed in a visual broken out by Category and further filtered by a Region slicer. Because ALL() only targets the Product[Category] column specifically, what does this formula's denominator represent?",
+    "options": {
+      "a": "Total sales across every category, but still respecting the currently selected Region slicer — ALL(Product[Category]) removes only the Category-level filtering while leaving other active filters (like Region) untouched, which is different from wrapping the whole Product table (or all tables) in ALL()",
+      "b": "Total sales for exactly the single category currently in the row, identical to the numerator",
+      "c": "Zero, because ALL() always clears every filter in the entire report regardless of which table or column it's given",
+      "d": "Total sales across the entire company with every filter removed, including the Region slicer"
+    },
+    "correct": "a",
+    "theory": {
+      "text": "This is an important refinement of the ALL() behavior already introduced in dax-018 and dax-032: ALL() can be scoped as narrowly as a single column, and when it is, it removes filtering only on that specific column, leaving every other active filter (on other columns of the same table, or on entirely different tables like Region) fully intact. So Category Share %'s denominator computes 'total sales across all categories, but still narrowed to whatever region is currently selected' — which is exactly the right comparison for a 'this category's share of regional sales' KPI. Had the formula instead used ALL(Product) or ALL() with no argument, it would have cleared the Region filter too, changing the denominator to a full company-wide total regardless of region — a meaningfully different, and for this particular KPI, incorrect calculation. Precisely scoping ALL() to just the column(s) that need resetting is a common source of subtle correctness bugs when done carelessly."
+    },
+    "tags": [
+      "all-function",
+      "scoped-filters"
+    ]
+  },
+  {
+    "id": "dax-056",
+    "topic": "advanced-filters",
+    "question": "ALLEXCEPT(Sales, Sales[Region]) is used inside a CALCULATE call. How does ALLEXCEPT's behavior differ from a plain ALL(Sales)?",
+    "options": {
+      "a": "ALLEXCEPT removes all filters from the Region column specifically while keeping every other column filtered",
+      "b": "ALLEXCEPT and ALL(Sales) are exactly equivalent in every situation with no behavioral difference",
+      "c": "ALLEXCEPT can only be used with the Calendar table, never with a fact table like Sales",
+      "d": "ALLEXCEPT removes filters from every column of the Sales table except the ones explicitly listed (here, Region) — so Region filtering stays intact while every other column's filtering (Category, Store, Date, etc.) is cleared — effectively the inverse specification style compared to listing exactly which columns ALL() should reset"
+    },
+    "correct": "d",
+    "theory": {
+      "text": "ALLEXCEPT is a convenience function that flips the specification style compared to plain ALL(): instead of naming the columns you want to reset (as in the scoped ALL(Product[Category]) example from dax-055), you name the columns you want to deliberately keep filtered, and every other column on that table gets its filtering cleared. This is especially useful when a table has many columns and you only want to preserve filtering on one or two of them — writing ALLEXCEPT(Sales, Sales[Region]) is far more concise than writing out ALL() for every single other column on the Sales table individually. The end result, though, is conceptually the same kind of selective filter-reset already established with scoped ALL() calls: some columns keep their existing filter context, others get reset to unfiltered, and the choice of which is which is exactly what changes the resulting calculation's meaning."
+    },
+    "tags": [
+      "allexcept",
+      "scoped-filters"
+    ]
+  },
+  {
+    "id": "dax-057",
+    "topic": "advanced-filters",
+    "question": "A report page has a Region slicer set to 'West,' and a table visual breaks sales out by Store. A measure Region Total = CALCULATE([Total Sales], ALLSELECTED(Store)) is added as a reference line. How does ALLSELECTED(Store) differ from plain ALL(Store) in this scenario?",
+    "options": {
+      "a": "ALLSELECTED can only be used in calculated columns, never inside a measure",
+      "b": "ALLSELECTED(Store) removes the filtering coming from the visual's own row-by-row Store breakdown, but still respects the page-level Region slicer (since that filter was explicitly 'selected' by the user), giving a 'total across all stores within whatever the user has chosen to filter to' figure — whereas ALL(Store) would ignore the Region slicer too, giving a true company-wide total regardless of the West selection",
+      "c": "ALLSELECTED(Store) removes the Region slicer's filtering but keeps the visual's Store breakdown intact, the opposite of its actual behavior",
+      "d": "ALLSELECTED(Store) and ALL(Store) are functionally identical and always produce the same numeric result"
+    },
+    "correct": "b",
+    "theory": {
+      "text": "This is one of the more nuanced but genuinely useful distinctions in DAX's filter-removal toolkit. Plain ALL(Store), consistent with its behavior throughout this course (dax-018, dax-032, dax-035), removes every filter on the Store table regardless of source, giving a true company-wide total no matter what the user has selected. ALLSELECTED(Store) instead specifically preserves whatever filters the report user has explicitly and deliberately applied further up the filter chain (like a page-level slicer), while still removing filters coming from the visual's own internal row/column breakdown. In this scenario, that means Region Total shows the total across every West-region store (respecting the user's slicer choice) rather than every store's row individually (removing the visual's own per-store breakdown) — a genuinely different, and often exactly what's wanted, number for a 'this row as a percent of the currently-filtered total' style calculation."
+    },
+    "tags": [
+      "allselected",
+      "all-function"
+    ]
+  },
+  {
+    "id": "dax-058",
+    "topic": "advanced-filters",
+    "question": "A measure combining several of this course's ideas is built: Pct of Selected Total = DIVIDE([Total Sales], CALCULATE([Total Sales], ALLSELECTED(Store))). Placed in a table broken out by Store, with a Region slicer set to 'West,' what does this measure show for each individual store row?",
+    "options": {
+      "a": "Each store's share of total company-wide sales across every region, ignoring the West slicer entirely",
+      "b": "Each store's share (as a percentage) of the total sales across all West-region stores combined — using the numerator's row-level filter context (this one store) and the ALLSELECTED-based denominator (all West stores, respecting the slicer but not the row breakdown) together, via DIVIDE, to compute a 'percent of the currently filtered total' figure that correctly adapts if the Region slicer changes",
+      "c": "Exactly 100% for every single store row, regardless of the slicer selection",
+      "d": "An error, since ALLSELECTED cannot be combined with DIVIDE in the same formula"
+    },
+    "correct": "b",
+    "theory": {
+      "text": "This measure ties together several ideas from across this topic into the single most common real-world use of ALLSELECTED: a 'percent of the currently visible total' calculation that correctly adapts to whatever the user has filtered to. The numerator, [Total Sales], responds to the full combined filter context for that specific row (this one store, within the West region, per the general filter-context rules from earlier in this course). The denominator, built exactly like dax-057's Region Total, gives the total across every store the user's current selections make relevant — all West stores, since ALLSELECTED preserves the slicer but clears the visual's own row breakdown. Dividing the two gives each store's genuine share of the currently-filtered total, and critically, if the user later changes the slicer to 'East' instead, both the numerator and the ALLSELECTED-based denominator update together automatically, so the percentages stay meaningful without the formula itself needing to change."
+    },
+    "tags": [
+      "allselected",
+      "divide",
+      "business-application"
+    ]
+  },
+  {
+    "id": "dax-059",
+    "topic": "advanced-filters",
+    "question": "A model author debugging an unexpected number decides to check whether a measure's odd behavior is caused by context transition (from dax-012) inside a calculated column that calls another measure. What general debugging strategy does understanding context transition suggest here?",
+    "options": {
+      "a": "The fix for any context-transition-related bug is always to remove every CALCULATE from the model entirely",
+      "b": "Check whether the calculated column's formula calls CALCULATE (or a measure, which implicitly wraps its logic in CALCULATE) while a row context from the calculated column is active — if so, that row's column values are being silently converted into an equivalent filter context, which may be including or excluding rows differently than the author originally expected",
+      "c": "Context transition only ever occurs inside measures, never inside calculated columns, so it can be ruled out immediately in this scenario",
+      "d": "Context transition is purely a theoretical concept with no practical debugging relevance to real report-building issues"
+    },
+    "correct": "b",
+    "theory": {
+      "text": "This question ties the context-transition concept first introduced in dax-012 directly to practical troubleshooting, which is exactly when it tends to matter most in real report-building work. Because referencing a measure inside a calculated column implicitly triggers CALCULATE's context-transition behavior (measures are effectively always wrapped in an implicit CALCULATE), a calculated column that calls a measure will silently convert its row context into a filter context scoped to that row's own column values — which can produce a genuinely different, sometimes surprising, result compared to what the same measure shows when placed directly in a report visual under a different filter context. Recognizing this pattern — 'a measure or explicit CALCULATE call sitting inside a row-context location' — as the first thing to check is a practical, reusable debugging habit for exactly the kind of 'my number looks wrong and I don't know why' situation DAX authors run into regularly."
+    },
+    "tags": [
+      "context-transition",
+      "debugging"
+    ]
+  },
+  {
+    "id": "dax-060",
+    "topic": "advanced-filters",
+    "question": "Reflecting on ALL, ALLEXCEPT, ALLSELECTED, and KEEPFILTERS together, what shared underlying purpose do all four of these filter-modifying functions serve within CALCULATE?",
+    "options": {
+      "a": "Each one gives the DAX author a different, precise way to control exactly which existing filters get removed, kept, combined, or preserved when a calculation's filter context is being deliberately constructed — the differences between them are all about which specific filters are affected and how, not about four unrelated features",
+      "b": "Only one of the four (ALL) actually affects filter context; the other three are purely cosmetic or organizational",
+      "c": "They are four different names for the exact same function, kept for historical backward-compatibility reasons only",
+      "d": "These four functions can only be used with the Calendar table and have no application to other dimension tables"
+    },
+    "correct": "a",
+    "theory": {
+      "text": "Stepping back across this whole topic, ALL, ALLEXCEPT, ALLSELECTED, and KEEPFILTERS are best understood as a single coherent toolkit for one recurring job: precisely shaping which filters apply to a calculation, beyond what the surrounding report's filter context would give you by default. ALL wipes filtering from specified columns or tables entirely (dax-018, dax-055). ALLEXCEPT does the same but specified in reverse — keep these, clear everything else (dax-056). ALLSELECTED strikes a middle ground, respecting user-applied filters like slicers while clearing a visual's own internal breakdown (dax-057, dax-058). KEEPFILTERS, in the other direction, makes a CALCULATE filter argument combine with rather than override an existing filter on the same column (dax-021). Recognizing these four as variations on one underlying theme — deliberate, precise filter-context control — rather than as unrelated, isolated functions to memorize separately, is what lets a DAX author confidently pick the right one for a new, previously-unseen business requirement."
+    },
+    "tags": [
+      "all-function",
+      "allexcept",
+      "allselected",
+      "keepfilters"
+    ]
+  }
+]
