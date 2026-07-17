@@ -1,0 +1,902 @@
+[
+  {
+    "id": "sc-001",
+    "topic": "demand-forecasting-inventory",
+    "question": "Andina Retail Group notices that a small, genuine 5% uptick in end-consumer demand for a popular product gets amplified into a 30% swing in the orders its distribution center places with its supplier, which in turn becomes an even larger swing in what the supplier orders from its own raw material vendors. What supply chain phenomenon is this, and what fundamentally causes it?",
+    "options": {
+      "a": "The bullwhip effect only occurs in international, cross-border supply chains and never within a single domestic market",
+      "b": "The bullwhip effect — small fluctuations in real end-consumer demand get progressively amplified as each successive link further up the supply chain (retailer, distributor, manufacturer, supplier) reacts to the immediately-adjacent link's orders rather than to true underlying end-consumer demand, with each layer adding its own buffer, batching, and forecasting distortion on top of what it received",
+      "c": "Just-in-time manufacturing, a production philosophy unrelated to order variability amplification across a supply chain",
+      "d": "Economic order quantity, a formula for calculating the ideal order size that has no relationship to demand variability across supply chain tiers"
+    },
+    "correct": "b",
+    "theory": {
+      "text": "The bullwhip effect is one of the most well-documented, counterintuitive phenomena in supply chain management: because each tier of the chain typically reacts to the orders it receives from the tier immediately next to it — not to the true, original end-consumer demand several steps removed — small, genuine fluctuations get distorted and amplified at every hop. Contributing causes include order batching (ordering in larger, less frequent batches to save on fixed ordering costs), safety-stock buffers each tier adds independently, promotional distortions, and simple forecasting lag. The practical fix generally involves sharing real point-of-sale demand data further upstream (so suppliers plan against true consumer demand rather than distorted order signals) — exactly the kind of cross-organization data-sharing this training platform's Data Architecture course discusses via Delta Sharing and API integration."
+    }
+  },
+  {
+    "id": "sc-002",
+    "topic": "demand-forecasting-inventory",
+    "question": "Andina Retail Group calculates a 'safety stock' buffer for a fast-moving product, above and beyond what its forecast says it should need on average. Why does a retailer deliberately hold extra inventory beyond the forecasted average demand, when doing so ties up working capital?",
+    "options": {
+      "a": "Safety stock protects against the combined uncertainty in both demand (actual sales varying above the forecast) and supply (a supplier's delivery running later than the expected lead time) — without this buffer, any unfavorable combination of higher-than-expected demand or a delayed shipment would result in a stockout, lost sales, and a poor customer experience, so the buffer trades the cost of holding extra inventory against the cost and risk of running out",
+      "b": "Safety stock is held purely to satisfy an arbitrary regulatory requirement with no connection to demand or supply uncertainty",
+      "c": "Holding safety stock eliminates all forecasting error, making further demand forecasting unnecessary once a safety stock policy is in place",
+      "d": "Safety stock exists only for products with completely predictable, zero-variability demand"
+    },
+    "correct": "a",
+    "theory": {
+      "text": "Safety stock is the direct, practical answer to a reality already touched on from a statistics angle in this training platform's Math for ML & Data Science course: a forecast is never perfectly accurate, and neither is a supplier's promised delivery timeline — both demand and supply lead time carry real variability. Safety stock sizing formally balances the cost of holding extra inventory (capital tied up, storage cost, risk of obsolescence) against the cost of a stockout (lost sales, a disappointed customer who may not come back, potential contractual penalties with a wholesale customer). A common approach ties the safety stock level to a target 'service level' (say, wanting to avoid stockouts 95% of the time) combined with the historical variability of both demand and lead time — a genuinely statistical, risk-based calculation, not an arbitrary buffer."
+    }
+  },
+  {
+    "id": "sc-003",
+    "topic": "demand-forecasting-inventory",
+    "question": "Andina Retail Group's inventory planner reviews the classic Economic Order Quantity (EOQ) model, which balances the fixed cost of placing an order against the cost of holding inventory, to determine an ideal order size. Why does ordering either too frequently in small batches, or too infrequently in large batches, both tend to be suboptimal?",
+    "options": {
+      "a": "Order size has no measurable effect on total cost, making the EOQ calculation an unnecessary exercise",
+      "b": "Ordering very frequently in small batches racks up repeated fixed ordering/setup costs (each order incurs its own processing, shipping, and administrative overhead regardless of size), while ordering rarely in very large batches minimizes those fixed costs but ties up more capital in holding costs (storage space, insurance, obsolescence risk) for inventory sitting unsold for longer — EOQ finds the order size that minimizes the combined total of both cost types",
+      "c": "Smaller, more frequent orders always minimize total cost in every scenario, with fixed ordering cost being economically irrelevant",
+      "d": "Larger order batches always minimize total cost in every scenario, with holding cost being economically irrelevant"
+    },
+    "correct": "b",
+    "theory": {
+      "text": "The EOQ model formalizes a genuine trade-off every retailer faces: two cost categories pull order sizing in opposite directions. Fixed ordering costs (administrative processing, inbound freight setup, receiving labor) are paid per order regardless of size, so ordering frequently in small batches means paying that fixed cost over and over. Holding costs (warehouse space, capital tied up, insurance, spoilage or obsolescence risk) scale with how much inventory is sitting on hand and for how long, so ordering rarely in very large batches minimizes fixed ordering costs but maximizes holding costs. The mathematically optimal order quantity sits at the point where these two competing cost curves are balanced — a classic applied optimization problem, directly connecting to the optimization concepts covered generally in this platform's Math for ML & Data Science course."
+    }
+  },
+  {
+    "id": "sc-004",
+    "topic": "demand-forecasting-inventory",
+    "question": "Andina Retail Group sets a 'reorder point' for a product at 150 units — meaning a new purchase order is automatically triggered the moment on-hand inventory drops to that level. How is a reorder point typically calculated, and what does it need to account for?",
+    "options": {
+      "a": "The reorder point is always set to exactly zero, triggering a new order only once a product has completely sold out",
+      "b": "The reorder point needs to cover expected demand during the supplier's lead time (how much will typically sell between placing an order and receiving it) plus the safety stock buffer from sc-002 — set too low, the product would stock out before the replenishment order arrives; set too high, it would trigger unnecessarily early reorders and inflate average inventory levels",
+      "c": "The reorder point should always equal the product's total annual sales volume, regardless of lead time or safety stock",
+      "d": "Reorder points have no relationship to a supplier's lead time and are set using an entirely unrelated calculation"
+    },
+    "correct": "b",
+    "theory": {
+      "text": "The reorder point answers a very concrete operational question: at what inventory level does 'time to reorder' actually trigger? It has to cover the gap between placing the order and actually receiving replenished stock — expected demand during that lead-time window — plus the safety stock buffer (sc-002) to protect against demand or lead-time variability during that same window. If the reorder point is set too low, the business risks running out before the new shipment arrives, even under fairly normal demand conditions; set too high, inventory turns more slowly than necessary and capital sits idle in stock longer than needed. This calculation directly depends on accurate lead-time data from suppliers, which is exactly why supplier reliability (covered later in this course's procurement topic) has such a direct, quantifiable effect on inventory planning."
+    }
+  },
+  {
+    "id": "sc-005",
+    "topic": "demand-forecasting-inventory",
+    "question": "Andina Retail Group's data science team builds a demand forecasting model using historical sales, but a planner points out that a major national holiday and a planned marketing promotion both fall within the forecast horizon, and neither is reflected in the model's historical training pattern alone. What forecasting principle does this concern illustrate?",
+    "options": {
+      "a": "Marketing promotions and holidays have no measurable effect on retail demand and can safely be ignored in any forecasting approach",
+      "b": "A purely historical, pattern-based forecast implicitly assumes the future will resemble the past in the same recurring ways; known future events that don't have enough historical precedent in the training data (a new promotion, an unusual holiday timing, a competitor store opening nearby) need to be explicitly incorporated as additional inputs or manual adjustments, rather than trusted to be automatically captured by a model trained only on historical patterns",
+      "c": "Demand forecasting models are always equally accurate regardless of whether known future events are explicitly incorporated or not",
+      "d": "This concern only applies to forecasting models built using deep learning, never to simpler statistical forecasting methods"
+    },
+    "correct": "b",
+    "theory": {
+      "text": "This connects directly to a theme from this platform's Math for ML & Data Science course: a model is only as good as the patterns actually present in its training data, and it has no way to know about a genuinely new or unusual future event unless that information is explicitly given to it as an input. A promotion, an unusually-timed holiday, or a nearby competitor's store opening are exactly the kind of known-in-advance business events that a purely historical model would have no basis for anticipating on its own — a mature forecasting practice incorporates these as explicit input features (a promotional flag, a holiday calendar) or applies deliberate manual overlay adjustments on top of the model's baseline output, rather than assuming raw historical pattern-matching alone will capture everything relevant to the near future."
+    }
+  },
+  {
+    "id": "sc-006",
+    "topic": "demand-forecasting-inventory",
+    "question": "Andina Retail Group tracks 'inventory turnover' (also called inventory turns) — how many times per year its average inventory is sold and replaced — as a key operational KPI. Why does a business generally prefer a higher inventory turnover ratio, all else being equal?",
+    "options": {
+      "a": "Inventory turnover has no relationship to a business's working capital or cash flow position",
+      "b": "A lower inventory turnover ratio is always strictly preferable in every business scenario, with no meaningful trade-off to consider",
+      "c": "Turnover ratio can only be measured for perishable products and has no valid application to durable goods like electronics or furniture",
+      "d": "A higher turnover ratio means capital isn't sitting idle in unsold inventory for as long, which frees up working capital for other uses, reduces holding costs and obsolescence risk, and often reflects that products are genuinely in demand rather than accumulating as slow-moving or dead stock — though turnover that's too high can also signal risky under-stocking and lost sales from stockouts, so the goal is a healthy balance, not turnover maximized without limit"
+    },
+    "correct": "d",
+    "theory": {
+      "text": "Inventory turnover is a genuinely important financial and operational metric precisely because unsold inventory represents tied-up cash that could otherwise be deployed elsewhere in the business — every unit sitting on a shelf is capital the business spent but hasn't yet recovered through a sale. A healthy, higher turnover ratio generally signals efficient inventory management and genuine product demand, and it directly improves cash flow. But turnover isn't something to maximize without limit: pushing it too high, by deliberately understocking, risks the stockout costs discussed in sc-002 and sc-004 — lost sales and unhappy customers. Like many of the trade-offs covered throughout this course, the right target turnover level depends on balancing multiple competing costs, not chasing a single metric in isolation."
+    }
+  },
+  {
+    "id": "sc-007",
+    "topic": "demand-forecasting-inventory",
+    "question": "Andina Retail Group's planner distinguishes between products with steady, predictable, high-volume demand ('A' items in an ABC inventory classification) and products that sell rarely and unpredictably ('C' items). Why would a retailer apply different, more sophisticated forecasting and inventory management effort to A items than to C items?",
+    "options": {
+      "a": "C items should always receive more sophisticated forecasting attention than A items, the reverse of standard ABC classification practice",
+      "b": "ABC classification (based on the Pareto principle — typically a small share of SKUs drive the large majority of revenue or volume) directs limited forecasting, planning, and management attention toward the smaller number of high-impact A items, where a forecasting error or stockout has the largest business consequence, while using simpler, less resource-intensive policies for lower-impact C items, where the cost of a more sophisticated approach wouldn't be justified by the relatively small business impact",
+      "c": "ABC classification has no relationship to how forecasting or inventory management effort should be allocated across a retailer's product catalog",
+      "d": "ABC classification requires applying identical forecasting sophistication and planning effort uniformly across every single SKU, regardless of its actual sales volume or revenue contribution"
+    },
+    "correct": "b",
+    "theory": {
+      "text": "ABC classification is a direct, practical application of the Pareto principle (the observation that a relatively small share of items often accounts for a disproportionately large share of total impact) to inventory management: rather than spreading limited planning resources evenly across every single SKU, a retailer concentrates its most sophisticated forecasting models, tightest safety-stock calculations, and closest ongoing monitoring on the smaller set of high-volume, high-revenue A items, where getting the forecast right (or wrong) has the largest financial consequence. Lower-impact C items — which might number in the thousands but collectively represent a small fraction of revenue — are managed with simpler, less labor-intensive policies (like a basic fixed reorder point), since investing the same level of sophisticated attention there wouldn't be justified by their comparatively small business impact."
+    }
+  },
+  {
+    "id": "sc-008",
+    "topic": "procurement-sourcing",
+    "question": "Andina Retail Group is evaluating two potential suppliers for the same product: one offers a lower unit price but has a history of late deliveries and quality issues, while the other charges more but delivers reliably and consistently. What procurement concept captures why the retailer might reasonably choose the more expensive, more reliable supplier?",
+    "options": {
+      "a": "Total Cost of Ownership (TCO) — evaluating the full cost of a sourcing decision beyond just the unit purchase price, including the real business costs of late deliveries (stockouts, expedited shipping to compensate, lost sales) and quality issues (returns, rework, damaged customer trust) — which can make a nominally 'more expensive' supplier actually cheaper overall once those hidden costs are accounted for",
+      "b": "Total Cost of Ownership only applies to purchasing physical equipment like machinery, never to sourcing decisions for resale merchandise",
+      "c": "Unit price is always the single, sufficient factor in any rational sourcing decision, with delivery reliability and quality being economically irrelevant",
+      "d": "A supplier's delivery reliability and product quality have no measurable financial impact on a retailer's overall costs"
+    },
+    "correct": "a",
+    "theory": {
+      "text": "Total Cost of Ownership is a foundational procurement concept precisely because the sticker price on a purchase order is often far from the full economic picture. A cheaper supplier with unreliable delivery can trigger real, quantifiable downstream costs — the stockout costs discussed in sc-002, the need for expensive expedited shipping to cover a gap, lost sales, and if quality is also inconsistent, the cost of returns, rework, and reputational damage with end customers. TCO analysis attempts to capture this full picture rather than optimizing on unit price alone, which is exactly the kind of more sophisticated, business-outcome-focused thinking a BI-minded analyst can bring to a sourcing decision that a purely price-driven comparison would miss entirely."
+    }
+  },
+  {
+    "id": "sc-009",
+    "topic": "procurement-sourcing",
+    "question": "Andina Retail Group is deciding whether to rely on a single supplier for a critical product component (offering the best price through volume commitment) or to deliberately split sourcing across two or three suppliers (at a somewhat higher average cost). What supply chain risk consideration typically favors the multi-supplier approach?",
+    "options": {
+      "a": "Single-sourcing carries no meaningful risk whatsoever regardless of the supplier's location, financial stability, or the criticality of the component being sourced",
+      "b": "Multi-supplier sourcing is always strictly cheaper than single-sourcing in every scenario, with no cost trade-off to weigh",
+      "c": "Single-sourcing concentrates risk — if that one supplier experiences a disruption (a factory fire, a natural disaster, a geopolitical event, financial insolvency), the retailer has no immediate alternative source and could face a severe, potentially prolonged stockout across an entire product line; deliberately diversifying across multiple suppliers trades away some volume-discount pricing efficiency for meaningfully greater resilience against exactly this kind of single-point-of-failure risk",
+      "d": "Supplier diversification only matters for products sourced domestically and has no relevance to internationally-sourced components"
+    },
+    "correct": "c",
+    "theory": {
+      "text": "This is a direct, practical application of risk management to procurement strategy, and it's a decision with real financial stakes: concentrating all sourcing with a single supplier can capture meaningful cost efficiencies (better pricing through volume commitments, simpler supplier relationship management), but it also concentrates risk — any disruption to that one supplier (whether an isolated operational failure or a broader event affecting their entire region) directly and immediately threatens the retailer's own ability to source that component at all. Diversifying across multiple suppliers, even at a somewhat higher blended cost, functions like an insurance policy against exactly this single-point-of-failure risk. The right balance between cost efficiency and resilience genuinely depends on how critical and how substitutable the specific component is — a product with easily available alternatives warrants less diversification effort than one with very few viable substitute suppliers."
+    }
+  },
+  {
+    "id": "sc-010",
+    "topic": "procurement-sourcing",
+    "question": "Andina Retail Group's procurement team negotiates a contract clause specifying a supplier's minimum acceptable on-time delivery rate and quality defect rate, with financial penalties if the supplier falls below those thresholds. What is this kind of formal, measurable performance agreement generally called, and why is it valuable?",
+    "options": {
+      "a": "A Service Level Agreement (SLA) — the same underlying concept covered from a data-pipeline angle in this training platform's Data Engineering course — makes performance expectations explicit and measurable rather than vague, gives the retailer a concrete, objective basis for holding a supplier accountable, and creates real financial incentive for the supplier to actually meet the agreed standard rather than treating it as an informal, unenforceable expectation",
+      "b": "A supplier performance agreement of this kind eliminates the need for any ongoing monitoring of the supplier's actual delivery or quality performance once it's signed",
+      "c": "This kind of formal agreement has no practical value and provides no genuine accountability mechanism between a retailer and its suppliers",
+      "d": "Service Level Agreements can only be used in software and technology contracts and have no legitimate application to physical goods procurement"
+    },
+    "correct": "a",
+    "theory": {
+      "text": "This is the same fundamental SLA concept already introduced in this training platform's Data Engineering course from a data-pipeline angle (there, a commitment about when a table would be refreshed), applied here to a supplier relationship — and the underlying value is the same in both contexts: stating an expectation explicitly and measurably turns a vague hope ('the supplier is usually pretty reliable') into a concrete, objectively verifiable standard that can actually be tracked and enforced. Attaching real financial penalties for falling short gives the supplier genuine, tangible incentive to invest in meeting the agreed standard, rather than treating on-time delivery as a best-effort courtesy. For a retailer, having this kind of explicit agreement also makes supplier performance directly measurable and comparable over time — exactly the kind of data a BI-minded procurement team would want to track as an ongoing KPI, covered further in this course's supply chain analytics topic."
+    }
+  },
+  {
+    "id": "sc-011",
+    "topic": "procurement-sourcing",
+    "question": "Andina Retail Group's team is deciding between a long-term strategic partnership with a key supplier (deeper collaboration, shared forecasting data, joint planning) versus treating every purchase as a purely transactional, lowest-price-wins negotiation. For which kinds of purchases does a strategic partnership approach typically make more business sense?",
+    "options": {
+      "a": "The choice between strategic partnership and transactional sourcing has no relationship to a purchased item's business criticality or value",
+      "b": "A strategic partnership approach should always be applied uniformly to every single purchase a retailer makes, regardless of the item's value or criticality",
+      "c": "Strategic partnerships tend to make the most sense for high-value, high-criticality, or hard-to-substitute items where the benefits of deeper collaboration — better forecasting alignment (directly reducing the bullwhip effect from sc-001), priority access during shortages, and joint innovation — outweigh the effort of managing the relationship; low-value, easily substitutable, commodity-like purchases are usually better handled with a simpler, price-focused transactional approach where the relationship-management overhead wouldn't be worth the investment",
+      "d": "Transactional, lowest-price sourcing is always the objectively superior approach for every category of purchase, with no legitimate case for a strategic partnership model"
+    },
+    "correct": "c",
+    "theory": {
+      "text": "This connects directly to the ABC classification logic from sc-007, now applied to supplier relationship strategy rather than forecasting effort: not every purchase deserves the same relationship investment, and matching the sourcing approach to the item's actual business importance is a much more efficient use of limited procurement resources than a one-size-fits-all policy. A strategic partnership — sharing forecasts, collaborating on planning, investing in the relationship — is worth the real effort it takes for critical, high-value, hard-to-substitute components, where the payoff (better forecast alignment reducing bullwhip distortion, priority treatment during a supply shortage, joint problem-solving) is substantial. For a low-value, easily-substituted commodity item, that same relationship-management effort would cost more than it's worth, and a simpler, price-competitive transactional approach is the more sensible default."
+    }
+  },
+  {
+    "id": "sc-012",
+    "topic": "logistics-transportation",
+    "question": "Andina Retail Group is shipping a large volume of furniture from a manufacturing hub to its regional distribution centers and must choose between ocean freight (slow, very low cost per unit) and air freight (fast, considerably higher cost per unit). What general principle should drive this transportation mode decision?",
+    "options": {
+      "a": "Transportation mode choice has no measurable effect on a retailer's overall logistics costs or delivery timelines",
+      "b": "Ocean freight should always be used for every shipment regardless of how time-sensitive or valuable the goods being transported are",
+      "c": "Air freight should always be used for every shipment regardless of cost, value, or time-sensitivity, since speed is unconditionally the only consideration that matters",
+      "d": "The decision should weigh the shipment's actual time-sensitivity and value density against the cost difference between modes — high-value, time-sensitive, or lower-volume goods can often justify air freight's premium cost, while bulky, lower-value, less time-sensitive goods (like furniture with a long planning horizon) are usually better suited to ocean freight's dramatically lower per-unit cost, since the value of speed doesn't outweigh the extra cost for that category of good"
+    },
+    "correct": "d",
+    "theory": {
+      "text": "Transportation mode selection is a direct, practical cost-versus-speed trade-off, closely mirroring the batch-versus-real-time integration trade-off covered generally in this training platform's Data Architecture course, just applied to physical goods instead of data. Air freight's dramatically higher per-unit cost is easy to justify for goods where speed itself carries real business value — a high-value, time-sensitive product, or an urgent replenishment to prevent a stockout of a fast-moving item. For bulky, comparatively low-value goods with a longer planning horizon, like furniture that was forecasted and ordered well in advance, ocean freight's much lower cost per unit is usually the far more economical choice, since the extra speed of air freight wouldn't meaningfully change the business outcome enough to justify its substantial cost premium."
+    }
+  },
+  {
+    "id": "sc-013",
+    "topic": "logistics-transportation",
+    "question": "Andina Retail Group outsources the 'last mile' of its e-commerce delivery (from a local distribution hub to the end customer's door) to a specialized third-party logistics (3PL) provider, rather than operating its own delivery fleet. Why is the last mile often described as the most expensive and operationally complex segment of the entire delivery journey, per unit shipped?",
+    "options": {
+      "a": "The last mile is actually the cheapest and simplest segment of the entire delivery journey, with the bulk of total shipping cost instead concentrated in the earlier long-haul legs",
+      "b": "Last-mile delivery costs have no relationship to how consolidated or dispersed the final delivery addresses happen to be",
+      "c": "Unlike the earlier, high-volume legs of a shipment's journey (a full truckload or container moving in bulk between distribution centers), the last mile typically involves delivering many individual, smaller packages to many separate, dispersed addresses, which means far less volume consolidation per stop, far more total stops per unit delivered, and much greater exposure to unpredictable local conditions (traffic, missed deliveries, address issues) — all of which drive up the cost and complexity per package delivered",
+      "d": "Outsourcing to a 3PL provider always eliminates every cost and complexity associated with last-mile delivery entirely"
+    },
+    "correct": "c",
+    "theory": {
+      "text": "The last mile's outsized cost and complexity comes down to a straightforward economics-of-scale problem: the earlier legs of a shipment's journey benefit from consolidation — one truck or container carrying a large, dense volume of goods between just two points (say, a port and a regional distribution center) — which spreads the fixed cost of that trip across many units. The last mile inverts this entirely: a single delivery vehicle might need to visit dozens of separate, geographically dispersed addresses to deliver the same total volume, with far less consolidation per stop and far more exposure to real-world unpredictability (traffic, a customer not home, a wrong address). This fundamental shift from bulk consolidated movement to fragmented individual delivery is exactly why so much logistics innovation and 3PL specialization has concentrated specifically on solving the last-mile problem more efficiently."
+    }
+  },
+  {
+    "id": "sc-014",
+    "topic": "logistics-transportation",
+    "question": "Andina Retail Group's logistics team uses a 'cross-docking' facility for certain fast-moving products — goods arrive from a supplier and are almost immediately transferred to outbound delivery trucks, with little to no time spent in storage. What is the main operational benefit of cross-docking compared to conventional warehousing (receive, store, then later pick and ship)?",
+    "options": {
+      "a": "Cross-docking always requires goods to be stored in a warehouse for a longer period than conventional warehousing, the opposite of its actual purpose",
+      "b": "Cross-docking can only be used for perishable food products and has no legitimate application to any other category of retail merchandise",
+      "c": "Cross-docking eliminates the need for any transportation between a supplier and the end customer entirely",
+      "d": "Cross-docking dramatically reduces the time goods sit idle in storage (and the associated handling, storage space, and inventory-holding costs from sc-002 and sc-006), which is especially valuable for fast-moving, time-sensitive, or already-sorted-for-a-specific-destination goods where minimizing dwell time in the warehouse directly speeds up the overall supply chain and reduces working capital tied up in inventory"
+    },
+    "correct": "d",
+    "theory": {
+      "text": "Cross-docking is a deliberate operational strategy for minimizing exactly the inventory-holding costs and capital tie-up discussed earlier in this course's inventory topic: rather than goods arriving, being put away into storage, sitting there for some period, and later being picked back out for outbound shipment (each of those steps adding handling cost and time), cross-docking essentially skips the storage step for goods that are already destined for a known outbound shipment — they're received and almost immediately transferred to the outbound dock. This works best for fast-moving, already-sorted, or time-sensitive goods where minimizing dwell time genuinely matters; it's less suited to products with unpredictable, hard-to-anticipate outbound demand, which still benefit from conventional storage to buffer against that uncertainty."
+    }
+  },
+  {
+    "id": "sc-015",
+    "topic": "logistics-transportation",
+    "question": "Andina Retail Group is deciding where to locate a new regional distribution center intended to serve stores across several neighboring countries. Beyond simple geographic centrality, what other major factor should heavily influence this location decision?",
+    "options": {
+      "a": "Trade and customs considerations specific to a multi-country distribution footprint — including each candidate country's trade agreements, duty structures, customs efficiency, and free-trade zone availability — since a facility positioned in a country with favorable trade terms and efficient customs processing (covered in more depth in this course's international trade topic) can meaningfully reduce the total landed cost and border-crossing delay for goods flowing to every other served country, beyond what pure geographic distance alone would suggest",
+      "b": "Distribution center location decisions should be based purely on geographic centrality, with trade agreements, customs regimes, and duty structures being entirely irrelevant considerations",
+      "c": "A distribution center serving multiple countries should always be located in whichever single country has the lowest real estate cost, regardless of any other factor",
+      "d": "This kind of location decision has no meaningful connection to a company's broader international trade strategy"
+    },
+    "correct": "a",
+    "theory": {
+      "text": "This question deliberately looks past the obvious, purely geometric answer (shortest average distance to all served markets) to a genuinely important international-business consideration this course's later trade topic develops further: for a multi-country distribution footprint, where a facility sits relative to trade agreements, customs efficiency, and duty structures can matter just as much as, or more than, raw geographic centrality. A distribution center located in a country within a favorable regional trade bloc, with efficient customs processing and advantageous duty treatment for goods re-exported to neighboring countries, can meaningfully reduce total landed cost and border-crossing delays across the whole network — sometimes making a geographically less-central location the genuinely better overall choice once these trade-specific factors are properly accounted for."
+    }
+  },
+  {
+    "id": "sc-016",
+    "topic": "logistics-transportation",
+    "question": "Andina Retail Group's transportation team tracks 'freight cost as a percentage of revenue' as an ongoing KPI, and it's crept upward over the past year even though shipping volumes have stayed roughly flat. What kind of investigation would a data-savvy logistics analyst run to understand what's actually driving this increase?",
+    "options": {
+      "a": "Break the aggregate freight-cost trend down into its likely component drivers — has the mix of transportation modes shifted toward more expensive options (sc-012), has average shipment size shrunk (reducing consolidation efficiency, similar to the last-mile dynamic in sc-013), have fuel or carrier rates simply increased, or has the geographic distribution of destinations changed — rather than treating 'freight cost went up' as a single, undifferentiated fact with one universal explanation",
+      "b": "Freight cost trends should never be investigated or broken down further once an increase is observed, since the cause is always self-evident from the aggregate number alone",
+      "c": "An increase in freight cost as a percentage of revenue can only ever be caused by rising fuel prices, with no other possible contributing factor",
+      "d": "This kind of KPI investigation has no relationship to the broader data-analysis skills covered elsewhere in this training platform"
+    },
+    "correct": "a",
+    "theory": {
+      "text": "This question applies the general analytical discipline this training platform's SQL and DAX courses have built up — breaking an aggregate metric down into its component drivers rather than treating it as a single opaque number — specifically to a logistics KPI. 'Freight cost as a percentage of revenue went up' could have several genuinely different underlying causes, each pointing toward a different corrective action: a shift toward more expensive transportation modes calls for a mode-selection review; shrinking average shipment sizes (losing consolidation efficiency) calls for a shipment-planning or order-batching review; rising carrier rates might simply require renegotiation or diversifying carriers; a changing destination mix might reflect a genuine shift in the business (like new markets being served) rather than an operational problem at all. A data-savvy analyst investigates which of these is actually driving the trend before assuming any one explanation, rather than reacting to the aggregate number alone."
+    }
+  },
+  {
+    "id": "sc-017",
+    "topic": "international-trade-customs",
+    "question": "Andina Retail Group's international trade team negotiates a purchase contract with an overseas supplier using the Incoterm 'FOB' (Free On Board) rather than 'EXW' (Ex Works). What does choosing FOB over EXW change about which party bears responsibility and cost during the shipment?",
+    "options": {
+      "a": "Incoterms only describe which currency a transaction must be settled in and have no relationship to risk, cost, or responsibility transfer during shipment",
+      "b": "Incoterms define the specific point in a shipment's journey where responsibility, risk, and cost transfer from seller to buyer; under EXW, the buyer takes on responsibility from the seller's own facility (bearing the cost and risk of the entire onward journey, including export clearance), while under FOB, the seller remains responsible (including export customs clearance and loading) until the goods are loaded onto the shipping vessel at the port of origin, after which responsibility transfers to the buyer",
+      "c": "FOB and EXW are functionally identical terms, differing only in which three-letter abbreviation is used in the contract",
+      "d": "Under both FOB and EXW, the seller always remains fully responsible for the goods all the way until final delivery at the buyer's own warehouse"
+    },
+    "correct": "b",
+    "theory": {
+      "text": "Incoterms (International Commercial Terms), maintained by the International Chamber of Commerce, exist specifically to eliminate ambiguity in international shipping contracts about exactly where responsibility, cost, and risk transfer from seller to buyer — a genuinely important question given how many steps (export clearance, inland transport, ocean freight, import clearance, final delivery) a cross-border shipment involves. EXW places the most responsibility on the buyer, who takes over from the seller's own facility and must arrange and pay for essentially the entire journey themselves, including export clearance. FOB shifts meaningfully more responsibility onto the seller, who handles export clearance and loading the goods onto the vessel, with the buyer only taking over once the goods are on board. Choosing between these (and the many other defined Incoterms) is a genuine negotiation point that materially affects each party's cost, risk exposure, and logistical burden — exactly the kind of practical international-trade knowledge directly relevant to someone with a background in international business."
+    }
+  },
+  {
+    "id": "sc-018",
+    "topic": "international-trade-customs",
+    "question": "Andina Retail Group imports electronics components from a country that a new tariff has just been applied to, raising the effective landed cost of that component by 15%. Beyond simply absorbing the cost, what strategic options does a business typically consider in response to a new or increased tariff?",
+    "options": {
+      "a": "Options include passing some or all of the added cost through to end-customer pricing, absorbing part of the cost by accepting a lower margin, seeking an alternative supplier in a country not subject to the tariff, or exploring whether a different product classification or supply chain restructuring could legitimately reduce the tariff's applicability — the right choice depends on price sensitivity in the target market, the availability of viable alternative sourcing, and the tariff's likely permanence",
+      "b": "A business facing a new tariff has no available options whatsoever beyond simply absorbing the entire increased cost with no alternative course of action",
+      "c": "The only legitimate response to a new tariff is to immediately and permanently cease importing from every country in the world",
+      "d": "Tariffs only ever apply to raw materials and never affect the cost of finished or component goods like electronics"
+    },
+    "correct": "a",
+    "theory": {
+      "text": "A tariff change is exactly the kind of real-world trade policy shift a business with international sourcing has to actively manage, not simply absorb passively, and it connects directly to the total-cost-of-ownership and supplier-diversification thinking from earlier in this course (sc-008, sc-009). The available strategic responses each carry their own trade-offs: passing cost through to customers risks demand elasticity effects (price sensitivity, covered more deeply in this platform's Economics course) reducing sales volume; absorbing the cost protects sales volume but compresses margin; shifting sourcing to an alternative, non-tariffed country requires the kind of supplier diversification and total-cost evaluation already discussed, plus genuine due diligence on the new source's reliability and quality; and supply chain or product restructuring (sometimes altering a product's components or classification) can, in some cases, legitimately change its tariff treatment. A sound response typically blends several of these levers rather than relying on just one."
+    }
+  },
+  {
+    "id": "sc-019",
+    "topic": "international-trade-customs",
+    "question": "Andina Retail Group's customs broker prepares a Harmonized System (HS) code for each imported product category, used to classify goods for customs purposes worldwide. Why does correct HS code classification matter so much for an importer, beyond simple paperwork compliance?",
+    "options": {
+      "a": "HS code classification only matters for products valued above a specific high monetary threshold and is irrelevant for lower-value shipments",
+      "b": "The HS code directly determines which specific tariff rate, import regulations, and documentation requirements apply to a given product, so an incorrect classification can result in paying the wrong duty amount (potentially triggering penalties or back-payment demands if underpaid), customs delays, or even regulatory violations if the product actually requires specific certifications or restrictions tied to its true correct classification",
+      "c": "Every country in the world uses a completely different, mutually incompatible product classification system, making the Harmonized System an entirely theoretical concept with no practical international application",
+      "d": "HS codes exist purely for statistical record-keeping purposes and have no actual effect on the tariff rate or regulations applied to an imported product"
+    },
+    "correct": "b",
+    "theory": {
+      "text": "The Harmonized System is a standardized international product classification system used by customs authorities worldwide specifically so that traded goods can be consistently identified and regulated across borders — and getting a product's HS code right is far more consequential than simple administrative paperwork, since that code is what actually determines the applicable tariff rate, any specific import restrictions or required certifications, and reporting requirements. Misclassifying a product — even unintentionally — can lead to underpaying duty (with real legal and financial exposure if a customs audit later catches the discrepancy, including penalties and demands for back payment), overpaying duty unnecessarily, or triggering delays and compliance issues if the product's true, correct classification carries specific regulatory requirements the shipment didn't account for. This is exactly the kind of detailed compliance knowledge that makes a skilled customs broker or trade compliance specialist genuinely valuable to an importing business."
+    }
+  },
+  {
+    "id": "sc-020",
+    "topic": "international-trade-customs",
+    "question": "Andina Retail Group is evaluating whether to route a shipment through a free trade zone (FTZ) before final import, where goods can be stored, assembled, or lightly processed without immediately triggering full import duties. What business advantage does routing through an FTZ typically provide?",
+    "options": {
+      "a": "Free trade zones only exist as a theoretical trade policy concept and have no genuine operational use by real importing businesses",
+      "b": "An FTZ can defer, reduce, or in some cases eliminate duty obligations — duty may only become payable once (and if) goods actually leave the zone for domestic consumption, and duty might be calculated differently (sometimes favorably) if the goods are transformed or assembled within the zone before that final import step, giving a business more cash-flow flexibility and, depending on the specific rules and goods involved, potential real duty savings",
+      "c": "Free trade zones eliminate the need for any customs documentation or compliance process whatsoever, for any goods passing through them",
+      "d": "Goods routed through a free trade zone become permanently exempt from all import duties under all circumstances, with no conditions attached"
+    },
+    "correct": "b",
+    "theory": {
+      "text": "Free trade zones offer a genuine, practical business advantage tied directly to cash-flow management and, in some cases, real duty optimization: because duty generally isn't owed until goods actually leave the zone and formally enter the domestic market for consumption, a business can defer that cash outlay — sometimes significantly — while goods sit in the zone for storage, further processing, or re-export to a different country entirely (in which case domestic duty might never become payable at all). Depending on the specific goods and the zone's rules, assembling or lightly processing components within the zone before final import can also sometimes result in a more favorable duty calculation than importing the same finished product directly. This isn't unconditional duty elimination — the zone's specific rules and the ultimate destination of the goods still matter — but it's a genuinely valuable strategic tool in a sophisticated international trade operation's toolkit."
+    }
+  },
+  {
+    "id": "sc-021",
+    "topic": "international-trade-customs",
+    "question": "Andina Retail Group's finance team calculates the 'landed cost' of an imported product — not just its purchase price, but the fully-loaded cost once it actually arrives ready for sale in the destination market. What components typically need to be included in a proper landed cost calculation, beyond the supplier's invoice price?",
+    "options": {
+      "a": "Import duties and customs broker fees should never be included in a landed cost calculation, since they are considered entirely unrelated to a product's actual cost",
+      "b": "Landed cost calculations are only relevant for products shipped by ocean freight and have no application to goods shipped by air or land",
+      "c": "International freight and insurance, import duties and tariffs, customs broker fees, any applicable taxes (like VAT or similar import-related taxes), and inland transportation from the port or border to the final destination warehouse — all of which genuinely add to the true total cost of getting a product ready for sale, and omitting any of them from a pricing or margin analysis would understate the product's real cost",
+      "d": "Landed cost is always identical to the supplier's invoice price alone, with no other cost components ever needing to be included"
+    },
+    "correct": "c",
+    "theory": {
+      "text": "This directly extends the Total Cost of Ownership principle from sc-008 to the specific, very concrete case of an internationally sourced product: a supplier's invoice price is only one piece of what a product actually costs a retailer to get onto its own shelves ready for sale. Freight and insurance, duties and tariffs (sc-017, sc-018), customs broker and documentation fees, applicable import taxes, and the final inland transportation leg all genuinely add to the true cost — and a pricing or margin analysis that only looks at the supplier's invoice price while ignoring these other real costs would systematically overstate the product's actual profitability. Getting landed cost right is foundational to setting correct retail pricing and honestly evaluating whether a given international sourcing decision is actually as cost-effective as its headline unit price alone might suggest."
+    }
+  },
+  {
+    "id": "sc-022",
+    "topic": "warehouse-distribution",
+    "question": "Andina Retail Group's warehouse manager reorganizes fast-moving products to be stored in easily-accessible locations close to the packing stations, while slow-moving products are relegated to less convenient, farther-away storage locations. What warehouse operations concept does this reorganization reflect?",
+    "options": {
+      "a": "Warehouse storage location has no measurable effect on picking labor cost or overall order fulfillment efficiency",
+      "b": "Slotting requires storing every single product at exactly the same distance from the packing station, with no differentiation based on pick frequency",
+      "c": "Slotting — deliberately assigning storage locations based on a product's actual pick frequency and other characteristics (size, weight, velocity) — reduces the total travel time and labor cost involved in picking orders, since workers spend less time walking to and from storage locations for the products that are picked most often, directly improving warehouse labor productivity",
+      "d": "This reorganization concept only applies to warehouses handling perishable goods and has no relevance to general retail merchandise"
+    },
+    "correct": "c",
+    "theory": {
+      "text": "Slotting is a deliberate warehouse layout optimization built around a simple but consequential insight: picking labor is one of the largest ongoing operational costs in a warehouse, and a large share of that labor cost is actually just walking time — workers traveling to and from storage locations to retrieve items for an order. Placing high-velocity, frequently-picked products in easily accessible locations close to packing stations minimizes the cumulative travel time spent picking the products that get picked most often, while lower-velocity items can reasonably sit farther away since they're retrieved less frequently. Done well, thoughtful slotting can meaningfully reduce total labor hours and improve order-fulfillment throughput without requiring any change to staffing levels or physical facility size — a genuinely high-leverage operational improvement."
+    }
+  },
+  {
+    "id": "sc-023",
+    "topic": "warehouse-distribution",
+    "question": "Andina Retail Group is deciding between a centralized distribution model (one large national distribution center serving all stores) and a decentralized model (several smaller regional distribution centers, each serving a subset of nearby stores). What trade-off does this decision fundamentally involve?",
+    "options": {
+      "a": "Centralization generally captures economies of scale (lower per-unit handling and facility cost, simpler inventory management with pooled stock) but means longer average transportation distances and delivery times to individual stores; decentralization shortens delivery distances and improves responsiveness but requires maintaining safety stock and facility overhead separately at each location, generally raising total inventory and fixed-cost levels across the network",
+      "b": "There is no meaningful trade-off between centralized and decentralized distribution models; one approach is always objectively superior regardless of a retailer's specific geography or business needs",
+      "c": "A centralized distribution model always results in faster store delivery times than a decentralized model, the opposite of the actual typical trade-off",
+      "d": "This decision has no relationship to inventory levels, safety stock requirements, or overall network cost"
+    },
+    "correct": "a",
+    "theory": {
+      "text": "This is a genuinely fundamental network-design trade-off in supply chain strategy, echoing the general scaling trade-offs covered from a different angle (distributed computing) in this platform's Data Architecture course: centralization pools inventory and facility investment into fewer, larger locations, capturing real economies of scale (a single large facility is typically more cost-efficient per unit handled than several smaller ones, and pooled inventory reduces the total safety stock needed compared to holding separate buffers at multiple locations) but at the cost of longer average shipping distances and delivery times to any individual store. Decentralization inverts this trade-off — shorter, faster, more responsive last-leg delivery to stores, at the cost of needing separate safety stock and fixed facility overhead at each regional location, generally increasing total network inventory and cost. Neither approach is universally correct; the right balance depends on a retailer's specific geographic footprint, delivery-speed requirements, and cost sensitivity."
+    }
+  },
+  {
+    "id": "sc-024",
+    "topic": "warehouse-distribution",
+    "question": "Andina Retail Group's distribution center uses barcode scanning and a warehouse management system (WMS) to track every unit's exact location and movement in real time, rather than relying on manual paper-based tracking. What operational and data benefits does this real-time tracking provide?",
+    "options": {
+      "a": "Real-time, system-tracked inventory location and movement data dramatically improves picking accuracy (reducing costly mis-picks and returns), gives accurate, up-to-the-moment visibility into exactly what's on hand and where (feeding directly into the reorder-point and safety-stock calculations from earlier in this course), and creates a rich, reliable data trail that downstream analytics and BI reporting (echoing this training platform's Data Architecture and Data Engineering courses) can actually build on, none of which a manual paper-based process can provide with comparable accuracy or timeliness",
+      "b": "This kind of system-based tracking has no relationship to the data pipeline and data quality concepts covered elsewhere in this training platform",
+      "c": "Barcode scanning and WMS systems provide no meaningful advantage over manual paper-based inventory tracking in any operational or data-quality respect",
+      "d": "Real-time inventory tracking systems can only be used for extremely small warehouses and become technically infeasible at any meaningful operational scale"
+    },
+    "correct": "a",
+    "theory": {
+      "text": "This question directly ties warehouse operations back to the data-engineering and data-quality themes running throughout this training platform: a manual, paper-based inventory process is inherently slow to update, error-prone (transcription mistakes, delayed reconciliation), and produces data that's often already stale by the time it's actually recorded and reported. A barcode-scanning WMS instead captures every meaningful inventory movement as a discrete, timestamped, system-recorded event, in something close to real time — directly improving day-to-day operational accuracy (fewer mis-picks, more reliable on-hand counts feeding the reorder-point calculations from sc-004) while also generating exactly the kind of clean, granular, trustworthy source data that a downstream data pipeline (as covered in this platform's Data Engineering course) can reliably build inventory analytics, forecasting inputs, and BI dashboards on top of — a manual process simply can't produce data of comparable quality or timeliness for any of these downstream uses."
+    }
+  },
+  {
+    "id": "sc-025",
+    "topic": "warehouse-distribution",
+    "question": "Andina Retail Group's distribution center evaluates whether to automate a portion of its picking process with robotics, given the significant upfront capital investment required. What business analysis should primarily drive this automation decision?",
+    "options": {
+      "a": "Warehouse automation should always be adopted regardless of its cost or the actual labor savings and throughput improvement it would realistically provide",
+      "b": "Automation only ever makes sense for warehouses with very low order volume, where the case for automation is generally weakest",
+      "c": "This kind of capital investment decision has no relationship to standard business financial analysis and should be made on purely technical grounds",
+      "d": "A return-on-investment analysis comparing the automation's upfront capital cost and ongoing maintenance against the labor cost savings, throughput improvement, and error-rate reduction it would realistically deliver over its useful lifetime — automation makes the strongest business case where labor costs are high, volume is large and steady enough to keep the equipment well-utilized, and the task is repetitive and well-suited to robotic handling, rather than being adopted simply because it represents newer technology"
+    },
+    "correct": "d",
+    "theory": {
+      "text": "This closes the warehouse and distribution topic with a grounded, business-first framing that resists treating automation as an automatically superior choice simply because it's more technologically sophisticated — a trap this course has deliberately warned against in several other contexts as well. A sound automation decision runs through the same kind of return-on-investment discipline any significant capital expenditure deserves: what does the equipment cost upfront and to maintain, and what realistic, quantifiable labor savings, throughput gains, and error reduction would it actually deliver given this specific warehouse's real volume and labor cost structure? Automation tends to make the strongest business case where sustained, high, predictable volume keeps expensive equipment well-utilized and where labor costs are high enough that the savings meaningfully offset the investment — a smaller operation with lower, less predictable volume might find the same investment doesn't pay back nearly as favorably."
+    }
+  },
+  {
+    "id": "sc-026",
+    "topic": "retail-specific-supply-chain",
+    "question": "Andina Retail Group operates both physical stores and an e-commerce platform, and a customer can buy online and pick up in-store (BOPIS), or return an online purchase at any physical location. What supply chain capability does this kind of seamless cross-channel experience require, beyond what a purely single-channel retailer would need?",
+    "options": {
+      "a": "Omnichannel retail requires no additional supply chain capability beyond what a purely single-channel, store-only or purely online-only retailer already needs",
+      "b": "Each sales channel should always maintain its own completely separate, disconnected inventory system with no shared visibility between them",
+      "c": "Omnichannel fulfillment requires a genuinely unified view of inventory across every channel and location — knowing accurately, in near-real time, what's available at each specific store and in the online fulfillment centers — so that a BOPIS order doesn't get promised against inventory that's actually already been sold in-store, and so a return processed at any location correctly updates the single, shared inventory picture rather than each channel maintaining its own separate, potentially inconsistent inventory record",
+      "d": "Buy-online-pickup-in-store and flexible return options have no relationship to inventory accuracy or visibility across a retailer's channels"
+    },
+    "correct": "c",
+    "theory": {
+      "text": "Omnichannel retail places a genuinely demanding requirement on inventory data that a single-channel retailer doesn't face to the same degree: a unified, accurate, near-real-time view of inventory across every store and fulfillment location simultaneously. Without it, a BOPIS order could be confirmed against a unit that a store associate just rang up for an in-store customer moments earlier, or a return processed at Store B for an item originally purchased online might not correctly flow back into the shared inventory picture, silently creating a phantom inventory discrepancy. This is exactly the kind of cross-system data consistency challenge that connects directly to the master data management and real-time integration concepts covered generally in this platform's Data Architecture course — omnichannel retail is, at its core, as much a data integration challenge as it is a physical logistics one."
+    }
+  },
+  {
+    "id": "sc-027",
+    "topic": "retail-specific-supply-chain",
+    "question": "Andina Retail Group's merchandising team decides how many distinct styles, colors, and sizes of a jacket to carry ('assortment planning') for a given store, balancing giving customers meaningful choice against the operational cost of managing many separate SKUs. What is the core trade-off assortment planning has to navigate?",
+    "options": {
+      "a": "The optimal assortment width is always identical across every single store in a retail chain, regardless of that store's local customer base or sales patterns",
+      "b": "A broader assortment (more styles, colors, sizes) can capture more customer preferences and reduce lost sales from a customer not finding what they want, but it fragments demand across more individual SKUs (each with its own smaller, harder-to-forecast demand, more safety stock relative to its sales volume, and greater risk of ending up as unsold, markdown-bound inventory), while a narrower assortment concentrates demand into fewer SKUs (easier to forecast and manage efficiently) at the risk of losing sales to customers who don't find a suitable option",
+      "c": "A broader product assortment always results in lower total inventory costs than a narrower one, with no offsetting downside to consider",
+      "d": "Assortment planning has no meaningful relationship to demand forecasting accuracy or inventory management efficiency"
+    },
+    "correct": "b",
+    "theory": {
+      "text": "Assortment planning is a genuinely difficult balancing act precisely because both a too-narrow and a too-broad assortment carry real costs, just of different kinds. A narrow assortment concentrates purchasing demand into fewer, higher-volume SKUs — easier to forecast accurately (echoing the ABC classification logic from sc-007) and manage efficiently — but risks turning away customers who wanted a color or size that simply isn't offered, a direct lost sale. A broad assortment better captures a wider range of individual customer preferences, but fragments total demand across many more SKUs, each individually harder to forecast precisely, each requiring its own safety stock relative to its (often small) sales volume, and each carrying real risk of ending up as unsold inventory that eventually needs markdown clearance (the topic covered next in this course). Getting this balance right, often varying it store by store based on local customer preferences, is a genuinely sophisticated retail planning discipline."
+    }
+  },
+  {
+    "id": "sc-028",
+    "topic": "retail-specific-supply-chain",
+    "question": "Andina Retail Group's merchandising team applies a progressive markdown schedule to seasonal inventory that isn't selling as fast as forecasted — a modest discount at first, escalating over subsequent weeks if the product still isn't clearing. Why is markdown timing and pacing treated as a genuine strategic decision rather than simply applying discounts whenever inventory happens to remain unsold?",
+    "options": {
+      "a": "Markdown pricing decisions have no meaningful effect on total revenue recovered from unsold seasonal inventory, regardless of timing",
+      "b": "Markdown planning is purely a marketing function with no genuine connection to supply chain or inventory management",
+      "c": "The optimal approach is always to apply the maximum possible discount immediately the moment any inventory remains unsold, regardless of how much of the selling season remains",
+      "d": "Markdown too early or too aggressively sacrifices margin on inventory that might have eventually sold at full or near-full price; markdown too late risks being stuck with genuinely obsolete seasonal inventory that becomes nearly worthless once its selling season fully passes — the right markdown strategy tries to recover the maximum possible revenue from slow-moving inventory while it still has real remaining sell-through potential, treating markdown timing as an active revenue-optimization decision rather than a passive fallback"
+    },
+    "correct": "d",
+    "theory": {
+      "text": "Markdown strategy sits at the intersection of merchandising, pricing, and supply chain planning, and it's a genuinely high-stakes decision for seasonal or trend-sensitive retail inventory, which loses most of its value once its selling window closes (unlike a staple product that can simply be sold later). Discounting too early or too deeply sacrifices margin that might have been captured through continued full-price or near-full-price sales; waiting too long risks being left holding inventory that's now essentially unsellable at any reasonable price once the season has genuinely passed. A well-designed progressive markdown schedule tries to find the point along that timeline where a given discount level meaningfully accelerates sell-through without giving away more margin than the situation actually requires — treating markdown as an active, data-informed revenue-optimization lever rather than a last-resort clearance action."
+    }
+  },
+  {
+    "id": "sc-029",
+    "topic": "retail-specific-supply-chain",
+    "question": "Andina Retail Group's store replenishment system automatically calculates how much inventory to ship to each individual store based on that store's own recent sales velocity and current on-hand stock, rather than distributing new inventory evenly across all stores. Why does store-level, data-driven replenishment tend to outperform simple even distribution?",
+    "options": {
+      "a": "Store-level replenishment has no meaningful relationship to reducing stockouts or excess inventory at the individual store level",
+      "b": "Every individual store within a retail chain always has identical sales velocity for every product, making store-level replenishment differentiation entirely unnecessary",
+      "c": "Even distribution of inventory across all stores always outperforms any data-driven, store-specific replenishment approach, regardless of how much sales velocity actually varies store to store",
+      "d": "Individual stores genuinely differ in their sales velocity for any given product (driven by local customer demographics, regional preferences, store size, and local competition), so evenly distributing inventory ignores this real variation — a store-level, sales-velocity-driven replenishment approach sends more inventory to stores where a product is actually selling well and less to stores where it isn't, reducing both stockouts at high-velocity stores and excess, markdown-bound inventory at low-velocity stores"
+    },
+    "correct": "d",
+    "theory": {
+      "text": "This closes the retail-specific topic by directly connecting the demand-forecasting and inventory-optimization principles from earlier in this course (reorder points, safety stock, ABC classification) down to the individual-store level, which is where a multi-location retailer's real complexity actually lives. Treating every store as if it had identical demand and simply dividing new inventory evenly ignores real, often substantial differences in local sales velocity driven by demographics, regional taste, store format, and local competitive pressure — a product that's a runaway bestseller in one store might move slowly in another. A store-level, data-driven replenishment system that accounts for each individual store's own actual sales pattern directs more inventory where it's genuinely likely to sell and less where it isn't, simultaneously reducing stockout risk at high-velocity locations and excess-inventory/markdown risk at low-velocity ones — a direct, practical application of granular, store-specific analytics to a genuinely operational retail decision."
+    }
+  },
+  {
+    "id": "sc-030",
+    "topic": "supply-chain-analytics-kpis",
+    "question": "Andina Retail Group tracks 'Perfect Order Rate' — the percentage of customer orders delivered complete, on time, undamaged, and with accurate documentation — as a top-level supply chain KPI. Why is a composite metric like this considered more meaningful than tracking on-time delivery rate alone?",
+    "options": {
+      "a": "An order can be delivered perfectly on time but still fail the customer in other ways (missing items, damaged goods, incorrect paperwork), so a composite metric that requires every dimension of a successful delivery to be satisfied simultaneously gives a more honest, complete picture of genuine order fulfillment quality than any single dimension tracked in isolation, which could look good while other real customer-facing problems go unmeasured",
+      "b": "On-time delivery rate alone always captures every meaningful aspect of order fulfillment quality, making a composite metric like Perfect Order Rate entirely redundant",
+      "c": "Composite supply chain KPIs like Perfect Order Rate have no genuine relationship to actual customer satisfaction or business outcomes",
+      "d": "Perfect Order Rate and on-time delivery rate always move in perfect lockstep and can never diverge from each other in any real business scenario"
+    },
+    "correct": "a",
+    "theory": {
+      "text": "This is a direct, practical illustration of a broader analytics principle worth generalizing: a single-dimension metric, however important that one dimension is, can look healthy while genuinely important other dimensions of the same underlying outcome are quietly deteriorating unnoticed. On-time delivery rate alone would look perfectly fine even if a meaningful share of those 'on-time' orders arrived with the wrong items, damaged goods, or incorrect paperwork — real problems from the customer's perspective that a narrower metric simply wouldn't capture. Requiring every dimension (complete, on-time, undamaged, accurately documented) to be satisfied simultaneously for an order to count as 'perfect' forces the organization to confront the full, honest picture of fulfillment quality, rather than optimizing narrowly for whichever single metric happens to be most visible or most convenient to track."
+    }
+  },
+  {
+    "id": "sc-031",
+    "topic": "supply-chain-analytics-kpis",
+    "question": "Andina Retail Group tracks 'OTIF' (On Time In Full) as a supplier performance KPI, measuring the percentage of supplier deliveries that arrive both on the promised date and with the full quantity ordered. Why does OTIF specifically combine these two dimensions (timing and completeness) rather than tracking them as two entirely separate metrics?",
+    "options": {
+      "a": "A delivery that's on time but short-shipped (missing quantity) is still a supply problem the retailer has to manage — a partial delivery on time doesn't fully prevent the downstream stockout or replenishment issue a complete shipment would have avoided — so OTIF deliberately requires both conditions to hold simultaneously, similar in spirit to how Perfect Order Rate combines multiple delivery-quality dimensions, to avoid a supplier looking good on a narrower single-dimension metric while a real fulfillment problem persists",
+      "b": "OTIF and Perfect Order Rate measure completely unrelated aspects of a supply chain, with no conceptual similarity between the two metrics",
+      "c": "OTIF only measures whether a delivery arrived on the promised date and has no relationship whatsoever to the quantity actually delivered",
+      "d": "A delivery that arrives with the full ordered quantity but a few days late should always be counted as fully satisfying the OTIF metric regardless of the timing miss"
+    },
+    "correct": "a",
+    "theory": {
+      "text": "OTIF is essentially the supplier-facing counterpart to the customer-facing Perfect Order Rate concept from sc-030, and it exists for the same underlying reason: tracking timing and completeness as two separate, independent metrics would let a supplier look good on one dimension while quietly failing on the other in a way that still genuinely hurts the retailer. A supplier that reliably delivers on time but routinely short-ships part of the ordered quantity is still causing real downstream problems — the retailer still faces a shortfall against what was actually needed, potentially still triggering a stockout or unplanned expedited reorder, even though the 'on-time' box would be checked on a narrower metric. Requiring both dimensions to hold together in a single combined metric gives a much more honest, actionable measure of whether a supplier is genuinely meeting the retailer's real operational needs."
+    }
+  },
+  {
+    "id": "sc-032",
+    "topic": "supply-chain-analytics-kpis",
+    "question": "Andina Retail Group builds a Power BI dashboard combining inventory turnover, fill rate, freight cost percentage, and OTIF into a single supply chain executive scorecard, using DAX measures and a proper dimensional model (echoing this platform's DAX and Data Architecture courses). What advantage does this kind of unified, well-modeled dashboard provide over each metric living in a separate spreadsheet maintained by a different team?",
+    "options": {
+      "a": "Separate spreadsheets maintained independently by different teams always provide equally reliable and equally useful insight as a unified, properly modeled dashboard, with no meaningful difference between the two approaches",
+      "b": "A unified, properly modeled dashboard lets an executive see how these interconnected metrics relate to and trade off against each other in one coherent view (for instance, whether a recent improvement in freight cost came at the expense of OTIF or fill rate), and ensures every viewer is working from the same consistently-defined, conformed metrics (echoing the conformed-dimension concept from this platform's Data Architecture course) rather than each team's separate spreadsheet potentially calculating a metric like 'fill rate' slightly differently",
+      "c": "This kind of unified dashboard can only ever display a single metric at a time, with no capability to show multiple related KPIs together",
+      "d": "Combining multiple supply chain metrics into a single dashboard has no practical business value beyond what viewing each metric in isolation already provides"
+    },
+    "correct": "b",
+    "theory": {
+      "text": "This closes the analytics topic by tying supply chain KPI tracking directly back to the BI and data modeling skills built up elsewhere on this training platform. Beyond simple convenience, a unified dashboard reveals genuine, important interactions between metrics that separate spreadsheets would hide entirely — a supply chain leader can see, in one place, whether a recent freight-cost reduction (perhaps from switching to slower ocean freight, echoing sc-012) came at the cost of degraded OTIF performance, a trade-off invisible if freight cost and OTIF each lived in a different team's disconnected spreadsheet. Just as importantly, a single, properly modeled source of truth ensures every viewer, across every team, is looking at consistently and identically defined metrics — directly echoing the conformed-dimension principle from this platform's Data Architecture course — rather than each team's own spreadsheet potentially calculating something like 'fill rate' with subtly different, inconsistent logic."
+    }
+  },
+  {
+    "id": "sc-033",
+    "topic": "risk-resilience-sustainability",
+    "question": "Andina Retail Group's leadership, after a supplier disruption caused a multi-week stockout of a popular product line, considers 'nearshoring' — shifting some sourcing from a distant overseas supplier to a supplier closer to its home market, even at a somewhat higher unit cost. What business rationale typically drives a nearshoring decision like this?",
+    "options": {
+      "a": "Nearshoring decisions are made purely on sentimental or political grounds, with no genuine underlying business or risk-management rationale",
+      "b": "A single supplier disruption event has no legitimate bearing on a company's broader sourcing strategy or supplier location decisions",
+      "c": "Nearshoring trades some cost efficiency (distant, often lower-cost overseas suppliers frequently offer better unit pricing) for meaningfully reduced supply chain risk and improved responsiveness — shorter lead times reduce the demand-forecasting uncertainty a longer supply chain has to absorb (connecting to the safety-stock and lead-time concepts from earlier in this course), and geographic proximity reduces exposure to the kind of prolonged, hard-to-quickly-recover-from disruption the company just experienced",
+      "d": "Nearshoring always results in lower unit costs than distant overseas sourcing, with no cost-versus-risk trade-off to weigh in the decision at all"
+    },
+    "correct": "c",
+    "theory": {
+      "text": "Nearshoring is a strategic response to exactly the kind of single-point-of-failure risk already discussed in this course's procurement topic (sc-009), now applied at the level of geographic sourcing strategy rather than just supplier count: a distant supplier often offers genuinely lower unit costs, but that same distance means a longer, more complex, more disruption-prone supply chain — more transportation legs, longer lead times (which directly inflate the safety-stock and reorder-point calculations from sc-002 and sc-004), and greater exposure to disruptions ranging from natural disasters to geopolitical events to simple logistics bottlenecks. A real supplier disruption, like the one described here, often prompts exactly this kind of strategic reassessment: is the cost savings from distant sourcing still worth the demonstrated risk, or does shifting some sourcing closer to home — even at a real cost premium — provide risk-reduction and responsiveness benefits substantial enough to justify that trade-off?"
+    }
+  },
+  {
+    "id": "sc-034",
+    "topic": "risk-resilience-sustainability",
+    "question": "Andina Retail Group's supply chain risk team maintains a formal risk register, mapping out major potential disruptions (a key supplier's financial instability, a critical port's congestion risk, a single-region weather pattern affecting multiple suppliers at once) along with their estimated likelihood and potential business impact. What does this kind of proactive risk mapping enable that a purely reactive 'deal with problems as they happen' approach doesn't?",
+    "options": {
+      "a": "Proactive risk assessment provides no meaningful business advantage over simply reacting to supply chain disruptions only after they have already occurred",
+      "b": "Proactive risk mapping lets the business prioritize mitigation effort toward the highest-likelihood, highest-impact risks in advance (like pre-qualifying a backup supplier for a critical single-sourced component, per sc-009) before a disruption actually occurs, rather than only ever scrambling to react once a crisis has already begun, when options are typically far more limited, more expensive, and more time-pressured than they would have been with advance preparation",
+      "c": "Risk mapping and mitigation planning have no relationship to any of the supplier diversification or nearshoring concepts covered earlier in this course",
+      "d": "A formal risk register can only ever be used to track financial risks and has no legitimate application to supply chain or logistics risk"
+    },
+    "correct": "b",
+    "theory": {
+      "text": "This closes out the course by generalizing a theme that's run throughout it: the difference between designing for known, likely failure modes in advance versus only ever reacting once a crisis has already begun. A formal risk register does for supply chain management what the observability and monitoring practices covered in this platform's Data Engineering course do for data pipelines — it surfaces likely problems before they actually happen, giving the organization time to build genuine mitigation in advance (qualifying a backup supplier ahead of an actual disruption, per sc-009 and sc-033, rather than scrambling to find one mid-crisis when negotiating leverage and available options are both far worse). This proactive-versus-reactive distinction is exactly the kind of judgment a business-minded supply chain professional brings to the table — treating resilience as something deliberately engineered in advance, not something improvised under pressure once a crisis has already begun."
+    }
+  },
+  {
+    "id": "sc-035",
+    "topic": "demand-forecasting-inventory",
+    "question": "Andina Retail Group compares a simple moving-average forecast against a more sophisticated model that also accounts for weekly seasonality (weekend sales spikes) and a long-term growth trend. For a product with genuinely strong, recurring weekly seasonality, why would the simpler moving-average approach tend to underperform?",
+    "options": {
+      "a": "Weekly seasonality has no measurable effect on retail demand and can safely be ignored by any forecasting method",
+      "b": "Moving-average and seasonal forecasting models always produce numerically identical forecasts for any product, regardless of its actual demand pattern",
+      "c": "A simple moving average forecast always outperforms any more sophisticated seasonal model, regardless of how strong a product's actual seasonal demand pattern is",
+      "d": "A plain moving average smooths out fluctuations without distinguishing genuine, recurring seasonal patterns from random noise, so it would systematically under-forecast demand right before predictable high-demand periods (like weekends) and over-forecast right after them, whereas a model explicitly accounting for seasonality can anticipate that recurring pattern rather than treating it as unpredictable variation"
+    },
+    "correct": "d",
+    "theory": {
+      "text": "This extends the forecasting-limitation theme from sc-005 to a specific, very common retail pattern: many products genuinely do sell more on weekends than weekdays, a recurring, predictable pattern rather than random noise. A plain moving average treats all historical fluctuation the same way, smoothing it out rather than recognizing which part of that fluctuation is a genuinely recurring seasonal signal versus which part is true randomness — which means it systematically mispredicts around the very pattern it's failing to model, consistently low right before a predictable spike and consistently high right after. A model explicitly built to capture seasonality (whether through classical decomposition methods or more modern approaches) can anticipate that recurring weekly rhythm directly, generally producing meaningfully more accurate forecasts for products where that seasonal pattern is strong and consistent."
+    }
+  },
+  {
+    "id": "sc-036",
+    "topic": "procurement-sourcing",
+    "question": "Andina Retail Group's procurement team runs a competitive RFQ (Request for Quotation) process among several pre-qualified suppliers before awarding a large purchase contract, rather than simply negotiating one-on-one with a single familiar supplier. What is the main business benefit of running a competitive process like this?",
+    "options": {
+      "a": "Running a competitive RFQ process never results in better pricing or terms than negotiating with a single familiar supplier, making the extra effort involved never worthwhile",
+      "b": "An RFQ process eliminates the need for any supplier performance evaluation or due diligence once quotes have been received",
+      "c": "Competitive sourcing processes are only appropriate for very small, low-value purchases and have no legitimate application to large contracts",
+      "d": "A competitive RFQ process creates genuine price and terms competition among multiple credible suppliers, typically resulting in better pricing and terms than a single-supplier negotiation would achieve, while also giving the buyer direct, comparable insight into the broader supplier landscape's actual capabilities and pricing — though it does require more upfront time and coordination effort than simply going straight to one familiar supplier"
+    },
+    "correct": "d",
+    "theory": {
+      "text": "A competitive RFQ process leverages a straightforward market dynamic: suppliers who know they're competing directly against credible alternatives for a contract typically offer more favorable pricing and terms than they would in a one-on-one negotiation where they have no immediate competitive pressure. Beyond the pricing benefit, running quotes across several suppliers also gives the buyer genuinely useful comparative market intelligence — a clearer sense of what capabilities, lead times, and pricing are actually available in the broader supplier landscape, not just what one familiar supplier happens to offer. The real cost is time and coordination effort, which is exactly why RFQ processes are typically reserved for larger, higher-value purchases where the potential savings and improved terms clearly justify that additional upfront investment, echoing the ABC-style prioritization logic from sc-007 and sc-011."
+    }
+  },
+  {
+    "id": "sc-037",
+    "topic": "procurement-sourcing",
+    "question": "Andina Retail Group's procurement team tracks 'supplier lead time variability' (not just average lead time) as a key metric when evaluating suppliers, even for two suppliers with the identical average lead time of 14 days. Why does variability matter here, separate from the average?",
+    "options": {
+      "a": "Supplier lead time variability can only be measured for suppliers located in a different country than the retailer, never for domestic suppliers",
+      "b": "Two suppliers with identical average lead times will always require identical safety stock levels, regardless of how consistent or erratic each one's actual delivery timing is",
+      "c": "A supplier with a consistent, predictable 14-day lead time requires meaningfully less safety stock buffer (per sc-002 and sc-004) than a supplier whose lead time averages 14 days but swings unpredictably between 7 and 25 days — the unpredictable supplier forces the retailer to plan for the worst-case scenario, tying up more working capital in extra safety stock even though both suppliers share the exact same average lead time",
+      "d": "Lead time variability has no measurable effect on the appropriate safety stock level, since only the average lead time genuinely matters for inventory planning"
+    },
+    "correct": "c",
+    "theory": {
+      "text": "This directly extends the safety-stock reasoning from sc-002 with a subtlety that's easy to overlook if you only track average performance: the whole point of safety stock is protecting against variability and uncertainty, not against the average case itself, which a well-tuned reorder point already accounts for. A supplier whose lead time is consistently, predictably 14 days lets the retailer plan tightly around that number with relatively modest safety stock. A supplier whose lead time averages the exact same 14 days but genuinely swings between 7 and 25 days forces the retailer to plan defensively for something closer to the worst-case, unpredictable end of that range, tying up meaningfully more working capital in extra buffer stock — even though, on paper, both suppliers look identical if you only compare their average lead times side by side."
+    }
+  },
+  {
+    "id": "sc-038",
+    "topic": "procurement-sourcing",
+    "question": "Andina Retail Group's supplier scorecard combines on-time delivery rate, quality defect rate, price competitiveness, and responsiveness to communication into a single weighted supplier performance score, used to rank and periodically review all active suppliers. What business purpose does formalizing supplier evaluation into this kind of structured scorecard serve, beyond informal impressions?",
+    "options": {
+      "a": "A supplier scorecard can only track a single performance dimension at a time and has no capability to combine multiple factors into one overall evaluation",
+      "b": "Supplier performance evaluation has no legitimate connection to sourcing or contract renewal decisions",
+      "c": "A structured, weighted scorecard replaces subjective, inconsistent impressions ('I feel like Supplier X is pretty good') with an objective, comparable, and auditable evaluation that can be tracked consistently over time and fairly compared across every supplier — supporting more defensible sourcing decisions, identifying genuinely underperforming suppliers before a crisis forces the issue, and giving underperforming suppliers concrete, specific feedback on exactly where they need to improve",
+      "d": "Formal supplier scorecards provide no meaningful advantage over informal, subjective impressions of supplier quality and performance"
+    },
+    "correct": "c",
+    "theory": {
+      "text": "This closes the procurement topic by connecting supplier evaluation to the same data-driven, structured decision-making discipline this whole course has emphasized throughout. Informal impressions of supplier quality are genuinely prone to recency bias (one recent bad delivery outweighing a long track record of good ones, or vice versa), inconsistency across evaluators, and simply being hard to defend or act on systematically. A formal, weighted scorecard turns supplier evaluation into something objective, trackable over time, and directly comparable across the entire supplier base — supporting genuinely defensible decisions about which suppliers to grow the relationship with, which need a formal improvement conversation, and which should be considered for replacement, while also giving underperforming suppliers concrete, specific, actionable feedback rather than a vague sense that the relationship isn't going well."
+    }
+  },
+  {
+    "id": "sc-039",
+    "topic": "logistics-transportation",
+    "question": "Andina Retail Group consolidates several smaller shipments from different suppliers, all destined for the same regional distribution center, into a single combined truckload rather than sending each as its own smaller, separate shipment. What cost benefit does this freight consolidation strategy typically provide?",
+    "options": {
+      "a": "Freight consolidation has no relationship to the fixed-cost-versus-volume trade-off discussed elsewhere in this course",
+      "b": "Consolidating shipments from multiple different suppliers into one truckload is technically impossible under any circumstances",
+      "c": "Freight consolidation always increases total shipping cost compared to sending each shipment separately, with no cost-saving benefit whatsoever",
+      "d": "Consolidating multiple smaller shipments into fewer, fuller truckloads spreads the fixed cost of each trip (fuel, driver time, tolls) across more total volume, generally achieving a lower cost per unit shipped than sending several partially-full trucks separately — directly mirroring the same fixed-cost-versus-volume logic behind the EOQ model from sc-003, just applied to transportation rather than ordering"
+    },
+    "correct": "d",
+    "theory": {
+      "text": "Freight consolidation applies the exact same underlying economic logic as the EOQ trade-off from sc-003, just to a different decision: a truck's fixed costs (driver time, fuel, tolls, and the simple fact that a truck trip costs roughly the same to run whether it's half-empty or completely full) get spread across whatever total volume it's actually carrying. Sending several smaller, partially-full shipments separately means paying that fixed trip cost multiple times over for a similar total volume; consolidating them into fewer, fuller truckloads spreads that same fixed cost across more units, generally lowering the effective cost per unit shipped. This is exactly why logistics coordinators actively look for consolidation opportunities — combining otherwise-separate shipments headed to the same destination — as one of the most direct, reliable levers for reducing overall transportation cost."
+    }
+  },
+  {
+    "id": "sc-040",
+    "topic": "logistics-transportation",
+    "question": "Andina Retail Group's logistics team negotiates a rate contract with a transportation carrier that includes a fuel surcharge clause, automatically adjusting the shipping rate up or down based on prevailing fuel prices, rather than a single fixed rate locked in regardless of fuel cost changes. Why do carriers and shippers commonly structure contracts this way rather than a simple fixed rate?",
+    "options": {
+      "a": "A fixed shipping rate with no fuel adjustment clause always perfectly and accurately reflects a carrier's true costs regardless of how much fuel prices might fluctuate over the life of the contract",
+      "b": "Fuel cost is a major, genuinely volatile input cost for a carrier that neither party can reliably predict far in advance; a fuel surcharge clause lets the base rate reflect the carrier's other, more stable costs while fuel-driven cost swings are passed through transparently as they actually occur, avoiding a situation where a fixed-rate contract becomes badly mismatched with reality if fuel prices move sharply in either direction after the contract is signed",
+      "c": "Fuel surcharge clauses exist purely to benefit carriers and provide no legitimate protection or predictability benefit to the shipper in any scenario",
+      "d": "Fuel surcharges are illegal in most jurisdictions and are never actually used in real freight contracts"
+    },
+    "correct": "b",
+    "theory": {
+      "text": "This reflects a genuine, mutually reasonable response to a real source of cost unpredictability: fuel is one of a carrier's largest and most volatile operating costs, and neither the carrier nor the shipper can reliably predict where fuel prices will sit months or years into a multi-period contract. Locking in a single fixed rate that has to somehow account for that unpredictable future fuel cost tends to either overcharge the shipper (if the carrier prices in a large cushion against the risk of rising fuel costs) or leave the carrier exposed to a real loss (if fuel prices spike unexpectedly and the fixed rate no longer covers actual costs). A fuel surcharge clause separates the more predictable base cost components from the genuinely volatile fuel component, letting the surcharge track actual fuel prices transparently over time — a more honest, more stable long-term arrangement for both parties than a rigid single fixed rate."
+    }
+  },
+  {
+    "id": "sc-041",
+    "topic": "international-trade-customs",
+    "question": "Andina Retail Group's trade compliance team maintains a documented process for correctly determining a product's 'country of origin' for customs purposes, which isn't always simply the country a product was physically shipped from. Why does country of origin sometimes require careful, specific determination rather than being self-evident?",
+    "options": {
+      "a": "Country of origin determination has no relationship to tariff rates, trade agreement eligibility, or any other customs consideration",
+      "b": "Country of origin is always simply and automatically the country a product happened to be shipped from most recently, with no other consideration ever relevant",
+      "c": "This kind of origin determination is only relevant for raw agricultural products and has no application to manufactured goods like electronics or furniture",
+      "d": "Country of origin rules generally look at where a product underwent its last 'substantial transformation' — meaningful manufacturing or processing that changes its fundamental character — rather than simply where it was assembled or shipped from most recently, which matters enormously because origin can directly determine which tariff rate, trade agreement eligibility, and labeling requirements apply, and getting it wrong (even unintentionally) can trigger the same kind of compliance and penalty risk discussed for HS code misclassification in sc-019"
+    },
+    "correct": "d",
+    "theory": {
+      "text": "Country of origin rules exist precisely because modern global supply chains often involve a product passing through multiple countries before reaching its final form — raw materials from one country, components manufactured in a second, final assembly in a third — and customs authorities need a consistent, principled way to determine which country's trade rules actually apply. The general concept of 'substantial transformation' asks where the product underwent its last genuinely meaningful manufacturing step that changed its fundamental character, rather than simply defaulting to wherever it was most recently shipped from or assembled. This determination carries real, direct consequences: it can affect which tariff rate applies, whether a product qualifies for preferential treatment under a specific trade agreement, and what origin labeling is legally required — exactly the kind of specific, consequential customs knowledge that connects directly to the HS classification risks already discussed in sc-019."
+    }
+  },
+  {
+    "id": "sc-042",
+    "topic": "international-trade-customs",
+    "question": "Andina Retail Group qualifies for a reduced tariff rate on goods sourced from a country with which its home market has a free trade agreement (FTA), but only after providing a valid certificate of origin proving the goods genuinely meet that agreement's specific rules-of-origin requirements. Why do free trade agreements typically require this kind of documented proof, rather than simply extending reduced tariffs to any goods physically shipped from a member country?",
+    "options": {
+      "a": "Without a rules-of-origin requirement, a good manufactured entirely outside the trade agreement's member countries could be routed through a member country with only minimal, non-substantial handling (sometimes called 'transshipment') specifically to improperly claim the agreement's preferential tariff treatment — the certificate-of-origin requirement, tied to genuine substantial transformation within a member country, is designed specifically to prevent this kind of abuse and ensure the tariff benefit only applies to goods that genuinely qualify",
+      "b": "Any good physically shipped from a free trade agreement member country automatically and unconditionally qualifies for preferential tariff treatment, regardless of where it was actually manufactured",
+      "c": "Certificates of origin are only required for goods valued above an extremely high monetary threshold and are never required for typical retail merchandise shipments",
+      "d": "Rules-of-origin requirements exist purely as unnecessary bureaucratic paperwork with no genuine trade policy purpose behind them"
+    },
+    "correct": "a",
+    "theory": {
+      "text": "This builds directly on the substantial-transformation concept from sc-041 to explain a genuine trade-policy safeguard: free trade agreements are negotiated specifically to benefit goods genuinely produced within the member countries, not as a loophole for goods manufactured entirely elsewhere to dodge tariffs simply by passing through a member country's port with minimal handling — a practice sometimes called illegitimate transshipment. Requiring a documented, verifiable certificate of origin, tied to genuine rules-of-origin criteria (often requiring a specific percentage of a product's value or a specific manufacturing step to have genuinely occurred within a member country), closes this loophole and ensures the negotiated tariff benefit only flows to goods that actually meet the agreement's real intent. For an importer, correctly obtaining and maintaining this documentation is a genuine compliance responsibility, not just optional paperwork, with real financial stakes if it's missing or found to be invalid during a customs audit."
+    }
+  },
+  {
+    "id": "sc-043",
+    "topic": "warehouse-distribution",
+    "question": "Andina Retail Group's distribution center uses a 'wave picking' strategy — batching together many individual customer orders that share similar characteristics (like the same shipping carrier cutoff time or a similar set of products) and picking them together in coordinated waves, rather than picking each order completely independently, one at a time, from start to finish. What efficiency benefit does this batching approach provide?",
+    "options": {
+      "a": "This batching strategy can only be used in warehouses that exclusively handle a single product category, with no application to a warehouse carrying diverse merchandise",
+      "b": "Wave picking always results in slower overall order fulfillment than picking each individual order completely independently from start to finish, with no efficiency benefit",
+      "c": "Wave picking has no relationship to reducing the total travel time a warehouse picker spends walking between storage locations",
+      "d": "Wave picking lets a single trip through the warehouse's storage locations serve multiple orders at once (since a picker walking past a given shelf can pick that item for every order in the current wave that needs it, rather than making a separate dedicated trip for each individual order), reducing total picker travel time per order compared to picking every single order as its own fully independent, sequential trip through the warehouse"
+    },
+    "correct": "d",
+    "theory": {
+      "text": "Wave picking is another warehouse efficiency technique built around the same underlying insight as slotting from sc-022: picker travel time is one of the largest components of picking labor cost, and any strategy that reduces total travel distance per unit picked directly improves productivity. Batching similar orders together into a coordinated wave means a picker's single walk through a given aisle can serve every order in that wave needing an item from that aisle, rather than requiring a completely separate, dedicated trip through the same aisle for each individual order picked one at a time from start to finish. The result is meaningfully less total walking per unit of work completed — a genuine, measurable operational efficiency gain that scales in value as order volume and warehouse size grow larger."
+    }
+  },
+  {
+    "id": "sc-044",
+    "topic": "warehouse-distribution",
+    "question": "Andina Retail Group's distribution center conducts regular 'cycle counts' — physically counting a small, rotating subset of inventory locations every day — rather than relying solely on one massive full physical inventory count once a year. What advantage does frequent cycle counting provide over a single annual full count?",
+    "options": {
+      "a": "Cycle counting catches inventory discrepancies (theft, misplacement, system recording errors) much sooner after they actually occur, since a small subset of locations is checked continuously rather than the entire warehouse only being verified once a year — an error caught within days is far easier to trace back to its actual cause than one discovered up to twelve months later, and frequent counting also avoids the major operational disruption of shutting down warehouse operations for one massive annual count",
+      "b": "A single annual full physical inventory count always provides more accurate, more timely inventory data than any form of frequent, rotating cycle counting",
+      "c": "Cycle counting and annual full inventory counts always detect exactly the same discrepancies, with no meaningful difference in timeliness or accuracy between the two approaches",
+      "d": "Cycle counting has no relationship to the inventory accuracy needs of the reorder-point and safety-stock calculations discussed earlier in this course"
+    },
+    "correct": "a",
+    "theory": {
+      "text": "This directly connects the general 'catch problems early' principle already established in this platform's Data Architecture and Data Engineering courses (there, applied to data-quality validation) to a physical inventory-accuracy practice: an inventory discrepancy — theft, a misplaced pallet, a system recording error from a mis-scanned barcode — is far easier to investigate and correctly trace back to its actual root cause when it's caught within days of occurring, while relevant context (who was working that shift, what recent activity happened at that location) is still available, compared to a discrepancy only discovered up to a year later during a single massive annual count, by which point the trail has usually gone cold. Frequent, smaller cycle counts also avoid the significant operational disruption of shutting down normal warehouse operations for a full annual count, while continuously maintaining the kind of accurate, trustworthy on-hand inventory data the reorder-point and safety-stock calculations from earlier in this course actually depend on to work correctly."
+    }
+  },
+  {
+    "id": "sc-045",
+    "topic": "warehouse-distribution",
+    "question": "Andina Retail Group's warehouse network design includes a decision about facility 'flexibility' — whether a distribution center is purpose-built for one specific product category (like refrigerated perishables) or designed as a more general-purpose facility that could, if needed, be repurposed for a different category later. What trade-off does this flexibility decision involve?",
+    "options": {
+      "a": "Facility specialization always provides strictly better outcomes than general-purpose flexibility in every possible future business scenario, with no offsetting trade-off",
+      "b": "A purpose-built, specialized facility is typically more efficient and lower-cost for handling its specific intended category (optimized racking, climate control, equipment exactly suited to that product type), but is harder and more expensive to repurpose if business needs shift; a more general-purpose facility sacrifices some of that category-specific efficiency for greater long-term adaptability if the business's product mix or volume needs change in ways that weren't anticipated at the time it was built",
+      "c": "This kind of facility design decision has no relationship to the centralization-versus-decentralization network design trade-off discussed earlier in this course",
+      "d": "General-purpose, flexible facilities are always more efficient at handling any specific product category than a facility purpose-built for that exact category"
+    },
+    "correct": "b",
+    "theory": {
+      "text": "This closes the warehouse and distribution topic with another genuine cost-versus-flexibility trade-off, echoing the centralization-versus-decentralization framing from sc-023: a facility purpose-built around one specific product category's exact needs (specialized racking, climate control tuned precisely for refrigerated goods, equipment matched to a specific handling requirement) can operate more efficiently and at lower unit cost for exactly that category than a generic facility ever could. But that same specialization becomes a liability if the business's needs shift in ways the facility wasn't designed for — repurposing a highly specialized refrigerated facility for a completely different product category can be expensive or even impractical. A more general-purpose facility trades away some of that category-specific efficiency for meaningfully greater long-term adaptability, a trade-off that's more or less worth making depending on how confidently a business can predict its own future product mix and volume needs."
+    }
+  },
+  {
+    "id": "sc-046",
+    "topic": "retail-specific-supply-chain",
+    "question": "Andina Retail Group's e-commerce fulfillment team decides which of several regional fulfillment centers should ship a specific online order, based on factors including each center's current inventory availability, proximity to the customer, and current processing capacity. Why is this 'order sourcing' decision more complex for an omnichannel retailer than it would be for a retailer with just a single central warehouse?",
+    "options": {
+      "a": "A retailer with multiple fulfillment locations should always ship every single order from whichever location is physically closest to company headquarters, regardless of any other consideration",
+      "b": "This kind of multi-location order sourcing decision has no connection to the omnichannel inventory visibility challenge discussed earlier in this course",
+      "c": "Order sourcing complexity has no relationship to how many fulfillment locations a retailer operates, and is equally complex regardless of whether there is one location or many",
+      "d": "With multiple possible fulfillment locations, the sourcing decision has to balance several competing factors simultaneously (which location actually has the item in stock, which is fastest/cheapest to ship from given the customer's location, and which currently has spare processing capacity versus being already overloaded) — a single-warehouse retailer skips this whole optimization problem entirely, since there's only ever one possible location an order could ship from"
+    },
+    "correct": "d",
+    "theory": {
+      "text": "This extends the omnichannel inventory-visibility challenge from sc-026 into an active, ongoing operational decision: once a retailer has more than one possible fulfillment location for a given order, choosing the right one becomes a genuine, real-time optimization problem, not a foregone conclusion. Shipping from the closest location generally minimizes delivery time and freight cost, but only helps if that location actually has the item in stock (again depending on the accurate, unified inventory visibility from sc-026) and has spare processing capacity available right now rather than already being backed up with other orders. A single-warehouse retailer skips this entire class of decision — there's simply nowhere else an order could possibly ship from — which is exactly why omnichannel, multi-location fulfillment introduces a genuinely more sophisticated logistics optimization challenge that a simpler, single-location retail operation never has to solve at all."
+    }
+  },
+  {
+    "id": "sc-047",
+    "topic": "retail-specific-supply-chain",
+    "question": "Andina Retail Group's category management team uses point-of-sale data and planogram compliance checks to ensure each store actually displays products the way the merchandising plan specifies, since a well-planned assortment (sc-027) only delivers its intended sales results if it's actually executed correctly on the shelf. Why does execution fidelity matter so much here?",
+    "options": {
+      "a": "Once an assortment and shelf plan has been carefully designed using data, its actual in-store execution has no further bearing on whether the planned sales results are actually achieved",
+      "b": "Point-of-sale data can only be used for sales reporting and has no legitimate application to verifying whether a merchandising plan is being followed correctly",
+      "c": "Even a perfectly researched, data-driven assortment and shelf plan produces no business benefit if individual stores don't actually implement it as designed — a product placed in a poor location, missing from the shelf despite being in the store's backroom inventory, or a planogram not followed correctly all undermine the careful planning work upstream, meaning execution monitoring is a necessary complement to good planning, not an optional afterthought",
+      "d": "Planogram compliance monitoring has no relationship to the assortment planning concept covered earlier in this course"
+    },
+    "correct": "c",
+    "theory": {
+      "text": "This closes the retail-specific topic with an important, easy-to-overlook point: sophisticated upstream planning (accurate demand forecasting, thoughtful assortment decisions from sc-027, well-designed store-level replenishment from sc-029) only actually delivers business results if it's faithfully executed at the point of sale — a beautifully optimized assortment plan means nothing if the product is sitting in the backroom instead of on the shelf, or displayed in a location customers rarely browse. Monitoring execution fidelity (whether stores are actually following the plan) and monitoring the underlying plan's quality are two genuinely distinct concerns, and a supply chain or merchandising team needs both: good planning without good execution wastes the planning effort, while good execution of a poorly-designed plan still produces disappointing results — the two have to work together, not as a substitute for one another."
+    }
+  },
+  {
+    "id": "sc-048",
+    "topic": "retail-specific-supply-chain",
+    "question": "Andina Retail Group's team debates 'private label' product development — creating the retailer's own branded version of a product category, sourced directly from a manufacturer, rather than only selling established national brands. What supply chain and margin consideration typically motivates a retailer to invest in private label products?",
+    "options": {
+      "a": "Developing private label products has no relationship to a retailer's margin structure or overall profitability",
+      "b": "Private label products always sell in identical volumes to established national brands, with no meaningful difference in demand forecasting difficulty between the two",
+      "c": "Private label products typically let a retailer capture a larger margin (bypassing the branded manufacturer's own markup) and gives the retailer direct control over sourcing, specifications, and supplier relationships (applying the sourcing and TCO principles from earlier in this course directly), though it also requires the retailer to take on quality control, demand forecasting, and brand-building responsibilities that would otherwise sit with an established national brand manufacturer",
+      "d": "A retailer investing in private label products takes on no additional sourcing, quality, or forecasting responsibility compared to simply reselling an established national brand"
+    },
+    "correct": "c",
+    "theory": {
+      "text": "Private label development is a genuine strategic supply chain decision with real trade-offs, directly connecting several concepts already covered in this course: by sourcing directly from a manufacturer and selling under its own brand, a retailer generally captures more margin than it would reselling an established national brand (which already has its own manufacturer markup baked into the wholesale price), and gains direct control over sourcing decisions, specifications, and supplier relationships — the same total-cost-of-ownership and sourcing-strategy thinking from sc-008 through sc-011 applies directly here, just with the retailer itself now playing a more active sourcing role. The trade-off is that the retailer also takes on responsibilities an established national brand would otherwise have handled — quality control, demand forecasting for a genuinely new product line with no prior established sales history, and building consumer trust in the new brand from scratch — real additional work and risk that has to be weighed against the margin upside."
+    }
+  },
+  {
+    "id": "sc-049",
+    "topic": "supply-chain-analytics-kpis",
+    "question": "Andina Retail Group's supply chain analytics team builds a control chart tracking daily fill rate, with statistically-derived upper and lower control limits, flagging any day's fill rate that falls outside those limits as worth investigating, rather than reacting to every single day-to-day fluctuation. What statistical principle does this control-chart approach apply?",
+    "options": {
+      "a": "It distinguishes genuine, statistically meaningful deviations from a process's normal, expected range of random variation (worth investigating) from ordinary day-to-day noise that falls within the normal expected range (not worth chasing down individually) — directly connecting to the variance and standard-deviation concepts covered in this platform's Math for ML & Data Science course, applied here to operational process monitoring rather than a purely statistical exercise",
+      "b": "This kind of statistical process monitoring has no relationship to the variance or standard deviation concepts covered elsewhere in this training platform",
+      "c": "Control charts require investigating and reacting to every single day's fill rate individually, regardless of whether it falls within or outside the statistically normal expected range",
+      "d": "Control charts can only be applied to manufacturing processes and have no legitimate application to retail supply chain metrics like fill rate"
+    },
+    "correct": "a",
+    "theory": {
+      "text": "This is a direct, practical application of the variance and standard-deviation concepts covered generally in this platform's Math for ML & Data Science course, now applied to ongoing operational process monitoring: a process that's genuinely stable and in control will still show some day-to-day fluctuation purely from ordinary random variation, and chasing down every single minor blip as if it were a genuine problem wastes investigative effort and can lead to reacting to noise rather than real signal. Statistically-derived control limits (commonly set some number of standard deviations from the process's own historical average) give a principled, objective threshold for distinguishing 'this is just normal variation' from 'this is a statistically meaningful deviation genuinely worth investigating' — letting a team focus its limited attention specifically on the days that actually represent a real underlying problem, rather than every ordinary fluctuation."
+    }
+  },
+  {
+    "id": "sc-050",
+    "topic": "supply-chain-analytics-kpis",
+    "question": "Andina Retail Group's supply chain leadership reviews a KPI dashboard and notices 'inventory turnover' has improved significantly, but at the same time 'fill rate' has declined. What does this specific combination of movements suggest the team should investigate?",
+    "options": {
+      "a": "This combination of KPI movements has no relationship to the safety-stock and inventory-holding-cost trade-offs discussed earlier in this course",
+      "b": "Improving inventory turnover and declining fill rate are always completely unrelated metrics with no meaningful connection or shared underlying cause to investigate",
+      "c": "This pattern is a classic warning sign that inventory levels may have been cut too aggressively — improving turnover by simply holding less inventory can look good on that one metric in isolation, but if it's coming at the cost of more frequent stockouts (reflected in the declining fill rate), the business may be trading away real sales and customer satisfaction for a metric that looks better only because a genuinely important trade-off (from sc-002 and sc-006) is being pushed too far in one direction",
+      "d": "A declining fill rate should always be considered a positive signal whenever it occurs alongside improving inventory turnover, with no further investigation warranted"
+    },
+    "correct": "c",
+    "theory": {
+      "text": "This closes the analytics topic by applying the same 'don't optimize a single metric in isolation' discipline from sc-030 and sc-032 to a genuinely realistic, concerning pattern: inventory turnover (sc-006) improving while fill rate simultaneously declines is a textbook signature of the exact safety-stock trade-off discussed in sc-002 — reducing inventory levels does mechanically improve turnover, since less capital is tied up relative to sales volume, but if that reduction has pushed safety stock below what's actually needed to reliably meet demand, the business starts stocking out more often, which is precisely what a declining fill rate reflects. A supply chain leader seeing both metrics move this way together shouldn't celebrate the improved turnover number in isolation — it's a strong signal to investigate whether inventory has been cut too aggressively relative to genuine demand and lead-time variability, exactly the kind of connected, cross-metric reasoning a well-built unified dashboard (sc-032) is designed to surface."
+    }
+  },
+  {
+    "id": "sc-051",
+    "topic": "supply-chain-analytics-kpis",
+    "question": "Andina Retail Group's analytics team runs an A/B-style test on a new automated replenishment algorithm — applying it to half of its stores while the other half continues using the existing method — before rolling it out company-wide, rather than switching every store over at once based purely on a confident belief the new algorithm is better. Why is this kind of controlled comparison valuable before a full rollout?",
+    "options": {
+      "a": "Testing a new algorithm on only half of stores before a full rollout provides no meaningful additional evidence beyond simply trusting confident theoretical reasoning about why the new approach should be better",
+      "b": "A/B-style testing can only be applied to marketing and website experiments, with no legitimate application to supply chain or inventory replenishment algorithms",
+      "c": "This kind of controlled rollout approach has no relationship to the statistical significance concepts covered elsewhere in this training platform",
+      "d": "A controlled comparison provides genuine, measured evidence of whether the new algorithm actually performs better in real operating conditions, rather than relying on confidence or theoretical reasoning alone — directly echoing the statistical-significance and A/B-testing principles covered in this platform's Math for ML & Data Science course — and it also limits the business risk of a full company-wide rollout if the new algorithm turns out, despite good intentions, to actually underperform the existing method"
+    },
+    "correct": "d",
+    "theory": {
+      "text": "This closes out the supply chain analytics topic by directly connecting operational decision-making to the statistical rigor covered generally in this platform's Math for ML & Data Science course: confidently believing a new algorithm should perform better, based on sound theoretical reasoning, is genuinely useful, but it's not the same as actually measuring whether it performs better in real, messy, operational conditions — exactly the same gap between theoretical confidence and measured evidence that motivates A/B testing in any domain. Running the new algorithm on a subset of stores while the rest continue with the proven existing method provides a genuine, controlled comparison, and critically, it limits the business's downside risk: if the new approach turns out to actually underperform once tested against real conditions, the damage is contained to a subset of stores rather than the entire company having already fully committed to a change that, in hindsight, wasn't actually an improvement."
+    }
+  },
+  {
+    "id": "sc-052",
+    "topic": "risk-resilience-sustainability",
+    "question": "Andina Retail Group's risk team assesses its exposure to currency fluctuation, since it purchases inventory from overseas suppliers in a foreign currency but sells to consumers in its home market's local currency. What business risk does this currency mismatch create, and what is a common mitigation approach?",
+    "options": {
+      "a": "A weakening of the foreign currency against the home currency always increases, rather than decreases, the effective home-currency cost of imported goods",
+      "b": "This kind of currency risk can only ever be eliminated entirely by refusing to source from any overseas supplier under any circumstances",
+      "c": "Currency fluctuation has no measurable effect on the actual cost or margin of goods purchased from an overseas supplier in a foreign currency",
+      "d": "If the foreign currency strengthens significantly against the home currency between when a purchase order is placed and when payment is actually due, the effective cost of that inventory in home-currency terms rises, potentially eroding or eliminating the expected margin on goods whose retail price was already set based on the original, more favorable exchange rate — a common mitigation is hedging (using financial instruments to lock in a specific exchange rate in advance) or negotiating supplier contracts denominated in the retailer's own home currency instead"
+    },
+    "correct": "d",
+    "theory": {
+      "text": "Currency risk is a genuine, quantifiable financial exposure for any retailer sourcing internationally, and it directly connects to the total-landed-cost thinking from sc-021: a purchase order agreed at a specific exchange rate can end up costing meaningfully more in home-currency terms if that foreign currency strengthens before payment is actually settled, potentially eroding a margin that was calculated based on the original, more favorable rate — a real risk given that retail prices are often set well in advance and can't always be adjusted quickly enough to reflect a sudden currency shift. Common mitigation approaches include financial hedging instruments that lock in a specific exchange rate for a future payment in advance, or structuring supplier contracts to be denominated in the retailer's own home currency, shifting the currency risk onto the supplier instead — both genuine, actively used risk-management tools in real international trade operations, directly relevant to a professional with international business training."
+    }
+  },
+  {
+    "id": "sc-053",
+    "topic": "risk-resilience-sustainability",
+    "question": "Andina Retail Group's sustainability team calculates the carbon footprint of different transportation mode choices (ocean, air, and road freight) as an additional input into logistics decisions, alongside the pure cost and speed trade-offs already covered in this course (sc-012). Why might a retailer choose to weigh carbon impact alongside cost and speed, rather than optimizing purely on cost and speed alone?",
+    "options": {
+      "a": "Air freight, the fastest transportation mode, is always also the lowest-carbon transportation option, making cost, speed, and sustainability considerations always perfectly aligned with no trade-off",
+      "b": "Carbon footprint has no genuine business relevance to a retailer's logistics decisions and exists purely as an abstract, non-financial consideration",
+      "c": "Beyond any values-based commitment to sustainability, carbon impact increasingly carries genuine business consequences — regulatory carbon pricing or reporting requirements in some markets, investor and customer expectations around environmental responsibility, and the fact that air freight (the fastest mode) also tends to be the most carbon-intensive per unit shipped, meaning a purely cost-and-speed-optimized logistics strategy can create real reputational, regulatory, or investor-relations risk that a broader evaluation would help the business anticipate and manage",
+      "d": "This kind of sustainability consideration has no relationship to the transportation mode trade-offs discussed earlier in this course"
+    },
+    "correct": "c",
+    "theory": {
+      "text": "This extends the transportation mode trade-off from sc-012 with a third, increasingly important dimension beyond pure cost and speed: carbon impact, which correlates in a genuinely inconvenient way with the fastest mode — air freight is typically both the most expensive and the most carbon-intensive per unit shipped, meaning the same logistics decision that's fastest is also usually the least sustainable. Beyond any values-based motivation, this increasingly carries real, quantifiable business stakes: some markets have regulatory carbon pricing or mandatory emissions reporting requirements, and investors, corporate customers, and increasingly end consumers factor environmental responsibility into their own decisions about which companies to do business with. A sophisticated logistics strategy that only optimizes cost and speed, while ignoring this third dimension entirely, risks real reputational, regulatory, or investor-relations exposure that a more complete evaluation would help the business see and actively manage."
+    }
+  },
+  {
+    "id": "sc-054",
+    "topic": "risk-resilience-sustainability",
+    "question": "Andina Retail Group's supply chain resilience plan includes running periodic disruption simulations — a tabletop exercise imagining 'what would we do if our largest supplier suddenly became unavailable for 60 days' and mapping out the actual response plan in advance, before any real disruption occurs. What value does this kind of advance simulation provide, beyond simply having a general awareness that disruptions are possible?",
+    "options": {
+      "a": "Tabletop disruption exercises have no relationship to the proactive risk-mapping concept covered earlier in this course",
+      "b": "This kind of advance simulation exercise can only be usefully applied to natural disaster scenarios and has no relevance to a supplier-availability disruption",
+      "c": "Working through a specific, concrete disruption scenario in advance forces the team to identify real gaps in its response plan (which backup suppliers are actually qualified and ready, how quickly alternate sourcing could realistically be activated, what the true business impact would be) while there's no actual pressure or time constraint, so those gaps can be addressed calmly and proactively — directly extending the risk-register concept from sc-034 into a more concrete, rehearsed, and specific form of preparation",
+      "d": "Disruption simulations provide no additional preparation value beyond simply maintaining a general, abstract awareness that supply chain disruptions are possible"
+    },
+    "correct": "c",
+    "theory": {
+      "text": "This closes out the risk and resilience topic by extending the proactive risk-mapping principle from sc-034 into an even more concrete, rehearsed form of preparation. A general risk register identifies that a disruption is possible and roughly how severe it might be; a specific tabletop simulation goes further by actually forcing the team to work through the real, practical mechanics of a response — which backup suppliers (from sc-009) are genuinely qualified and ready to activate quickly, how long alternate sourcing would realistically take to stand up, and what the actual business impact would look like day by day. Doing this exercise calmly, in advance, with no real time pressure, reliably surfaces gaps in the plan (an assumed backup supplier that turns out not to actually be qualified for the full volume needed, for instance) that would be far more costly and stressful to discover for the first time in the middle of an actual, real, unfolding crisis."
+    }
+  },
+  {
+    "id": "sc-055",
+    "topic": "risk-resilience-sustainability",
+    "question": "Andina Retail Group's supply chain leadership decides to maintain a small, deliberately redundant buffer of critical packaging materials sourced from two different suppliers, even though this costs somewhat more than relying on the single lowest-cost supplier. Reflecting on everything covered across this course, how would you characterize this decision within the broader framework of supply chain trade-offs?",
+    "options": {
+      "a": "This decision represents pure, unjustifiable cost inefficiency with no legitimate business rationale of any kind behind it",
+      "b": "Cost and resilience are always perfectly aligned in supply chain decisions, making any trade-off between the two a false or nonexistent choice",
+      "c": "This is a deliberate, cost-versus-resilience trade-off, directly consistent with the supplier diversification (sc-009), nearshoring (sc-033), and proactive risk-management (sc-034, sc-054) principles covered throughout this course — the retailer is knowingly accepting a modest, quantifiable extra cost in exchange for meaningfully reduced exposure to a disruption at a single critical supplier, treating resilience as worth actively paying for rather than something to only value in hindsight after a disruption has already caused real damage",
+      "d": "This kind of decision has no meaningful relationship to any of the risk, sourcing, or resilience concepts covered elsewhere in this course"
+    },
+    "correct": "c",
+    "theory": {
+      "text": "This closing question ties the whole course together around its central, recurring theme: supply chain management is fundamentally a discipline of navigating genuine, quantifiable trade-offs — cost versus speed (sc-012), cost versus resilience (sc-009, sc-033), forecast accuracy versus planning effort (sc-007), assortment breadth versus manageability (sc-027) — rather than chasing any single metric or goal in isolation. Deliberately paying a modest cost premium for supplier redundancy is a conscious, informed decision to buy resilience proactively, before a disruption forces the issue under far worse conditions and far higher real cost (the stockout, lost-sales, and scrambling-for-alternatives costs discussed throughout sc-009, sc-033, sc-034, and sc-054). A supply chain professional who understands these trade-offs, and who's comfortable using data and structured analysis (echoing this whole training platform's BI and analytics threads) to actually quantify and compare them, is exactly the kind of business-minded, technically-literate professional this course has been building toward throughout."
+    }
+  },
+  {
+    "id": "sc-056",
+    "topic": "supply-chain-analytics-kpis",
+    "question": "Andina Retail Group's supply chain analytics team builds a 'days of supply' metric (on-hand inventory divided by average daily demand) for every SKU, refreshed daily, rather than only reviewing the older, static reorder-point calculation periodically. What advantage does a continuously refreshed days-of-supply metric provide as a monitoring tool, complementary to the reorder point itself?",
+    "options": {
+      "a": "This kind of continuously monitored metric has no relationship to the reorder point or safety stock concepts covered earlier in this course",
+      "b": "Days of supply gives planners an intuitive, continuously updated sense of exactly how much runway remains for each product in plain time terms ('9 days of stock left'), making it easy to scan across thousands of SKUs and immediately spot which ones are approaching risk, whereas the reorder point alone only signals a binary 'reorder now or not yet' without conveying how much buffer time actually remains at a glance",
+      "c": "Days of supply and the reorder point always convey exactly the same information in the exact same format, making one of the two metrics entirely redundant",
+      "d": "A days-of-supply metric can only be calculated for products with completely constant, unchanging daily demand, making it inapplicable to most real retail products"
+    },
+    "correct": "b",
+    "theory": {
+      "text": "This extends the reorder-point concept from sc-004 with a complementary, more continuously informative monitoring metric. A reorder point is essentially a binary trigger — inventory is either above it (no action needed yet) or at/below it (time to reorder) — which is exactly what it's designed for, but it doesn't by itself communicate how urgent the situation is or make it easy to visually scan and prioritize across a large catalog. Days of supply converts the same underlying on-hand inventory and demand data into an intuitive, continuously varying time-based figure that a planner can scan across thousands of SKUs at once, immediately spotting which products are down to a concerning handful of days remaining versus which have a comfortable multi-week buffer — the two metrics work well together, with days of supply providing an ongoing situational-awareness view and the reorder point providing the actual discrete trigger for action."
+    }
+  },
+  {
+    "id": "sc-057",
+    "topic": "supply-chain-analytics-kpis",
+    "question": "Andina Retail Group's supply chain team distinguishes between 'leading' KPIs (like supplier lead-time variability and forecast accuracy, which predict future problems) and 'lagging' KPIs (like fill rate and OTIF, which report what already happened). Why is it valuable to track both types together rather than relying solely on lagging indicators?",
+    "options": {
+      "a": "Lagging indicators like fill rate and OTIF should always be considered more valuable and more worth tracking than any leading indicator, with no exceptions",
+      "b": "Lagging indicators are essential for measuring actual, historical outcomes, but by the time a lagging KPI like fill rate shows a decline, the underlying problem has already caused real business harm; leading indicators (rising lead-time variability, deteriorating forecast accuracy) can signal that a lagging metric is likely to deteriorate before it actually does, giving the team a genuine window to intervene proactively rather than only ever finding out about a problem after the damage is already done",
+      "c": "Leading and lagging KPIs always move in perfect, immediate lockstep with each other, making it redundant to track both categories separately",
+      "d": "This distinction between leading and lagging KPIs has no relationship to the proactive-versus-reactive theme covered elsewhere in this course"
+    },
+    "correct": "b",
+    "theory": {
+      "text": "This closes the supply chain analytics topic by generalizing the proactive-versus-reactive theme that's run throughout this entire course (from the risk-register discussion in sc-034 to the observability principles echoed from this platform's Data Engineering course) into a specific KPI-design principle. A lagging indicator like fill rate is genuinely necessary — it's the actual, ground-truth measure of what happened — but by definition it can only report a problem after it has already occurred and already caused real business impact. A leading indicator, like rising supplier lead-time variability (sc-037) or deteriorating forecast accuracy, often signals that a lagging KPI is likely to deteriorate before it actually does, giving the team a genuine early-warning window to intervene — expediting a shipment, adjusting safety stock, or reaching out to a struggling supplier — while there's still time to prevent the problem from ever showing up as a lagging-metric failure at all."
+    }
+  },
+  {
+    "id": "sc-058",
+    "topic": "risk-resilience-sustainability",
+    "question": "Andina Retail Group's leadership considers whether to concentrate its supply chain resilience investment on preventing disruptions entirely (redundant suppliers, safety stock, diversified sourcing) versus investing more in the ability to respond and recover quickly once a disruption does occur (flexible contingency plans, cross-trained staff, rapid alternate-sourcing capability). Why might a mature supply chain strategy invest in both, rather than treating prevention and rapid recovery as substitutes for one another?",
+    "options": {
+      "a": "No amount of prevention investment can plausibly cover every possible disruption scenario (some risks are simply unforeseeable or too costly to fully insure against through prevention alone), so pairing prevention efforts with genuine recovery capability provides a second layer of protection for exactly the disruptions that prevention efforts didn't anticipate or couldn't fully guard against — the two are complementary layers of defense, not competing alternatives to choose between",
+      "b": "This kind of prevention-versus-recovery framing has no relationship to the risk-register and disruption-simulation concepts covered earlier in this course",
+      "c": "Investing in disruption prevention makes investing in recovery capability entirely unnecessary, since sufficiently thorough prevention can guarantee that no disruption will ever actually occur",
+      "d": "Recovery capability investment provides no additional protection beyond what disruption prevention investment already provides on its own"
+    },
+    "correct": "a",
+    "theory": {
+      "text": "This extends the risk-register (sc-034) and disruption-simulation (sc-054) concepts with an important layered-defense framing: even the most thorough prevention strategy — diversified suppliers, ample safety stock, careful nearshoring decisions — can't plausibly anticipate and guard against every conceivable disruption, since some risks are genuinely unforeseeable in advance or would be prohibitively expensive to fully insure against through prevention alone. This is exactly why a mature resilience strategy invests in both layers together: prevention reduces how often disruptions actually occur and how severe the ones that do occur tend to be, while genuine recovery capability (rehearsed contingency plans, staff who can flexibly step into different roles, the practiced ability to stand up alternate sourcing quickly) determines how well the business weathers the disruptions that inevitably slip through prevention's coverage anyway — two complementary layers of defense, not a choice between one or the other."
+    }
+  },
+  {
+    "id": "sc-059",
+    "topic": "risk-resilience-sustainability",
+    "question": "Andina Retail Group's sustainability reporting includes supplier-level environmental and labor-practice audits as part of its supplier scorecard (extending the scorecard concept from sc-038 beyond pure delivery and quality performance). Why might a retailer extend supplier evaluation into these ESG (environmental, social, governance) dimensions, beyond the traditional cost/quality/delivery criteria?",
+    "options": {
+      "a": "Beyond values-based motivation, a retailer's brand and business are genuinely exposed to a supplier's environmental or labor practices — a scandal or violation discovered deep in the supply chain can create real reputational damage, regulatory risk, and customer/investor backlash for the retailer itself, even though the retailer didn't directly commit the violation, making supplier ESG due diligence a form of genuine risk management, not merely an optional ethical add-on disconnected from the retailer's own business interests",
+      "b": "This kind of extended supplier evaluation has no relationship to the supplier scorecard concept covered earlier in this course",
+      "c": "ESG supplier auditing can only ever be relevant for suppliers of raw agricultural commodities and has no legitimate application to manufactured goods suppliers",
+      "d": "Supplier environmental and labor practices have no realistic connection to a retailer's own business risk or reputation, making ESG-focused supplier evaluation purely symbolic with no genuine business rationale"
+    },
+    "correct": "a",
+    "theory": {
+      "text": "This closes the risk and resilience topic by extending the supplier scorecard concept from sc-038 into a dimension that's become an increasingly material business risk in its own right, not just an ethical consideration layered on top of 'real' business criteria. A retailer's reputation and business results are genuinely exposed to what happens throughout its supply chain, not just at its own direct operations — a labor-practice violation or environmental incident discovered at a supplier several tiers removed can still generate serious reputational damage, regulatory scrutiny, and customer or investor backlash directed squarely at the retailer whose name is on the product, even though the retailer wasn't the one who directly committed the violation. This connects directly to the carbon-footprint consideration from sc-053: extending supplier evaluation into these ESG dimensions is a form of genuine, forward-looking risk management protecting the retailer's own brand and business interests, not a purely symbolic gesture disconnected from real commercial stakes."
+    }
+  },
+  {
+    "id": "sc-060",
+    "topic": "procurement-sourcing",
+    "question": "Andina Retail Group's procurement team negotiates a multi-year contract with a strategic supplier that includes a volume-based rebate structure — the more the retailer purchases over the year, the larger a retroactive rebate it receives on top of the standard unit price. What business dynamic does this kind of volume-tiered pricing structure create for both parties?",
+    "options": {
+      "a": "This kind of pricing structure has no relationship to the strategic-partnership-versus-transactional sourcing distinction covered earlier in this course",
+      "b": "A volume-based rebate structure guarantees identical effective unit pricing regardless of how much total volume the retailer actually purchases over the contract period",
+      "c": "Volume-based rebate structures only ever benefit the supplier, providing no genuine financial advantage to the retailer under any circumstances",
+      "d": "It aligns incentives between buyer and supplier around growing the relationship's total volume — the retailer benefits from a genuinely lower effective unit cost as its purchases scale up, while the supplier benefits from more predictable, larger committed volume that can improve its own production planning and cost efficiency, making this the kind of mutually beneficial structure that's more likely in the strategic-partnership sourcing relationships described in sc-011 than in a purely transactional, one-off purchase"
+    },
+    "correct": "d",
+    "theory": {
+      "text": "This closes the procurement and sourcing topic by connecting volume-tiered pricing directly to the strategic-partnership framing from sc-011: a rebate structure that rewards higher total volume creates a genuinely aligned incentive between buyer and supplier, rather than the purely adversarial, zero-sum dynamic of a one-off transactional negotiation. The retailer gains a real, quantifiable financial incentive to consolidate more of its purchasing with this one supplier (achieving a lower effective unit cost as volume scales), while the supplier gains more predictable, larger committed demand that can genuinely improve its own production planning, capacity utilization, and cost structure — benefits that feed back into better pricing and service for the retailer over time. This kind of structure is exactly why deeper, longer-term supplier relationships (rather than only ever competing every purchase from scratch) can create real, mutual value beyond what a purely transactional approach would ever capture."
+    }
+  }
+]
