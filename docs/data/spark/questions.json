@@ -1,0 +1,1259 @@
+[
+  {
+    "id": "S-01",
+    "level": 1,
+    "level_name": "Core Concepts",
+    "topic": "Spark Philosophy",
+    "topics": [
+      "Spark Philosophy",
+      "Computing Engine"
+    ],
+    "question": "Apache Spark is described as \"a unified computing engine and set of libraries for big data.\" Which of the following is NOT part of what Spark is?",
+    "options": {
+      "a": "A unified platform for data analytics tasks",
+      "b": "A computing engine",
+      "c": "A collection of libraries",
+      "d": "A permanent storage system"
+    },
+    "correct": "d",
+    "theory": {
+      "text": "Spark is a computing engine, not a storage system: it handles loading and computing over data from external storage systems (like S3, Hadoop, Cassandra) but does not store data permanently itself. The three key components are Unified, Computing engine, and Libraries."
+    }
+  },
+  {
+    "id": "S-02",
+    "level": 1,
+    "level_name": "Core Concepts",
+    "topic": "Spark History",
+    "topics": [
+      "Spark History",
+      "AMPlab"
+    ],
+    "question": "Where and when did Apache Spark begin as a research project, and when was the original paper published?",
+    "options": {
+      "a": "UC Berkeley in 2009, with the paper published the following year (2010)",
+      "b": "Stanford University in 2009, with the paper published the same year",
+      "c": "MIT in 2011, with the paper published in 2012",
+      "d": "UC Berkeley in 2013, when it joined the Apache Software Foundation"
+    },
+    "correct": "a",
+    "theory": {
+      "text": "Apache Spark began at UC Berkeley in 2009 as the Spark research project, and was first published the following year (2010) in the paper \"Spark: Cluster Computing with Working Sets.\""
+    }
+  },
+  {
+    "id": "S-03",
+    "level": 1,
+    "level_name": "Core Concepts",
+    "topic": "Spark Architecture",
+    "topics": [
+      "Spark Architecture",
+      "Driver and Executors"
+    ],
+    "question": "Which statement correctly describes the roles of the driver process and executors in a Spark Application?",
+    "options": {
+      "a": "The driver maintains application information, responds to user input, and schedules work across executors; executors execute assigned code and report status back to the driver",
+      "b": "Executors maintain application state and schedule work, while the driver only executes code",
+      "c": "The driver and executors are interchangeable processes with identical responsibilities",
+      "d": "Executors coordinate the cluster manager while the driver only stores data"
+    },
+    "correct": "a",
+    "theory": {
+      "text": "The driver process maintains information about the Spark Application, responds to the user's program, and analyzes, distributes, and schedules work across executors; executors are responsible only for executing the code assigned to them and reporting status back to the driver."
+    }
+  },
+  {
+    "id": "S-04",
+    "level": 1,
+    "level_name": "Core Concepts",
+    "topic": "Partitions",
+    "topics": [
+      "Partitions",
+      "Parallelism"
+    ],
+    "question": "What happens to Spark's parallelism if a DataFrame has only one partition, even when there are thousands of executors available?",
+    "options": {
+      "a": "Spark automatically splits the partition to use all executors",
+      "b": "Parallelism is limited to one, regardless of the number of executors",
+      "c": "The job fails with an error",
+      "d": "Parallelism equals the number of executors, not partitions"
+    },
+    "correct": "b",
+    "theory": {
+      "text": "If a DataFrame has one partition, Spark's parallelism is only one, even with thousands of executors available. Partitions determine the unit of parallel work, not the executor count alone."
+    }
+  },
+  {
+    "id": "S-05",
+    "level": 1,
+    "level_name": "Core Concepts",
+    "topic": "Transformations",
+    "topics": [
+      "Transformations",
+      "Shuffles"
+    ],
+    "question": "Which of the following best describes a \"wide dependency\" (wide transformation) in Spark?",
+    "options": {
+      "a": "Each input partition contributes to only one output partition",
+      "b": "Input partitions contribute to many output partitions, often requiring a shuffle across the cluster",
+      "c": "It is always executed entirely in-memory without writing to disk",
+      "d": "It only occurs when calling an action, never during a transformation"
+    },
+    "correct": "b",
+    "theory": {
+      "text": "A wide dependency (wide transformation) has input partitions contributing to many output partitions, which typically requires a shuffle whereby Spark exchanges partitions across the cluster and writes results to disk, unlike narrow transformations which can be pipelined in-memory."
+    }
+  },
+  {
+    "id": "S-06",
+    "level": 1,
+    "level_name": "Core Concepts",
+    "topic": "Actions",
+    "topics": [
+      "Actions",
+      "Spark Execution"
+    ],
+    "question": "What are the three kinds of actions available in Spark?",
+    "options": {
+      "a": "Actions to view data in the console, actions to collect data to native objects, and actions to write to output data sources",
+      "b": "Map actions, reduce actions, and filter actions",
+      "c": "Narrow actions, wide actions, and shuffle actions",
+      "d": "Read actions, transform actions, and write actions"
+    },
+    "correct": "a",
+    "theory": {
+      "text": "There are exactly three kinds of actions: actions to view data in the console, actions to collect data to native objects in the respective language, and actions to write to output data sources."
+    }
+  },
+  {
+    "id": "S-07",
+    "level": 1,
+    "level_name": "Core Concepts",
+    "topic": "Datasets API",
+    "topics": [
+      "Datasets API",
+      "Language APIs"
+    ],
+    "question": "Why is the Dataset API not available in Python or R?",
+    "options": {
+      "a": "Because Python and R lack a SparkSession object",
+      "b": "Because Python and R are dynamically typed languages, and Datasets require static, type-safe typing",
+      "c": "Because Python and R do not support DataFrames at all",
+      "d": "Because Datasets can only run in local mode, not in Python/R clusters"
+    },
+    "correct": "b",
+    "theory": {
+      "text": "The Dataset API is not available in Python and R because those languages are dynamically typed, since Datasets rely on compile-time type safety that is only possible in statically typed languages like Java and Scala."
+    }
+  },
+  {
+    "id": "S-08",
+    "level": 1,
+    "level_name": "Core Concepts",
+    "topic": "DataFrames",
+    "topics": [
+      "DataFrames",
+      "SparkSession"
+    ],
+    "question": "Which code correctly creates a Spark DataFrame containing a range of 1,000 numbers in a column named \"number\"?",
+    "options": {
+      "a": "spark.range(1000).toDF(\"number\")",
+      "b": "spark.createRange(1000).rename(\"number\")",
+      "c": "spark.sequence(1000).withColumnRenamed(\"number\")",
+      "d": "spark.range(1000).alias(\"number\")"
+    },
+    "correct": "a",
+    "theory": {
+      "text": "spark.range(1000) creates a DataFrame containing values from 0 to 999, and toDF(\"number\") names the resulting column \"number.\""
+    }
+  },
+  {
+    "id": "S-09",
+    "level": 1,
+    "level_name": "Core Concepts",
+    "topic": "DataFrameReader",
+    "topics": [
+      "DataFrameReader",
+      "Schema Inference"
+    ],
+    "question": "Which code correctly reads the 2015 flight-data CSV file with schema inference and a header row?",
+    "options": {
+      "a": "spark.read.option(\"inferSchema\",\"true\").option(\"header\",\"true\").csv(path)",
+      "b": "spark.read.option(\"autoSchema\",\"true\").option(\"header\",\"true\").csv(path)",
+      "c": "spark.read.option(\"inferSchema\",\"true\").option(\"header\",\"true\").json(path)",
+      "d": "spark.read.option(\"inferSchema\",\"true\").option(\"headerRow\",\"true\").csv(path)"
+    },
+    "correct": "a",
+    "theory": {
+      "text": "The option \"inferSchema\" tells Spark to take a best guess at the schema, and .csv(...) is the DataFrameReader method used to actually load the CSV file."
+    }
+  },
+  {
+    "id": "S-10",
+    "level": 1,
+    "level_name": "Core Concepts",
+    "topic": "DataFrame Transformations",
+    "topics": [
+      "DataFrame Transformations",
+      "Aggregations"
+    ],
+    "question": "Which chain of DataFrame operations correctly computes the top five destination countries by total flight count?",
+    "options": {
+      "a": "flightData2015.groupBy(\"DEST_COUNTRY_NAME\").sum(\"count\").withColumnRenamed(\"sum(count)\",\"destination_total\").sort(desc(\"destination_total\")).limit(5).show()",
+      "b": "flightData2015.orderBy(\"DEST_COUNTRY_NAME\").sum(\"count\").take(5)",
+      "c": "flightData2015.filter(\"count>5\").groupBy(\"DEST_COUNTRY_NAME\").show()",
+      "d": "flightData2015.groupBy(\"DEST_COUNTRY_NAME\").count().limit(5).show()"
+    },
+    "correct": "a",
+    "theory": {
+      "text": "This chains groupBy(\"DEST_COUNTRY_NAME\") to group rows by destination, .sum(\"count\") to aggregate the count column, and .limit(5) to keep only the top five rows after sorting."
+    }
+  },
+  {
+    "id": "S-11",
+    "level": 1,
+    "level_name": "Core Concepts",
+    "topic": "Shuffle Partitions",
+    "topics": [
+      "Shuffle Partitions",
+      "Spark Configuration"
+    ],
+    "question": "Which code correctly reduces the number of shuffle partitions from the default of 200 down to 5, as done in Chapter 2 for running in local mode?",
+    "options": {
+      "a": "spark.conf.set(\"spark.sql.shuffle.partitions\",\"5\")",
+      "b": "spark.config.set(\"spark.sql.shuffle.partitions\",\"5\")",
+      "c": "spark.conf.set(\"spark.shuffle.partitions\",\"5\")",
+      "d": "spark.sparkContext.set(\"spark.sql.shuffle.partitions\",\"5\")"
+    },
+    "correct": "a",
+    "theory": {
+      "text": "spark.conf.set(\"spark.sql.shuffle.partitions\", \"5\") reduces the default 200 shuffle partitions down to 5, which is recommended when running in local mode since there aren't many executors available."
+    }
+  },
+  {
+    "id": "S-12",
+    "level": 1,
+    "level_name": "Core Concepts",
+    "topic": "MLlib",
+    "topics": [
+      "MLlib",
+      "Feature Engineering"
+    ],
+    "question": "Which code correctly defines a StringIndexer that converts the \"day_of_week\" column into a numerical index column named \"day_of_week_index\"?",
+    "options": {
+      "a": "StringIndexer().setInputCol(\"day_of_week\").setOutputCol(\"day_of_week_index\")",
+      "b": "StringIndexer().setInputCol(\"day_of_week_index\").setOutputCol(\"day_of_week\")",
+      "c": "StringIndexer().setColumn(\"day_of_week\").setIndexCol(\"day_of_week_index\")",
+      "d": "StringIndexer().setFeaturesCol(\"day_of_week\").setLabelCol(\"day_of_week_index\")"
+    },
+    "correct": "a",
+    "theory": {
+      "text": "StringIndexer's setInputCol specifies the source column (\"day_of_week\") and setOutputCol specifies the name of the new numeric index column (\"day_of_week_index\")."
+    }
+  },
+  {
+    "id": "S-13",
+    "level": 2,
+    "level_name": "Structured APIs",
+    "topic": "Schemas",
+    "topics": [
+      "Schemas",
+      "StructType"
+    ],
+    "question": "Which statement about a Spark schema (a StructType) is correct?",
+    "options": {
+      "a": "A StructType can contain two fields with the same name as long as their types differ",
+      "b": "A schema is a StructType made up of StructFields, each having a name, a type, and a Boolean flag specifying whether the column can contain null values",
+      "c": "Schemas can only ever be inferred from data; they can never be defined manually",
+      "d": "Only Scala and Java can define a schema manually; Python must always rely on schema-on-read"
+    },
+    "correct": "b",
+    "theory": {
+      "text": "A schema is a StructType made up of StructFields that have a name, a type, a Boolean nullable flag, and optional metadata; fields with the same name are not allowed, and Python, Scala, and Java can all define schemas manually or let a data source infer them (schema-on-read)."
+    }
+  },
+  {
+    "id": "S-14",
+    "level": 2,
+    "level_name": "Structured APIs",
+    "topic": "Expressions",
+    "topics": [
+      "Expressions",
+      "Columns"
+    ],
+    "question": "Which method renames the result of an expression (already aliased to \"destination\") back to \"DEST_COUNTRY_NAME\"?",
+    "options": {
+      "a": "df.select(expr(\"DEST_COUNTRY_NAME as destination\").alias(\"DEST_COUNTRY_NAME\"))",
+      "b": "df.select(expr(\"DEST_COUNTRY_NAME as destination\").rename(\"DEST_COUNTRY_NAME\"))",
+      "c": "df.select(expr(\"DEST_COUNTRY_NAME as destination\").as(\"DEST_COUNTRY_NAME\"))",
+      "d": "df.select(expr(\"DEST_COUNTRY_NAME as destination\").withColumnRenamed(\"DEST_COUNTRY_NAME\"))"
+    },
+    "correct": "a",
+    "theory": {
+      "text": "You can further manipulate the result of an expression as another expression, using .alias(\"DEST_COUNTRY_NAME\") to rename the \"destination\" column back to its original name."
+    }
+  },
+  {
+    "id": "S-15",
+    "level": 2,
+    "level_name": "Structured APIs",
+    "topic": "select and selectExpr",
+    "topics": [
+      "select and selectExpr"
+    ],
+    "question": "What does df.selectExpr(\"avg(count)\", \"count(distinct(DEST_COUNTRY_NAME))\").show(2) demonstrate about selectExpr?",
+    "options": {
+      "a": "selectExpr can only reference exactly one column at a time",
+      "b": "selectExpr lets you specify aggregations over the entire DataFrame using SQL-like function strings",
+      "c": "selectExpr requires every column to be explicitly cast before use",
+      "d": "selectExpr cannot use functions like avg or count; only plain select can"
+    },
+    "correct": "b",
+    "theory": {
+      "text": "With select expressions, you can specify aggregations over the entire DataFrame using the functions available, as in this example computing avg(count) and a distinct count."
+    }
+  },
+  {
+    "id": "S-16",
+    "level": 2,
+    "level_name": "Structured APIs",
+    "topic": "Adding Columns",
+    "topics": [
+      "Adding Columns",
+      "Literals"
+    ],
+    "question": "Which code correctly adds a new column called numberOne containing the literal value 1 in every row?",
+    "options": {
+      "a": "df.withColumn(\"numberOne\", lit(1))",
+      "b": "df.addColumn(\"numberOne\", 1)",
+      "c": "df.withColumn(\"numberOne\", value(1))",
+      "d": "df.withColumn(1, lit(\"numberOne\"))"
+    },
+    "correct": "a",
+    "theory": {
+      "text": "withColumn takes two arguments -- the new column's name and the expression that produces its value -- and lit(1) converts the Python value 1 into a Spark literal column so it can be used as that expression."
+    }
+  },
+  {
+    "id": "S-17",
+    "level": 2,
+    "level_name": "Structured APIs",
+    "topic": "Casting",
+    "topics": [
+      "Casting"
+    ],
+    "question": "Which code correctly casts the count column to type long?",
+    "options": {
+      "a": "df.withColumn(\"count2\", col(\"count\").cast(\"long\"))",
+      "b": "df.withColumn(\"count2\", col(\"count\").toLong())",
+      "c": "df.select(long(col(\"count\")))",
+      "d": "df.withColumn(\"count2\", cast(\"count\", \"long\"))"
+    },
+    "correct": "a",
+    "theory": {
+      "text": "This converts the count column from an integer to type Long by calling df.withColumn(\"count2\", col(\"count\").cast(\"long\")), invoking cast directly on the Column."
+    }
+  },
+  {
+    "id": "S-18",
+    "level": 2,
+    "level_name": "Structured APIs",
+    "topic": "Filtering Rows",
+    "topics": [
+      "Filtering Rows",
+      "Booleans"
+    ],
+    "question": "Which code correctly filters rows where count is less than 2 AND ORIGIN_COUNTRY_NAME is not \"Croatia\", by chaining two separate filter calls?",
+    "options": {
+      "a": "df.where(col(\"count\") < 2).where(col(\"ORIGIN_COUNTRY_NAME\") != \"Croatia\")",
+      "b": "df.where(col(\"count\") < 2).and(col(\"ORIGIN_COUNTRY_NAME\") != \"Croatia\")",
+      "c": "df.filter(col(\"count\") < 2, col(\"ORIGIN_COUNTRY_NAME\") != \"Croatia\")",
+      "d": "df.where(col(\"count\") < 2 | col(\"ORIGIN_COUNTRY_NAME\") != \"Croatia\")"
+    },
+    "correct": "a",
+    "theory": {
+      "text": "Chaining multiple .where() calls sequentially expresses an AND condition, since Spark automatically flattens all such filters into one combined filter regardless of their ordering."
+    }
+  },
+  {
+    "id": "S-19",
+    "level": 2,
+    "level_name": "Structured APIs",
+    "topic": "Getting Unique Rows",
+    "topics": [
+      "Getting Unique Rows"
+    ],
+    "question": "What does df.select(\"ORIGIN_COUNTRY_NAME\", \"DEST_COUNTRY_NAME\").distinct().count() return for the flight-data example?",
+    "options": {
+      "a": "125",
+      "b": "256",
+      "c": "1",
+      "d": "3108"
+    },
+    "correct": "b",
+    "theory": {
+      "text": "This call deduplicates on the combination of both columns, resulting in 256, while distinct().count() on ORIGIN_COUNTRY_NAME alone results in 125."
+    }
+  },
+  {
+    "id": "S-20",
+    "level": 2,
+    "level_name": "Structured APIs",
+    "topic": "Sorting Rows",
+    "topics": [
+      "Sorting Rows"
+    ],
+    "question": "Which functions let you explicitly control ascending/descending sort direction on a Column, and where nulls appear in the result?",
+    "options": {
+      "a": "sortWithinPartitions and repartition",
+      "b": "asc and desc (e.g., col(\"count\").desc()), plus asc_nulls_first, desc_nulls_first, asc_nulls_last, desc_nulls_last",
+      "c": "selectExpr combined with LIMIT",
+      "d": "coalesce and na.drop"
+    },
+    "correct": "b",
+    "theory": {
+      "text": "asc and desc (or .asc()/.desc() on a Column) specify sort direction, and asc_nulls_first, desc_nulls_first, asc_nulls_last, or desc_nulls_last let you control where null values appear in an ordered DataFrame."
+    }
+  },
+  {
+    "id": "S-21",
+    "level": 2,
+    "level_name": "Structured APIs",
+    "topic": "Repartition and Coalesce",
+    "topics": [
+      "Repartition and Coalesce"
+    ],
+    "question": "Which code correctly repartitions the DataFrame into 5 partitions based on DEST_COUNTRY_NAME (a full shuffle), then combines those partitions down to 2 without another full shuffle?",
+    "options": {
+      "a": "df.repartition(5, col(\"DEST_COUNTRY_NAME\")).coalesce(2)",
+      "b": "df.coalesce(5, col(\"DEST_COUNTRY_NAME\")).repartition(2)",
+      "c": "df.repartition(5, col(\"DEST_COUNTRY_NAME\")).repartition(2)",
+      "d": "df.partitionBy(5,\"DEST_COUNTRY_NAME\").coalesce(2)"
+    },
+    "correct": "a",
+    "theory": {
+      "text": "repartition(5, col(\"DEST_COUNTRY_NAME\")) shuffles the data into 5 partitions keyed by that column, and coalesce(2) then combines partitions down to 2 without incurring a full shuffle."
+    }
+  },
+  {
+    "id": "S-22",
+    "level": 2,
+    "level_name": "Structured APIs",
+    "topic": "Strings",
+    "topics": [
+      "Strings",
+      "Regular Expressions"
+    ],
+    "question": "Which Spark function extracts a matching substring (such as the first mentioned color) from a string column using a regular expression?",
+    "options": {
+      "a": "regexp_replace",
+      "b": "regexp_extract",
+      "c": "translate",
+      "d": "instr"
+    },
+    "correct": "b",
+    "theory": {
+      "text": "regexp_extract and regexp_replace are the two key functions for regular expression tasks in Spark — they extract values and replace values, respectively; regexp_extract can pull out the first mentioned color from a Description column."
+    }
+  },
+  {
+    "id": "S-23",
+    "level": 2,
+    "level_name": "Structured APIs",
+    "topic": "Handling Null Values",
+    "topics": [
+      "Handling Null Values"
+    ],
+    "question": "What does the coalesce function do when applied to a set of columns?",
+    "options": {
+      "a": "It merges DataFrame partitions without triggering a full shuffle",
+      "b": "It selects the first non-null value from a set of columns",
+      "c": "It drops every row that contains any null value",
+      "d": "It replaces every null value in the DataFrame with a single supplied default"
+    },
+    "correct": "b",
+    "theory": {
+      "text": "Spark includes a function that selects the first non-null value from a set of columns using coalesce, distinct from the DataFrame.coalesce method used for reducing partitions."
+    }
+  },
+  {
+    "id": "S-24",
+    "level": 2,
+    "level_name": "Structured APIs",
+    "topic": "User-Defined Functions",
+    "topics": [
+      "User-Defined Functions"
+    ],
+    "question": "Which code correctly registers the Python function power3 as a DataFrame UDF (without specifying a return type) and applies it to the num column of udfExampleDF?",
+    "options": {
+      "a": "power3udf = udf(power3); udfExampleDF.select(power3udf(col(\"num\"))).show(2)",
+      "b": "power3udf = registerUDF(power3); udfExampleDF.select(power3udf(\"num\")).show(2)",
+      "c": "power3udf = udf(power3); udfExampleDF.select(power3udf(\"num\").col()).show(2)",
+      "d": "power3udf = pyspark.udf.create(power3); udfExampleDF.select(power3udf(col(\"num\"))).show(2)"
+    },
+    "correct": "a",
+    "theory": {
+      "text": "The Python function is registered as a UDF with power3udf = udf(power3) (imported from pyspark.sql.functions), then applied to a column reference obtained via col(\"num\") inside select."
+    }
+  },
+  {
+    "id": "S-25",
+    "level": 3,
+    "level_name": "Joins, Aggs & Sources",
+    "topic": "Aggregations",
+    "topics": [
+      "Aggregations",
+      "count"
+    ],
+    "question": "When performing count(*) on a DataFrame, Spark counts rows containing all null values. When counting an individual column with count(colName) instead, what does Spark do with null values in that column?",
+    "options": {
+      "a": "It counts them the same as any other value",
+      "b": "It does not count the null values",
+      "c": "It throws an exception because nulls are not comparable",
+      "d": "It converts each null to zero before counting"
+    },
+    "correct": "b",
+    "theory": {
+      "text": "The book explicitly warns: \"when performing a count(*), Spark will count null values (including rows containing all nulls). However, when counting an individual column, Spark will not count the null values.\""
+    }
+  },
+  {
+    "id": "S-26",
+    "level": 3,
+    "level_name": "Joins, Aggs & Sources",
+    "topic": "Aggregations",
+    "topics": [
+      "Aggregations",
+      "Grouping with Expressions"
+    ],
+    "question": "Which code correctly groups by InvoiceNo and computes the count of Quantity aliased as \"quan\"?",
+    "options": {
+      "a": "df.groupBy(\"InvoiceNo\").agg(count(\"Quantity\").alias(\"quan\")).show()",
+      "b": "df.groupBy(\"InvoiceNo\").select(count(\"Quantity\").alias(\"quan\")).show()",
+      "c": "df.groupBy(\"InvoiceNo\").aggregate(count(\"Quantity\").rename(\"quan\")).show()",
+      "d": "df.groupBy(\"InvoiceNo\").agg(count(\"Quantity\").as(\"quan\")).show()"
+    },
+    "correct": "a",
+    "theory": {
+      "text": "df.groupBy(\"InvoiceNo\").agg(count(\"Quantity\").alias(\"quan\"), expr(\"count(Quantity)\")).show() — agg() lets you pass arbitrary aggregation expressions, and alias() renames the resulting column."
+    }
+  },
+  {
+    "id": "S-27",
+    "level": 3,
+    "level_name": "Joins, Aggs & Sources",
+    "topic": "Aggregations",
+    "topics": [
+      "Aggregations",
+      "Rollup and Cube"
+    ],
+    "question": "A rollup on (\"Date\", \"Country\") produces hierarchical subtotals (grand total, per-date totals, per-date-per-country totals). What extra subtotal does a cube on the same two columns produce that a rollup does not?",
+    "options": {
+      "a": "The total for each country across all dates, regardless of date",
+      "b": "The total quantity for each invoice number",
+      "c": "The total for each customer regardless of country",
+      "d": "The average quantity per stock code"
+    },
+    "correct": "a",
+    "theory": {
+      "text": "A cube answers all of: total across all dates and countries, total for each date across all countries, total for each country on each date, AND the total for each country across all dates — that last one is the dimension rollup's hierarchy skips, since rollup only rolls up Date first, then Date+Country."
+    }
+  },
+  {
+    "id": "S-28",
+    "level": 3,
+    "level_name": "Joins, Aggs & Sources",
+    "topic": "Aggregations",
+    "topics": [
+      "Aggregations",
+      "Window Functions"
+    ],
+    "question": "What fundamentally distinguishes a window function from a standard group-by aggregation?",
+    "options": {
+      "a": "A window function requires the entire dataset to be globally sorted before it can execute",
+      "b": "In a group-by, each row can go into only one grouping, whereas in a window function each row can fall into one or more frames",
+      "c": "Window functions can only be expressed in SQL, never through the DataFrame API",
+      "d": "Window functions cannot use ranking functions such as rank or dense_rank"
+    },
+    "correct": "b",
+    "theory": {
+      "text": "In a group-by, every row can go only into one grouping. A window function calculates a return value for every input row of a table based on a group of rows, called a frame — each row can fall into one or more frames."
+    }
+  },
+  {
+    "id": "S-29",
+    "level": 3,
+    "level_name": "Joins, Aggs & Sources",
+    "topic": "Aggregations",
+    "topics": [
+      "Aggregations",
+      "Pivot"
+    ],
+    "question": "Which code correctly groups the DataFrame by the date column and pivots it on the Country column, then sums numeric columns per resulting group?",
+    "options": {
+      "a": "dfWithDate.groupBy(\"date\").pivot(\"Country\").sum()",
+      "b": "dfWithDate.pivot(\"Country\").groupBy(\"date\").sum()",
+      "c": "dfWithDate.groupBy(\"date\").transpose(\"Country\").sum()",
+      "d": "dfWithDate.groupBy(\"date\",\"Country\").sum()"
+    },
+    "correct": "a",
+    "theory": {
+      "text": "pivoted = dfWithDate.groupBy(\"date\").pivot(\"Country\").sum() converts distinct Country values into columns (e.g., USA_sum(Quantity)) for each date group."
+    }
+  },
+  {
+    "id": "S-30",
+    "level": 3,
+    "level_name": "Joins, Aggs & Sources",
+    "topic": "Joins",
+    "topics": [
+      "Joins",
+      "Left Semi Join"
+    ],
+    "question": "How does a left semi join behave?",
+    "options": {
+      "a": "It includes columns from both the left and right DataFrames wherever the keys match",
+      "b": "It behaves like a filter on the left DataFrame, keeping left rows whose key appears in the right DataFrame, but never includes any columns from the right DataFrame",
+      "c": "It keeps only rows from the right DataFrame where the key exists in the left DataFrame",
+      "d": "It duplicates every left row for each matching right row and includes the right-side columns"
+    },
+    "correct": "b",
+    "theory": {
+      "text": "Left semi joins do not include any values from the right DataFrame — if the key value exists there, the left row is kept in the result. Think of left semi joins as filters on a DataFrame."
+    }
+  },
+  {
+    "id": "S-31",
+    "level": 3,
+    "level_name": "Joins, Aggs & Sources",
+    "topic": "Joins",
+    "topics": [
+      "Joins",
+      "Broadcast Joins",
+      "Communication Strategies"
+    ],
+    "question": "When Spark performs a broadcast join for a big table-to-small table join, why does it avoid the expensive all-to-all communication seen in big table-to-big table shuffle joins?",
+    "options": {
+      "a": "It sorts both tables by the join key and merges them on a single node",
+      "b": "It replicates the small DataFrame to every worker node once at the start, after which each node performs the join locally with no further inter-node communication",
+      "c": "It samples a subset of the big table and only joins that sample",
+      "d": "It silently converts the operation into a cross join to simplify network traffic"
+    },
+    "correct": "b",
+    "theory": {
+      "text": "Spark replicates the small DataFrame onto every worker node in the cluster; there's a large communication cost at the start of the join, but immediately after that, there is no further communication between nodes."
+    }
+  },
+  {
+    "id": "S-32",
+    "level": 3,
+    "level_name": "Joins, Aggs & Sources",
+    "topic": "Data Sources",
+    "topics": [
+      "Data Sources",
+      "CSV"
+    ],
+    "question": "Which code correctly reads a CSV file specifying the csv format, a header row, FAILFAST mode, and schema inference?",
+    "options": {
+      "a": "spark.read.format(\"csv\").option(\"header\",\"true\").option(\"mode\",\"FAILFAST\").option(\"inferSchema\",\"true\").load(path)",
+      "b": "spark.read.type(\"csv\").option(\"header\",\"true\").option(\"mode\",\"FAILFAST\").option(\"autoSchema\",\"true\").load(path)",
+      "c": "spark.read.format(\"csv\").option(\"header\",\"true\").option(\"mode\",\"FAILFAST\").option(\"inferSchema\",\"true\").read(path)",
+      "d": "spark.read.format(\"csv\").option(\"header\",\"true\").option(\"strict\",\"FAILFAST\").option(\"inferSchema\",\"true\").load(path)"
+    },
+    "correct": "a",
+    "theory": {
+      "text": "format() selects the CSV reader, inferSchema tells Spark to infer column types, and load() triggers the read: spark.read.format(\"csv\").option(\"header\",\"true\").option(\"mode\",\"FAILFAST\").option(\"inferSchema\",\"true\").load(path)."
+    }
+  },
+  {
+    "id": "S-33",
+    "level": 3,
+    "level_name": "Joins, Aggs & Sources",
+    "topic": "Data Sources",
+    "topics": [
+      "Data Sources",
+      "Save Modes"
+    ],
+    "question": "What is Spark's default save mode when writing a DataFrame, and what happens if data already exists at the destination location?",
+    "options": {
+      "a": "append; the new output files are added alongside the existing ones",
+      "b": "overwrite; Spark replaces all existing data at that location",
+      "c": "errorIfExists; Spark fails the write immediately if data or files already exist there",
+      "d": "ignore; Spark silently does nothing if data already exists there"
+    },
+    "correct": "c",
+    "theory": {
+      "text": "The default save mode is errorIfExists: if Spark finds data at the location you're writing to, it fails the write immediately."
+    }
+  },
+  {
+    "id": "S-34",
+    "level": 3,
+    "level_name": "Joins, Aggs & Sources",
+    "topic": "Data Sources",
+    "topics": [
+      "Data Sources",
+      "Partitioning on Write"
+    ],
+    "question": "Which code correctly writes a limited DataFrame out as Parquet, partitioned by DEST_COUNTRY_NAME, overwriting any existing data at the destination?",
+    "options": {
+      "a": "csvFile.limit(10).write.mode(\"overwrite\").partitionBy(\"DEST_COUNTRY_NAME\").save(path)",
+      "b": "csvFile.limit(10).write.mode(\"overwrite\").bucketBy(\"DEST_COUNTRY_NAME\").save(path)",
+      "c": "csvFile.limit(10).write.partitionBy(\"DEST_COUNTRY_NAME\").mode(\"overwrite\").load(path)",
+      "d": "csvFile.limit(10).write.mode(\"overwrite\").partitionBy(\"DEST_COUNTRY_NAME\").write(path)"
+    },
+    "correct": "a",
+    "theory": {
+      "text": "csvFile.limit(10).write.mode(\"overwrite\").partitionBy(\"DEST_COUNTRY_NAME\").save(\"/tmp/partitioned-files.parquet\") — partitionBy encodes the column as folders so readers can skip irrelevant data, and save() writes the files."
+    }
+  },
+  {
+    "id": "S-35",
+    "level": 3,
+    "level_name": "Joins, Aggs & Sources",
+    "topic": "Datasets",
+    "topics": [
+      "Datasets"
+    ],
+    "question": "In which of Spark's language APIs are Datasets (as distinct from DataFrames) available?",
+    "options": {
+      "a": "Python and R only, since they support dynamic typing",
+      "b": "Scala and Java only, because Datasets are a strictly JVM language feature",
+      "c": "All four of Spark's supported languages equally",
+      "d": "Only Python, because of its native type hints"
+    },
+    "correct": "b",
+    "theory": {
+      "text": "Datasets are a strictly Java Virtual Machine (JVM) language feature that work only with Scala and Java. DataFrames, by contrast, are Datasets of type Row and are available across all of Spark's languages."
+    }
+  },
+  {
+    "id": "S-36",
+    "level": 3,
+    "level_name": "Joins, Aggs & Sources",
+    "topic": "Data Sources",
+    "topics": [
+      "Data Sources",
+      "SQL Databases"
+    ],
+    "question": "Which code correctly reads a table from a SQL database over JDBC by specifying the jdbc format, the url, the table name, and the driver?",
+    "options": {
+      "a": "spark.read.format(\"jdbc\").option(\"url\",url).option(\"dbtable\",tablename).option(\"driver\",driver).load()",
+      "b": "spark.read.format(\"jdbc\").option(\"url\",url).option(\"table\",tablename).option(\"driver\",driver).load()",
+      "c": "spark.read.jdbc(url,tablename,driver).load()",
+      "d": "spark.read.format(\"jdbc\").option(\"url\",url).option(\"dbtable\",tablename).option(\"driver\",driver).read()"
+    },
+    "correct": "a",
+    "theory": {
+      "text": "format(\"jdbc\") selects the JDBC data source, dbtable names the table (or a subquery) to read, and load() executes the read: spark.read.format(\"jdbc\").option(\"url\", url).option(\"dbtable\", tablename).option(\"driver\", driver).load()."
+    }
+  },
+  {
+    "id": "S-37",
+    "level": 4,
+    "level_name": "Internals & Perf",
+    "topic": "RDDs vs DataFrames",
+    "topics": [
+      "RDDs vs DataFrames",
+      "RDD Basics"
+    ],
+    "question": "What is the key difference between an RDD and a DataFrame?",
+    "options": {
+      "a": "RDDs store data in an optimized, compressed binary format automatically, while DataFrames do not",
+      "b": "In RDDs, records are raw Java, Scala, or Python objects of the programmer's choosing, whereas DataFrame records are structured rows with a known schema",
+      "c": "RDDs can only be created from Data Source APIs, while DataFrames can only be created from local collections",
+      "d": "DataFrames are immutable while RDDs are mutable"
+    },
+    "correct": "b",
+    "theory": {
+      "text": "An RDD is an immutable, partitioned collection where each record is just a Java/Scala/Python object of the programmer's choosing, unlike DataFrames where each record is a structured row with a known schema."
+    }
+  },
+  {
+    "id": "S-38",
+    "level": 4,
+    "level_name": "Internals & Perf",
+    "topic": "Creating RDDs",
+    "topics": [
+      "Creating RDDs",
+      "Spark UI"
+    ],
+    "question": "Which code correctly creates an RDD from a local Python list split into 2 partitions, then names it so it shows up in the Spark UI?",
+    "options": {
+      "a": "words = spark.sparkContext.parallelize(myCollection, 2); words.setName(\"myWords\")",
+      "b": "words = spark.sparkContext.makeRDD(myCollection, 2); words.rename(\"myWords\")",
+      "c": "words = spark.sparkContext.parallelize(myCollection, 2); words.name = \"myWords\"",
+      "d": "words = spark.sparkContext.distribute(myCollection, 2); words.setName(\"myWords\")"
+    },
+    "correct": "a",
+    "theory": {
+      "text": "parallelize turns a single-node collection into a distributed RDD with the given number of partitions, and setName lets you label the RDD so it appears under that name in the Spark UI."
+    }
+  },
+  {
+    "id": "S-39",
+    "level": 4,
+    "level_name": "Internals & Perf",
+    "topic": "Key-Value RDDs",
+    "topics": [
+      "Key-Value RDDs",
+      "Aggregations"
+    ],
+    "question": "Why is reduceByKey preferred over groupByKey for an additive aggregation like counting characters by key?",
+    "options": {
+      "a": "groupByKey requires each executor to hold all values for a given key in memory before applying a function, risking OutOfMemoryErrors under key skew, whereas reduceByKey reduces within each partition first without needing a full shuffle of unreduced values",
+      "b": "groupByKey was removed from the RDD API starting in Spark 2.X",
+      "c": "reduceByKey guarantees a specific ordering of the resulting grouped values while groupByKey does not",
+      "d": "groupByKey only works on RDDs containing numeric values"
+    },
+    "correct": "a",
+    "theory": {
+      "text": "groupByKey must hold all values for a key in memory on one executor, which can cause OutOfMemoryErrors with key skew, while reduceByKey performs the reduction within each partition first, making it far more stable."
+    }
+  },
+  {
+    "id": "S-40",
+    "level": 4,
+    "level_name": "Internals & Perf",
+    "topic": "Key-Value RDDs",
+    "topics": [
+      "Key-Value RDDs",
+      "Transformations"
+    ],
+    "question": "Which code correctly keys an RDD of words by their first lowercase letter, then transforms only the values to uppercase?",
+    "options": {
+      "a": "keyword = words.keyBy(lambda w: w.lower()[0]); result = keyword.mapValues(lambda w: w.upper()).collect()",
+      "b": "keyword = words.map(lambda w: w.lower()[0]); result = keyword.mapValues(lambda w: w.upper()).collect()",
+      "c": "keyword = words.keyBy(lambda w: w.lower()[0]); result = keyword.map(lambda w: w.upper()).collect()",
+      "d": "keyword = words.groupBy(lambda w: w.lower()[0]); result = keyword.mapValues(lambda w: w.upper()).collect()"
+    },
+    "correct": "a",
+    "theory": {
+      "text": "keyBy creates key-value pairs by applying a function to derive the key from each value, and mapValues applies a function to the values only, leaving the keys untouched."
+    }
+  },
+  {
+    "id": "S-41",
+    "level": 4,
+    "level_name": "Internals & Perf",
+    "topic": "Broadcast Variables",
+    "topics": [
+      "Broadcast Variables",
+      "Distributed Shared Variables"
+    ],
+    "question": "What problem do broadcast variables solve?",
+    "options": {
+      "a": "They let you save a large, immutable value on every worker node and reuse it across many Spark actions without re-serializing and re-sending it with every task or job",
+      "b": "They allow multiple tasks to safely write to the same mutable shared variable in parallel",
+      "c": "They automatically repartition data by key across the cluster to avoid data skew",
+      "d": "They let you persist an RDD to disk so it can be reused without recomputation"
+    },
+    "correct": "a",
+    "theory": {
+      "text": "Broadcast variables are shared, immutable values cached on every machine in the cluster instead of being serialized and re-sent with every single task, which is efficient for large lookup tables or models."
+    }
+  },
+  {
+    "id": "S-42",
+    "level": 4,
+    "level_name": "Internals & Perf",
+    "topic": "Accumulators",
+    "topics": [
+      "Accumulators",
+      "Distributed Shared Variables"
+    ],
+    "question": "Which combination correctly creates a named accumulator starting at 0, increments it inside an action for flights to/from China, and then reads its final value?",
+    "options": {
+      "a": "sc.accumulator(0), incremented inside flights.foreach(...), read via accChina.value",
+      "b": "sc.broadcast(0), incremented inside flights.map(...), read via accChina.value",
+      "c": "sc.accumulator(0), incremented inside flights.map(...), read via accChina.get()",
+      "d": "sc.accumulator(0), incremented inside flights.collect(...), read via accChina.value"
+    },
+    "correct": "a",
+    "theory": {
+      "text": "spark.sparkContext.accumulator(0) creates an accumulator starting at 0; foreach is an action, and Spark guarantees each task's accumulator update applies exactly once inside actions; the value property returns the accumulator's current result."
+    }
+  },
+  {
+    "id": "S-43",
+    "level": 4,
+    "level_name": "Internals & Perf",
+    "topic": "Cluster Architecture",
+    "topics": [
+      "Cluster Architecture",
+      "Driver and Executors"
+    ],
+    "question": "In Spark's cluster architecture, what is the primary responsibility of the Spark driver?",
+    "options": {
+      "a": "It performs the tasks assigned to it and reports success or failure back to the other executors",
+      "b": "It controls the execution of the Spark Application and maintains all state of the Spark cluster, interfacing with the cluster manager to get resources and launch executors",
+      "c": "It maintains the pool of physical machines and allocates them among multiple unrelated applications",
+      "d": "It stores the Catalyst optimizer's rules used to generate physical plans"
+    },
+    "correct": "b",
+    "theory": {
+      "text": "The driver is the process \"in the driver seat,\" responsible for maintaining the state of the Spark cluster and interfacing with the cluster manager to obtain resources and launch executors."
+    }
+  },
+  {
+    "id": "S-44",
+    "level": 4,
+    "level_name": "Internals & Perf",
+    "topic": "Execution Modes",
+    "topics": [
+      "Execution Modes",
+      "Cluster Architecture"
+    ],
+    "question": "In Spark's client execution mode, where does the Spark driver process run?",
+    "options": {
+      "a": "On a worker node inside the cluster, placed there by the cluster manager",
+      "b": "On the client machine that submitted the application (often called a gateway or edge node), while executors run on the cluster",
+      "c": "Split across all executor JVMs simultaneously",
+      "d": "On the cluster manager's own master node"
+    },
+    "correct": "b",
+    "theory": {
+      "text": "In client mode, the Spark driver stays on the client machine that submitted the application, while the cluster manager maintains the executor processes on the cluster."
+    }
+  },
+  {
+    "id": "S-45",
+    "level": 4,
+    "level_name": "Internals & Perf",
+    "topic": "Jobs, Stages, and Tasks",
+    "topics": [
+      "Jobs, Stages, and Tasks",
+      "Performance Tuning"
+    ],
+    "question": "Which configuration key correctly changes the default number of shuffle output partitions from 200 to 50?",
+    "options": {
+      "a": "spark.sql.shuffle.partitions",
+      "b": "spark.sql.partition.shuffle",
+      "c": "spark.shuffle.sql.partitions",
+      "d": "spark.sql.shufflePartitions"
+    },
+    "correct": "a",
+    "theory": {
+      "text": "spark.sql.shuffle.partitions controls how many partitions a shuffle outputs; it defaults to 200 and can be tuned according to the number of cores in the cluster."
+    }
+  },
+  {
+    "id": "S-46",
+    "level": 4,
+    "level_name": "Internals & Perf",
+    "topic": "Deployment",
+    "topics": [
+      "Deployment",
+      "Cluster Managers"
+    ],
+    "question": "Which statement about Spark's cluster managers is accurate?",
+    "options": {
+      "a": "The standalone cluster manager can also run non-Spark applications on the same cluster",
+      "b": "Mesos historically supported both fine-grained and coarse-grained scheduling, but at the time of writing supports only coarse-grained scheduling since fine-grained mode was deprecated",
+      "c": "YARN cannot be used to submit Python-based Spark applications, only compiled JARs",
+      "d": "The standalone cluster manager requires a separate Hadoop installation to function"
+    },
+    "correct": "b",
+    "theory": {
+      "text": "Mesos historically supported both fine-grained and coarse-grained scheduling, but currently supports only coarse-grained scheduling since fine-grained mode was deprecated."
+    }
+  },
+  {
+    "id": "S-47",
+    "level": 4,
+    "level_name": "Internals & Perf",
+    "topic": "Monitoring and Debugging",
+    "topics": [
+      "Monitoring and Debugging",
+      "Performance Tuning"
+    ],
+    "question": "Under Spark's \"first aid\" debugging guidance, what is most likely the underlying cause of slow tasks or \"stragglers\" in a Spark job?",
+    "options": {
+      "a": "Data skew, where partitions are unevenly sized so some executors must process far more data than others",
+      "b": "The Spark History Server not being configured to store event logs",
+      "c": "Using Kryo serialization instead of the default Java serialization",
+      "d": "Disabling the fair scheduler in favor of FIFO scheduling"
+    },
+    "correct": "a",
+    "theory": {
+      "text": "Stragglers can have many causes, but in all likelihood the cause is some kind of data skew, so checking the Spark UI for imbalanced data across tasks is the recommended first step."
+    }
+  },
+  {
+    "id": "S-48",
+    "level": 4,
+    "level_name": "Internals & Perf",
+    "topic": "Performance Tuning",
+    "topics": [
+      "Performance Tuning",
+      "Caching"
+    ],
+    "question": "Which two calls correctly cache a DataFrame and then eagerly force it into memory before reusing it in later queries?",
+    "options": {
+      "a": "DF1.cache() followed by DF1.count()",
+      "b": "DF1.persist() followed by DF1.show(0)",
+      "c": "DF1.cache() followed by DF1.explain()",
+      "d": "DF1.save() followed by DF1.count()"
+    },
+    "correct": "a",
+    "theory": {
+      "text": "cache() marks the DataFrame to be cached, but caching is lazy, so calling an action like count() immediately afterward forces Spark to actually compute and store the data in memory."
+    }
+  },
+  {
+    "id": "S-49",
+    "level": 5,
+    "level_name": "Streaming, ML & Deploy",
+    "topic": "Structured Streaming",
+    "topics": [
+      "Structured Streaming",
+      "Output Modes"
+    ],
+    "question": "In Structured Streaming, which output mode rewrites the entire result table to the sink after every trigger, and is typically needed when the sink does not support row-level updates?",
+    "options": {
+      "a": "Append",
+      "b": "Update",
+      "c": "Complete",
+      "d": "Once"
+    },
+    "correct": "c",
+    "theory": {
+      "text": "Complete mode outputs the entire state of the result table to the sink every trigger, which is useful when the sink cannot perform row-level updates or when all rows are expected to change over time. Append only adds new rows and Update only writes changed rows, while 'Once' is a trigger type, not an output mode."
+    }
+  },
+  {
+    "id": "S-50",
+    "level": 5,
+    "level_name": "Streaming, ML & Deploy",
+    "topic": "Structured Streaming",
+    "topics": [
+      "Structured Streaming",
+      "Triggers"
+    ],
+    "question": "What is a practical use of Structured Streaming's Trigger.Once() in production?",
+    "options": {
+      "a": "It processes data continuously with the lowest possible latency, checking for new data immediately after the previous batch finishes",
+      "b": "It runs the query on a fixed periodic interval, such as every 5 seconds, forever",
+      "c": "It runs the streaming job manually for a single batch of available data, which is useful for running a job at a low rate (e.g., importing new data occasionally) while still getting Structured Streaming's tracking and fault tolerance",
+      "d": "It forces the query to fail if any data arrived since the last trigger"
+    },
+    "correct": "c",
+    "theory": {
+      "text": "The Once trigger lets you run a streaming job a single time on whatever data is available, which is useful both for testing and for production jobs that only need to run occasionally, since Structured Streaming still tracks processed files and state, saving the effort of writing custom batch-tracking logic."
+    }
+  },
+  {
+    "id": "S-51",
+    "level": 5,
+    "level_name": "Streaming, ML & Deploy",
+    "topic": "Structured Streaming",
+    "topics": [
+      "Structured Streaming",
+      "Basics"
+    ],
+    "question": "Which sequence correctly reads a stream of JSON files with a known schema, counts records grouped by the 'gt' activity column, and writes the result to an in-memory table in complete mode?",
+    "options": {
+      "a": "spark.readStream.schema(dataSchema).json(path) → .groupBy(\"gt\").count() → .writeStream.format(\"memory\").outputMode(\"complete\").start()",
+      "b": "spark.readStream.schema(dataSchema).csv(path) → .groupBy(\"gt\").count() → .writeStream.format(\"memory\").outputMode(\"append\").start()",
+      "c": "spark.read.schema(dataSchema).json(path) → .groupBy(\"gt\").count() → .writeStream.format(\"memory\").outputMode(\"complete\").start()",
+      "d": "spark.readStream.schema(dataSchema).json(path) → .orderBy(\"gt\").count() → .writeStream.format(\"memory\").outputMode(\"complete\").run()"
+    },
+    "correct": "a",
+    "theory": {
+      "text": "This reads streaming JSON files with .json(path), aggregates with .groupBy(\"gt\").count(), and starts the query with .outputMode(\"complete\").start(), the single action that launches a Structured Streaming query."
+    }
+  },
+  {
+    "id": "S-52",
+    "level": 5,
+    "level_name": "Streaming, ML & Deploy",
+    "topic": "Event-Time Processing",
+    "topics": [
+      "Event-Time Processing",
+      "Structured Streaming"
+    ],
+    "question": "In Spark Structured Streaming, what distinguishes 'event time' from 'processing time'?",
+    "options": {
+      "a": "Event time is the timestamp embedded in the data itself describing when the event actually occurred, while processing time is when the record is received by the streaming system; only processing time can never be out of order",
+      "b": "Event time and processing time are two interchangeable names for the same concept in Structured Streaming",
+      "c": "Processing time is set manually via withWatermark, while event time is always assigned automatically and cannot be a data column",
+      "d": "Event time only applies to Kafka sources, while processing time only applies to file sources"
+    },
+    "correct": "a",
+    "theory": {
+      "text": "Event time is the time embedded in the data itself (often when the event occurred), which can arrive out of order or late, whereas processing time is simply when the streaming system receives the record and, being a property of the system's clock, can never be out of order."
+    }
+  },
+  {
+    "id": "S-53",
+    "level": 5,
+    "level_name": "Streaming, ML & Deploy",
+    "topic": "Event-Time Processing",
+    "topics": [
+      "Event-Time Processing",
+      "Watermarks",
+      "Windows"
+    ],
+    "question": "Which sequence correctly computes 10-minute tumbling window counts on the 'event_time' column while telling Spark not to expect data more than 30 minutes late?",
+    "options": {
+      "a": ".withWatermark(\"event_time\",\"30 minutes\").groupBy(window(col(\"event_time\"),\"10 minutes\")).count() → ...start()",
+      "b": ".watermark(\"event_time\",\"30 minutes\").groupBy(window(col(\"event_time\"),\"10 minutes\")).count() → ...start()",
+      "c": ".withWatermark(\"event_time\",\"30 minutes\").groupBy(col(\"event_time\")).window(\"10 minutes\").count() → ...start()",
+      "d": ".withWatermark(\"event_time\",\"30 minutes\").groupBy(window(col(\"event_time\"),\"10 minutes\")).count() → ...run()"
+    },
+    "correct": "a",
+    "theory": {
+      "text": "withWatermark(\"event_time\", \"30 minutes\") tells Spark how late it should expect data so it can eventually free old state, window(col(\"event_time\"), \"10 minutes\") defines the tumbling window used in groupBy, and start() is the action that launches the streaming query."
+    }
+  },
+  {
+    "id": "S-54",
+    "level": 5,
+    "level_name": "Streaming, ML & Deploy",
+    "topic": "Structured Streaming",
+    "topics": [
+      "Structured Streaming",
+      "Checkpointing",
+      "Production"
+    ],
+    "question": "In Structured Streaming, what happens if you lose the checkpoint directory that was configured via the checkpointLocation option?",
+    "options": {
+      "a": "Nothing changes; Spark automatically recreates the checkpoint state by rescanning the source data",
+      "b": "The application will not be able to recover from failures, and you will have to restart your stream from scratch",
+      "c": "Spark automatically falls back to the console sink until a new checkpoint directory is created",
+      "d": "The query silently switches from Complete mode to Append mode"
+    },
+    "correct": "b",
+    "theory": {
+      "text": "If you lose your checkpoint directory or the information inside it, your application cannot recover from failures and must restart from scratch, since checkpointing and write-ahead logs are what let Structured Streaming resume from where it left off."
+    }
+  },
+  {
+    "id": "S-55",
+    "level": 5,
+    "level_name": "Streaming, ML & Deploy",
+    "topic": "MLlib",
+    "topics": [
+      "MLlib",
+      "Transformers and Estimators"
+    ],
+    "question": "In MLlib's high-level concepts, what is the key difference between a Transformer and an Estimator?",
+    "options": {
+      "a": "A Transformer only has a transform method and applies a fixed function to a DataFrame, while an Estimator must first be fit to data (via fit) to produce a trained transformer before it can transform data",
+      "b": "A Transformer always requires calling fit before transform, while an Estimator only ever has a transform method",
+      "c": "Transformers operate only on RDDs, while Estimators operate only on DataFrames",
+      "d": "Estimators are used exclusively to compute evaluation metrics like areaUnderROC and never produce new DataFrame columns"
+    },
+    "correct": "a",
+    "theory": {
+      "text": "A transformer converts a DataFrame into a new DataFrame using only a transform method with no learning involved, whereas an estimator (e.g., StandardScaler or a learning algorithm) must first make a pass over the data via fit to produce a configured/trained transformer, which is then used to transform data."
+    }
+  },
+  {
+    "id": "S-56",
+    "level": 5,
+    "level_name": "Streaming, ML & Deploy",
+    "topic": "MLlib",
+    "topics": [
+      "MLlib",
+      "Pipelines",
+      "Train/Test Split"
+    ],
+    "question": "Which two calls correctly build and train a two-stage ML Pipeline (an RFormula transformer followed by LogisticRegression) on the training set?",
+    "options": {
+      "a": "Pipeline().setStages([rForm, lr]) then pipeline.fit(train)",
+      "b": "Pipeline().addStages([rForm, lr]) then pipeline.fit(train)",
+      "c": "Pipeline().setStages([rForm, lr]) then pipeline.train(train)",
+      "d": "Pipeline([rForm, lr]).fit(train, test)"
+    },
+    "correct": "a",
+    "theory": {
+      "text": "A Pipeline is configured with setStages(stages) to define its ordered sequence of transformers/estimators, and calling fit(train) on the pipeline (itself an Estimator) runs each stage in turn and returns a trained PipelineModel."
+    }
+  },
+  {
+    "id": "S-57",
+    "level": 5,
+    "level_name": "Streaming, ML & Deploy",
+    "topic": "MLlib",
+    "topics": [
+      "MLlib",
+      "Model Tuning",
+      "Train/Test Split"
+    ],
+    "question": "Why should hyperparameters be tuned on a separate validation set (via TrainValidationSplit or CrossValidator) instead of on the final holdout test set?",
+    "options": {
+      "a": "Because using the test set for hyperparameter tuning risks overfitting to that test set, leaving no unbiased data left to objectively measure how the final model will generalize",
+      "b": "Because Spark's API technically raises an exception if fit() is called more than once on the same DataFrame",
+      "c": "Because the test set is always too small to be statistically meaningful for tuning purposes",
+      "d": "Because a validation set is only required when using the RFormula transformer"
+    },
+    "correct": "a",
+    "theory": {
+      "text": "Fitting hyperparameters on the test set risks overfitting to that test set, leaving no unbiased data to objectively measure how the final model will generalize — a separate validation set is used for comparing hyperparameter combinations, keeping the test set solely for a final, unbiased evaluation."
+    }
+  },
+  {
+    "id": "S-58",
+    "level": 5,
+    "level_name": "Streaming, ML & Deploy",
+    "topic": "Recommendation",
+    "topics": [
+      "Recommendation",
+      "ALS"
+    ],
+    "question": "Which configuration correctly sets up ALS for explicit user-item ratings before training it with fit(training)?",
+    "options": {
+      "a": "ALS().setUserCol(\"userId\").setItemCol(\"movieId\").setRatingCol(\"rating\"), then als.fit(training)",
+      "b": "ALS().setUser(\"userId\").setItem(\"movieId\").setLabel(\"rating\"), then als.fit(training)",
+      "c": "ALS().setUserCol(\"userId\").setItemCol(\"movieId\").setRatingCol(\"rating\"), then als.train(training)",
+      "d": "ALS().setInputCols([\"userId\",\"movieId\",\"rating\"]), then als.fit(training)"
+    },
+    "correct": "a",
+    "theory": {
+      "text": "ALS requires the user column, item column, and rating column to be set with setUserCol, setItemCol, and setRatingCol respectively; calling fit(training) trains the model, producing an ALS model whose transform method generates rating predictions on new data."
+    }
+  },
+  {
+    "id": "S-59",
+    "level": 5,
+    "level_name": "Streaming, ML & Deploy",
+    "topic": "Graph Analytics",
+    "topics": [
+      "Graph Analytics",
+      "GraphFrames"
+    ],
+    "question": "In GraphFrames, which method is used to search a graph for structural patterns, such as a 'triangle' formed by three connected stations, using a Cypher-like domain-specific language?",
+    "options": {
+      "a": "stationGraph.pageRank",
+      "b": "stationGraph.find(\"(a)-[ab]->(b); (b)-[bc]->(c); (c)-[ca]->(a)\")",
+      "c": "stationGraph.bfs",
+      "d": "stationGraph.connectedComponents"
+    },
+    "correct": "b",
+    "theory": {
+      "text": "Motif finding expresses structural patterns with a domain-specific language similar to Neo4J's Cypher, using the find method (e.g., stationGraph.find(\"(a)-[ab]->(b); (b)-[bc]->(c); (c)-[ca]->(a)\")) to query for a triangle pattern among vertices a, b, and c."
+    }
+  },
+  {
+    "id": "S-60",
+    "level": 5,
+    "level_name": "Streaming, ML & Deploy",
+    "topic": "PySpark",
+    "topics": [
+      "PySpark",
+      "Pandas Integration"
+    ],
+    "question": "Which pair of calls correctly converts a local Pandas DataFrame into a Spark DataFrame, and then converts the resulting Spark DataFrame back into a Pandas DataFrame?",
+    "options": {
+      "a": "spark.createDataFrame(df) then sparkDF.toPandas()",
+      "b": "spark.fromPandas(df) then sparkDF.toPandas()",
+      "c": "spark.createDataFrame(df) then sparkDF.collectPandas()",
+      "d": "spark.createDataFrame(df) then sparkDF.asPandas()"
+    },
+    "correct": "a",
+    "theory": {
+      "text": "spark.createDataFrame(df) converts a local Pandas DataFrame into a distributed Spark DataFrame, and sparkDF.toPandas() collects the (single-machine-sized) result back to the driver as a Pandas DataFrame, a common PySpark pattern for combining large-scale ETL with Pandas-based analysis."
+    }
+  }
+]

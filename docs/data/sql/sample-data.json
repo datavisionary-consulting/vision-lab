@@ -1,0 +1,358 @@
+{
+  "customers": {
+    "columns": [
+      "customer_id",
+      "customer_name",
+      "country",
+      "signup_date"
+    ],
+    "rows": [
+      [
+        1,
+        "Alice Corp",
+        "US",
+        "2022-01-15"
+      ],
+      [
+        2,
+        "Beta Ltd",
+        "UK",
+        "2022-03-20"
+      ],
+      [
+        3,
+        "Gamma SA",
+        "ES",
+        "2022-06-01"
+      ],
+      [
+        4,
+        "Delta Inc",
+        "US",
+        "2023-01-10"
+      ],
+      [
+        5,
+        "Omega GmbH",
+        "DE",
+        "2023-02-28"
+      ]
+    ],
+    "note": "5 customers total — Omega GmbH has no orders"
+  },
+  "products": {
+    "columns": [
+      "product_id",
+      "product_name",
+      "category",
+      "price"
+    ],
+    "rows": [
+      [
+        1,
+        "Laptop Pro",
+        "Electronics",
+        1200.0
+      ],
+      [
+        2,
+        "Wireless Mouse",
+        "Electronics",
+        45.0
+      ],
+      [
+        3,
+        "Standing Desk",
+        "Furniture",
+        350.0
+      ],
+      [
+        4,
+        "Monitor 27\"",
+        "Electronics",
+        399.0
+      ],
+      [
+        5,
+        "USB-C Hub",
+        "Electronics",
+        59.0
+      ],
+      [
+        6,
+        "Office Chair",
+        "Furniture",
+        275.0
+      ],
+      [
+        7,
+        "Notebook Set",
+        "Stationery",
+        18.0
+      ],
+      [
+        8,
+        "Pen Pack",
+        "Stationery",
+        8.0
+      ]
+    ],
+    "note": "8 products across 3 categories"
+  },
+  "orders": {
+    "columns": [
+      "order_id",
+      "customer_id",
+      "order_date",
+      "status"
+    ],
+    "rows": [
+      [
+        101,
+        1,
+        "2023-01-05",
+        "completed"
+      ],
+      [
+        102,
+        1,
+        "2023-02-12",
+        "completed"
+      ],
+      [
+        103,
+        2,
+        "2023-01-20",
+        "completed"
+      ],
+      [
+        104,
+        2,
+        "2023-03-08",
+        "cancelled"
+      ],
+      [
+        105,
+        3,
+        "2023-02-25",
+        "completed"
+      ],
+      [
+        106,
+        3,
+        "2023-04-15",
+        "completed"
+      ],
+      [
+        107,
+        4,
+        "2023-03-01",
+        "completed"
+      ],
+      [
+        108,
+        4,
+        "2023-04-20",
+        "pending"
+      ],
+      [
+        109,
+        1,
+        "2023-05-10",
+        "completed"
+      ],
+      [
+        110,
+        2,
+        "2023-05-22",
+        "completed"
+      ]
+    ],
+    "note": "10 orders: 8 completed, 1 cancelled, 1 pending"
+  },
+  "order_items": {
+    "columns": [
+      "item_id",
+      "order_id",
+      "product_id",
+      "quantity",
+      "unit_price"
+    ],
+    "rows": [
+      [
+        1,
+        101,
+        1,
+        1,
+        1200.0
+      ],
+      [
+        2,
+        101,
+        2,
+        2,
+        45.0
+      ],
+      [
+        3,
+        102,
+        4,
+        1,
+        399.0
+      ],
+      [
+        4,
+        102,
+        5,
+        3,
+        59.0
+      ],
+      [
+        5,
+        103,
+        3,
+        1,
+        350.0
+      ],
+      [
+        "...",
+        "...",
+        "...",
+        "...",
+        "..."
+      ]
+    ],
+    "note": "18 line items total. unit_price = price at time of order"
+  },
+  "employees": {
+    "columns": [
+      "employee_id",
+      "first_name",
+      "last_name",
+      "department",
+      "hire_date",
+      "manager_id"
+    ],
+    "rows": [
+      [
+        1,
+        "Sarah",
+        "Connor",
+        "Engineering",
+        "2019-03-01",
+        "NULL"
+      ],
+      [
+        2,
+        "John",
+        "Smith",
+        "Engineering",
+        "2020-06-15",
+        1
+      ],
+      [
+        3,
+        "Maria",
+        "Garcia",
+        "Engineering",
+        "2021-01-10",
+        1
+      ],
+      [
+        4,
+        "David",
+        "Lee",
+        "Marketing",
+        "2019-08-20",
+        "NULL"
+      ],
+      [
+        5,
+        "Emma",
+        "Wilson",
+        "Marketing",
+        "2021-05-01",
+        4
+      ],
+      [
+        6,
+        "James",
+        "Brown",
+        "Sales",
+        "2020-02-14",
+        "NULL"
+      ],
+      [
+        7,
+        "Lisa",
+        "Davis",
+        "Sales",
+        "2022-03-10",
+        6
+      ],
+      [
+        8,
+        "Tom",
+        "Taylor",
+        "Sales",
+        "2022-07-01",
+        6
+      ]
+    ],
+    "note": "8 employees. NULL manager_id = top of hierarchy"
+  },
+  "salaries": {
+    "columns": [
+      "salary_id",
+      "employee_id",
+      "amount",
+      "from_date",
+      "to_date"
+    ],
+    "rows": [
+      [
+        1,
+        1,
+        95000,
+        "2019-03-01",
+        "2021-12-31"
+      ],
+      [
+        2,
+        1,
+        110000,
+        "2022-01-01",
+        "NULL"
+      ],
+      [
+        3,
+        2,
+        72000,
+        "2020-06-15",
+        "2022-05-31"
+      ],
+      [
+        4,
+        2,
+        85000,
+        "2022-06-01",
+        "NULL"
+      ],
+      [
+        5,
+        3,
+        78000,
+        "2021-01-10",
+        "NULL"
+      ],
+      [
+        "...",
+        "...",
+        "...",
+        "...",
+        "..."
+      ]
+    ],
+    "note": "12 salary records. NULL to_date = current active salary (SCD Type 2)"
+  }
+}
