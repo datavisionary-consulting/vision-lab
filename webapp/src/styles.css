@@ -20,6 +20,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .hub-wrap{display:flex;flex-direction:column;align-items:center;padding:32px 20px;gap:22px;min-height:calc(100vh - 48px)}
 .hub-wrap h1{font-size:1.9rem;text-align:center}
 .hub-wrap h1 span{color:var(--acc2)}
+.hub-section{width:100%;max-width:900px;display:flex;flex-direction:column;gap:14px}
+.hub-section-title{font-size:.95rem;text-transform:uppercase;letter-spacing:.06em;color:var(--acc2);border-bottom:1px solid var(--border);padding-bottom:8px}
 .hub-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;width:100%;max-width:900px}
 .hub-card{background:var(--surf);border:1px solid var(--border);border-radius:var(--r);padding:20px;cursor:pointer;transition:all .15s;text-align:left}
 .hub-card:hover{border-color:var(--acc);background:var(--surf2)}
