@@ -15,7 +15,7 @@
       "order_items",
       "orders"
     ],
-    "problem": "You need to build a report for the business team showing which product categories are generating the most revenue.\n\nReturn:\n- `category`\n- `total_revenue` — SUM(quantity × unit_price), rounded to 2 decimals\n- `order_count` — number of distinct completed orders containing that category\n\nRequirements:\n- Only include **completed** orders (exclude cancelled and pending).\n- Sort by total_revenue descending.",
+    "problem": "You're the analyst embedded with Andina Retail Group's category management team. Before the quarterly buying meeting, the category managers need one number each: which product categories are actually generating revenue, so warehouse space and reorder budget get allocated to what's selling, not what's just sitting on shelves.\n\nReturn:\n- `category`\n- `total_revenue` — SUM(quantity × unit_price), rounded to 2 decimals\n- `order_count` — number of distinct completed orders containing that category\n\nRequirements:\n- Only include **completed** orders (exclude cancelled and pending — a cancelled order never actually moved inventory).\n- Sort by total_revenue descending.",
     "expected_columns": [
       "category",
       "total_revenue",
@@ -23,11 +23,11 @@
     ],
     "solution": "SELECT p.category,\n       ROUND(SUM(oi.quantity * oi.unit_price), 2) AS total_revenue,\n       COUNT(DISTINCT o.order_id) AS order_count\nFROM products p\nJOIN order_items oi ON p.product_id = oi.product_id\nJOIN orders o ON oi.order_id = o.order_id\nWHERE o.status = 'completed'\nGROUP BY p.category\nORDER BY total_revenue DESC",
     "common_mistakes": [
-      "Forgetting the WHERE status = 'completed' filter — inflates revenue with cancelled orders.",
-      "Using COUNT(*) instead of COUNT(DISTINCT o.order_id) — counts items, not orders.",
-      "Joining order_items directly to products without going through orders — can't filter by status."
+      "Forgetting the WHERE status = 'completed' filter — inflates revenue with cancelled orders that never actually shipped.",
+      "Using COUNT(*) instead of COUNT(DISTINCT o.order_id) — counts line items, not orders, overstating how many distinct purchases actually happened.",
+      "Joining order_items directly to products without going through orders — leaves you with no way to filter by status at all."
     ],
-    "key_concept": "Multi-table JOIN with aggregate filtering. Always join through intermediate tables to apply status filters. COUNT(DISTINCT col) vs COUNT(*) is a common interview trap."
+    "key_concept": "This is the first pattern every analyst needs before they can trust any revenue number: a multi-table JOIN with an aggregate filter. Revenue never lives on one table — it's assembled from a product's catalog data, the line items of what was actually bought, and the order's own fulfillment status — so joining through the intermediate table (orders) is what lets you apply that status filter at all. COUNT(DISTINCT col) vs COUNT(*) is the classic trap here: once you join products to order_items, a single order can appear on multiple rows (one per line item), so a plain COUNT(*) silently counts items, not orders."
   },
   {
     "id": "E-002",
@@ -43,7 +43,7 @@
       "customers",
       "orders"
     ],
-    "problem": "The marketing team wants to target customers who have never placed an order for a re-engagement campaign.\n\nReturn:\n- `customer_id`\n- `customer_name`\n- `country`\n\nOrder by customer_name ascending.",
+    "problem": "Andina Retail Group's wholesale division onboarded a batch of new B2B accounts last year, but growth hasn't reached out to all of them — some registered and never placed a single order. Marketing wants a clean re-engagement list before the next regional sales push.\n\nReturn:\n- `customer_id`\n- `customer_name`\n- `country`\n\nOrder by customer_name ascending.",
     "expected_columns": [
       "customer_id",
       "customer_name",
@@ -51,11 +51,11 @@
     ],
     "solution": "SELECT c.customer_id, c.customer_name, c.country\nFROM customers c\nLEFT JOIN orders o ON c.customer_id = o.customer_id\nWHERE o.order_id IS NULL\nORDER BY c.customer_name",
     "common_mistakes": [
-      "Using INNER JOIN — this excludes customers with no orders entirely.",
-      "Using WHERE o.customer_id IS NULL instead of WHERE o.order_id IS NULL — works here but fragile if customer_id is the join key.",
-      "Using NOT IN (SELECT customer_id FROM orders) — dangerous if orders.customer_id has NULLs; NOT EXISTS is safer."
+      "Using INNER JOIN — this silently excludes exactly the customers you're trying to find, since an inner join only keeps rows with a match on both sides.",
+      "Using WHERE o.customer_id IS NULL instead of WHERE o.order_id IS NULL — works here but is fragile if customer_id ever becomes nullable on the orders side.",
+      "Using NOT IN (SELECT customer_id FROM orders) — dangerous if orders.customer_id can contain NULLs, since NOT IN against a list containing NULL returns no rows at all; NOT EXISTS is the safer equivalent."
     ],
-    "key_concept": "LEFT JOIN + IS NULL is the classic anti-join pattern. It finds rows in A with no match in B. Alternative: NOT EXISTS (safer with NULLs). SQL Cookbook ch.3: 'Retrieving Rows from One Table That Do Not Correspond to Rows in Another.'"
+    "key_concept": "LEFT JOIN followed by IS NULL on the right-hand table's key is the standard anti-join pattern: it finds every row in table A that has no corresponding match in table B. This shows up constantly in retail and supply-chain analytics — customers with no orders, warehouses with no recent shipments, SKUs with no recorded sales — anywhere the business question is really 'find what's missing,' not 'find what's there.'"
   },
   {
     "id": "E-003",
@@ -74,7 +74,7 @@
       "order_items",
       "orders"
     ],
-    "problem": "The product team wants to know which products are driving the most revenue in completed orders.\n\nReturn:\n- `product_name`\n- `category`\n- `units_sold` — total quantity sold\n- `total_revenue` — SUM(quantity × unit_price), rounded to 2 decimals\n\nOnly completed orders. Top 5 by revenue.",
+    "problem": "The merchandising team at Andina Retail Group is planning next month's homepage banners and wants them to feature what's actually driving revenue, not just what's popular by unit count.\n\nReturn:\n- `product_name`\n- `category`\n- `units_sold` — total quantity sold\n- `total_revenue` — SUM(quantity × unit_price), rounded to 2 decimals\n\nOnly completed orders. Top 5 by revenue.",
     "expected_columns": [
       "product_name",
       "category",
@@ -83,11 +83,11 @@
     ],
     "solution": "SELECT p.product_name,\n       p.category,\n       SUM(oi.quantity) AS units_sold,\n       ROUND(SUM(oi.quantity * oi.unit_price), 2) AS total_revenue\nFROM products p\nJOIN order_items oi ON p.product_id = oi.product_id\nJOIN orders o ON oi.order_id = o.order_id\nWHERE o.status = 'completed'\nGROUP BY p.product_id, p.product_name, p.category\nORDER BY total_revenue DESC\nLIMIT 5",
     "common_mistakes": [
-      "LIMIT without ORDER BY — returns arbitrary 5 rows, not top 5.",
-      "Grouping only by product_name without product_id — name collisions in real data.",
-      "Using price from the products table instead of unit_price from order_items — ignores historical pricing."
+      "LIMIT without ORDER BY — returns an arbitrary 5 rows in whatever order the engine happens to scan them, not the actual top 5.",
+      "Grouping only by product_name without product_id — two unrelated products sharing a name would get silently merged into one row.",
+      "Using price from the products table instead of unit_price from order_items — ignores the fact that prices change over time, so historical revenue should reflect what was actually charged at the moment of sale."
     ],
-    "key_concept": "Always ORDER BY before LIMIT. Use unit_price from the transaction table (not the catalog price) to reflect actual revenue — prices change over time."
+    "key_concept": "ORDER BY must come before LIMIT conceptually — the database sorts the full result set first, then truncates it, never the other way around. The unit_price-vs-catalog-price distinction here is worth internalizing broadly: any transactional table storing its own copy of a price, quantity, or rate at the moment of the transaction is preserving history on purpose, and joining back to a 'current' catalog value instead would quietly rewrite that history every time the catalog changes."
   },
   {
     "id": "E-004",
@@ -103,7 +103,7 @@
     "schema_used": [
       "orders"
     ],
-    "problem": "Operations needs a monthly dashboard showing order volume trends.\n\nReturn:\n- `month` — formatted as 'YYYY-MM'\n- `total_orders` — count of non-cancelled orders\n- `unique_customers` — distinct customers who placed orders\n\nSort by month ascending.",
+    "problem": "Andina Retail Group's operations team plans warehouse staffing shifts a month ahead, and they need a trend line of demand, not raw daily noise.\n\nReturn:\n- `month` — formatted as 'YYYY-MM'\n- `total_orders` — count of non-cancelled orders\n- `unique_customers` — distinct customers who placed orders\n\nSort by month ascending.",
     "expected_columns": [
       "month",
       "total_orders",
@@ -111,11 +111,11 @@
     ],
     "solution": "SELECT strftime('%Y-%m', o.order_date) AS month,\n       COUNT(DISTINCT o.order_id) AS total_orders,\n       COUNT(DISTINCT o.customer_id) AS unique_customers\nFROM orders o\nWHERE o.status != 'cancelled'\nGROUP BY month\nORDER BY month",
     "common_mistakes": [
-      "Including cancelled orders — they don't represent real demand.",
-      "COUNT(*) instead of COUNT(DISTINCT order_id) — same here but matters if data has duplicates.",
-      "In MySQL use DATE_FORMAT(order_date, '%Y-%m'), in SQLite/PostgreSQL use strftime('%Y-%m', ...)."
+      "Including cancelled orders — they never actually required warehouse labor or shipped inventory, so including them overstates real operational demand.",
+      "COUNT(*) instead of COUNT(DISTINCT order_id) — usually identical here, but stops being safe the moment the data has any duplicate rows.",
+      "Forgetting that date-truncation syntax is dialect-specific: MySQL uses DATE_FORMAT(order_date, '%Y-%m'), PostgreSQL uses TO_CHAR, SQLite/this trainer uses strftime('%Y-%m', ...)."
     ],
-    "key_concept": "Date truncation to month is essential for time series analysis. MySQL: DATE_FORMAT(date, '%Y-%m'). PostgreSQL: TO_CHAR(date, 'YYYY-MM'). SQLite: strftime('%Y-%m', date)."
+    "key_concept": "Truncating a date down to just its year and month is the starting point for essentially all time-series business reporting — monthly revenue trends, monthly staffing plans, monthly demand forecasts. The exact function differs by SQL dialect, but the underlying idea is always the same: collapse a precise timestamp down to the coarser grain the business question actually needs, then GROUP BY that coarser value."
   },
   {
     "id": "E-005",
@@ -132,17 +132,17 @@
       "orders",
       "order_items"
     ],
-    "problem": "AOV (Average Order Value) is a key e-commerce KPI. Calculate the average value of a completed order.\n\nReturn a single value:\n- `avg_order_value` — average of per-order totals, rounded to 2 decimals\n\nNote: This is NOT the same as AVG(unit_price). Each order has a total, and you want the average of those totals.",
+    "problem": "AOV (Average Order Value) is one of the KPIs Andina Retail Group's finance team tracks every board meeting, alongside revenue and margin. Calculate the average value of a completed order.\n\nReturn a single value:\n- `avg_order_value` — average of per-order totals, rounded to 2 decimals\n\nNote: This is NOT the same as AVG(unit_price). Each order has a total, and you want the average of those totals.",
     "expected_columns": [
       "avg_order_value"
     ],
     "solution": "SELECT ROUND(AVG(order_total), 2) AS avg_order_value\nFROM (\n    SELECT o.order_id,\n           SUM(oi.quantity * oi.unit_price) AS order_total\n    FROM orders o\n    JOIN order_items oi ON o.order_id = oi.order_id\n    WHERE o.status = 'completed'\n    GROUP BY o.order_id\n) sub",
     "common_mistakes": [
-      "AVG(unit_price) — wrong metric entirely, averages line item prices not order totals.",
-      "SUM(...) / COUNT(DISTINCT order_id) in one query — can work but is error-prone; derived table is cleaner.",
-      "Forgetting to filter for completed orders."
+      "AVG(unit_price) — an entirely different metric that averages individual line-item prices, ignoring how many items or orders were actually involved.",
+      "SUM(...) / COUNT(DISTINCT order_id) written as one flat query — can be made to work but is error-prone to get right; a derived table that pre-computes per-order totals first is cleaner and harder to get wrong.",
+      "Forgetting to filter for completed orders before averaging."
     ],
-    "key_concept": "AOV = SUM of all order revenues / number of orders. Requires a derived table (or CTE) to first compute per-order totals, then average them. SQL Cookbook: 'Calculate aggregates of aggregates using subqueries.'"
+    "key_concept": "AOV is an 'aggregate of an aggregate': first sum each order's line items into one order total, then average those order totals. That first step can't be skipped or folded into the outer query directly — you need a derived table (or a CTE, covered later in this course) to compute the per-order subtotal before the outer AVG() can operate on the right thing. Any KPI phrased as 'average X per Y' is usually hiding this same two-step structure."
   },
   {
     "id": "M-001",
@@ -160,7 +160,7 @@
       "orders",
       "order_items"
     ],
-    "problem": "Finance needs a customer-level revenue report. Some customers have never purchased — they should appear with 0 sales.\n\nReturn:\n- `customer_name`\n- `country`\n- `total_sales` — SUM(quantity × unit_price) for completed orders only, rounded to 2 decimals. Show 0.00 for customers with no sales.\n\nSort by total_sales descending.",
+    "problem": "Andina Retail Group's finance team needs a full customer-level revenue report for a board review — every customer on the books, even the ones (like Omega GmbH) who registered but have never actually purchased. Those should still appear, with 0 sales, not silently disappear from the report.\n\nReturn:\n- `customer_name`\n- `country`\n- `total_sales` — SUM(quantity × unit_price) for completed orders only, rounded to 2 decimals. Show 0.00 for customers with no sales.\n\nSort by total_sales descending.",
     "expected_columns": [
       "customer_name",
       "country",
@@ -168,12 +168,12 @@
     ],
     "solution": "SELECT c.customer_name,\n       c.country,\n       ROUND(COALESCE(SUM(oi.quantity * oi.unit_price), 0), 2) AS total_sales\nFROM customers c\nLEFT JOIN orders o ON c.customer_id = o.customer_id AND o.status = 'completed'\nLEFT JOIN order_items oi ON o.order_id = oi.order_id\nGROUP BY c.customer_id, c.customer_name, c.country\nORDER BY total_sales DESC",
     "common_mistakes": [
-      "INNER JOIN — loses customers with no completed orders.",
-      "Filtering WHERE o.status = 'completed' in the WHERE clause instead of the ON clause — converts LEFT JOIN to INNER JOIN.",
-      "Not using COALESCE — customers with no orders show NULL instead of 0.",
-      "Forgetting the intermediate LEFT JOIN to order_items."
+      "INNER JOIN — silently drops every customer with no completed orders, exactly the customers this report needs to show.",
+      "Filtering WHERE o.status = 'completed' in the WHERE clause instead of the ON clause — this quietly turns the LEFT JOIN back into an INNER JOIN, since WHERE runs after the join and throws away the NULL-filled rows a LEFT JOIN produces for non-matches.",
+      "Not using COALESCE — customers with no orders would show NULL total_sales instead of the 0.00 the report actually needs.",
+      "Forgetting the second LEFT JOIN to order_items, which is where the actual dollar amounts live."
     ],
-    "key_concept": "Critical pattern: when filtering on an outer-joined table, put the condition in the ON clause, NOT in WHERE. WHERE o.status = 'completed' after LEFT JOIN eliminates NULL rows. ON o.status = 'completed' preserves them. SQL Cookbook ch.3."
+    "key_concept": "This is one of the most consequential rules in SQL, and it trips up even experienced analysts: when a filter condition belongs to the OUTER-joined table, it must go in the ON clause, not the WHERE clause. ON o.status = 'completed' filters which order rows are allowed to match before the join happens, preserving unmatched customers with NULLs; WHERE o.status = 'completed' filters the combined result afterward, which throws out exactly the NULL rows that made the LEFT JOIN worth using in the first place."
   },
   {
     "id": "M-002",
@@ -189,7 +189,7 @@
     "schema_used": [
       "orders"
     ],
-    "problem": "The growth team wants to understand purchase loyalty. Classify each customer as a repeat buyer (2+ completed orders) or a one-time buyer (exactly 1 completed order).\n\nReturn a SINGLE ROW with:\n- `one_time_buyers` — count of customers with exactly 1 completed order\n- `repeat_buyers` — count of customers with 2+ completed orders\n- `repeat_rate_pct` — percentage of buyers who are repeat, rounded to 1 decimal",
+    "problem": "Andina Retail Group's growth team is deciding whether to invest in a loyalty program, and the business case hinges on one question: how much of the customer base already comes back for a second purchase versus buying once and disappearing?\n\nReturn a SINGLE ROW with:\n- `one_time_buyers` — count of customers with exactly 1 completed order\n- `repeat_buyers` — count of customers with 2+ completed orders\n- `repeat_rate_pct` — percentage of buyers who are repeat, rounded to 1 decimal",
     "expected_columns": [
       "one_time_buyers",
       "repeat_buyers",
@@ -197,11 +197,11 @@
     ],
     "solution": "SELECT\n    SUM(CASE WHEN order_count = 1 THEN 1 ELSE 0 END) AS one_time_buyers,\n    SUM(CASE WHEN order_count > 1 THEN 1 ELSE 0 END) AS repeat_buyers,\n    ROUND(100.0 * SUM(CASE WHEN order_count > 1 THEN 1 ELSE 0 END) / COUNT(*), 1) AS repeat_rate_pct\nFROM (\n    SELECT customer_id, COUNT(order_id) AS order_count\n    FROM orders\n    WHERE status = 'completed'\n    GROUP BY customer_id\n) sub",
     "common_mistakes": [
-      "Trying to do this in one GROUP BY — you need two levels of aggregation.",
-      "Using COUNT instead of SUM(CASE WHEN ...) for conditional counts.",
-      "Dividing by COUNT of all customers (including those with no orders) instead of COUNT of buyers."
+      "Trying to answer this with a single-level GROUP BY — classifying buyers requires first counting orders per customer, then classifying based on that count, which is two levels of aggregation.",
+      "Using plain COUNT instead of SUM(CASE WHEN ...) for a conditional count.",
+      "Dividing by the count of all customers (including those who never bought anything) instead of dividing by the count of actual buyers, which would understate the true repeat rate."
     ],
-    "key_concept": "SUM(CASE WHEN condition THEN 1 ELSE 0 END) is the standard conditional count pattern. Two-level aggregation always requires a subquery or CTE as an intermediate step."
+    "key_concept": "SUM(CASE WHEN condition THEN 1 ELSE 0 END) is the standard way to get a conditional count in SQL — it turns a business classification rule into arithmetic the aggregate function can sum. Whenever a business question needs 'group customers by how many times they did X, then summarize those groups,' that's a signal you need two levels of aggregation: an inner query to compute the per-entity count, and an outer query to classify and summarize based on it."
   },
   {
     "id": "M-003",
@@ -218,7 +218,7 @@
       "orders",
       "order_items"
     ],
-    "problem": "The CFO wants a monthly revenue trend with growth rate.\n\nReturn:\n- `month` — YYYY-MM format\n- `revenue` — total completed revenue that month\n- `prev_month_revenue` — previous month's revenue (NULL for first month)\n- `growth_pct` — percentage change from previous month, rounded to 1 decimal (NULL for first month)\n\nSort by month ascending.",
+    "problem": "Andina Retail Group's CFO opens every finance review with the same slide: revenue trend with growth rate, month over month, no exceptions.\n\nReturn:\n- `month` — YYYY-MM format\n- `revenue` — total completed revenue that month\n- `prev_month_revenue` — previous month's revenue (NULL for first month)\n- `growth_pct` — percentage change from previous month, rounded to 1 decimal (NULL for first month)\n\nSort by month ascending.",
     "expected_columns": [
       "month",
       "revenue",
@@ -227,11 +227,11 @@
     ],
     "solution": "WITH monthly AS (\n    SELECT strftime('%Y-%m', o.order_date) AS month,\n           ROUND(SUM(oi.quantity * oi.unit_price), 2) AS revenue\n    FROM orders o\n    JOIN order_items oi ON o.order_id = oi.order_id\n    WHERE o.status = 'completed'\n    GROUP BY month\n)\nSELECT month,\n       revenue,\n       LAG(revenue) OVER (ORDER BY month) AS prev_month_revenue,\n       ROUND(100.0 * (revenue - LAG(revenue) OVER (ORDER BY month))\n             / LAG(revenue) OVER (ORDER BY month), 1) AS growth_pct\nFROM monthly\nORDER BY month",
     "common_mistakes": [
-      "Self-join on month — works but LAG() is cleaner and more performant.",
-      "Dividing by zero when prev_month_revenue is NULL — wrap with NULLIF.",
-      "Not using a CTE — trying to nest LAG inside the aggregation query fails."
+      "Self-joining the monthly table to itself on 'month = month - 1' — technically works but is clunkier and less performant than a window function built exactly for this.",
+      "Dividing by zero when prev_month_revenue is NULL for the very first month — worth wrapping with NULLIF in a production query.",
+      "Trying to compute LAG() directly inside the same aggregation query as the SUM() — window functions need the aggregation already done, which is exactly why the CTE splits this into two clean steps."
     ],
-    "key_concept": "LAG(col) OVER (ORDER BY ...) accesses the previous row's value. MoM growth = (current - previous) / previous * 100. Always use a CTE to pre-aggregate before applying window functions."
+    "key_concept": "LAG(col) OVER (ORDER BY ...) reaches back and grabs the value from the previous row in whatever order you specify — here, the previous month's revenue. Month-over-month growth is just (current − previous) / previous × 100 once you have that previous value sitting right next to the current one. This LAG-after-aggregation pattern, built on a CTE, is the standard shape for essentially any 'compare this period to the last one' report."
   },
   {
     "id": "M-004",
@@ -249,7 +249,7 @@
       "orders",
       "products"
     ],
-    "problem": "The recommendations team needs to know which products are frequently purchased together in the same order.\n\nReturn:\n- `product_a` — name of first product\n- `product_b` — name of second product (alphabetically after product_a to avoid duplicates)\n- `times_bought_together` — how many completed orders contain both products\n\nOnly show pairs that appear together at least once. Sort by times_bought_together DESC.",
+    "problem": "Andina Retail Group's e-commerce team wants to add a 'frequently bought together' widget to product pages, the same pattern used by major online retailers to lift basket size.\n\nReturn:\n- `product_a` — name of first product\n- `product_b` — name of second product (alphabetically after product_a to avoid duplicates)\n- `times_bought_together` — how many completed orders contain both products\n\nOnly show pairs that appear together at least once. Sort by times_bought_together DESC.",
     "expected_columns": [
       "product_a",
       "product_b",
@@ -257,11 +257,11 @@
     ],
     "solution": "SELECT p1.product_name AS product_a,\n       p2.product_name AS product_b,\n       COUNT(*) AS times_bought_together\nFROM order_items oi1\nJOIN order_items oi2 ON oi1.order_id = oi2.order_id\n                    AND oi1.product_id < oi2.product_id\nJOIN products p1 ON oi1.product_id = p1.product_id\nJOIN products p2 ON oi2.product_id = p2.product_id\nJOIN orders o ON oi1.order_id = o.order_id\nWHERE o.status = 'completed'\nGROUP BY oi1.product_id, oi2.product_id, p1.product_name, p2.product_name\nHAVING times_bought_together >= 1\nORDER BY times_bought_together DESC",
     "common_mistakes": [
-      "Using oi1.product_id != oi2.product_id instead of < — doubles every pair (A+B and B+A).",
-      "Not joining to orders to filter by status.",
-      "Grouping by product names instead of IDs — fails if two products have same name."
+      "Using oi1.product_id != oi2.product_id instead of < — this matches every pair twice (A-with-B and B-with-A), double counting everything.",
+      "Not joining back to orders to filter by status — lets cancelled-order line items pollute the affinity counts.",
+      "Grouping by product names instead of product IDs — breaks the moment two unrelated products happen to share a name."
     ],
-    "key_concept": "Self-joining a table on the same key (order_id) with inequality (product_id < product_id) is the standard market basket analysis pattern. The < ensures each pair appears only once and avoids self-pairing."
+    "key_concept": "Self-joining a table to itself on a shared key (here, order_id) with an inequality on a second column (product_id < product_id) is the standard 'find every pair within a group' pattern — this exact structure is what powers real market-basket analysis and recommendation widgets. The strict less-than, rather than not-equal, is what guarantees each pair is counted exactly once and a product is never paired with itself."
   },
   {
     "id": "M-005",
@@ -278,7 +278,7 @@
       "employees",
       "salaries"
     ],
-    "problem": "HR needs the current active salary for each employee. The salaries table has salary history — a NULL `to_date` means the salary is currently active.\n\nReturn:\n- `employee_id`\n- `employee_name` — first_name + ' ' + last_name\n- `department`\n- `current_salary`\n- `effective_from` — when this salary started\n\nSort by department, then current_salary descending.",
+    "problem": "Andina Retail Group's distribution-center network spans several countries, and HR needs the current active salary for every warehouse and logistics employee ahead of the annual compensation review. The salaries table keeps full salary history — a NULL `to_date` marks the salary that's currently in effect.\n\nReturn:\n- `employee_id`\n- `employee_name` — first_name + ' ' + last_name\n- `department`\n- `current_salary`\n- `effective_from` — when this salary started\n\nSort by department, then current_salary descending.",
     "expected_columns": [
       "employee_id",
       "employee_name",
@@ -288,11 +288,11 @@
     ],
     "solution": "SELECT e.employee_id,\n       e.first_name || ' ' || e.last_name AS employee_name,\n       e.department,\n       s.amount AS current_salary,\n       s.from_date AS effective_from\nFROM employees e\nJOIN salaries s ON e.employee_id = s.employee_id\nWHERE s.to_date IS NULL\nORDER BY e.department, s.amount DESC",
     "common_mistakes": [
-      "Using s.to_date = NULL — in SQL NULL comparisons always use IS NULL, never = NULL.",
-      "Not filtering — returns all salary history rows per employee instead of just current.",
-      "Using MAX(from_date) to find current — works if data is clean but fragile; to_date IS NULL is the explicit contract."
+      "Using s.to_date = NULL — in SQL, NULL never equals anything, not even another NULL; comparisons against NULL always use IS NULL / IS NOT NULL.",
+      "Not filtering at all — returns every historical salary row per employee instead of just the currently active one.",
+      "Using MAX(from_date) to guess the current row — works on clean data but is fragile; to_date IS NULL is the explicit, unambiguous contract this schema was designed around."
     ],
-    "key_concept": "Slowly Changing Dimensions (SCD Type 2) pattern: NULL end date marks the active record. Always use IS NULL, never = NULL. This pattern is fundamental in data warehousing."
+    "key_concept": "This is a Slowly Changing Dimension (SCD Type 2) pattern in miniature — a concept this training platform's Data Architecture course covers at the modeling level, and here you're querying it directly. A NULL end date is the schema's way of marking 'this record is still in effect,' which is exactly why NULL-safe comparisons matter: a careless = NULL doesn't error, it just silently returns nothing, which is a much more dangerous failure mode than a query that crashes."
   },
   {
     "id": "M-006",
@@ -310,7 +310,7 @@
       "employees",
       "salaries"
     ],
-    "problem": "HR leadership wants a salary overview per department using current salaries only.\n\nReturn:\n- `department`\n- `headcount` — number of employees\n- `avg_salary` — average current salary, rounded to 2 decimals\n- `min_salary`\n- `max_salary`\n- `salary_spread` — difference between max and min\n\nSort by avg_salary descending.",
+    "problem": "Ahead of budgeting season, Andina Retail Group's HR leadership wants a compensation overview across every department — from warehouse operations to corporate finance — using current salaries only.\n\nReturn:\n- `department`\n- `headcount` — number of employees\n- `avg_salary` — average current salary, rounded to 2 decimals\n- `min_salary`\n- `max_salary`\n- `salary_spread` — difference between max and min\n\nSort by avg_salary descending.",
     "expected_columns": [
       "department",
       "headcount",
@@ -321,11 +321,11 @@
     ],
     "solution": "SELECT department,\n       COUNT(*) AS headcount,\n       ROUND(AVG(s.amount), 2) AS avg_salary,\n       MIN(s.amount) AS min_salary,\n       MAX(s.amount) AS max_salary,\n       MAX(s.amount) - MIN(s.amount) AS salary_spread\nFROM employees e\nJOIN salaries s ON e.employee_id = s.employee_id\nWHERE s.to_date IS NULL\nGROUP BY department\nORDER BY avg_salary DESC",
     "common_mistakes": [
-      "Joining all salary history — inflates COUNT and skews averages.",
-      "Computed columns (salary_spread) cannot be referenced in the same SELECT in most DBs — repeat the expression.",
-      "Forgetting WHERE s.to_date IS NULL — calculates over all historical salaries."
+      "Joining in all salary history instead of just current rows — inflates headcount and skews every average with stale, no-longer-active salary figures.",
+      "Trying to reference a computed alias (salary_spread) from elsewhere in the same SELECT — most databases don't allow that; you repeat the underlying expression instead.",
+      "Forgetting WHERE s.to_date IS NULL — silently computes statistics over the entire historical record instead of the current workforce."
     ],
-    "key_concept": "Multiple aggregates in one GROUP BY is a core analytics pattern. MAX - MIN as salary_spread directly in SELECT. Remember: you cannot reference aliases from the same SELECT level — use the expression again or wrap in a subquery."
+    "key_concept": "Computing several aggregates side by side in one GROUP BY (count, average, min, max, and a derived spread) is a core reporting pattern — a single query that would otherwise take several separate ones. The 'can't reference this SELECT's own alias' rule is a common early surprise: SQL conceptually evaluates the SELECT list's expressions independently, so MAX(s.amount) - MIN(s.amount) has to be spelled out again rather than referencing max_salary and min_salary by name."
   },
   {
     "id": "M-007",
@@ -343,7 +343,7 @@
       "customers",
       "orders"
     ],
-    "problem": "Customer success wants to identify customers with high cancellation rates to understand churn signals.\n\nReturn only customers with at least 2 orders:\n- `customer_name`\n- `total_orders`\n- `cancelled` — count of cancelled orders\n- `cancellation_rate_pct` — rounded to 1 decimal\n\nSort by cancellation_rate_pct descending.",
+    "problem": "Andina Retail Group's customer success team suspects that a high cancellation rate is an early churn signal — customers who keep cancelling are often about to switch to a competitor. They want a shortlist to investigate.\n\nReturn only customers with at least 2 orders:\n- `customer_name`\n- `total_orders`\n- `cancelled` — count of cancelled orders\n- `cancellation_rate_pct` — rounded to 1 decimal\n\nSort by cancellation_rate_pct descending.",
     "expected_columns": [
       "customer_name",
       "total_orders",
@@ -352,11 +352,11 @@
     ],
     "solution": "SELECT c.customer_name,\n       COUNT(o.order_id) AS total_orders,\n       SUM(CASE WHEN o.status = 'cancelled' THEN 1 ELSE 0 END) AS cancelled,\n       ROUND(100.0 * SUM(CASE WHEN o.status = 'cancelled' THEN 1 ELSE 0 END)\n             / COUNT(o.order_id), 1) AS cancellation_rate_pct\nFROM customers c\nJOIN orders o ON c.customer_id = o.customer_id\nGROUP BY c.customer_id, c.customer_name\nHAVING total_orders >= 2\nORDER BY cancellation_rate_pct DESC",
     "common_mistakes": [
-      "WHERE status = 'cancelled' before GROUP BY — only keeps cancelled rows, losing the total count.",
-      "HAVING COUNT(*) >= 2 in some SQL dialects requires repeating the expression, not the alias.",
-      "Integer division: 1/3 = 0 in SQL. Use 100.0 * ... or CAST(... AS FLOAT)."
+      "Filtering WHERE status = 'cancelled' before aggregating — this keeps only the cancelled rows, destroying the total order count you need for the denominator.",
+      "Writing HAVING COUNT(*) >= 2 in dialects that require repeating the underlying expression rather than reusing a SELECT alias directly in HAVING.",
+      "Integer division: in many SQL engines 1/3 evaluates to 0 because both operands are integers — always force floating-point with 100.0 * ... or an explicit CAST."
     ],
-    "key_concept": "HAVING filters groups after aggregation; WHERE filters rows before. Conditional aggregation with CASE is more flexible than multiple passes. Integer division is a silent bug — always use 100.0 or explicit CAST."
+    "key_concept": "HAVING filters entire groups after aggregation has already happened; WHERE filters individual rows before aggregation even starts — mixing these up (like filtering to only cancelled rows with WHERE) destroys information the aggregation still needs. Conditional aggregation with CASE, rather than running two separate queries and stitching them together, is the more flexible general pattern any time a report needs both a total and a specific subset of that total side by side."
   },
   {
     "id": "M-008",
@@ -373,7 +373,7 @@
       "orders",
       "order_items"
     ],
-    "problem": "Finance wants to track cumulative revenue over time to visualize growth trajectory.\n\nReturn per completed order date:\n- `order_date`\n- `daily_revenue` — total revenue that day\n- `running_total` — cumulative revenue from the beginning up to and including that day\n\nSort by order_date ascending.",
+    "problem": "Andina Retail Group's finance team is building a fundraising deck and wants a cumulative revenue chart — the classic 'up and to the right' line showing growth trajectory since day one, not just isolated daily figures.\n\nReturn per completed order date:\n- `order_date`\n- `daily_revenue` — total revenue that day\n- `running_total` — cumulative revenue from the beginning up to and including that day\n\nSort by order_date ascending.",
     "expected_columns": [
       "order_date",
       "daily_revenue",
@@ -381,11 +381,11 @@
     ],
     "solution": "SELECT o.order_date,\n       ROUND(SUM(oi.quantity * oi.unit_price), 2) AS daily_revenue,\n       ROUND(SUM(SUM(oi.quantity * oi.unit_price))\n             OVER (ORDER BY o.order_date), 2) AS running_total\nFROM orders o\nJOIN order_items oi ON o.order_id = oi.order_id\nWHERE o.status = 'completed'\nGROUP BY o.order_date\nORDER BY o.order_date",
     "common_mistakes": [
-      "Trying to use running_total in WHERE — window functions can't be in WHERE.",
-      "SUM(oi.quantity * oi.unit_price) OVER (...) without the outer SUM — misses the GROUP BY aggregation first.",
-      "Missing ORDER BY in the OVER clause — gives a grand total, not a running total."
+      "Trying to reference running_total inside a WHERE clause — window functions are evaluated after WHERE, so they can never be filtered on directly at that same query level.",
+      "Writing SUM(oi.quantity * oi.unit_price) OVER (...) without the inner GROUP BY's SUM first — skips the per-day aggregation step the running total actually needs to build on.",
+      "Leaving out ORDER BY inside the OVER(...) clause — without it, the window has no defined sequence to accumulate over, and you get the grand total repeated on every row instead of a true running total."
     ],
-    "key_concept": "SUM(SUM(col)) OVER (ORDER BY date) — the inner SUM aggregates per group, the outer SUM window accumulates. Without ORDER BY in OVER, you get the grand total on every row. This is the standard running total pattern."
+    "key_concept": "SUM(SUM(col)) OVER (ORDER BY date) looks redundant but does two genuinely different jobs: the inner SUM aggregates each day's line items down to one daily total, and the outer SUM, as a window function ordered by date, accumulates those daily totals into a running total. This nested-aggregation-plus-window pattern is the standard way to build any cumulative metric — running revenue, running units shipped, running headcount — on top of data that starts out at a finer grain."
   },
   {
     "id": "M-009",
@@ -403,7 +403,7 @@
       "orders",
       "order_items"
     ],
-    "problem": "Marketing wants to analyze first-purchase behavior. Find each customer's first completed order and the total value of that order.\n\nReturn:\n- `customer_name`\n- `first_order_date`\n- `first_order_value` — total value of the first order (SUM of all items)\n\nSort by first_order_date ascending.",
+    "problem": "Andina Retail Group's marketing team is studying what makes a strong first impression: does a customer's very first order size predict whether they'll come back? Step one is simply identifying each customer's first completed order and its value.\n\nReturn:\n- `customer_name`\n- `first_order_date`\n- `first_order_value` — total value of the first order (SUM of all items)\n\nSort by first_order_date ascending.",
     "expected_columns": [
       "customer_name",
       "first_order_date",
@@ -411,11 +411,11 @@
     ],
     "solution": "WITH first_orders AS (\n    SELECT customer_id, MIN(order_date) AS first_order_date\n    FROM orders\n    WHERE status = 'completed'\n    GROUP BY customer_id\n)\nSELECT c.customer_name,\n       f.first_order_date,\n       ROUND(SUM(oi.quantity * oi.unit_price), 2) AS first_order_value\nFROM first_orders f\nJOIN customers c ON f.customer_id = c.customer_id\nJOIN orders o ON f.customer_id = o.customer_id AND o.order_date = f.first_order_date\nJOIN order_items oi ON o.order_id = oi.order_id\nGROUP BY f.customer_id, c.customer_name, f.first_order_date\nORDER BY f.first_order_date",
     "common_mistakes": [
-      "Using MIN(order_date) directly in the outer query alongside SUM — misuse of aggregates.",
-      "Not filtering the join back to only the first order date — returns all orders.",
-      "Using ROW_NUMBER() instead of MIN in CTE — valid but more complex for this use case."
+      "Trying to mix MIN(order_date) directly with SUM() in one flat query without a CTE — mixes two different aggregation grains and doesn't actually answer the question.",
+      "Forgetting to join back using the first_order_date to restrict which order's items get summed — without it, you'd sum every order the customer ever placed, not just the first one.",
+      "Reaching for ROW_NUMBER() instead of MIN() inside the CTE — a perfectly valid alternative, but more machinery than this particular question needs."
     ],
-    "key_concept": "Two-step pattern: (1) CTE to find the target date/id, (2) join back to get the full row. MIN() in a subquery/CTE to find the 'first', then join on that value to retrieve details."
+    "key_concept": "This is a two-step pattern worth recognizing on sight: first, a CTE narrows down to the specific date or id you actually care about (here, MIN(order_date) per customer); second, you join back to the full table using that value to pull the rest of that row's details. Any time a business question is phrased as 'find the first/last/best X, then tell me more about it,' this find-then-join-back shape is usually the cleanest way to answer it."
   },
   {
     "id": "M-010",
@@ -432,7 +432,7 @@
       "employees",
       "salaries"
     ],
-    "problem": "HR wants to identify high-performers (salary-wise) within each department — employees earning more than their department's average.\n\nReturn:\n- `employee_name`\n- `department`\n- `salary` — current salary\n- `dept_avg` — average current salary in their department, rounded to 2 decimals\n\nSort by department, then salary descending.",
+    "problem": "Andina Retail Group's HR team is reviewing pay equity across its distribution network and wants to flag employees earning above their own department's average — a first pass before a deeper compensation audit.\n\nReturn:\n- `employee_name`\n- `department`\n- `salary` — current salary\n- `dept_avg` — average current salary in their department, rounded to 2 decimals\n\nSort by department, then salary descending.",
     "expected_columns": [
       "employee_name",
       "department",
@@ -441,11 +441,11 @@
     ],
     "solution": "SELECT e.first_name || ' ' || e.last_name AS employee_name,\n       e.department,\n       s.amount AS salary,\n       ROUND((SELECT AVG(s2.amount)\n              FROM salaries s2\n              JOIN employees e2 ON s2.employee_id = e2.employee_id\n              WHERE e2.department = e.department\n                AND s2.to_date IS NULL), 2) AS dept_avg\nFROM employees e\nJOIN salaries s ON e.employee_id = s.employee_id\nWHERE s.to_date IS NULL\n  AND s.amount > (SELECT AVG(s2.amount)\n                  FROM salaries s2\n                  JOIN employees e2 ON s2.employee_id = e2.employee_id\n                  WHERE e2.department = e.department\n                    AND s2.to_date IS NULL)\nORDER BY e.department, s.amount DESC",
     "common_mistakes": [
-      "Comparing to the global average instead of department average.",
-      "Joining to a subquery with GROUP BY — valid but correlated subquery is more readable here.",
-      "Forgetting to filter for current salaries (to_date IS NULL) in both the outer query and subquery."
+      "Comparing every employee to the single company-wide average instead of their own department's average — misses the whole point of a department-relative comparison.",
+      "Joining to a separately-grouped subquery instead of using a correlated subquery — also valid, but generally less readable for a 'compare to your own group's average' question.",
+      "Forgetting to filter for currently-active salaries (to_date IS NULL) in both the outer query and the correlated subquery — a stale historical salary sneaking into either side skews the comparison."
     ],
-    "key_concept": "Correlated subquery: the inner query references the outer query's row (e.department). Runs once per row. More readable than a self-join for 'compare to group average' patterns. Can be rewritten as a window function: AVG(s.amount) OVER (PARTITION BY e.department)."
+    "key_concept": "A correlated subquery is one whose inner query explicitly references a column from the outer query's current row (here, e.department) — conceptually, it re-runs once per outer row, each time scoped to that row's own department. This is a very natural way to express 'compare this record to some summary of its own group,' and it can always be rewritten using a window function instead — AVG(s.amount) OVER (PARTITION BY e.department) — which this training platform's DAX course covers from a different angle as filter-context-scoped aggregation."
   },
   {
     "id": "H-001",
@@ -461,7 +461,7 @@
     "schema_used": [
       "orders"
     ],
-    "problem": "The growth team wants to measure how many customers return the month after their first purchase (Month-1 retention).\n\nSteps:\n1. Find each customer's first completed order — this defines their **cohort month**.\n2. Check if they placed another completed order in the calendar month immediately after.\n\nReturn:\n- `cohort` — YYYY-MM of the cohort (month of first order)\n- `cohort_size` — number of customers who first ordered that month\n- `retained_month1` — how many of them ordered again the next month\n- `retention_rate` — percentage, rounded to 1 decimal\n\nSort by cohort.",
+    "problem": "Andina Retail Group's growth team is deciding whether new-customer acquisition spend is actually paying off, and the key metric is Month-1 retention: of the customers who made their first purchase in a given month, how many came back the very next month?\n\nSteps:\n1. Find each customer's first completed order — this defines their **cohort month**.\n2. Check if they placed another completed order in the calendar month immediately after.\n\nReturn:\n- `cohort` — YYYY-MM of the cohort (month of first order)\n- `cohort_size` — number of customers who first ordered that month\n- `retained_month1` — how many of them ordered again the next month\n- `retention_rate` — percentage, rounded to 1 decimal\n\nSort by cohort.",
     "expected_columns": [
       "cohort",
       "cohort_size",
@@ -470,11 +470,11 @@
     ],
     "solution": "WITH first_orders AS (\n    SELECT customer_id, MIN(order_date) AS cohort_month\n    FROM orders\n    WHERE status = 'completed'\n    GROUP BY customer_id\n),\nsecond_orders AS (\n    SELECT o.customer_id\n    FROM orders o\n    JOIN first_orders f ON o.customer_id = f.customer_id\n    WHERE o.status = 'completed'\n      AND o.order_date > f.cohort_month\n      AND strftime('%Y-%m', o.order_date) = strftime('%Y-%m',\n          date(f.cohort_month, '+1 month'))\n)\nSELECT strftime('%Y-%m', f.cohort_month) AS cohort,\n       COUNT(DISTINCT f.customer_id) AS cohort_size,\n       COUNT(DISTINCT s.customer_id) AS retained_month1,\n       ROUND(100.0 * COUNT(DISTINCT s.customer_id) / COUNT(DISTINCT f.customer_id), 1) AS retention_rate\nFROM first_orders f\nLEFT JOIN second_orders s ON f.customer_id = s.customer_id\nGROUP BY cohort\nORDER BY cohort",
     "common_mistakes": [
-      "Comparing months without year — cohorts from different years collide.",
-      "Using INNER JOIN instead of LEFT JOIN — drops cohorts with 0% retention.",
-      "Not anchoring to the calendar month — counting ANY return order instead of Month+1 specifically."
+      "Comparing calendar months without accounting for year — a December cohort and a December-of-a-different-year cohort would collide if you only compare the month number.",
+      "Using INNER JOIN instead of LEFT JOIN for the final aggregation — this would drop any cohort with 0% retention entirely instead of correctly showing it with a zero.",
+      "Not anchoring strictly to the calendar month immediately after — counting any later return order as 'retention' answers a looser, different question than Month-1 retention specifically."
     ],
-    "key_concept": "Cohort analysis is a fundamental data engineering interview topic. Pattern: (1) CTE for cohort definition, (2) CTE for retention event, (3) LEFT JOIN + aggregate. Date arithmetic: date(col, '+1 month') in SQLite, DATE_ADD(col, INTERVAL 1 MONTH) in MySQL."
+    "key_concept": "Cohort analysis is one of the most common real-world analytics builds, and this three-step CTE shape generalizes far beyond retention: (1) a CTE defining the cohort itself, (2) a second CTE defining the 'success event' you're measuring, (3) a LEFT JOIN plus aggregation to compute the rate while still preserving cohorts with zero successes. Month-arithmetic syntax is dialect-specific — this trainer uses SQLite's date(col, '+1 month'); MySQL uses DATE_ADD(col, INTERVAL 1 MONTH)."
   },
   {
     "id": "H-002",
@@ -492,7 +492,7 @@
       "order_items",
       "orders"
     ],
-    "problem": "The merchandising team wants to know the #1 product by revenue within each category.\n\nReturn:\n- `category`\n- `product_name`\n- `revenue` — total revenue from completed orders\n\nOne row per category. Sort by revenue descending.",
+    "problem": "Andina Retail Group's merchandising team is refreshing category landing pages and wants each one anchored around its single best-selling product, by revenue.\n\nReturn:\n- `category`\n- `product_name`\n- `revenue` — total revenue from completed orders\n\nOne row per category. Sort by revenue descending.",
     "expected_columns": [
       "category",
       "product_name",
@@ -500,11 +500,11 @@
     ],
     "solution": "WITH product_revenue AS (\n    SELECT p.product_id, p.product_name, p.category,\n           ROUND(SUM(oi.quantity * oi.unit_price), 2) AS revenue\n    FROM products p\n    JOIN order_items oi ON p.product_id = oi.product_id\n    JOIN orders o ON oi.order_id = o.order_id\n    WHERE o.status = 'completed'\n    GROUP BY p.product_id, p.product_name, p.category\n),\nranked AS (\n    SELECT *,\n           ROW_NUMBER() OVER (PARTITION BY category ORDER BY revenue DESC) AS rn\n    FROM product_revenue\n)\nSELECT category, product_name, revenue\nFROM ranked\nWHERE rn = 1\nORDER BY revenue DESC",
     "common_mistakes": [
-      "Using MAX(revenue) with GROUP BY category — gets the max value but loses the product name.",
-      "Using RANK() instead of ROW_NUMBER() — if there's a tie, both get rank 1 and you'd return 2 rows per category.",
-      "Trying to filter rn = 1 in the same SELECT as ROW_NUMBER() — window functions can't be in WHERE, must wrap."
+      "Using MAX(revenue) with GROUP BY category — finds the top revenue figure but loses the product name that goes with it, since MAX() only returns the aggregated value, not the whole row it came from.",
+      "Using RANK() instead of ROW_NUMBER() — if two products tie for first in a category, RANK() would give both rank 1, returning two rows for that one category instead of the single row the report needs.",
+      "Trying to filter rn = 1 in the same SELECT that computes ROW_NUMBER() — window function results can't be filtered at the same query level they're computed at; they need to be wrapped in an outer query or CTE first."
     ],
-    "key_concept": "'Top N per group' is one of the most common interview patterns. Standard solution: (1) CTE to rank with ROW_NUMBER() OVER (PARTITION BY group ORDER BY metric DESC), (2) filter WHERE rn = 1. Cannot filter window function results in the same query level."
+    "key_concept": "'Top N per group' is one of the single most common real-world query patterns, and the standard solution is always the same two-step shape: rank rows within each group using ROW_NUMBER() OVER (PARTITION BY group ORDER BY metric DESC), then filter to WHERE rn = 1 (or rn <= N) in an outer query. PARTITION BY is the key piece — it resets the ranking counter separately for each category, the same way GROUP BY resets an aggregate calculation for each group."
   },
   {
     "id": "H-003",
@@ -523,7 +523,7 @@
       "order_items",
       "customers"
     ],
-    "problem": "The analytics team wants to understand purchase frequency. For each completed order (except the first), calculate days since the customer's previous completed order.\n\nReturn:\n- `customer_name`\n- `order_date` — current order date\n- `order_value` — value of this order\n- `prev_order_date` — previous order date for this customer\n- `days_since_last_order` — integer days between orders\n\nOnly show rows where a previous order exists. Sort by customer_name, then order_date.",
+    "problem": "Andina Retail Group's replenishment team wants to understand purchase cadence customer by customer — how many days typically pass between one order and the next — to time reorder reminder emails well.\n\nFor each completed order (except the first), calculate days since the customer's previous completed order.\n\nReturn:\n- `customer_name`\n- `order_date` — current order date\n- `order_value` — value of this order\n- `prev_order_date` — previous order date for this customer\n- `days_since_last_order` — integer days between orders\n\nOnly show rows where a previous order exists. Sort by customer_name, then order_date.",
     "expected_columns": [
       "customer_name",
       "order_date",
@@ -533,11 +533,11 @@
     ],
     "solution": "WITH customer_orders AS (\n    SELECT o.customer_id,\n           c.customer_name,\n           o.order_date,\n           ROUND(SUM(oi.quantity * oi.unit_price), 2) AS order_value,\n           LAG(o.order_date) OVER (PARTITION BY o.customer_id ORDER BY o.order_date) AS prev_order_date\n    FROM orders o\n    JOIN order_items oi ON o.order_id = oi.order_id\n    JOIN customers c ON o.customer_id = c.customer_id\n    WHERE o.status = 'completed'\n    GROUP BY o.order_id, o.customer_id, c.customer_name, o.order_date\n)\nSELECT customer_name,\n       order_date,\n       order_value,\n       prev_order_date,\n       CAST(julianday(order_date) - julianday(prev_order_date) AS INTEGER) AS days_since_last_order\nFROM customer_orders\nWHERE prev_order_date IS NOT NULL\nORDER BY customer_name, order_date",
     "common_mistakes": [
-      "Self-join on customer + previous date — complex and slow; LAG is the right tool.",
-      "Not partitioning by customer_id — LAG picks up the previous row globally, not per customer.",
-      "DATEDIFF in SQLite doesn't exist — use julianday(d1) - julianday(d2). In MySQL: DATEDIFF(d1, d2)."
+      "Self-joining orders to itself on customer plus 'closest earlier date' — technically possible but considerably more complex and slower than a window function purpose-built for this.",
+      "Forgetting PARTITION BY customer_id in the LAG() call — without it, LAG picks up the previous row across the entire table regardless of which customer it belongs to, mixing customers' order sequences together.",
+      "Reaching for a DATEDIFF function that doesn't exist in this dialect — SQLite has no DATEDIFF; julianday(d1) - julianday(d2) is the equivalent, while MySQL does have DATEDIFF(d1, d2) natively."
     ],
-    "key_concept": "LAG(col) OVER (PARTITION BY customer_id ORDER BY order_date) gives the previous value within each customer's sequence. Date difference: MySQL DATEDIFF(d1,d2), PostgreSQL d1-d2, SQLite julianday(d1)-julianday(d2)."
+    "key_concept": "LAG(col) OVER (PARTITION BY customer_id ORDER BY order_date) is what makes this question answerable at all: PARTITION BY keeps each customer's order history in its own separate sequence, so the 'previous row' LAG returns is always that same customer's actual previous order, never someone else's. This is the general recipe for any 'time since the last event, per entity' metric — replenishment cadence, days since last login, days since last support ticket."
   },
   {
     "id": "H-004",
@@ -554,7 +554,7 @@
       "employees",
       "salaries"
     ],
-    "problem": "HR wants an audit report showing every salary change per employee — the old salary, the new salary, and the percentage increase.\n\nReturn:\n- `employee_name`\n- `period_start` — start date of the OLD salary\n- `period_end` — end date of the OLD salary\n- `salary` — old salary amount\n- `next_salary` — new salary amount after the raise\n- `pct_change` — percentage change, rounded to 1 decimal\n\nSort by employee_id, then period_start.",
+    "problem": "Andina Retail Group's HR team is preparing for a compensation audit and needs a full paper trail of every salary change per employee — the old salary, the new salary, and the size of the raise.\n\nReturn:\n- `employee_name`\n- `period_start` — start date of the OLD salary\n- `period_end` — end date of the OLD salary\n- `salary` — old salary amount\n- `next_salary` — new salary amount after the raise\n- `pct_change` — percentage change, rounded to 1 decimal\n\nSort by employee_id, then period_start.",
     "expected_columns": [
       "employee_name",
       "period_start",
@@ -565,11 +565,11 @@
     ],
     "solution": "SELECT e.first_name || ' ' || e.last_name AS employee_name,\n       s1.from_date AS period_start,\n       COALESCE(s1.to_date, '9999-12-31') AS period_end,\n       s1.amount AS salary,\n       s2.amount AS next_salary,\n       ROUND(100.0 * (s2.amount - s1.amount) / s1.amount, 1) AS pct_change\nFROM salaries s1\nJOIN salaries s2 ON s1.employee_id = s2.employee_id\n                AND s2.from_date = COALESCE(\n                    (SELECT MIN(s3.from_date) FROM salaries s3\n                     WHERE s3.employee_id = s1.employee_id\n                       AND s3.from_date > s1.from_date), '9999-01-01')\nJOIN employees e ON s1.employee_id = e.employee_id\nWHERE s2.from_date != '9999-01-01'\nORDER BY e.employee_id, s1.from_date",
     "common_mistakes": [
-      "Self-joining on to_date = from_date — fragile if there are gaps or overlaps in dates.",
-      "Not handling NULL to_date — COALESCE to a sentinel value like '9999-12-31'.",
-      "Returning current salary row — filter WHERE s2.from_date != sentinel to exclude the last salary."
+      "Self-joining on to_date = from_date directly — fragile the moment there's any gap or overlap between consecutive salary periods in the data.",
+      "Not handling a NULL to_date on the most recent salary row — COALESCE to a far-future sentinel date like '9999-12-31' so it sorts and compares correctly.",
+      "Forgetting to exclude the employee's current (most recent) salary row from the output — since it has no 'next' salary yet, it needs to be filtered out rather than shown with a meaningless next_salary."
     ],
-    "key_concept": "Self-join on the same table with different aliases is the standard pattern for temporal sequences. Subquery to find the 'next' record: MIN(from_date) WHERE from_date > current. SCD Type 2 pattern is foundational in data warehousing."
+    "key_concept": "Self-joining a temporal history table to itself, with each alias representing a different point in the timeline (here, 'this salary' and 'the one that came right after it'), is the standard way to reconstruct a sequence of changes from a table that only stores each period as its own row. Combined with the SCD Type 2 pattern from M-005, this is exactly how you'd build a raise-history audit trail from any properly-modeled slowly changing dimension."
   },
   {
     "id": "H-005",
@@ -587,7 +587,7 @@
       "orders",
       "customers"
     ],
-    "problem": "The retention team wants to flag customers who are overdue for their next purchase based on their own purchase cadence.\n\nLogic: A customer is \"at risk\" if:\n- They have at least 2 completed orders (so we can establish a cadence)\n- The days since their last order > 1.5× the gap between their last two orders\n\nUse reference date **2023-06-01** as \"today\".\n\nReturn:\n- `customer_name`\n- `last_order_date`\n- `avg_days_between_orders` — gap between last two completed orders\n- `days_since_last` — days from last order to 2023-06-01\n\nSort by days_since_last descending.",
+    "problem": "Andina Retail Group's retention team wants to move from reactive to proactive: instead of waiting for a customer to obviously churn, flag anyone who's already overdue for their next purchase based on their own historical buying rhythm.\n\nLogic: A customer is \"at risk\" if:\n- They have at least 2 completed orders (so we can establish a cadence)\n- The days since their last order > 1.5× the gap between their last two orders\n\nUse reference date **2023-06-01** as \"today\".\n\nReturn:\n- `customer_name`\n- `last_order_date`\n- `avg_days_between_orders` — gap between last two completed orders\n- `days_since_last` — days from last order to 2023-06-01\n\nSort by days_since_last descending.",
     "expected_columns": [
       "customer_name",
       "last_order_date",
@@ -596,11 +596,11 @@
     ],
     "solution": "WITH last_two_orders AS (\n    SELECT customer_id, order_date,\n           LAG(order_date) OVER (PARTITION BY customer_id ORDER BY order_date) AS prev_date,\n           ROW_NUMBER() OVER (PARTITION BY customer_id ORDER BY order_date DESC) AS rn\n    FROM orders\n    WHERE status = 'completed'\n),\nat_risk AS (\n    SELECT customer_id,\n           order_date AS last_order_date,\n           prev_date,\n           CAST(julianday(order_date) - julianday(prev_date) AS INTEGER) AS days_between\n    FROM last_two_orders\n    WHERE rn = 1 AND prev_date IS NOT NULL\n)\nSELECT c.customer_name,\n       a.last_order_date,\n       a.days_between AS avg_days_between_orders,\n       CAST(julianday('2023-06-01') - julianday(a.last_order_date) AS INTEGER) AS days_since_last\nFROM at_risk a\nJOIN customers c ON a.customer_id = c.customer_id\nWHERE CAST(julianday('2023-06-01') - julianday(a.last_order_date) AS INTEGER) > a.days_between * 1.5\nORDER BY days_since_last DESC",
     "common_mistakes": [
-      "Averaging all gaps instead of using only the most recent gap — misses recency signal.",
-      "Using ROW_NUMBER() DESC without filtering rn=1 — returns all rows not just the latest.",
-      "Not handling customers with only 1 order — WHERE prev_date IS NOT NULL is essential."
+      "Averaging every historical gap for a customer instead of using only their most recent gap — dilutes the recency signal a churn-risk flag actually needs.",
+      "Using ROW_NUMBER() DESC without then filtering WHERE rn = 1 — returns every historical row instead of isolating just each customer's latest order.",
+      "Not excluding customers with only a single order — WHERE prev_date IS NOT NULL is what filters out customers you don't yet have a baseline cadence for."
     ],
-    "key_concept": "Multi-step business logic in CTEs: each CTE handles one step of the logic. ROW_NUMBER() + LAG() in the same window query to get both 'is this the latest row' and 'what was the previous value'. Common in churn prediction pipelines."
+    "key_concept": "This question chains several patterns from earlier in this problem set into one multi-step business rule: each CTE handles exactly one piece of the logic (find the latest order and its predecessor, then apply the business threshold), which is far easier to write and debug than trying to express the whole rule in a single flat query. Combining ROW_NUMBER() (to isolate 'the latest row per customer') with LAG() (to grab 'the value from the row before it') in the same windowed query is a genuinely powerful combination that shows up throughout real churn-detection and anomaly-flagging pipelines."
   },
   {
     "id": "H-006",
@@ -617,7 +617,7 @@
       "employees",
       "salaries"
     ],
-    "problem": "HR wants a compensation overview showing each employee's rank and deviation from their department average.\n\nReturn:\n- `department`\n- `employee_name`\n- `salary` — current salary\n- `salary_rank` — rank within department (1 = highest), ties share the same rank (use DENSE_RANK)\n- `dept_avg` — average salary in the department, rounded to 2 decimals\n- `diff_from_avg` — salary minus dept_avg, rounded to 2 decimals\n\nSort by department, then salary_rank.",
+    "problem": "Andina Retail Group's HR leadership wants a single compensation overview showing each employee's rank within their own department and how far their pay sits from that department's average — without collapsing any individual employee detail into a summary row.\n\nReturn:\n- `department`\n- `employee_name`\n- `salary` — current salary\n- `salary_rank` — rank within department (1 = highest), ties share the same rank (use DENSE_RANK)\n- `dept_avg` — average salary in the department, rounded to 2 decimals\n- `diff_from_avg` — salary minus dept_avg, rounded to 2 decimals\n\nSort by department, then salary_rank.",
     "expected_columns": [
       "department",
       "employee_name",
@@ -628,12 +628,12 @@
     ],
     "solution": "SELECT department,\n       first_name || ' ' || last_name AS employee_name,\n       s.amount AS salary,\n       DENSE_RANK() OVER (PARTITION BY department ORDER BY s.amount DESC) AS salary_rank,\n       ROUND(AVG(s.amount) OVER (PARTITION BY department), 2) AS dept_avg,\n       ROUND(s.amount - AVG(s.amount) OVER (PARTITION BY department), 2) AS diff_from_avg\nFROM employees e\nJOIN salaries s ON e.employee_id = s.employee_id\nWHERE s.to_date IS NULL\nORDER BY department, salary_rank",
     "common_mistakes": [
-      "Using RANK() — skips numbers after ties (1,2,2,4); DENSE_RANK gives 1,2,2,3.",
-      "Using ROW_NUMBER() — always unique, gives arbitrary tie-breaking.",
-      "Forgetting PARTITION BY — ranks employees globally, not per department.",
-      "Using GROUP BY instead of window functions — collapses rows, loses individual details."
+      "Using RANK() instead of DENSE_RANK() — RANK() skips numbers after a tie (1, 2, 2, 4), while DENSE_RANK() doesn't (1, 2, 2, 3), and this report specifically calls for the no-gaps version.",
+      "Using ROW_NUMBER() — always assigns a unique rank even to exact ties, arbitrarily breaking them instead of showing tied employees at the same rank.",
+      "Forgetting PARTITION BY department on any of the three window functions — without it, ranks and averages would be computed globally across the whole company instead of within each department.",
+      "Reaching for GROUP BY instead of window functions — GROUP BY would collapse each department down to one summary row, losing exactly the individual-employee detail this report needs to keep."
     ],
-    "key_concept": "RANK vs DENSE_RANK vs ROW_NUMBER: RANK skips (1,2,2,4), DENSE_RANK doesn't (1,2,2,3), ROW_NUMBER always unique (1,2,3,4). Multiple window functions with the same PARTITION BY in one SELECT is clean and efficient — no self-join needed."
+    "key_concept": "RANK, DENSE_RANK, and ROW_NUMBER differ only in how they handle ties: RANK leaves gaps after a tie (1,2,2,4), DENSE_RANK doesn't (1,2,2,3), and ROW_NUMBER never allows ties at all (1,2,3,4), even among equal values. Stacking multiple window functions that share the same PARTITION BY in one SELECT — a rank, an average, and a difference — is a clean, efficient way to enrich every individual row with group-level context, without the self-join or extra subquery that would otherwise be needed."
   },
   {
     "id": "X-001",
@@ -651,7 +651,7 @@
       "order_items",
       "products"
     ],
-    "problem": "Finance wants a pivot table: one row per month, one column per product category showing revenue.\n\nReturn:\n- `month` — YYYY-MM\n- `electronics` — revenue from Electronics\n- `furniture` — revenue from Furniture\n- `stationery` — revenue from Stationery\n- `total` — total across all categories\n\nCompleted orders only. Sort by month.",
+    "problem": "Andina Retail Group's finance team wants their monthly board deck to show category revenue side by side, spreadsheet-style — one row per month, one column per category — rather than a long list they'd have to mentally cross-tabulate themselves.\n\nReturn:\n- `month` — YYYY-MM\n- `electronics` — revenue from Electronics\n- `furniture` — revenue from Furniture\n- `stationery` — revenue from Stationery\n- `total` — total across all categories\n\nCompleted orders only. Sort by month.",
     "expected_columns": [
       "month",
       "electronics",
@@ -661,11 +661,11 @@
     ],
     "solution": "SELECT strftime('%Y-%m', o.order_date) AS month,\n       ROUND(SUM(CASE WHEN p.category = 'Electronics' THEN oi.quantity * oi.unit_price ELSE 0 END), 2) AS electronics,\n       ROUND(SUM(CASE WHEN p.category = 'Furniture'   THEN oi.quantity * oi.unit_price ELSE 0 END), 2) AS furniture,\n       ROUND(SUM(CASE WHEN p.category = 'Stationery'  THEN oi.quantity * oi.unit_price ELSE 0 END), 2) AS stationery,\n       ROUND(SUM(oi.quantity * oi.unit_price), 2) AS total\nFROM orders o\nJOIN order_items oi ON o.order_id = oi.order_id\nJOIN products p ON oi.product_id = p.product_id\nWHERE o.status = 'completed'\nGROUP BY month\nORDER BY month",
     "common_mistakes": [
-      "MySQL doesn't have a PIVOT operator — always use conditional aggregation.",
-      "Using COUNT instead of SUM for revenue.",
-      "Forgetting ELSE 0 — ELSE NULL makes SUM include NULLs which still works but is confusing."
+      "Looking for a built-in PIVOT keyword — MySQL and SQLite have no such operator; conditional aggregation is the universal workaround.",
+      "Using COUNT instead of SUM when the report needs revenue amounts, not row counts.",
+      "Leaving off ELSE 0 in the CASE expression — an implicit ELSE NULL still technically works inside SUM (NULLs are skipped), but it's easy to reason about incorrectly, so an explicit ELSE 0 is clearer and safer."
     ],
-    "key_concept": "MySQL pivot = SUM(CASE WHEN category = 'X' THEN value ELSE 0 END). This is the universal pattern since MySQL has no PIVOT operator. SQL Cookbook ch.12: 'Transposing a Result Set'. Dynamic pivot (unknown categories) requires dynamic SQL."
+    "key_concept": "SUM(CASE WHEN category = 'X' THEN value ELSE 0 END), repeated once per column you want to spread out, is the universal pivot pattern in SQL dialects (like MySQL and SQLite) that have no native PIVOT operator. This is exactly the same underlying idea as a pivot table in a spreadsheet or a matrix visual in a BI tool — reshaping rows of category-tagged data into one column per category — just expressed directly in SQL instead of a point-and-click interface. A pivot with categories not known in advance would require dynamically generating this SQL, since the column list itself has to be fixed at query-write time."
   },
   {
     "id": "X-002",
@@ -684,7 +684,7 @@
       "orders",
       "order_items"
     ],
-    "problem": "The data science team needs a CLV report to segment customers by value. For each customer who has made at least one completed purchase:\n\nReturn:\n- `customer_name`\n- `country`\n- `lifetime_value` — total revenue, rounded to 2 decimals\n- `total_orders` — number of completed orders\n- `days_active` — days between first and last order (0 if only one order)\n- `avg_order_value` — lifetime_value / total_orders, rounded to 2 decimals\n- `pct_of_total_revenue` — this customer's % of all revenue, rounded to 2 decimals\n- `value_quartile` — 1 = top 25%, 4 = bottom 25% (use NTILE(4) by lifetime_value DESC)\n\nSort by lifetime_value descending.",
+    "problem": "Andina Retail Group's data science team is building a customer-value segmentation model, and CLV (Customer Lifetime Value) is the foundational metric everything else gets built on top of. For each customer who has made at least one completed purchase:\n\nReturn:\n- `customer_name`\n- `country`\n- `lifetime_value` — total revenue, rounded to 2 decimals\n- `total_orders` — number of completed orders\n- `days_active` — days between first and last order (0 if only one order)\n- `avg_order_value` — lifetime_value / total_orders, rounded to 2 decimals\n- `pct_of_total_revenue` — this customer's % of all revenue, rounded to 2 decimals\n- `value_quartile` — 1 = top 25%, 4 = bottom 25% (use NTILE(4) by lifetime_value DESC)\n\nSort by lifetime_value descending.",
     "expected_columns": [
       "customer_name",
       "country",
@@ -697,11 +697,11 @@
     ],
     "solution": "WITH customer_revenue AS (\n    SELECT o.customer_id,\n           SUM(oi.quantity * oi.unit_price) AS lifetime_value,\n           MIN(o.order_date) AS first_order,\n           MAX(o.order_date) AS last_order,\n           COUNT(DISTINCT o.order_id) AS total_orders,\n           CAST(julianday(MAX(o.order_date)) - julianday(MIN(o.order_date)) AS INTEGER) AS days_active\n    FROM orders o\n    JOIN order_items oi ON o.order_id = oi.order_id\n    WHERE o.status = 'completed'\n    GROUP BY o.customer_id\n)\nSELECT c.customer_name,\n       c.country,\n       ROUND(cr.lifetime_value, 2) AS lifetime_value,\n       cr.total_orders,\n       cr.days_active,\n       ROUND(cr.lifetime_value / cr.total_orders, 2) AS avg_order_value,\n       ROUND(100.0 * cr.lifetime_value / SUM(cr.lifetime_value) OVER (), 2) AS pct_of_total_revenue,\n       NTILE(4) OVER (ORDER BY cr.lifetime_value DESC) AS value_quartile\nFROM customer_revenue cr\nJOIN customers c ON cr.customer_id = c.customer_id\nORDER BY cr.lifetime_value DESC",
     "common_mistakes": [
-      "Using AVG(unit_price) for avg_order_value — wrong, must be total_revenue / total_orders.",
-      "SUM() OVER () — the empty OVER() computes the grand total across all rows; easy to miss.",
-      "NTILE(4) ORDER BY ASC — puts lowest value in quartile 1; use DESC for '1 = best'."
+      "Using AVG(unit_price) for avg_order_value — the wrong metric entirely; it has to be total lifetime revenue divided by total order count.",
+      "Missing what an empty SUM() OVER () actually does — with no PARTITION BY and no ORDER BY, it computes one grand total across all rows in the result and repeats it on every row, which is exactly the denominator a percent-of-total calculation needs.",
+      "Using NTILE(4) with ORDER BY ascending — that would put the lowest-value customers in quartile 1; ORDER BY lifetime_value DESC is what makes quartile 1 mean 'top 25%.'"
     ],
-    "key_concept": "CLV query combines aggregation CTE + multiple window functions in the outer SELECT. SUM() OVER () (no partition, no order) = grand total on every row — used for percentage calculations. NTILE(n) divides rows into n equal buckets."
+    "key_concept": "This CLV query stacks two techniques covered separately elsewhere in this problem set: a CTE to pre-aggregate each customer down to their lifetime totals, then multiple window functions in the outer query to add group-relative context (percent of total, quartile bucket) without collapsing any individual customer row. A bare SUM() OVER() — no PARTITION BY, no ORDER BY — is worth remembering as its own idiom: it's how you get a single grand-total value repeated on every row, which is exactly what a percent-of-total calculation needs as its denominator."
   },
   {
     "id": "X-003",
@@ -717,7 +717,7 @@
     "schema_used": [
       "employees"
     ],
-    "problem": "HR wants to visualize the complete org chart showing reporting lines.\n\nReturn:\n- `level` — depth in hierarchy (top managers = 1)\n- `name` — full name\n- `department`\n- `path` — full reporting chain, e.g. \"Sarah Connor > John Smith\"\n\nSort by path (shows the tree structure naturally).",
+    "problem": "Andina Retail Group's HR team is documenting reporting lines across its regional distribution centers ahead of a reorganization, and they want the full org chart rendered as readable reporting-chain paths, not just a flat table of employee-to-manager IDs.\n\nReturn:\n- `level` — depth in hierarchy (top managers = 1)\n- `name` — full name\n- `department`\n- `path` — full reporting chain, e.g. \"Sarah Connor > John Smith\"\n\nSort by path (shows the tree structure naturally).",
     "expected_columns": [
       "level",
       "name",
@@ -726,12 +726,11 @@
     ],
     "solution": "WITH RECURSIVE org_chart AS (\n    SELECT employee_id,\n           first_name || ' ' || last_name AS name,\n           department, manager_id, 1 AS level,\n           first_name || ' ' || last_name AS path\n    FROM employees\n    WHERE manager_id IS NULL\n    UNION ALL\n    SELECT e.employee_id, e.first_name || ' ' || e.last_name,\n           e.department, e.manager_id, oc.level + 1,\n           oc.path || ' > ' || e.first_name || ' ' || e.last_name\n    FROM employees e\n    JOIN org_chart oc ON e.manager_id = oc.employee_id\n)\nSELECT level, name, department, path\nFROM org_chart\nORDER BY path",
     "common_mistakes": [
-      "Anchor member must be the base case (no manager_id IS NULL = top of hierarchy).",
-      "Must use UNION ALL not UNION — UNION deduplicates and can remove valid paths.",
-      "No cycle protection — in production always add a depth limit or cycle check.",
-      "MySQL 8+ required for recursive CTEs — MySQL 5.x doesn't support them."
+      "Getting the anchor member wrong — it must be the base case, the employees with no manager (WHERE manager_id IS NULL), which is where the recursion starts from.",
+      "Using UNION instead of UNION ALL — plain UNION deduplicates rows, which can incorrectly collapse two different employees who happen to have identical name/department/level combinations.",
+      "Skipping cycle protection — this dataset is a clean tree with no loops, but a production version of this query over real, occasionally-messy org data should add a depth limit or explicit cycle check to avoid an infinite recursive loop."
     ],
-    "key_concept": "Recursive CTE structure: (1) Anchor: base case rows (WHERE manager_id IS NULL), (2) UNION ALL, (3) Recursive member: joins the CTE to itself. Use WITH RECURSIVE in MySQL/SQLite. String concatenation builds the path. SQL Cookbook ch.13."
+    "key_concept": "A recursive CTE has three parts: an anchor member (the base-case rows to start from), a UNION ALL, and a recursive member that joins the CTE back to itself, growing the result one level at a time until no more matches are found. This is the standard way to query any hierarchy — org charts, product category trees, bill-of-materials structures in manufacturing — where the number of levels isn't fixed in advance and a fixed number of JOINs can't cover every possible depth."
   },
   {
     "id": "X-004",
@@ -749,7 +748,7 @@
       "orders",
       "products"
     ],
-    "problem": "The e-commerce team wants to understand which product pairs are most frequently co-purchased to improve recommendations.\n\nReturn:\n- `product_a` — first product name\n- `product_b` — second product name\n- `co_purchase_count` — orders containing both products\n- `pct_of_orders` — what % of all completed orders contain this pair, rounded to 1 decimal\n\nOnly completed orders. Only pairs co-purchased at least once.\nSort by co_purchase_count DESC, then product_a.",
+    "problem": "Andina Retail Group's e-commerce team wants to go beyond simple co-purchase counts (covered in M-004) and understand co-purchases as a share of overall order volume — the foundation of real association-rule mining used to drive recommendation engines.\n\nReturn:\n- `product_a` — first product name\n- `product_b` — second product name\n- `co_purchase_count` — orders containing both products\n- `pct_of_orders` — what % of all completed orders contain this pair, rounded to 1 decimal\n\nOnly completed orders. Only pairs co-purchased at least once.\nSort by co_purchase_count DESC, then product_a.",
     "expected_columns": [
       "product_a",
       "product_b",
@@ -758,11 +757,11 @@
     ],
     "solution": "SELECT p1.product_name AS product_a,\n       p2.product_name AS product_b,\n       COUNT(DISTINCT oi1.order_id) AS co_purchase_count,\n       ROUND(100.0 * COUNT(DISTINCT oi1.order_id) /\n             (SELECT COUNT(DISTINCT order_id) FROM orders WHERE status='completed'), 1) AS pct_of_orders\nFROM order_items oi1\nJOIN order_items oi2 ON oi1.order_id = oi2.order_id\n                    AND oi1.product_id < oi2.product_id\nJOIN products p1 ON oi1.product_id = p1.product_id\nJOIN products p2 ON oi2.product_id = p2.product_id\nJOIN orders o ON oi1.order_id = o.order_id\nWHERE o.status = 'completed'\nGROUP BY oi1.product_id, oi2.product_id, p1.product_name, p2.product_name\nHAVING co_purchase_count >= 1\nORDER BY co_purchase_count DESC, product_a",
     "common_mistakes": [
-      "Using != instead of < for the self-join — doubles every pair.",
-      "Dividing by COUNT of all products instead of COUNT of orders.",
-      "Not filtering by order status — inflates counts with cancelled orders."
+      "Using != instead of < for the self-join condition — doubles every pair, the same trap as M-004.",
+      "Dividing by the count of distinct products instead of the count of completed orders — answers a completely different, meaningless question.",
+      "Forgetting to filter by order status before counting — lets line items from cancelled orders inflate the co-purchase figures."
     ],
-    "key_concept": "Self-join on order_items with product_id_1 < product_id_2 prevents duplicates and self-pairing. Scalar subquery in SELECT for the denominator (total orders). This is the foundation of association rule mining / collaborative filtering."
+    "key_concept": "This extends the self-join pairing pattern from M-004 with a scalar subquery in the SELECT list to compute a percentage-of-total denominator — the same 'grand total repeated for every row' idea seen with the empty SUM() OVER() window function in X-002, just expressed here as a subquery instead. product_id_1 < product_id_2 in the join condition remains the key trick that prevents both double-counted pairs and a product being paired with itself, and this exact structure is the starting point for real association-rule mining and collaborative-filtering recommendation systems."
   },
   {
     "id": "X-005",
@@ -779,7 +778,7 @@
       "employees",
       "salaries"
     ],
-    "problem": "The compensation team wants a full statistical breakdown of current salaries using percentile functions.\n\nReturn:\n- `employee_name`\n- `department`\n- `salary` — current salary\n- `salary_band` — 'Top 25%', 'Upper Mid', 'Lower Mid', 'Bottom 25%' based on NTILE(4)\n- `percentile_rank` — PERCENT_RANK as a percentage, rounded to 1 decimal (0 = lowest, 100 = highest)\n- `cumulative_dist` — CUME_DIST as a percentage, rounded to 1 decimal\n\nSort by salary descending.",
+    "problem": "Andina Retail Group's compensation team is benchmarking pay across the whole company ahead of a market-rate adjustment, and they want a full statistical breakdown using percentile functions rather than simple department averages.\n\nReturn:\n- `employee_name`\n- `department`\n- `salary` — current salary\n- `salary_band` — 'Top 25%', 'Upper Mid', 'Lower Mid', 'Bottom 25%' based on NTILE(4)\n- `percentile_rank` — PERCENT_RANK as a percentage, rounded to 1 decimal (0 = lowest, 100 = highest)\n- `cumulative_dist` — CUME_DIST as a percentage, rounded to 1 decimal\n\nSort by salary descending.",
     "expected_columns": [
       "employee_name",
       "department",
@@ -790,10 +789,10 @@
     ],
     "solution": "WITH salary_bands AS (\n    SELECT e.employee_id,\n           e.first_name || ' ' || e.last_name AS employee_name,\n           e.department,\n           s.amount AS salary,\n           NTILE(4) OVER (ORDER BY s.amount) AS quartile,\n           ROUND(PERCENT_RANK() OVER (ORDER BY s.amount) * 100, 1) AS percentile_rank,\n           ROUND(CUME_DIST() OVER (ORDER BY s.amount) * 100, 1) AS cumulative_dist\n    FROM employees e\n    JOIN salaries s ON e.employee_id = s.employee_id\n    WHERE s.to_date IS NULL\n)\nSELECT employee_name, department, salary,\n       CASE quartile\n           WHEN 1 THEN 'Bottom 25%'\n           WHEN 2 THEN 'Lower Mid'\n           WHEN 3 THEN 'Upper Mid'\n           WHEN 4 THEN 'Top 25%'\n       END AS salary_band,\n       percentile_rank,\n       cumulative_dist\nFROM salary_bands\nORDER BY salary DESC",
     "common_mistakes": [
-      "NTILE(4) ORDER BY ASC puts lowest values in quartile 1 — expected for 'Bottom 25%'.",
-      "PERCENT_RANK returns 0 to 1 (not 0 to 100) — multiply by 100.",
-      "PERCENT_RANK vs CUME_DIST: PERCENT_RANK = (rank-1)/(n-1), CUME_DIST = rank/n — different for ties."
+      "Assuming NTILE(4) needs ORDER BY DESC — ordering ascending is actually correct here, since it puts the lowest salaries in quartile 1, matching the 'Bottom 25%' label.",
+      "Forgetting that PERCENT_RANK returns a fraction from 0 to 1, not a percentage — it needs to be multiplied by 100 to match what the report is asking for.",
+      "Treating PERCENT_RANK and CUME_DIST as interchangeable — PERCENT_RANK is (rank − 1) / (n − 1) while CUME_DIST is rank / n, and the two diverge noticeably whenever there are ties in the data."
     ],
-    "key_concept": "NTILE(n): divides rows into n equal buckets. PERCENT_RANK: what % of rows have a lower value (0 to 1). CUME_DIST: what % of rows have value ≤ current (always > 0). These are standard in compensation benchmarking and data science feature engineering."
+    "key_concept": "NTILE(n) divides an ordered result set into n equal-sized buckets — useful for quartiles, deciles, or any 'split into even groups' need. PERCENT_RANK answers 'what fraction of rows have a strictly lower value than me,' while CUME_DIST answers 'what fraction of rows have a value less than or equal to mine' — the two are easy to conflate but genuinely different once ties enter the picture. These percentile functions are standard tools in compensation benchmarking, and the same functions apply directly to any 'where does this value sit within its distribution' business question, like ranking a store's performance against its peers."
   }
 ]
