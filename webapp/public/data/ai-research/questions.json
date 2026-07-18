@@ -1,0 +1,752 @@
+[
+  {
+    "id": "air-001",
+    "topic": "research-problem-formulation",
+    "question": "Andina Retail Group's AI researcher, before starting any experimental work, first spends significant time formulating a precise, testable research question ('does incorporating customer browsing history improve demand-forecast accuracy beyond what purchase history alone provides, and by how much?') rather than starting with a vague goal like 'improve our forecasting with AI.' Why does this precise formulation step matter so much for genuine research, rather than jumping straight into building and testing models?",
+    "options": {
+      "a": "A vague, open-ended goal is always more scientifically rigorous than a precise, testable research question, the reverse of sound research practice",
+      "b": "Precisely formulating a research question has no genuine effect on how subsequent experimental work should actually be designed or conducted, making the formulation step an unnecessary formality",
+      "c": "This concept has no relationship to the hypothesis testing or experimental design principles covered elsewhere in AI and data science research",
+      "d": "A vague goal like 'improve forecasting with AI' provides no clear criterion for knowing when the research has actually succeeded, failed, or answered anything definitive — a precise, testable question with a specific comparison built in ('beyond what purchase history alone provides') defines exactly what evidence would count as an answer, letting the subsequent experimental design be built specifically to produce that evidence, rather than conducting open-ended exploration with no clear standard for what would actually constitute a genuine finding"
+    },
+    "correct": "d",
+    "theory": {
+      "text": "This introduces the research-problem-formulation topic with a foundational discipline that distinguishes genuine research from open-ended tinkering. A vague goal like 'improve forecasting with AI' has no built-in criterion for success — any model that performs even marginally differently could be claimed as 'improvement,' with no clear standard for what would actually count as a meaningful, well-supported finding. A precise, testable question — specifying exactly what's being compared against what, and what outcome would actually answer it — defines concrete success criteria upfront, which then directly shapes what data needs to be collected, what baseline needs to be compared against, and what statistical evidence would actually be convincing. This precise formulation step, done before any experimental work begins, is what separates genuine research (aimed at answering a specific, falsifiable question) from unfocused exploration that might stumble onto something interesting but has no principled way of knowing whether it actually has."
+    }
+  },
+  {
+    "id": "air-002",
+    "topic": "research-problem-formulation",
+    "question": "Andina Retail Group's AI researcher distinguishes a genuinely novel research contribution (a new technique for handling a specific kind of retail demand pattern that hasn't been addressed in existing published work) from simply reapplying an existing, well-established technique to a new dataset. Why does this distinction matter for deciding whether a project is genuinely 'research' versus routine applied engineering?",
+    "options": {
+      "a": "There is no meaningful distinction between genuine research and routine applied engineering, making this consideration irrelevant to how a project should actually be scoped or represented",
+      "b": "Applying an existing, well-established technique to any new dataset always constitutes a genuinely novel research contribution, regardless of whether the technique itself is already thoroughly understood and published",
+      "c": "This concept has no relationship to the precise research question formulation already covered in the previous question",
+      "d": "Genuine research is specifically expected to advance the state of knowledge in some identifiable way — a new technique, a new theoretical insight, or a genuinely novel finding not already established in existing work — while applying an already well-understood, published technique to a new but structurally similar dataset, however valuable that work might be operationally, doesn't itself constitute a new contribution to the field's actual body of knowledge, an important distinction for correctly scoping and honestly representing what a specific project is actually claiming to accomplish"
+    },
+    "correct": "d",
+    "theory": {
+      "text": "This closes the research-problem-formulation topic by drawing a genuinely important, honest distinction that matters for correctly scoping and representing a project's actual claims. Applying an existing, already well-understood technique to a new but structurally similar business dataset can be genuinely valuable, practically important work — but it isn't the same thing as advancing the field's actual body of knowledge, which is specifically what distinguishes 'research' in the more formal, contribution-oriented sense from skilled applied engineering. Being honest and precise about which category a specific project actually falls into matters directly for how its results should be represented and communicated: a genuinely novel technique deserves to be positioned and evaluated as a real contribution against existing published work, while a straightforward application of established methods should be represented accurately as exactly that — valuable, competent applied work, not overstated as a novel scientific contribution it doesn't actually constitute."
+    }
+  },
+  {
+    "id": "air-003",
+    "topic": "literature-review-methods",
+    "question": "Andina Retail Group's AI researcher conducts a 'systematic literature review' — following an explicit, documented search and selection process (specific databases searched, specific search terms used, explicit inclusion and exclusion criteria for which papers to consider) — before beginning new experimental work, rather than informally reading whatever papers happen to come up first in a casual search. Why does this systematic, documented approach matter for genuinely understanding the current state of a research area?",
+    "options": {
+      "a": "This concept has no relationship to the research problem formulation already covered earlier in this course",
+      "b": "A systematic literature review requires reading absolutely every single paper ever published on any remotely related topic, with no possibility of applying any inclusion or exclusion criteria to narrow the actual scope",
+      "c": "A systematic literature review and an informal, casual reading of whatever papers happen to come up first always surface exactly the same set of relevant existing work, making the systematic approach an unnecessary additional formality",
+      "d": "An informal, casual search risks missing genuinely important existing work simply because it didn't happen to surface easily, or risks unconsciously favoring whatever confirms a researcher's own existing assumptions — a systematic, documented review process with explicit search terms and inclusion criteria is designed to more thoroughly and less biasedly surface the actual relevant existing body of work, and the explicit documentation lets someone else later verify or reproduce the same search process, rather than trusting an opaque, unreproducible informal survey"
+    },
+    "correct": "d",
+    "theory": {
+      "text": "This introduces the literature review topic by explaining why methodological rigor matters even at the seemingly preliminary stage of surveying existing work. An informal, casual search — reading whatever papers happen to surface easily — carries real risks: genuinely important existing work can be missed simply because it wasn't easily discoverable through a particular casual search, and there's a real, well-documented human tendency to unconsciously favor search results and papers that happen to confirm existing assumptions rather than genuinely challenge them. A systematic, documented review process, with explicit search terms, explicit databases searched, and explicit inclusion and exclusion criteria specified in advance, is designed to counter both risks — surfacing the relevant existing work more thoroughly and less biasedly, and critically, the explicit documentation of the process itself lets someone else later verify what was actually searched and why certain papers were included or excluded, rather than having to simply trust an opaque, unreproducible informal survey of 'whatever I happened to read.'"
+    }
+  },
+  {
+    "id": "air-004",
+    "topic": "literature-review-methods",
+    "question": "Andina Retail Group's AI researcher notes that a literature review should specifically identify the current 'state of the art' — the best-performing existing published approach for a given task — as a genuine baseline to compare any new work against, rather than comparing a new technique only against a weaker, older, or informally chosen alternative. Why does comparing against a genuinely strong existing baseline matter for the credibility of a research claim?",
+    "options": {
+      "a": "The specific baseline chosen for comparison has no effect on how impressive or meaningful a claimed improvement actually appears, making baseline selection an unimportant methodological detail",
+      "b": "This concept has no relationship to the systematic literature review process already covered in the previous question",
+      "c": "A research claim's credibility is always determined entirely by the new technique's own absolute performance number, with no relationship whatsoever to what baseline it was actually compared against",
+      "d": "Comparing a new technique only against a weak or outdated baseline can make an improvement look far more significant and impressive than it actually is relative to what's genuinely already achievable — comparing against the actual current state of the art gives a much more honest, meaningful test of whether the new technique genuinely advances beyond what's already possible, rather than merely beating an easy, cherry-picked comparison point that doesn't reflect genuinely competitive existing work"
+    },
+    "correct": "d",
+    "theory": {
+      "text": "This closes the entire literature review topic by explaining exactly why identifying the genuine state of the art through a systematic review (air-003) matters so directly for the credibility of any subsequent research claim. A claimed 'improvement' is only as meaningful as what it's actually being compared against — showing a new technique beats a weak, outdated, or informally-chosen baseline can make an advance look far more impressive than it genuinely is relative to what's already achievable using the best existing published methods. Comparing specifically against the actual current state of the art — discovered precisely through the systematic literature review process — provides a much more honest, meaningful, and genuinely informative test of whether a new technique actually advances beyond what's already possible, rather than merely beating an easy, uncompetitive comparison point that doesn't reflect the genuine competitive landscape a new contribution actually needs to be judged against."
+    }
+  },
+  {
+    "id": "air-005",
+    "topic": "experimental-design-ai",
+    "question": "Andina Retail Group's AI researcher designs an experiment comparing a new demand-forecasting technique against an existing baseline, ensuring both are trained and evaluated on the exact same dataset, with the exact same train-test split, and the exact same evaluation metric. Why is holding every other factor identical while varying only the technique being tested genuinely essential for drawing a valid conclusion about which technique is actually better?",
+    "options": {
+      "a": "Evaluating a new technique and a baseline under completely different conditions (different datasets, different splits, different metrics) always produces an equally valid and interpretable comparison as evaluating both under identical conditions",
+      "b": "If the new technique and the baseline were evaluated under genuinely different conditions (different datasets, different train-test splits, different metrics), any observed performance difference could be caused by those confounding differences in evaluation setup rather than by any genuine difference in the techniques themselves — holding every other factor identical isolates the technique itself as the only varying factor, which is exactly what's needed to validly attribute an observed performance difference specifically to the technique being compared, rather than to some other, unaccounted-for difference in how each one happened to be evaluated",
+      "c": "Holding every evaluation factor identical between the new technique and the baseline eliminates the need to compare their actual performance numbers at all",
+      "d": "This concept has no relationship to the state-of-the-art baseline comparison already covered earlier in this course"
+    },
+    "correct": "b",
+    "theory": {
+      "text": "This introduces the experimental-design topic by establishing perhaps the single most fundamental principle of valid scientific comparison, directly extending the baseline-comparison need from air-004 with the methodological rigor required to make that comparison actually trustworthy. If a new technique and a baseline are evaluated under genuinely different conditions — different datasets, different train-test splits, different evaluation metrics — any observed performance difference becomes genuinely ambiguous: is the new technique actually better, or did it simply happen to be evaluated under more favorable conditions that had nothing to do with the technique itself? Holding every other factor rigorously identical and varying only the specific technique being compared isolates that technique as the sole explanation for any observed performance difference, which is exactly the controlled-comparison logic required to validly attribute a result to the thing actually being tested, rather than to some unaccounted-for confounding difference in how each one happened to be evaluated."
+    }
+  },
+  {
+    "id": "air-006",
+    "topic": "experimental-design-ai",
+    "question": "Andina Retail Group's AI researcher runs an 'ablation study' (already introduced from a practical NLP-pipeline angle in this platform's NLP course, nlp-042) as part of the formal experimental design for a new demand-forecasting model — systematically removing each individual component of the new technique one at a time and measuring the resulting performance impact. Why is this ablation methodology considered a genuine research contribution in its own right, beyond simply reporting the new technique's overall final performance number?",
+    "options": {
+      "a": "An ablation study requires testing the new technique against completely unrelated alternative techniques, rather than systematically removing that same technique's own individual internal components",
+      "b": "Ablation studies provide no genuine additional research value beyond simply reporting a new technique's overall final performance number, making the extra methodology an unnecessary additional step",
+      "c": "A single overall performance number tells readers that the new technique works, but not which of its component parts are actually responsible for that success — an ablation study reveals exactly which components genuinely contribute meaningful value and which are less important or even unnecessary, giving the research community genuinely more useful, actionable understanding of what actually makes the new technique work, rather than leaving the technique's internal workings as an unexplained, undifferentiated black box that only offers one aggregate result",
+      "d": "This concept has no relationship to the ablation study concept already covered in this platform's NLP course"
+    },
+    "correct": "c",
+    "theory": {
+      "text": "This closes the entire experimental-design topic by extending the practical ablation-testing value already established in this platform's NLP course (nlp-042) into a formal, expected component of genuine AI research methodology, not just a practical pipeline-debugging habit. A single overall performance number establishes that a new technique works, but says nothing about why — which specific component or design choice is actually responsible for the improvement, and which components could be simplified or removed with little cost. Systematically removing each component one at a time and measuring the resulting impact directly answers this deeper question, and this understanding is genuinely valuable to the broader research community beyond the specific project it was conducted for — it tells other researchers which specific ideas within the new technique are actually doing the real work, informing how future research might build on, simplify, or specifically extend exactly the components shown to matter most, rather than leaving an entire new technique as an unexplained, undifferentiated result that only offers one opaque aggregate number."
+    }
+  },
+  {
+    "id": "air-007",
+    "topic": "experimental-design-ai",
+    "question": "Andina Retail Group's AI researcher runs the exact same experiment multiple times with different random seeds (the specific starting point for a model's random weight initialization and random training-data shuffling), reporting the average performance and its variability across runs, rather than reporting the result from just one single run. Why does this matter for AI research specifically, given that many training algorithms (per this platform's Machine Learning course) involve genuine randomness?",
+    "options": {
+      "a": "Training algorithms in AI never involve any genuine randomness, making running the same experiment with different random seeds an unnecessary and pointless additional step with no genuine research value",
+      "b": "Running an experiment multiple times with different random seeds always produces exactly identical results every single time, making the additional repeated runs provide no new information",
+      "c": "This concept has no relationship to the stochastic gradient descent or randomness concepts already covered in this platform's Machine Learning course",
+      "d": "Because many training algorithms genuinely involve randomness (random weight initialization, random mini-batch ordering, per this platform's Machine Learning course's stochastic gradient descent content), a single run's result is itself a random sample from a distribution of possible outcomes, and could happen to be an unusually good or unusually bad result purely by chance rather than reflecting the technique's genuinely typical performance — running the same experiment multiple times with different random seeds and reporting the average and its variability gives a far more honest, statistically reliable picture of how the technique actually performs typically, rather than potentially reporting a lucky (or unlucky) single outcome as if it were representative"
+    },
+    "correct": "d",
+    "theory": {
+      "text": "This closes the experimental-design topic by connecting to the genuine randomness inherent in many training algorithms already covered throughout this platform's Machine Learning course (mini-batch gradient descent, ml-046; random forest's bootstrap sampling, ml-018). Because training involves genuine randomness at several points — random weight initialization, random ordering of training examples — a single training run's final result is itself just one random sample from a whole distribution of possible outcomes that same technique could have produced, and it could happen, purely by chance, to be an unusually favorable or unusually unfavorable specific outcome that doesn't actually represent the technique's genuinely typical performance. Running the same experiment multiple times with different random seeds and reporting both the average performance and how much it actually varies across those runs gives a far more honest, statistically defensible picture of the technique's real, typical behavior, directly protecting against the genuine risk of a single, potentially lucky run being reported and interpreted as if it were representative and reproducible, when it might not actually be."
+    }
+  },
+  {
+    "id": "air-008",
+    "topic": "benchmarks-evaluation-methodology",
+    "question": "Andina Retail Group's AI researcher evaluates a new demand-forecasting technique against a well-established, publicly available industry benchmark dataset, in addition to the company's own proprietary data, before claiming the technique is genuinely broadly effective. Why does evaluation on a shared, public benchmark matter beyond just testing on one's own specific proprietary dataset?",
+    "options": {
+      "a": "A shared, public benchmark lets other researchers directly and independently compare their own techniques against the exact same standardized dataset and evaluation protocol, providing a genuinely comparable, apples-to-apples basis for judging relative performance across different research groups' work — evaluation purely on a proprietary, private dataset, however genuinely valid for that specific business's own internal purposes, doesn't let anyone else independently verify or directly compare results against it, limiting how broadly the finding can actually be trusted or built upon by the wider research community",
+      "b": "Public benchmarks and proprietary internal datasets always produce identical evaluation results for any given technique, making the use of a shared public benchmark an unnecessary additional evaluation step",
+      "c": "Evaluating a new technique exclusively on a company's own proprietary data always provides a more scientifically rigorous and broadly trustworthy result than evaluating on any shared public benchmark",
+      "d": "This concept has no relationship to the state-of-the-art baseline comparison concept already covered earlier in this course"
+    },
+    "correct": "a",
+    "theory": {
+      "text": "This introduces the benchmarks-and-evaluation topic by explaining a genuine, specific value that shared public benchmarks provide beyond what evaluation on a company's own proprietary data alone can offer. A proprietary dataset evaluation is genuinely useful and valid for that specific business's own internal purposes, but it's inherently closed — no other researcher can access that same data to independently verify the reported result or directly compare their own competing technique against the exact same standardized evaluation. A shared, public benchmark solves this by giving every researcher in a field access to the exact same dataset and typically the same evaluation protocol, letting results from entirely different research groups be directly, meaningfully compared against each other on a genuinely common, apples-to-apples basis — this shared standardization is precisely what lets a field track collective progress over time and lets any individual research claim be independently checked, rather than resting purely on one group's own unverifiable, proprietary evaluation."
+    }
+  },
+  {
+    "id": "air-009",
+    "topic": "benchmarks-evaluation-methodology",
+    "question": "Andina Retail Group's AI researcher warns that a technique specifically optimized to score well on a particular popular benchmark can sometimes perform noticeably worse on genuinely new, real-world data that differs even slightly from that benchmark's specific characteristics — a phenomenon sometimes called 'benchmark overfitting' or 'benchmark gaming.' Why does this risk matter for interpreting benchmark results honestly, connecting to the overfitting concept already covered in this platform's Machine Learning course?",
+    "options": {
+      "a": "This concept has no relationship to the state-of-the-art comparison or public benchmark value already covered earlier in this course",
+      "b": "Just as a model can overfit to the specific noise and idiosyncrasies of one training dataset (per ml-003), a research community can collectively 'overfit' to a specific popular benchmark over time — techniques and hyperparameter choices get iteratively refined specifically to score well on that one benchmark's particular characteristics, which can produce genuine, real improvements on that benchmark while not necessarily reflecting equally genuine improvement on the broader, more varied real-world problem the benchmark was originally meant to represent — a risk that requires deliberately testing on genuinely held-out, benchmark-independent data before trusting that a reported benchmark improvement will actually generalize",
+      "c": "Benchmark overfitting has no relationship to the overfitting concept already covered in this platform's Machine Learning course, describing an entirely unrelated phenomenon",
+      "d": "A technique that scores well on a popular benchmark is always guaranteed to perform equally well on any genuinely new, real-world data, with no possibility of the two diverging"
+    },
+    "correct": "b",
+    "theory": {
+      "text": "This closes the entire benchmarks-and-evaluation-methodology topic by extending the individual-model overfitting concept from this platform's Machine Learning course (ml-003, ml-004) to a genuinely important, field-wide version of the same underlying risk. Just as one specific model can overfit to the particular noise and quirks of its own training data, an entire research community can, collectively and often unintentionally, 'overfit' to a specific popular benchmark over time — as many different research groups iteratively refine techniques and hyperparameters specifically against that one benchmark's particular characteristics, genuine improvements on that specific benchmark can accumulate without necessarily reflecting equally genuine improvement on the broader, more varied real-world problem the benchmark was originally meant to represent. This is exactly why the same held-out evaluation discipline established at the individual-model level (ml-002) matters equally at the benchmark level — deliberately testing a claimed benchmark improvement against genuinely different, benchmark-independent data before trusting that it reflects a real, broadly generalizable advance rather than a narrow, benchmark-specific artifact."
+    }
+  },
+  {
+    "id": "air-010",
+    "topic": "statistical-rigor-significance",
+    "question": "Andina Retail Group's AI researcher reports a new technique's improvement over a baseline together with a formal statistical significance test and confidence interval, rather than simply reporting that the new technique's average performance number was numerically higher, directly connecting to the statistical significance concept already covered in this platform's Supply Chain and Math for ML & Data Science courses. Why is this formal statistical treatment genuinely necessary before claiming a research finding, rather than trusting a numerically higher average alone?",
+    "options": {
+      "a": "A numerically higher average performance number always definitively proves a genuine, statistically significant improvement, making any additional formal significance testing an unnecessary extra step with no genuine research value",
+      "b": "A numerically higher average performance, especially given the genuine run-to-run randomness already established in air-007, could plausibly arise from ordinary chance variation rather than reflecting a genuine, reliable improvement — a formal statistical significance test, echoing the same A/B-testing discipline already established in this platform's Supply Chain course (sc-051) and Math for ML & Data Science course (math-050), quantifies how likely an observed difference this large would be to occur purely by chance if there were actually no genuine underlying difference, giving a principled basis for distinguishing a real finding from ordinary statistical noise",
+      "c": "This concept has no relationship to the multiple-random-seed experimental design already covered earlier in this course",
+      "d": "Statistical significance testing has no relationship to the run-to-run randomness or A/B-testing concepts already covered elsewhere on this training platform"
+    },
+    "correct": "b",
+    "theory": {
+      "text": "This introduces the statistical rigor topic by directly extending the multiple-random-seed discipline from air-007 and the A/B-testing statistical significance concept already established in this platform's Supply Chain course (sc-051) and Math for ML & Data Science course (math-050) into formal, expected AI research practice. Given that individual runs carry genuine random variability, a numerically higher average performance across a handful of runs could plausibly arise from ordinary chance fluctuation rather than reflecting a genuine, reliably reproducible improvement — exactly the same concern already raised for a modest A/B test conversion-rate difference in the Supply Chain course. A formal statistical significance test quantifies precisely how likely an observed difference of this size would be to occur purely by chance if the new technique and the baseline were actually equally good underneath — giving a principled, quantified basis for distinguishing a genuine research finding from ordinary statistical noise, rather than trusting a bare numerical comparison that offers no way to distinguish the two."
+    }
+  },
+  {
+    "id": "air-011",
+    "topic": "statistical-rigor-significance",
+    "question": "Andina Retail Group's AI researcher reports not just whether an improvement is 'statistically significant,' but also its 'effect size' — the actual magnitude of the improvement in practically meaningful terms (a 0.3% accuracy improvement versus a 5% accuracy improvement). Why is reporting effect size, alongside statistical significance, genuinely important for interpreting a research finding honestly?",
+    "options": {
+      "a": "This concept has no relationship to the statistical significance testing already covered in the previous question",
+      "b": "Statistical significance and effect size always convey exactly the same information, making it redundant to report both alongside each other in a research finding",
+      "c": "Statistical significance alone only indicates that an observed difference is unlikely to be purely due to chance — it says nothing about whether that difference is actually large enough to matter practically; with a large enough sample size, even a tiny, practically negligible difference can become statistically significant, so reporting the effect size alongside significance is what actually tells a reader (and a business considering whether to adopt the new technique) whether the improvement is genuinely large enough to be worth caring about, not just statistically distinguishable from pure chance",
+      "d": "A statistically significant result always guarantees a practically large and meaningful effect size, with no possibility of a statistically significant but practically negligible finding"
+    },
+    "correct": "c",
+    "theory": {
+      "text": "This closes the entire statistical rigor and significance topic with a genuinely important distinction that even experienced researchers sometimes conflate. Statistical significance answers a narrow, specific question — is this observed difference unlikely to be purely due to chance — but it deliberately says nothing about whether that difference is actually large enough to matter in any practical, business-relevant sense; with a sufficiently large sample size, even a genuinely tiny, practically negligible difference (a 0.3% accuracy improvement) can become statistically significant, technically 'real' but essentially meaningless for any actual business decision. Effect size directly addresses this gap by reporting the actual practical magnitude of the improvement, letting a reader — and critically, a business deciding whether adopting the new technique is actually worth the real cost and effort of doing so — judge whether the finding is not just statistically real, but genuinely large enough to matter, a distinction that's essential for honestly and usefully communicating what a research finding actually means in practice."
+    }
+  },
+  {
+    "id": "air-012",
+    "topic": "reproducibility-open-science",
+    "question": "Andina Retail Group's AI researcher publishes not just the new technique's reported results, but also the actual code, the exact hyperparameter settings used, and a detailed description of the training procedure, specifically so another researcher could independently attempt to reproduce the same result. Why is this level of reproducibility documentation considered a genuine research responsibility, rather than an optional extra courtesy?",
+    "options": {
+      "a": "A research finding that cannot actually be independently reproduced by another researcher, using the same disclosed methodology, provides much weaker evidence for the field than one that genuinely can be — reproducibility is what lets the broader research community verify that a reported result is real and robust rather than potentially an error, a statistical fluke, or a result that depended on some undisclosed detail of the original setup, making detailed, genuine reproducibility documentation a core scientific responsibility rather than merely an optional courtesy",
+      "b": "This concept has no relationship to the statistical significance or effect size concepts already covered earlier in this course",
+      "c": "Reproducibility documentation requires publishing an entirely different technique from the one actually used to produce the original reported results, an incorrect description of what reproducibility documentation actually involves",
+      "d": "A research finding's credibility is entirely unaffected by whether other researchers can or cannot actually reproduce it using the disclosed methodology, making reproducibility documentation an unnecessary additional step with no genuine scientific value"
+    },
+    "correct": "a",
+    "theory": {
+      "text": "This introduces the reproducibility and open science topic by establishing why this kind of thorough documentation is treated as a core scientific obligation rather than an optional nicety. A reported research finding that no other researcher can actually reproduce, even when following the same disclosed methodology, provides genuinely weaker evidence for the field as a whole than one that reliably can be reproduced — an irreproducible result leaves open real, legitimate doubt about whether the finding reflects a genuine, robust phenomenon or was instead an error, a statistical fluke (echoing the significance concerns from air-010), or a result that secretly depended on some undisclosed detail of the original setup that wasn't actually mentioned in the published report. Providing genuine reproducibility documentation — the actual code, exact hyperparameters, detailed training procedure — is what lets the broader research community actually verify a finding independently, which is precisely the self-correcting mechanism that gives scientific research its collective credibility over time, rather than each individual research group's claims simply having to be trusted at face value with no way to check."
+    }
+  },
+  {
+    "id": "air-013",
+    "topic": "reproducibility-open-science",
+    "question": "Andina Retail Group's AI researcher documents that their reported result depended on a specific random seed that happened to produce a particularly favorable outcome, discovered only after quietly trying several different seeds and reporting just the best one — a practice the researcher recognizes as a genuine problem once identified. Why does this practice (sometimes called 'seed hacking' or a specific form of 'p-hacking') undermine the honesty of a reported research finding, connecting to the multiple-seed averaging discipline from air-007?",
+    "options": {
+      "a": "Reporting only the single best-performing random seed out of several tried always produces exactly the same honest, representative result as properly averaging across all the seeds that were actually tried",
+      "b": "Selectively reporting only a favorable outcome after trying several random seeds has no relationship to the multiple-seed averaging discipline already covered earlier in this course",
+      "c": "This practice is always considered fully legitimate, rigorous research methodology with no genuine ethical or statistical concern involved",
+      "d": "This practice directly violates the genuine purpose of the multiple-seed averaging discipline established in air-007 — instead of honestly reporting the average and typical variability across multiple runs (which reveals genuine, typical performance), selectively reporting only the single best-performing seed out of many tried cherry-picks an unrepresentative, favorably-biased outcome and presents it as if it were the technique's typical, reliable performance, which is a form of statistical malpractice that would make an unreliable, non-reproducible result look more impressive and more trustworthy than the technique's genuine, typical behavior actually warrants"
+    },
+    "correct": "d",
+    "theory": {
+      "text": "This closes the entire reproducibility and open science topic with a genuinely important cautionary case that directly inverts the honest purpose of the multiple-seed discipline established in air-007. The whole point of running an experiment across multiple random seeds and reporting the average and variability is to get an honest, representative picture of the technique's genuinely typical performance, rather than potentially reporting one lucky outcome as if it were representative. Quietly trying several seeds and then selectively reporting only the single best-performing one inverts this entirely — it deliberately cherry-picks the most favorable outcome out of several tried and presents it as if it were the technique's normal, reliable behavior, which is a specific, genuinely dishonest form of the broader problem sometimes called p-hacking: searching through many possible analytical choices until one happens to produce a favorable-looking result, then reporting only that one choice as if it had been the single, principled analysis conducted from the start. This kind of practice, even if not always intentionally malicious, fundamentally undermines the honest reproducibility this entire topic has emphasized, since another researcher following the same disclosed procedure with a genuinely random seed would very likely fail to reproduce the reported, cherry-picked result at all."
+    }
+  },
+  {
+    "id": "air-014",
+    "topic": "research-ethics-ai",
+    "question": "Andina Retail Group's AI researcher, before deploying a new customer-segmentation research technique, explicitly evaluates whether the underlying training data was collected with genuine, informed customer consent for this specific research use, rather than assuming any data the company already possesses is automatically fair to use for any research purpose. Why does this deliberate consent evaluation matter as a genuine research ethics consideration, beyond just the data privacy governance already covered in this platform's Data Architecture course?",
+    "options": {
+      "a": "This concept has no relationship to the data governance or privacy principles already covered in this platform's Data Architecture course",
+      "b": "Data that a company has legitimately collected for one specific operational purpose (processing a transaction) isn't automatically, ethically appropriate to repurpose for a genuinely different research purpose without further consideration — research ethics specifically asks whether the people whose data is being used would reasonably have expected and consented to this particular research use, a genuinely distinct ethical question from the pure data governance and retention-policy concerns already covered in this platform's Data Architecture course, even though the two considerations are closely related and often need to be evaluated together",
+      "c": "Any data a company has already legitimately collected for any purpose is automatically and unconditionally fair to use for any subsequent research purpose, with no further ethical consideration required",
+      "d": "Research ethics and data governance are always exactly the same consideration with no genuine distinction between the two, making a separate ethical evaluation an unnecessary duplication"
+    },
+    "correct": "b",
+    "theory": {
+      "text": "This introduces the research ethics topic by drawing a genuinely important, if closely related, distinction from the data governance and privacy principles already established in this platform's Data Architecture course (darch-050). Data governance asks whether a company is technically and legally permitted to store and use certain data, and under what retention and access rules. Research ethics asks a related but genuinely distinct question: even where data use might be technically permitted, would the people whose data is actually being used reasonably have expected and consented to this specific research purpose, which might be meaningfully different from the original, narrower purpose the data was actually collected for — a customer providing payment information to complete a purchase didn't necessarily anticipate or explicitly consent to that same data later being used to train an experimental new AI research technique. This ethical question — genuine, informed expectation and consent for the specific use in question — deserves its own deliberate evaluation, closely related to but genuinely distinct from the pure data governance and retention-policy considerations already covered elsewhere on this platform."
+    }
+  },
+  {
+    "id": "air-015",
+    "topic": "research-ethics-ai",
+    "question": "Andina Retail Group's AI researcher, before publishing a new fraud-detection technique's methodology in detail, considers whether the same detailed disclosure could also help a genuinely malicious actor design more effective fraud that evades exactly this kind of detection — a 'dual-use' concern, where a genuinely beneficial research technique could also be misused for harm. Why does dual-use consideration matter for how research findings should be responsibly disclosed and communicated?",
+    "options": {
+      "a": "Dual-use concerns mean that any research technique with even a theoretical potential for misuse should always be permanently and completely withheld from any publication or disclosure, with no possibility of a more measured, intermediate response",
+      "b": "AI research techniques can only ever have purely beneficial applications, with genuine potential for malicious misuse being an entirely hypothetical, practically irrelevant concern with no real-world basis",
+      "c": "Some AI research genuinely has both legitimate, beneficial applications and a real potential for malicious misuse if the same detailed technical knowledge fell into the wrong hands — responsibly weighing dual-use risk means considering whether the full technical detail needs to be disclosed exactly as originally planned, or whether some genuinely sensitive specifics should be handled more carefully (a more limited or staged disclosure, direct coordination with affected parties before broad publication) without necessarily abandoning the underlying research and its genuine benefits entirely",
+      "d": "This concept has no relationship to the data consent and research ethics considerations already covered in the previous question"
+    },
+    "correct": "c",
+    "theory": {
+      "text": "This closes the entire research ethics topic by introducing a genuinely important, real consideration for AI research specifically, given how directly applicable much AI research is to both beneficial and potentially harmful real-world uses. Publishing detailed fraud-detection methodology genuinely helps other legitimate researchers and businesses build better fraud defenses — a real, significant benefit — but the exact same detailed technical knowledge could, in principle, also help a sophisticated malicious actor understand precisely how to design fraud specifically engineered to evade that detection method. Responsibly weighing this dual-use risk doesn't mean automatically withholding all such research entirely (which would sacrifice its genuine, substantial benefits) nor does it mean ignoring the genuine risk entirely — it means deliberately considering whether the disclosure approach itself might need adjustment: perhaps coordinating with affected industry parties before broad publication, or being more selective about which specific technical details are disclosed in full public detail versus shared more carefully with a narrower, vetted audience, a genuinely nuanced ethical judgment call rather than an automatic all-or-nothing decision."
+    }
+  },
+  {
+    "id": "air-016",
+    "topic": "communicating-research",
+    "question": "Andina Retail Group's AI researcher presents the same underlying research finding in two different forms — a detailed technical paper for the data science team, and a concise, jargon-free summary with a business-relevant takeaway for company leadership. Why does effectively communicating the same genuine finding to these two genuinely different audiences require more than simply using the exact same document for both?",
+    "options": {
+      "a": "The exact same document, with identical technical detail and framing, is always equally effective and equally well-received by both a technical data science audience and a non-technical business leadership audience",
+      "b": "A technical audience genuinely needs and benefits from full methodological detail (exact experimental setup, statistical tests used, precise numerical results) to properly evaluate and build on the work themselves, while a business leadership audience generally needs the practical implication and recommended action stated clearly and directly, without requiring them to first wade through technical detail they don't have the specialized background to fully evaluate anyway — genuinely effective communication tailors the level of technical detail and framing to what each specific audience actually needs to make good use of the finding, rather than assuming one single document format serves every audience equally well",
+      "c": "Business leadership audiences should always receive the exact same full technical detail as a data science team, with no adaptation of framing or level of detail based on audience needs",
+      "d": "This concept has no relationship to the research ethics or dual-use disclosure considerations already covered earlier in this course"
+    },
+    "correct": "b",
+    "theory": {
+      "text": "This ties the course's methodological rigor back to the practical communication skill that ultimately makes rigorous research actually useful to a real organization, echoing this whole training platform's consistent emphasis on connecting technical work to genuine business communication. A technical audience genuinely needs and benefits from full methodological detail to properly evaluate and build on the work themselves. A business leadership audience generally doesn't need, and often can't efficiently use, that same level of technical detail — what they need is the practical implication stated clearly, directly, and honestly. Genuinely effective research communication recognizes this difference and deliberately tailors both the level of technical detail and the framing to what each specific audience actually needs to make good, informed use of the underlying finding."
+    }
+  },
+  {
+    "id": "air-017",
+    "topic": "research-problem-formulation",
+    "question": "Andina Retail Group's AI researcher explicitly states a 'null hypothesis' (the new technique provides no genuine improvement over the baseline) alongside the research question itself, deliberately setting up the experiment to potentially disprove this null hypothesis rather than simply setting out to confirm the new technique works. Why does explicitly framing research around trying to disprove a null hypothesis, rather than simply trying to confirm an expected result, reflect sound scientific practice?",
+    "options": {
+      "a": "This concept has no relationship to the precise, testable research question formulation already covered earlier in this course",
+      "b": "A null hypothesis framing means the researcher has already decided in advance that the new technique definitely does not work, making any subsequent experimental result irrelevant to the actual research question",
+      "c": "Research designed to confirm an expected result and research designed to potentially disprove a null hypothesis always produce identical experimental designs and identical risk of bias",
+      "d": "Deliberately framing an experiment around the possibility of disproving a null hypothesis builds in a genuine, honest test the new technique could actually fail — rather than a research process implicitly designed only to confirm what the researcher already expects or hopes to find, which risks unconsciously biasing experimental choices toward producing a favorable-looking result regardless of whether the technique genuinely works, echoing the same confirmation-bias risk already discussed for informal literature searches in air-003"
+    },
+    "correct": "d",
+    "theory": {
+      "text": "This extends the precise research-question formulation from air-001 with a genuinely important framing discipline. Setting out simply to 'confirm the new technique works' subtly biases the entire research process toward finding a favorable result — echoing the same confirmation-bias risk already flagged for informal, casual literature searches in air-003, just applied to experimental design rather than literature review. Explicitly framing the experiment around a null hypothesis that the technique could genuinely fail to disprove builds in a real, honest test with a real possibility of a negative outcome, which is precisely what distinguishes a genuine, unbiased scientific test from a process implicitly designed only to produce confirming evidence for what the researcher already expected or hoped to find from the outset."
+    }
+  },
+  {
+    "id": "air-018",
+    "topic": "research-problem-formulation",
+    "question": "Andina Retail Group's AI researcher, before finalizing a research question, explicitly checks whether the question is actually 'falsifiable' — whether some conceivable experimental result could actually disprove it, rather than being framed so vaguely or flexibly that any possible outcome could be claimed as supporting it. Why does falsifiability matter as a genuine criterion for a well-formed research question?",
+    "options": {
+      "a": "A research question framed so vaguely or flexibly that no conceivable experimental outcome could ever actually disprove it isn't making a genuine, testable claim at all — it can always be reinterpreted after the fact to fit whatever result actually occurred, providing no real informational content; a genuinely falsifiable question, by contrast, specifies in advance exactly what result would count as disconfirming evidence, which is precisely what makes a subsequent experimental test actually meaningful rather than an exercise that could never possibly fail regardless of what the data actually shows",
+      "b": "A falsifiable research question is one that has already been definitively proven false before any experiment is even conducted, an incorrect description of what falsifiability actually means",
+      "c": "This concept has no relationship to the null hypothesis framing already covered in the previous question",
+      "d": "Falsifiability has no relationship to whether a research question can actually be meaningfully tested through experimentation, making it an irrelevant criterion for research question quality"
+    },
+    "correct": "a",
+    "theory": {
+      "text": "This closes the entire research-problem-formulation topic by adding a further, closely related quality criterion to the null-hypothesis framing from air-017. A research question that's vague or flexible enough that literally any possible experimental outcome could be reinterpreted as supporting it isn't actually making a genuine, testable claim — it provides no real informational content, since it could never actually be shown wrong regardless of what the data turns out to say. A genuinely falsifiable question specifies clearly, in advance, exactly what specific result would count as evidence against it, which is precisely what gives a subsequent experimental test real meaning and real stakes — the experiment could genuinely come out either way, and that genuine possibility of a disconfirming result is exactly what makes a confirming result, when it does occur, actually informative and trustworthy rather than a foregone conclusion dressed up as a test."
+    }
+  },
+  {
+    "id": "air-019",
+    "topic": "literature-review-methods",
+    "question": "Andina Retail Group's AI researcher tracks 'citation count' and publication venue reputation as rough signals of a given paper's likely influence and quality during a literature review, while explicitly cautioning that neither signal should be trusted uncritically as a substitute for actually reading and evaluating a paper's genuine methodology. Why is this combination of using rough quality signals while still requiring genuine critical reading a sound approach?",
+    "options": {
+      "a": "Citation count and venue reputation always perfectly and completely determine a paper's genuine scientific quality and methodological rigor, making independent critical reading of the paper's actual methodology an unnecessary additional step",
+      "b": "Citation count and venue reputation are useful, efficient filters for triaging a large volume of potentially relevant literature down to a more manageable set worth reading closely, since a heavily-cited paper in a well-regarded venue is somewhat more likely to be genuinely influential or rigorous — but neither signal is a guarantee of quality (a paper can be heavily cited for reasons unrelated to genuine rigor, and a less-cited paper can still contain genuinely sound, valuable work), so these signals are best used to prioritize reading time, not as a substitute for actually, critically evaluating a paper's own methodology once it's actually read",
+      "c": "This concept has no relationship to the systematic literature review process already covered earlier in this course",
+      "d": "A paper's citation count and publication venue have no relationship whatsoever to its likely influence or quality, making these signals entirely useless for prioritizing literature review reading"
+    },
+    "correct": "b",
+    "theory": {
+      "text": "This extends the systematic literature review discipline from air-003 with a genuinely practical triage strategy for managing a realistically large volume of potentially relevant literature. Citation count and venue reputation are useful, efficient rough filters — a heavily-cited paper published in a well-regarded venue is somewhat more likely, on average, to represent genuinely influential or carefully vetted work, which helps prioritize limited reading time toward the literature most likely to matter. But neither signal is a guarantee: a paper can accumulate citations for reasons unrelated to genuine methodological rigor (being widely cited as a cautionary example of a flawed approach, for instance), and a genuinely sound, valuable paper can remain relatively under-cited, especially if recently published or from a less prominent venue. This is exactly why these signals should inform prioritization of reading time, not substitute for the genuine, critical evaluation of a paper's own actual methodology once it's actually read closely."
+    }
+  },
+  {
+    "id": "air-020",
+    "topic": "literature-review-methods",
+    "question": "Andina Retail Group's AI researcher notes that a literature review should specifically identify not just what existing research has found, but also what existing research has explicitly identified as open questions or acknowledged limitations in its own work. Why is identifying these existing gaps genuinely valuable for planning new research?",
+    "options": {
+      "a": "Existing published research never explicitly identifies its own limitations or open questions, making this kind of gap-identification an impossible research review activity with no basis in actual published literature",
+      "b": "This concept has no relationship to the state-of-the-art baseline identification or citation-signal triage already covered earlier in this course",
+      "c": "Identifying gaps and open questions in existing literature has no relationship to planning what new research would actually constitute a genuine, additive contribution to a field",
+      "d": "Existing published work often explicitly flags its own genuine limitations or unresolved open questions, which represents a direct, credible signal from researchers already deeply familiar with a specific area about where genuinely valuable further research is actually needed — deliberately building new research around one of these already-identified gaps, rather than reinventing an already-well-covered question from scratch, increases the likelihood that the new work will make a genuine, additive contribution rather than largely duplicating what's already been well-established"
+    },
+    "correct": "d",
+    "theory": {
+      "text": "This closes the entire literature review topic by directly connecting the systematic review process to the genuine-contribution distinction already established in air-002. Well-written existing research very often explicitly acknowledges its own limitations or flags specific unresolved questions its own work didn't fully address — a direct, credible signal from researchers already deeply immersed in a specific area about where genuinely valuable further work is actually needed, rather than a new researcher having to guess blindly at what might be worth investigating. Deliberately building new research around one of these already-identified, explicitly-flagged gaps substantially increases the likelihood that the resulting work will make a genuine, additive contribution to the field's actual knowledge, rather than inadvertently duplicating a question that's already been well-answered by existing work the researcher simply hadn't fully reviewed — precisely the kind of systematic gap-identification a thorough literature review is specifically designed to surface."
+    }
+  },
+  {
+    "id": "air-021",
+    "topic": "experimental-design-ai",
+    "question": "Andina Retail Group's AI researcher includes a 'sanity-check baseline' in the experimental comparison — an intentionally naive approach (like simply predicting the historical average demand for every product) that any genuinely useful technique should clearly outperform. Why is including this kind of deliberately weak, naive baseline genuinely useful alongside the more sophisticated state-of-the-art comparison already established in air-004?",
+    "options": {
+      "a": "A sanity-check baseline provides a genuine floor for what 'obviously not useful' performance looks like, which helps catch a subtle experimental setup error (a data leak, a bug in the evaluation code, per this platform's Data Engineering course's testing discipline) that might otherwise go unnoticed — if even the sophisticated new technique or the state-of-the-art baseline somehow fails to clearly beat this deliberately naive comparison, that's a strong, immediate signal something is genuinely wrong with the experimental setup itself, not just with the techniques being compared",
+      "b": "Including a deliberately naive, weak baseline in an experimental comparison has no relationship to catching experimental setup errors or bugs, serving no genuine diagnostic purpose",
+      "c": "A sanity-check baseline and a genuine state-of-the-art baseline always serve exactly the same research purpose, making it unnecessary to include both in the same experimental comparison",
+      "d": "This concept has no relationship to the state-of-the-art baseline comparison already covered earlier in this course"
+    },
+    "correct": "a",
+    "theory": {
+      "text": "This closes the entire experimental-design topic by adding a genuinely valuable diagnostic layer beyond the state-of-the-art comparison from air-004, connecting to the testing discipline already established in this platform's Data Engineering course. A sanity-check baseline — an intentionally naive approach any genuinely working technique should clearly and obviously beat — serves a different purpose than the state-of-the-art comparison: it's not really about determining whether the new technique is competitively good, it's about catching a fundamental error in the experimental setup itself. If even the sophisticated new technique, or even the established state-of-the-art baseline, somehow fails to clearly outperform this deliberately weak comparison, that's an immediate, strong warning sign that something is genuinely broken in the experimental pipeline — a data leak, an evaluation bug, a misconfigured metric — rather than a genuine finding about the techniques themselves, exactly the kind of early, cheap diagnostic check that catches a fundamental problem before it wastes further research effort building on a broken foundation."
+    }
+  },
+  {
+    "id": "air-022",
+    "topic": "experimental-design-ai",
+    "question": "Andina Retail Group's AI researcher explicitly checks for 'data leakage' — verifying that no information from the test set could have inadvertently influenced the training process (a feature accidentally computed using future information, or a preprocessing step fit on the combined training-and-test data rather than training data alone) — as a mandatory step before trusting any reported experimental result. Why is this specific check genuinely critical, connecting to the time-aware train/test split already covered in this platform's Machine Learning course?",
+    "options": {
+      "a": "Data leakage silently and artificially inflates a model's apparent test-set performance, since the model gains illegitimate access to information it wouldn't actually have available at genuine prediction time — directly echoing the time-aware split concern already established in this platform's Machine Learning course (ml-006), just generalized beyond temporal leakage specifically to any form of information improperly crossing from test data into the training process — a reported result contaminated by data leakage can look impressively strong while being genuinely meaningless as an honest estimate of real-world performance",
+      "b": "Data leakage always makes a model's reported test-set performance appear artificially worse than its genuine real-world performance, the reverse of the actual typical effect of this kind of error",
+      "c": "Checking for data leakage has no relationship to the time-aware train/test split concept already covered in this platform's Machine Learning course",
+      "d": "Data leakage can only occur through a temporal, future-information-based mechanism, with no possibility of any other kind of improper information crossing from test data into the training process"
+    },
+    "correct": "a",
+    "theory": {
+      "text": "This closes the entire experimental-design topic by generalizing the time-aware split concern already established in this platform's Machine Learning course (ml-006, there specifically discussing future information leaking into training) into the broader, more general data leakage check every rigorous AI experiment needs. Data leakage isn't limited to just the temporal case — it covers any way information from the test set could improperly influence the training process, including subtler mechanisms like fitting a preprocessing step (a normalization, a feature-encoding scheme) on the combined training-and-test data rather than strictly on training data alone, which lets statistical properties of the test set improperly leak into how the training data itself gets prepared. Any form of data leakage silently inflates a model's apparent test performance, since the model gains some illegitimate advance access to information it genuinely wouldn't have at real prediction time — meaning a reported result contaminated by leakage can look impressively strong while being fundamentally meaningless as an honest estimate of how the technique would actually perform in real deployment, which is exactly why checking rigorously for every possible leakage pathway is a mandatory, non-optional step before any experimental result can be genuinely trusted."
+    }
+  },
+  {
+    "id": "air-023",
+    "topic": "benchmarks-evaluation-methodology",
+    "question": "Andina Retail Group's AI researcher notes that a single-metric benchmark evaluation (reporting only overall accuracy, for instance) can hide meaningfully different performance across important subgroups, directly connecting to the subgroup evaluation concern already established in this platform's NLP course. Why should a thorough benchmark evaluation report performance broken down by relevant subgroups, not just one aggregate number?",
+    "options": {
+      "a": "This concept has no relationship to the subgroup performance evaluation already covered in this platform's NLP course",
+      "b": "A single aggregate benchmark number always accurately and completely reflects a technique's performance across every relevant subgroup equally, making subgroup-level evaluation an unnecessary additional analysis",
+      "c": "An aggregate benchmark number, dominated by whichever subgroup happens to be most numerous in the benchmark dataset, can mask meaningfully worse performance on smaller but genuinely important subgroups — echoing the language-and-region evaluation concern already established in this platform's NLP course (nlp-041) — a thorough evaluation reports performance broken down by relevant subgroups specifically to surface this kind of hidden disparity, which matters directly for understanding whether a technique's reported strong performance would actually generalize fairly across every population it's genuinely meant to serve",
+      "d": "Subgroup-level benchmark evaluation can only ever be performed for language-based NLP tasks, with no legitimate application to any other type of AI benchmark evaluation"
+    },
+    "correct": "c",
+    "theory": {
+      "text": "This extends the benchmarks-and-evaluation topic by directly generalizing the language-and-region subgroup evaluation concern already established in this platform's NLP course (nlp-041) into standard, expected benchmark evaluation practice more broadly across any AI research domain. A single aggregate performance number, computed across an entire benchmark dataset, is naturally dominated by whichever subgroup happens to be most numerous within that dataset — meaningfully worse performance on a smaller but genuinely important subgroup can be almost entirely masked within that one overall figure, exactly the same 'majority subgroup dominates the average' pattern already established for language-specific sentiment analysis performance. A thorough, honest benchmark evaluation reports performance broken down by every relevant subgroup specifically to surface this kind of hidden disparity, which matters directly for honestly understanding whether a reported strong aggregate result would actually hold up fairly across every population or use case the technique is genuinely meant to serve, rather than reflecting excellent performance for a majority group masking poor performance for others."
+    }
+  },
+  {
+    "id": "air-024",
+    "topic": "benchmarks-evaluation-methodology",
+    "question": "Andina Retail Group's AI researcher notes that a benchmark dataset itself can carry historical biases (echoing the training-data bias concept already covered in this platform's NLP course, nlp-025), meaning a technique that scores well on a biased benchmark might simply be learning to reproduce that benchmark's own embedded bias rather than genuinely solving the underlying task fairly. Why must evaluating a benchmark dataset's own potential biases be part of responsible research methodology, not just evaluating techniques against the benchmark as if it were a neutral, unquestionable ground truth?",
+    "options": {
+      "a": "A benchmark dataset is itself a human-constructed artifact that can embed the same kind of historical or collection biases already discussed for training data generally (echoing this platform's NLP course, nlp-025) — treating a benchmark as an unquestionable, perfectly neutral ground truth risks a technique's high benchmark score actually reflecting successful reproduction of the benchmark's own embedded bias rather than genuinely fair, accurate performance on the real underlying task, meaning responsible research methodology has to critically evaluate the benchmark itself, not only the techniques being tested against it",
+      "b": "This concept has no relationship to the training-data bias concept already covered in this platform's NLP course",
+      "c": "A technique scoring well on a biased benchmark always guarantees that the technique itself is genuinely fair and unbiased, regardless of the benchmark's own construction",
+      "d": "Benchmark datasets are always constructed through a perfectly neutral, unbiased process with no possibility of embedding any historical or collection bias, making critical evaluation of a benchmark's own potential bias an unnecessary consideration"
+    },
+    "correct": "a",
+    "theory": {
+      "text": "This closes the entire benchmarks-and-evaluation-methodology topic by extending the training-data bias concept already established in this platform's NLP course (nlp-025, there discussing how a model learns whatever patterns — including biased ones — are present in its training data) to the benchmark dataset itself, a genuinely important further layer of the same underlying concern. A benchmark isn't a neutral, objectively given ground truth handed down from nowhere — it's itself a human-constructed artifact, assembled through some specific collection and labeling process that can embed the same kind of historical bias already discussed for training data generally. A technique that scores impressively well on a biased benchmark might simply be successfully learning to reproduce that benchmark's own embedded bias, rather than genuinely, fairly solving the real underlying task — which is exactly why responsible research methodology requires critically evaluating the benchmark dataset's own construction and potential biases, not simply treating it as an unquestionable, perfectly neutral standard that techniques are tested against without any scrutiny of the standard itself."
+    }
+  },
+  {
+    "id": "air-025",
+    "topic": "statistical-rigor-significance",
+    "question": "Andina Retail Group's AI researcher, when comparing several candidate new techniques against a baseline simultaneously (not just one new technique), applies a 'multiple comparisons correction' to the statistical significance thresholds used, rather than applying the same significance threshold that would be appropriate for comparing just one single new technique. Why does testing multiple candidate techniques simultaneously require this kind of statistical adjustment?",
+    "options": {
+      "a": "A multiple comparisons correction means a researcher should stop testing any additional candidate techniques the moment a single one produces a favorable-looking result, an incorrect description of what the correction actually addresses",
+      "b": "Testing multiple candidate techniques simultaneously against the same baseline always requires exactly the same statistical significance threshold as testing just one single technique, making any correction for multiple comparisons unnecessary",
+      "c": "When many different comparisons are tested simultaneously, the probability that at least one of them will appear statistically significant purely by chance alone increases substantially, simply due to the sheer number of separate tests being run — a multiple comparisons correction adjusts the significance threshold to account for this increased chance of a false positive across many simultaneous tests, preventing a researcher from testing many candidate techniques and then reporting whichever one happened to look best purely due to chance as if it were a genuine, reliable finding",
+      "d": "This concept has no relationship to the statistical significance testing already covered earlier in this course"
+    },
+    "correct": "c",
+    "theory": {
+      "text": "This extends the statistical significance concept from air-010 with a genuinely important refinement that becomes necessary once multiple candidate techniques are being compared simultaneously, connecting directly to the seed-hacking concern already flagged in air-013. A standard significance threshold (commonly a 5% chance of a false positive) is calibrated for evaluating one single comparison — but if a researcher tests many different candidate techniques against the same baseline simultaneously, the probability that at least one of them will appear statistically significant purely by chance, even if none genuinely work any better than the baseline, grows substantially with the number of comparisons being tested. A multiple comparisons correction adjusts the significance threshold to properly account for this increased chance of at least one false positive across many simultaneous tests, protecting against exactly the same underlying dishonesty already flagged for seed hacking in air-013 — testing many candidates and then reporting whichever one happened to look best purely by chance as if it represented a genuine, reliable finding, rather than an artifact of having simply tried enough different things until one happened to look good."
+    }
+  },
+  {
+    "id": "air-026",
+    "topic": "statistical-rigor-significance",
+    "question": "Andina Retail Group's AI researcher reports a confidence interval alongside a point estimate of a new technique's improvement ('a 3.2% accuracy improvement, 95% confidence interval of 1.1% to 5.3%') rather than reporting only the single point estimate. Why does reporting this range, rather than just the single best-guess number, give a more honest picture of the genuine uncertainty in the finding?",
+    "options": {
+      "a": "A confidence interval and a single point estimate always convey exactly the same amount of information about a finding's genuine uncertainty, making it redundant to report both together",
+      "b": "This concept has no relationship to the statistical significance testing or multiple comparisons correction already covered earlier in this course",
+      "c": "A single point estimate presents one specific number as if it were known with complete certainty, when it's actually just the best single guess derived from a limited, finite sample of experimental runs; a confidence interval explicitly communicates the genuine range of plausible true values consistent with the observed data, giving readers an honest sense of how much uncertainty actually surrounds the point estimate — a wide interval signals considerably more genuine uncertainty than a narrow one, even if both happen to share the exact same central point estimate",
+      "d": "Reporting a confidence interval means the researcher is completely uncertain about the finding and has no genuine, defensible point estimate to report at all"
+    },
+    "correct": "c",
+    "theory": {
+      "text": "This closes the entire statistical rigor and significance topic by explaining why a confidence interval, not just a single point estimate, gives a genuinely more complete and honest picture of a finding's actual uncertainty. A bare point estimate ('a 3.2% improvement') presents one specific number as the reported finding, but that number is itself just the single best guess derived from a necessarily finite, limited sample of experimental runs — a different sample could plausibly have produced a somewhat different point estimate. A confidence interval makes this genuine uncertainty explicit by reporting the full range of plausible true values consistent with the observed data, not just the single center point of that range — a narrow interval (1.1% to 5.3%, versus a hypothetical much wider interval of -2% to 8% around that same 3.2% point estimate) signals considerably more confidence in the finding's genuine reliability, information a bare point estimate alone would completely hide from a reader trying to honestly judge how much to actually trust the reported result."
+    }
+  },
+  {
+    "id": "air-027",
+    "topic": "reproducibility-open-science",
+    "question": "Andina Retail Group's AI researcher, upon discovering that a previously published, influential paper's reported result cannot actually be reproduced despite carefully following its disclosed methodology, publishes this negative 'failure to reproduce' finding rather than simply quietly abandoning the replication attempt with no public record. Why is publishing this kind of negative, non-confirming finding genuinely valuable to the research community, beyond just publishing new positive results?",
+    "options": {
+      "a": "If failed reproduction attempts are never actually published or shared, the research community has no visible way of knowing that a widely-cited, influential result might actually be unreliable — other researchers might continue building further work on top of a finding that doesn't actually hold up, wasting real effort and resources; publishing a genuine, carefully-conducted failure to reproduce provides the community with important, otherwise-invisible information about which existing findings genuinely deserve continued trust and which may need further scrutiny",
+      "b": "A failure to reproduce a previously published result always definitively proves that the original researchers deliberately committed fraud, with no other possible innocent explanation for the discrepancy",
+      "c": "This concept has no relationship to the reproducibility documentation or seed-hacking concerns already covered earlier in this course",
+      "d": "Failed reproduction attempts should always be kept entirely private and never shared with the broader research community, since only successful, positive confirming results carry any genuine scientific value worth publishing"
+    },
+    "correct": "a",
+    "theory": {
+      "text": "This extends the reproducibility discipline from air-012 with a genuinely important, if less immediately rewarding, research practice: publishing negative findings, not just positive ones. If a genuine, carefully-conducted failure to reproduce an influential result is simply discovered and then quietly abandoned rather than published, the broader research community has no visible way of knowing that this widely-cited finding might actually be unreliable — other researchers, unaware of the failed replication, might continue building substantial further work on top of a foundation that doesn't actually hold up, wasting genuine effort and resources on work built on an unstable premise. Publishing the failure to reproduce, conducted with the same rigor as any positive finding, gives the community genuinely important, otherwise-invisible information about which existing findings actually deserve continued trust — a genuine, if less celebrated, contribution to the field's overall collective self-correction, not a wasted or embarrassing outcome to be hidden away."
+    }
+  },
+  {
+    "id": "air-028",
+    "topic": "reproducibility-open-science",
+    "question": "Andina Retail Group's AI researcher releases a new research dataset alongside a clear, explicit data card documenting exactly how the data was collected, what population it represents, and what known limitations or potential biases it carries, rather than releasing the raw dataset with no accompanying documentation. Why does this kind of documentation matter for other researchers who might later use the dataset?",
+    "options": {
+      "a": "Without explicit documentation of how a dataset was actually collected, what population it genuinely represents, and what known limitations it carries, a future researcher using that dataset has no way of knowing whether it's actually appropriate for their own intended use case, or whether findings based on it might be subtly skewed by an unstated collection bias — a clear data card gives future users the genuine context needed to use the dataset responsibly and correctly interpret findings based on it, directly echoing the model-card documentation concept already covered in this platform's NLP course",
+      "b": "A raw dataset with no accompanying documentation is always equally usable and equally correctly interpretable as one with a clear, explicit data card describing its collection and limitations",
+      "c": "This concept has no relationship to the reproducibility principles already covered earlier in this course",
+      "d": "Documenting a dataset's collection method and known limitations has no relationship to the model-card concept already covered in this platform's NLP course"
+    },
+    "correct": "a",
+    "theory": {
+      "text": "This closes the entire reproducibility and open science topic by directly extending the model-card documentation concept already established in this platform's NLP course (nlp-046) from documenting a trained model's limitations to documenting a released dataset's own limitations, the same underlying transparency principle applied one step earlier in the pipeline. Without explicit documentation of a dataset's collection method, the population it actually represents, and its known limitations or potential biases, a future researcher has no genuine way of judging whether that dataset is actually appropriate for their own intended use case — they might unknowingly build important work on top of data that was collected in a way subtly mismatched to their own research question, or that carries an unstated bias that would meaningfully skew any findings derived from it. A clear, explicit data card gives future users exactly the context needed to use a shared dataset responsibly and to correctly interpret and appropriately caveat any findings built on top of it, extending this entire topic's consistent emphasis on genuine, honest transparency as a core research responsibility."
+    }
+  },
+  {
+    "id": "air-029",
+    "topic": "research-ethics-ai",
+    "question": "Andina Retail Group's AI researcher, before deploying a new AI-driven research technique that will influence real customer-facing decisions, submits the research plan for review by a colleague not directly involved in the project, specifically to get an independent, less invested perspective on potential ethical concerns the original researcher might have overlooked. Why is this kind of independent ethical review genuinely valuable, even when the original researcher already believes they've carefully considered the ethical implications themselves?",
+    "options": {
+      "a": "A researcher deeply invested in their own project can genuinely, if unintentionally, develop blind spots about that project's potential ethical concerns, simply from being close to the work and motivated to see it succeed — an independent reviewer, with no comparable personal investment in the project's success, can bring a genuinely different, less biased perspective and is more likely to notice a concern the original researcher's own closeness to the work caused them to overlook, echoing the same value of independent verification already established generally throughout this course's emphasis on reproducibility and external checking",
+      "b": "This concept has no relationship to the data consent or dual-use disclosure considerations already covered earlier in this course",
+      "c": "A researcher's own careful self-assessment of a project's ethical implications is always equally thorough and equally reliable as an independent review by someone not directly involved in the project",
+      "d": "Independent ethical review is only ever necessary for projects that the original researcher already personally believes have genuine ethical problems, making it unnecessary for any project the researcher already considers ethically sound"
+    },
+    "correct": "a",
+    "theory": {
+      "text": "This extends the research ethics topic by applying the same independent-verification value already established throughout this course's reproducibility and statistical rigor content to ethical review specifically. A researcher deeply invested in their own project's success can develop genuine, unintentional blind spots about that project's potential ethical concerns — not through any bad faith, but simply because sustained closeness to one's own work and genuine motivation to see it succeed can make it harder to notice issues an outside perspective would catch more readily. An independent reviewer, without that same personal investment in the project succeeding, brings a genuinely different vantage point and is more likely to notice a concern the original researcher's own proximity to the work caused them to overlook entirely — the same underlying principle behind why reproducibility, peer review, and independent verification matter throughout scientific practice generally, here applied specifically to catching ethical blind spots before a project actually reaches real customers, not just methodological errors before a project reaches other researchers."
+    }
+  },
+  {
+    "id": "air-030",
+    "topic": "research-ethics-ai",
+    "question": "Andina Retail Group's AI researcher documents a clear plan for what to do if a deployed research technique is later discovered to have caused genuine, unanticipated harm — including who should be notified, how quickly, and what corrective action would be taken — before the technique is ever actually deployed, rather than only figuring out a response plan after a genuine problem has already occurred. Why does preparing this kind of response plan in advance reflect sound research ethics practice?",
+    "options": {
+      "a": "This concept has no relationship to the proactive incident-preparedness principles already covered elsewhere on this training platform",
+      "b": "Deciding how to respond to a genuine problem calmly and deliberately in advance, before any actual harm has occurred and before the pressure and urgency of a real live incident, generally produces a more thoughtful, more genuinely protective response plan than trying to improvise an appropriate response for the first time while already in the middle of an actual, unfolding crisis — echoing the same proactive-versus-reactive incident-preparedness principle already established generally in this platform's Data Engineering and Supply Chain courses, here applied specifically to the ethical responsibility of responding to unanticipated harm from a deployed research technique",
+      "c": "A response plan for genuine unanticipated harm should always be figured out for the first time only after an actual problem has already occurred, since preparing one in advance provides no genuine benefit over improvising a response during an actual live incident",
+      "d": "Research techniques that have been carefully and rigorously developed following genuine scientific methodology can never actually cause any genuine, unanticipated harm once deployed, making advance response planning an unnecessary precaution"
+    },
+    "correct": "b",
+    "theory": {
+      "text": "This closes the entire research ethics topic by extending the proactive-versus-reactive incident-preparedness principle already established generally in this platform's Data Engineering course (the risk-register and disruption-simulation content) and Supply Chain course to the specific ethical responsibility of responding to unanticipated harm from a deployed AI research technique. However carefully a technique has been developed and validated, genuine unanticipated real-world harm remains a real possibility once something is actually deployed to affect real customer-facing decisions — no amount of careful research methodology can guarantee this risk away entirely. Deciding calmly and deliberately, in advance, exactly how to respond if this does happen — who gets notified, how quickly, what corrective action follows — produces a genuinely more thoughtful, more protective response plan than trying to improvise an appropriate response for the first time while already under the real pressure and urgency of an actual, unfolding incident, exactly the same proactive-preparedness discipline this training platform has consistently emphasized across supply chain disruptions, financial stress scenarios, and now the specific ethical responsibility a research team carries once its work actually affects real people."
+    }
+  },
+  {
+    "id": "air-031",
+    "topic": "communicating-research",
+    "question": "Andina Retail Group's AI researcher, when presenting a research finding to company leadership, explicitly states the finding's genuine limitations and the specific conditions under which it might not hold, rather than presenting only the positive result with full confidence and no caveats. Why does including genuine limitations in a research communication, even to a non-technical audience, reflect sound and ultimately more trustworthy communication practice?",
+    "options": {
+      "a": "A research finding's genuine limitations are only relevant to a technical audience and have no bearing on how a non-technical business leadership audience should actually interpret or act on the finding",
+      "b": "This concept has no relationship to the audience-tailored communication principle already covered earlier in this course",
+      "c": "Non-technical business leadership audiences should never be told about a research finding's genuine limitations, since disclosing any caveat always makes a finding seem completely worthless and not worth acting on at all",
+      "d": "Presenting a finding with its genuine limitations honestly disclosed, even to a non-technical audience who might not fully grasp every technical nuance, gives leadership a more accurate basis for deciding how much weight to actually place on the finding and what risks a resulting business decision might carry — omitting genuine limitations to make a finding sound more impressive or more certain than it actually is, even with good intentions, ultimately risks leadership making a decision based on an incomplete, overconfident picture of what the research actually supports"
+    },
+    "correct": "d",
+    "theory": {
+      "text": "This extends the audience-tailored communication principle from air-016 with a genuinely important honesty discipline that applies regardless of which audience is being addressed. Tailoring the level of technical detail to an audience's actual needs (per air-016) is genuinely different from selectively omitting a finding's real limitations simply because they might complicate an otherwise clean, impressive-sounding story — even a non-technical leadership audience, who might not grasp every technical nuance of why a limitation exists, still genuinely deserves to know that the limitation exists at all, since that information directly affects how much confidence they should reasonably place in the finding and what risk a resulting business decision built on it might actually carry. Omitting genuine limitations to make a finding sound more impressive or more certain than the underlying research actually supports, even without any deliberately dishonest intent, ultimately risks leadership making a real business decision based on an incomplete, overconfident picture — precisely the kind of honest, appropriately humble communication this entire course's statistical rigor and reproducibility content has been building toward, now extended to how findings are actually presented and acted upon."
+    }
+  },
+  {
+    "id": "air-032",
+    "topic": "communicating-research",
+    "question": "Andina Retail Group's AI researcher uses a clear, well-labeled data visualization (per this training platform's dedicated data visualization guidance) rather than a dense table of raw numbers when presenting a research finding's key result to company leadership. Why does thoughtful visualization genuinely matter for research communication, beyond simply being a more polished presentation choice?",
+    "options": {
+      "a": "A dense table of raw numbers always conveys a research finding's key pattern or trend exactly as clearly and immediately as a well-designed visualization, making thoughtful visualization an unnecessary additional effort with no genuine communication benefit",
+      "b": "Data visualization exists purely for aesthetic, decorative purposes with no genuine connection to how quickly or accurately an audience actually understands the underlying finding",
+      "c": "A well-designed visualization can convey a genuine pattern, trend, or comparison far more immediately and intuitively than a dense table of raw numbers requires a reader to manually parse and mentally compare themselves — for an audience that needs to grasp a finding's practical implication quickly (like busy leadership making a real decision), thoughtful visualization genuinely reduces the cognitive effort required to correctly understand what the data actually shows, directly connecting to the cognitive-load management principle already covered in this platform's Artificial Cognitive Systems course",
+      "d": "This concept has no relationship to the cognitive load management principle already covered in this platform's Artificial Cognitive Systems course"
+    },
+    "correct": "c",
+    "theory": {
+      "text": "This closes the entire AI Research Methods course — and the entire Artificial Intelligence course sequence on this training platform — by connecting effective research communication directly to the cognitive load management principle already established in this platform's Artificial Cognitive Systems course (cog-017). A dense table of raw numbers technically contains all the same underlying information as a well-designed visualization, but it requires a reader to do real, active cognitive work parsing and mentally comparing those numbers themselves to actually extract the pattern or trend being communicated — exactly the kind of avoidable cognitive burden the Artificial Cognitive Systems course cautioned against imposing unnecessarily on a limited-capacity human audience. A thoughtful visualization instead does much of that pattern-extraction work upfront, letting a busy leadership audience grasp a finding's practical implication quickly and accurately with far less required mental effort — closing this entire course, and this training platform's whole Artificial Intelligence sequence, with the same consistent, business-grounded theme: genuinely rigorous, technically sound AI research and findings only create real business value once they're communicated in a way their actual intended audience can genuinely understand and confidently act on."
+    }
+  },
+  {
+    "id": "air-033",
+    "topic": "research-problem-formulation",
+    "question": "Andina Retail Group's AI researcher, before starting a new research project, writes a short 'scoping statement' explicitly listing what the research will NOT attempt to address, alongside the research question itself. Why is explicitly documenting a project's out-of-scope boundaries a genuinely useful discipline, connecting to the requirements-scoping practice already covered in this platform's Data Architecture course?",
+    "options": {
+      "a": "A scoping statement listing what a project will not address has no relationship to the requirements-scoping practice already covered in this platform's Data Architecture course, making the comparison invalid",
+      "b": "A research project's scope should always be left completely open-ended and undefined, since narrowing it in advance to a specific question always limits the value of any findings produced",
+      "c": "Explicitly naming what a research project will not attempt to address, mirroring the requirements-scoping discipline already established in this platform's Data Architecture course, prevents the project's actual research question from silently expanding mid-project to cover every tangentially related idea that comes up — an unscoped project risks never reaching a clear, testable conclusion because its target keeps shifting, while a project with an explicit out-of-scope boundary can be judged as genuinely complete once its original, narrower question is actually answered",
+      "d": "Explicitly documenting out-of-scope boundaries means the researcher has already decided the excluded topics are unimportant forever, rather than simply outside this particular project's current focus"
+    },
+    "correct": "c",
+    "theory": {
+      "text": "This extends the precise research-question formulation from air-001 and air-017/air-018 by connecting it directly to the requirements-scoping discipline already established in this platform's Data Architecture course, where clearly bounding a project's scope up front was shown to prevent uncontrolled scope creep. A research project without an explicit out-of-scope boundary is vulnerable to the same failure mode: its target quietly expands mid-project to chase every tangentially related idea that surfaces along the way, meaning the project may never reach a clear, testable conclusion because the question it's actually trying to answer keeps shifting underneath it. Writing a short scoping statement — not just what the research asks, but explicitly what it deliberately leaves out — gives the project a genuine, checkable definition of done: it's complete once its original, narrower question is actually answered, not once every possible related curiosity has been satisfied."
+    }
+  },
+  {
+    "id": "air-034",
+    "topic": "research-problem-formulation",
+    "question": "Andina Retail Group's AI researcher, when formulating a new research question, explicitly identifies the specific business stakeholder who would actually use the answer and what decision that stakeholder would make differently depending on the result. Why does tying a research question to a genuine downstream decision, rather than pursuing an interesting question in isolation, matter for research prioritization at a company like Andina Retail Group?",
+    "options": {
+      "a": "Every research question pursued by a company research team must always be tied to an identifiable immediate business decision, with no legitimate place for any exploratory research that doesn't have an immediate practical application",
+      "b": "This concept has no relationship to the falsifiability or scoping considerations already covered earlier in this topic",
+      "c": "Identifying which stakeholder would use a research answer has no bearing on how a company should prioritize its genuinely limited research effort and resources",
+      "d": "A research question tied to a genuine, identifiable downstream decision has a clear test of practical value — if the answer wouldn't actually change what any real stakeholder does, the research may be intellectually interesting but doesn't yet justify the company's limited research resources ahead of work that would directly inform an actual business decision; this doesn't mean purely exploratory research never has value, but it does mean deliberately tying applied research to a genuine decision-maker helps prioritize limited effort toward what will actually get used"
+    },
+    "correct": "d",
+    "theory": {
+      "text": "This closes the research-problem-formulation topic by adding a practical prioritization lens on top of the falsifiability (air-018) and scoping (air-033) criteria already established. Tying a candidate research question to a specific, identifiable stakeholder and the concrete decision that stakeholder would actually make differently based on the answer gives a genuine, checkable test of practical value ahead of committing limited company research resources — if no real decision would actually change regardless of the answer, the question may still be intellectually worthwhile, but it doesn't automatically justify priority ahead of work that would directly inform something a real person at Andina Retail Group is genuinely about to decide. This is a prioritization filter for applied research specifically, not a blanket claim that every worthwhile research question must have an immediate practical application — but for a company research team with genuinely finite capacity, it's a sound, honest way to decide what to work on first."
+    }
+  },
+  {
+    "id": "air-035",
+    "topic": "literature-review-methods",
+    "question": "Andina Retail Group's AI researcher keeps a running, structured log of every source reviewed during a literature review — including sources that turned out to be irrelevant or unhelpful — rather than only keeping notes on the sources that ended up being cited in the final research summary. Why is logging the irrelevant or unhelpful sources, not just the useful ones, a genuinely sound practice?",
+    "options": {
+      "a": "Sources that turn out to be irrelevant or unhelpful during a literature review should always be immediately discarded with no record kept, since they provide no genuine value to document in any form",
+      "b": "A literature review log containing only the sources that ended up cited in the final summary is always exactly as useful and complete as one that also logs sources reviewed and found unhelpful",
+      "c": "A structured log covering every source actually reviewed, including ones that turned out irrelevant, prevents the researcher (or a future colleague continuing the same line of inquiry) from wastefully re-reviewing the exact same unhelpful source a second time, and provides honest documentation of how thorough the search actually was — a log containing only the sources that happened to be useful can't be distinguished from a search that simply got lucky versus one that was genuinely comprehensive",
+      "d": "This concept has no relationship to the systematic literature review process or citation-signal triage already covered earlier in this course"
+    },
+    "correct": "c",
+    "theory": {
+      "text": "This extends the systematic literature review discipline from air-003 and the citation-signal triage from air-019 with a practical record-keeping habit. Logging every source actually reviewed — including the ones that turned out irrelevant or unhelpful, not only the ones that made it into the final cited summary — serves two genuine purposes: it prevents the same researcher, or a colleague picking up the same line of inquiry later, from wastefully re-reviewing a source already known to be unhelpful, and it provides honest, checkable documentation of how thorough the search actually was. A log containing only the sources that happened to prove useful can't be distinguished, after the fact, from a search that simply got lucky finding good sources quickly versus one that was genuinely comprehensive and systematic — the full log, including the dead ends, is what actually demonstrates genuine thoroughness."
+    }
+  },
+  {
+    "id": "air-036",
+    "topic": "literature-review-methods",
+    "question": "Andina Retail Group's AI researcher, while conducting a literature review, deliberately seeks out at least one source that argues against or complicates the position the researcher personally expects to find supported. Why does deliberately seeking out this kind of disconfirming or complicating source matter for a genuinely thorough literature review, connecting to the confirmation-bias concern already raised in this topic?",
+    "options": {
+      "a": "A thorough literature review should only ever include sources that support the researcher's own expected position, since including any disconfirming or complicating source would make the review less useful",
+      "b": "Deliberately seeking out disconfirming sources during a literature review has no relationship to the confirmation-bias concern already raised earlier in this course",
+      "c": "Sources that argue against or complicate a researcher's expected position are always methodologically weaker than sources that happen to confirm it, making them safe to exclude from any genuinely thorough review",
+      "d": "A literature review conducted only by searching for sources that confirm what the researcher already expects to find risks the exact same confirmation bias already flagged in air-003 and air-017, just expressed through selective search rather than selective interpretation of results — deliberately seeking out sources that argue against or complicate the expected position forces genuine engagement with the strongest available counter-evidence, producing a more balanced, more honest picture of what the existing literature actually says rather than a one-sided summary that happens to support what the researcher wanted to find from the start"
+    },
+    "correct": "d",
+    "theory": {
+      "text": "This closes the literature-review-methods topic by directly connecting to the confirmation-bias concern already raised for informal literature searches in air-003 and for null-hypothesis framing in air-017 — here applied specifically to how a literature search itself is conducted, not just how results get interpreted. A search conducted only by looking for sources that confirm an already-expected position risks producing a one-sided, artificially clean-looking summary of 'what the literature says' that actually just reflects what the researcher was looking for from the start. Deliberately seeking out at least one source that argues against or meaningfully complicates that expected position forces genuine engagement with the strongest available counter-evidence, which produces an honestly more balanced picture of the actual state of existing research — and, practically, makes the researcher's own eventual position considerably more defensible, since it will already have grappled with the best available objections rather than being caught off guard by them later."
+    }
+  },
+  {
+    "id": "air-037",
+    "topic": "experimental-design-ai",
+    "question": "Andina Retail Group's AI researcher runs a 'pilot experiment' on a small subset of data before committing to the full-scale experimental run, specifically to catch obvious setup problems early and inexpensively. Why does running a small, cheap pilot before the full experiment reflect sound experimental practice, connecting to the sanity-check-baseline reasoning already established in this topic?",
+    "options": {
+      "a": "A pilot experiment's only genuine purpose is to produce the final, publishable result, with no role in catching setup errors before the full-scale run",
+      "b": "A pilot experiment run on a small subset of data is far cheaper and faster to run than the full-scale experiment, which means an obvious setup problem (a bug, a misconfigured pipeline, an unreasonable-looking result) can be caught and fixed while the cost of discovering it is still low — echoing the same early-and-cheap error-catching logic already established for sanity-check baselines in air-021, just applied to the overall experimental scale rather than to the specific comparison being tested",
+      "c": "Running a pilot experiment before a full-scale run has no relationship to the sanity-check-baseline reasoning already established earlier in this topic",
+      "d": "A pilot experiment run on a small subset of data always produces results that are exactly as statistically reliable and generalizable as the full-scale experimental run, making the full-scale run unnecessary once a pilot has been completed"
+    },
+    "correct": "b",
+    "theory": {
+      "text": "This extends the sanity-check-baseline reasoning from air-021 with a closely related, genuinely practical experimental habit: catching problems cheaply, early, before committing significant resources. A small-scale pilot experiment costs far less time and compute than the full-scale run, meaning an obvious setup problem — a bug in the data pipeline, a misconfigured evaluation metric, a result so far outside reasonable expectations it signals something is broken — can be caught and fixed while the cost of discovering it is still low, exactly the same early-and-cheap error-catching logic already established for sanity-check baselines, just applied to the overall experimental scale rather than to a specific weak comparison technique. A pilot isn't a substitute for the full-scale experiment's statistical reliability — a small subset generally can't support the same confidence as the full run — but it's a genuinely sound, low-cost first checkpoint before investing in the complete, expensive experimental commitment."
+    }
+  },
+  {
+    "id": "air-038",
+    "topic": "experimental-design-ai",
+    "question": "Andina Retail Group's AI researcher, when designing an experiment to compare a new technique against a baseline, ensures both the new technique and the baseline are given access to exactly the same computational budget (same amount of training time, same hardware) during the comparison. Why does this kind of matched computational budget matter for a genuinely fair experimental comparison?",
+    "options": {
+      "a": "A new technique given a meaningfully larger computational budget than the baseline will always perform identically to a baseline given a much smaller budget, making budget matching irrelevant to a fair comparison",
+      "b": "Computational budget matching only matters for comparisons between different neural network architectures, with no relevance to any other kind of AI technique comparison",
+      "c": "If a new technique is given a meaningfully larger computational budget than the baseline during a comparison, any observed improvement might simply reflect the extra compute rather than a genuine advantage of the new technique itself over the baseline — a fair, informative comparison requires holding the computational budget roughly matched between the new technique and the baseline, isolating whether the technique itself, not just extra resources, is what's actually producing the improvement, the same kind of confound-control reasoning already applied to data leakage in air-022",
+      "d": "This concept has no relationship to the data leakage or sanity-check-baseline confound-control reasoning already covered earlier in this topic"
+    },
+    "correct": "c",
+    "theory": {
+      "text": "This closes the entire experimental-design-ai topic by adding a further confound-control discipline alongside the data-leakage check from air-022 and the sanity-check baseline from air-021 — all three address different ways an experimental comparison can be quietly unfair or misleading. If a new technique receives a meaningfully larger computational budget than the baseline it's being compared against, any observed improvement becomes genuinely ambiguous: does it reflect a real advantage of the new technique itself, or simply the fact that it was given more resources to work with, an advantage the baseline never had a fair chance to also benefit from? Holding the computational budget roughly matched between the new technique and the baseline isolates the comparison to what actually matters — whether the technique itself, not just extra compute thrown at the problem, is what's producing the improvement — the same underlying discipline of controlling for confounding factors that already motivated checking rigorously for data leakage."
+    }
+  },
+  {
+    "id": "air-039",
+    "topic": "benchmarks-evaluation-methodology",
+    "question": "Andina Retail Group's AI researcher evaluates a new technique on more than one benchmark dataset, rather than reporting results from only a single benchmark, before concluding the technique represents a genuine, general improvement. Why does evaluating across multiple benchmarks, not just one, matter for drawing a genuinely reliable conclusion?",
+    "options": {
+      "a": "A technique that performs well on a single specific benchmark might be capturing something genuinely useful, or might simply be well-suited to quirks specific to that one benchmark's particular data distribution or construction — evaluating across multiple, meaningfully different benchmarks tests whether an improvement genuinely generalizes beyond one dataset's specific characteristics, giving considerably more confidence that the finding reflects a real, broadly useful improvement rather than an artifact of one particular benchmark's own idiosyncrasies",
+      "b": "This concept has no relationship to the benchmark-bias concerns already covered earlier in this topic",
+      "c": "A technique's performance on a single benchmark dataset always perfectly and reliably predicts its performance on every other possible benchmark dataset, making evaluation across multiple benchmarks an unnecessary additional step",
+      "d": "Evaluating a new technique across multiple different benchmark datasets has no relationship to whether a finding genuinely generalizes beyond one specific dataset's own particular characteristics"
+    },
+    "correct": "a",
+    "theory": {
+      "text": "This extends the benchmark-bias concerns from air-024 with a related, genuinely important generalization check. A technique that performs impressively well on one single specific benchmark might genuinely be capturing something broadly useful — or it might simply be particularly well-matched to quirks specific to that one benchmark's own data distribution or construction, in which case the strong result wouldn't actually reflect a genuine, general improvement at all. Evaluating across multiple, meaningfully different benchmarks — ideally constructed through different collection processes, representing somewhat different populations or task variations — tests directly whether an observed improvement actually holds up beyond one dataset's specific characteristics, giving considerably more confidence that a reported finding reflects a genuinely broad, real improvement rather than an artifact of overfitting, whether deliberate or accidental, to one particular benchmark's own idiosyncrasies."
+    }
+  },
+  {
+    "id": "air-040",
+    "topic": "benchmarks-evaluation-methodology",
+    "question": "Andina Retail Group's AI researcher reports not just a technique's average benchmark performance but also its performance variance across multiple independent runs (different random initializations, for instance). Why does reporting this variance, not just the average, matter for a genuinely informative benchmark evaluation, connecting to the confidence-interval reasoning already covered in this course?",
+    "options": {
+      "a": "Two techniques can share the exact same average benchmark performance while genuinely differing in how consistently reliable that performance actually is across repeated runs — a technique with high variance might occasionally perform excellently and occasionally quite poorly, which matters enormously for real deployment reliability, even though its average looks identical to a consistently mediocre-but-stable alternative; reporting variance alongside the average, echoing the confidence-interval reasoning from air-026, gives a genuinely more complete picture of a technique's real, practical reliability",
+      "b": "Reporting performance variance across independent runs has no relationship to the confidence-interval reasoning already covered earlier in this course",
+      "c": "A technique with high variance across independent runs is always strictly better for real deployment than a technique with low variance and the same average performance",
+      "d": "A technique's average benchmark performance always fully and completely captures everything genuinely relevant about its reliability, making variance across independent runs an irrelevant additional statistic"
+    },
+    "correct": "a",
+    "theory": {
+      "text": "This closes the entire benchmarks-evaluation-methodology topic by connecting directly to the confidence-interval reasoning already established in air-026, here applied specifically to run-to-run variance in benchmark evaluation. Two techniques can report the exact same average performance while genuinely differing in something that matters a great deal for real deployment: how consistently that performance actually holds up across repeated runs. A technique with high variance might occasionally perform excellently and occasionally quite poorly depending on essentially arbitrary factors like random initialization, even though its average looks identical to a different technique that performs consistently, reliably in the middle every time — for a real business deciding whether to actually deploy a technique, that consistency difference matters enormously, and it's completely invisible if only the average is ever reported, exactly why the confidence-interval discipline from air-026 extends naturally to reporting variance across independent runs, not just a single point estimate of average benchmark performance."
+    }
+  },
+  {
+    "id": "air-041",
+    "topic": "statistical-rigor-significance",
+    "question": "Andina Retail Group's AI researcher distinguishes between a result being 'statistically significant' and a result being 'practically significant' — noting that a very large sample size can make even a tiny, practically meaningless improvement register as statistically significant. Why is this distinction genuinely important for honest research communication?",
+    "options": {
+      "a": "A large sample size always makes a genuinely tiny, practically meaningless improvement statistically insignificant, the reverse of the actual typical relationship between sample size and statistical significance",
+      "b": "With a large enough sample size, even a genuinely tiny improvement (a 0.01% accuracy gain, for instance) can register as statistically significant, meaning the improvement is unlikely to be purely due to chance — but statistical significance alone says nothing about whether that improvement is actually large enough to matter for any real, practical business purpose; a researcher must separately assess practical significance (whether the improvement is meaningfully large enough to justify a real decision) rather than treating statistical significance alone as proof a finding is genuinely important",
+      "c": "This concept has no relationship to the confidence-interval or multiple-comparisons-correction concepts already covered earlier in this course",
+      "d": "A statistically significant result is always automatically a practically significant result as well, making it unnecessary to ever separately assess whether a finding is large enough to matter for a real business decision"
+    },
+    "correct": "b",
+    "theory": {
+      "text": "This extends the statistical rigor topic with a genuinely important distinction that complements the confidence-interval reasoning from air-026 and the multiple-comparisons correction from air-025. Statistical significance answers one specific, narrow question: is this improvement unlikely to be purely due to random chance, given the sample size used? With a large enough sample, even a genuinely tiny, practically meaningless improvement — a 0.01% accuracy gain that would never actually change any real business decision — can register as statistically significant, since a large sample makes even small true effects detectable with confidence. But statistical significance alone says absolutely nothing about whether that improvement is actually large enough to matter for any real, practical purpose — a researcher must separately, honestly assess practical significance, asking directly whether the improvement is meaningfully large enough to justify a real decision, rather than treating the presence of statistical significance alone as automatic proof that a finding is genuinely important or worth acting on."
+    }
+  },
+  {
+    "id": "air-042",
+    "topic": "statistical-rigor-significance",
+    "question": "Andina Retail Group's AI researcher, before running a new experiment, calculates the minimum sample size needed to reliably detect an improvement of a practically meaningful size (a 'power analysis'), rather than simply using whatever sample happens to already be available. Why does this kind of advance power analysis reflect sound statistical practice?",
+    "options": {
+      "a": "An experiment run with too small a sample size may lack the statistical power to reliably detect a genuine, practically meaningful improvement even if that improvement actually exists — producing a misleading 'no significant difference' result that reflects an underpowered experiment rather than a genuine absence of any real effect; calculating the needed sample size in advance, based on the smallest improvement size that would actually matter practically, helps ensure the experiment is actually capable of detecting a genuine effect if one exists, rather than risking a false negative purely due to insufficient sample size",
+      "b": "An experiment's sample size has no relationship to its ability to reliably detect a genuine, practically meaningful improvement, making advance power analysis an unnecessary statistical exercise",
+      "c": "A power analysis conducted before running an experiment always guarantees the experiment will find a statistically significant result, regardless of whether a genuine effect actually exists",
+      "d": "This concept has no relationship to the practical-versus-statistical-significance distinction already covered in the previous question"
+    },
+    "correct": "a",
+    "theory": {
+      "text": "This closes the entire statistical-rigor-significance topic by addressing the reverse risk from the one raised in air-041. Where air-041 warned that a large sample can make a practically meaningless improvement look statistically significant, this addresses the opposite problem: a sample size that's too small can fail to reliably detect a genuine, practically meaningful improvement even when that improvement actually, truly exists — producing a misleading 'no significant difference' conclusion that really just reflects an underpowered experiment, not a genuine absence of any real effect. Calculating the minimum sample size needed in advance, based explicitly on the smallest improvement size that would actually matter practically (directly connecting to the practical-significance distinction from air-041), helps ensure an experiment is genuinely capable of detecting a real effect if one exists, rather than risking a false negative conclusion purely because the experiment was never actually large enough to reliably notice a genuine improvement in the first place."
+    }
+  },
+  {
+    "id": "air-043",
+    "topic": "reproducibility-open-science",
+    "question": "Andina Retail Group's AI researcher archives the exact software library versions used during an experiment (via a dependency lock file), not just the code itself, alongside a published research finding. Why does pinning exact dependency versions matter for genuine long-term reproducibility, beyond simply sharing the analysis code?",
+    "options": {
+      "a": "Sharing only the analysis code, with no record of the exact library versions used, is always exactly as sufficient for genuine reproducibility as also archiving the exact dependency versions",
+      "b": "Software libraries change behavior over time as they're updated — a bug fix, a changed default parameter, a different underlying numerical algorithm — meaning the exact same analysis code can produce a genuinely different result when run against a different library version than the one originally used; archiving the exact dependency versions alongside the code ensures a future researcher attempting to reproduce the finding is actually running the same computational environment, not just the same code operating on a potentially different, silently changed foundation",
+      "c": "Software library versions never affect an analysis's actual output, making it unnecessary to archive which specific versions were used alongside a published finding",
+      "d": "This concept has no relationship to the reproducibility documentation or data-card concepts already covered earlier in this course"
+    },
+    "correct": "b",
+    "theory": {
+      "text": "This extends the reproducibility documentation discipline from air-012 and the data-card concept from air-028 to a subtler, easily overlooked reproducibility risk: the software environment itself, not just the code or the data. Software libraries genuinely change behavior over time as they're updated — a bug fix that changes a numerical result, an updated default parameter, a revised underlying algorithm — meaning literally the exact same analysis code, run against a different version of an underlying library than originally used, can genuinely produce a different result, through no error in the code itself at all. Archiving the exact dependency versions used (via a lock file recording precise version numbers, not just library names) alongside the published code ensures a future researcher attempting a genuine reproduction is actually running the same full computational environment the original finding depended on, not just the same code sitting on top of a potentially different, silently changed foundation that could itself explain any discrepancy in the reproduction attempt."
+    }
+  },
+  {
+    "id": "air-044",
+    "topic": "reproducibility-open-science",
+    "question": "Andina Retail Group's AI researcher, when sharing a trained model publicly, includes clear documentation of the specific version of the training data used, not just the final trained model itself. Why does documenting the specific training-data version matter, even when the model itself is fully shared and available?",
+    "options": {
+      "a": "A trained model shared publicly always fully and completely reveals everything about the specific data it was trained on, making separate training-data documentation an unnecessary redundant step",
+      "b": "This concept has no relationship to the data-card documentation concept already covered earlier in this course",
+      "c": "A shared trained model alone doesn't reveal what specific data it was actually trained on, or when that data was collected — without this documentation, a future researcher can't properly assess whether the model's training data might be outdated relative to a new use case, might carry a specific collection-time bias, or might make the model's behavior on new data genuinely difficult to interpret or trust; documenting the specific training-data version gives future users the same kind of essential context the data-card concept already established for data being genuinely usable and interpretable",
+      "d": "The specific version of training data used to train a model has no relationship to how confidently a future researcher can interpret or trust that model's behavior on new data"
+    },
+    "correct": "c",
+    "theory": {
+      "text": "This closes the entire reproducibility-open-science topic by extending the data-card documentation concept from air-028 to the specific case of sharing a trained model, not just a raw dataset. A shared trained model, however openly and fully released, is essentially a black box about its own history unless accompanied by explicit documentation of what specific data version it was actually trained on and when that data was collected — without this, a future researcher genuinely can't assess whether the training data might now be outdated relative to their own intended new use case, whether it might carry a bias specific to when and how it was originally collected, or how much to actually trust the model's behavior on data that looks meaningfully different from what it originally saw during training. Documenting the specific training-data version gives future users of a shared model the same essential interpretive context the data-card concept already established as necessary for any shared data artifact to be genuinely usable and trustworthy, closing this topic's consistent throughline that transparency about origins, not just transparency about final outputs, is what genuine reproducibility actually requires."
+    }
+  },
+  {
+    "id": "air-045",
+    "topic": "research-ethics-ai",
+    "question": "Andina Retail Group's AI researcher, when a research project involves analyzing real customer data, ensures the specific research use case falls within what customers actually consented to when that data was originally collected, rather than assuming any internally-available data is automatically fair to use for any internal research purpose. Why does checking consent scope specifically for the research use case matter, even for data the company already legitimately possesses?",
+    "options": {
+      "a": "This concept has no relationship to the independent ethical review already covered earlier in this course",
+      "b": "A customer's original consent to data collection is typically given for a specific, disclosed purpose — legitimately possessing data within the company doesn't automatically extend that original consent to cover every possible additional internal research use it might later be put to; checking that a specific new research use case genuinely falls within what customers actually agreed to respects the customer's actual informed choice, rather than treating mere internal data availability as sufficient justification on its own",
+      "c": "Data the company already legitimately possesses can always be used for any internal research purpose whatsoever, regardless of what customers originally consented to when the data was first collected",
+      "d": "Checking whether a specific research use case falls within a customer's original data consent has no relationship to genuine research ethics practice"
+    },
+    "correct": "b",
+    "theory": {
+      "text": "This extends the research ethics topic with a foundational consent-scope discipline that connects directly to the independent-review value from air-029. A customer's original consent to having their data collected is typically given for a specific, disclosed purpose at the time of collection — the company legitimately possessing that data internally doesn't automatically mean every possible future internal research use is equally covered by that original consent. Checking explicitly that a new, specific research use case genuinely falls within what customers actually agreed to when the data was first collected respects the customer's actual informed choice about how their own data gets used, rather than treating mere internal data availability as sufficient justification on its own — exactly the kind of concern an independent ethical reviewer, without the original researcher's proximity to the project, would be well positioned to catch if the original researcher's own closeness to the work caused them to assume availability alone was enough."
+    }
+  },
+  {
+    "id": "air-046",
+    "topic": "research-ethics-ai",
+    "question": "Andina Retail Group's AI researcher, when a research finding could plausibly be used both to genuinely improve customer service and to enable a more invasive, potentially unwelcome form of customer monitoring, explicitly documents this dual-use tension in the research write-up rather than presenting only the beneficial application. Why does explicitly surfacing this kind of dual-use tension matter, even when the researcher's own intended application is genuinely the beneficial one?",
+    "options": {
+      "a": "A research finding with a genuinely beneficial intended application can never plausibly be applied in any other, less beneficial way, making dual-use documentation an unnecessary consideration",
+      "b": "A research finding, once published or shared internally, can potentially be applied by others in ways well beyond the researcher's own original, well-intentioned purpose — explicitly documenting a genuine dual-use tension gives whoever later decides how to actually apply the finding the honest context needed to make that decision deliberately and responsibly, rather than the researcher's own good intentions silently standing in for a decision that others, with different incentives, might make quite differently once they encounter the same finding",
+      "c": "Documenting a dual-use tension in a research write-up means the researcher believes the beneficial application should never actually be pursued at all",
+      "d": "This concept has no relationship to the dual-use disclosure considerations already covered earlier in this course"
+    },
+    "correct": "b",
+    "theory": {
+      "text": "This closes the entire research-ethics-ai topic by extending the dual-use disclosure principle already referenced earlier in this course with a concrete Andina Retail Group scenario. A research finding, once actually published or shared internally, doesn't stay tethered to only the researcher's own original, well-intentioned application — it can be picked up and applied by others, later, with different incentives and different priorities, in ways the original researcher never intended or would have chosen themselves. Explicitly documenting a genuine dual-use tension when it exists — here, a finding that could serve genuinely improved customer service or a more invasive, less welcome form of customer monitoring — gives whoever later actually decides how to apply the finding the honest context needed to make that decision deliberately and responsibly, rather than letting the original researcher's own good intentions silently substitute for a decision that someone else, encountering the same finding under different pressures, might make quite differently without that documented context available to inform their choice."
+    }
+  },
+  {
+    "id": "air-047",
+    "topic": "communicating-research",
+    "question": "Andina Retail Group's AI researcher, when presenting a research finding, explicitly distinguishes between what the data actually shows and the researcher's own interpretation or recommendation built on top of that data, rather than presenting both as a single, undifferentiated conclusion. Why does keeping this distinction clear matter for honest research communication?",
+    "options": {
+      "a": "An audience should never be given the opportunity to evaluate a researcher's interpretation separately from the underlying data finding itself, since only the researcher is qualified to judge whether the interpretation is sound",
+      "b": "The raw finding (what the data actually shows) and the researcher's interpretation or recommendation (a judgment call built on top of that finding, potentially incorporating assumptions or business context beyond the data itself) are genuinely different kinds of claims, carrying different kinds of uncertainty — keeping them clearly distinguished lets an audience separately evaluate whether they trust the underlying data and whether they agree with the researcher's specific interpretation or recommended action, rather than being forced to accept or reject both together as a single inseparable package",
+      "c": "This concept has no relationship to the audience-tailored communication or limitations-disclosure principles already covered earlier in this course",
+      "d": "A research finding and a researcher's interpretation or recommendation built on top of that finding are always identical in their level of certainty, making any distinction between them unnecessary for honest communication"
+    },
+    "correct": "b",
+    "theory": {
+      "text": "This extends the honest-communication discipline from air-016 and air-031 with a further, genuinely important distinction. What the data actually shows (the raw finding) and what the researcher recommends doing about it (an interpretation that may reasonably incorporate business judgment, assumptions, or context beyond the data itself) are genuinely different kinds of claims, carrying different kinds of uncertainty — the data finding might be quite solid and well-supported, while the specific recommended action built on top of it involves additional judgment calls reasonable people might weigh differently. Keeping these two things clearly, explicitly distinguished in a research communication lets an audience separately evaluate whether they trust the underlying data and whether they independently agree with the researcher's specific interpretation or recommended course of action, rather than being forced to accept or reject the whole package together as if the finding and the recommendation carried exactly the same level of certainty and the same kind of justification."
+    }
+  },
+  {
+    "id": "air-048",
+    "topic": "communicating-research",
+    "question": "Andina Retail Group's AI researcher, when a leadership audience asks a follow-up question the current research doesn't actually answer, explicitly says so rather than extrapolating an answer that sounds plausible but goes beyond what the actual research supports. Why does this kind of honest 'the research doesn't actually address that' response reflect sound research communication practice, even when it might feel less satisfying to the audience than confidently offering some answer?",
+    "options": {
+      "a": "Acknowledging that current research doesn't address a specific follow-up question always makes the entire research effort appear worthless and not worth having conducted in the first place",
+      "b": "A researcher should always confidently offer some plausible-sounding answer to any leadership follow-up question, regardless of whether the actual underlying research genuinely supports that specific answer",
+      "c": "This concept has no relationship to the limitations-disclosure principle already covered earlier in this course",
+      "d": "Extrapolating a plausible-sounding answer beyond what the actual research genuinely supports risks the audience treating that extrapolation with the same confidence as the actual, well-supported finding, since the distinction between genuinely established and merely plausible-sounding often isn't obvious to a non-technical audience in the moment — explicitly acknowledging a genuine limit of what the current research actually addresses protects the audience from unknowingly acting on a confident-sounding guess as if it were an established, well-supported result"
+    },
+    "correct": "d",
+    "theory": {
+      "text": "This closes the entire communicating-research topic, and the entire AI Research Methods course's core content, by extending the limitations-disclosure principle from air-031 to the specific, common real-world moment of an unscripted leadership follow-up question. Extrapolating a plausible-sounding answer that goes beyond what the actual research genuinely supports carries a real risk: the audience, especially a non-technical one, often can't easily distinguish a genuinely well-supported finding from a confident-sounding but actually unsupported extrapolation offered in the moment — both can sound equally authoritative coming from the same researcher in the same presentation. Explicitly acknowledging a genuine limit — 'the current research doesn't actually address that specific question' — protects the audience from unknowingly acting on what amounts to an educated guess as if it carried the same evidentiary weight as the actual, rigorously supported finding, honoring this entire course's consistent throughline that genuine research value depends on honest calibration between what's actually known and what merely sounds plausible in the moment."
+    }
+  },
+  {
+    "id": "air-049",
+    "topic": "communicating-research",
+    "question": "Andina Retail Group's AI researcher structures a research presentation to leadership by leading with the practical implication and recommended action first, then following with the supporting evidence and methodology for those who want more detail, rather than building up to the conclusion only at the very end after walking through the full methodology first. Why does this 'conclusion first' structure often communicate more effectively to a busy leadership audience than a methodology-first structure?",
+    "options": {
+      "a": "A research presentation should always follow the exact chronological order in which the underlying research work was actually performed, regardless of what structure would actually best serve a specific audience's needs",
+      "b": "A methodology-first presentation structure and a conclusion-first presentation structure always communicate a research finding exactly equally effectively to a busy leadership audience with genuinely limited time and attention",
+      "c": "A busy leadership audience typically needs to grasp the practical implication and recommended action quickly to make good use of a limited amount of attention and time; leading with that conclusion first, then offering the supporting methodology and evidence for whoever wants to dig deeper, respects that reality — a methodology-first structure risks losing a time-constrained audience's attention before the actually decision-relevant conclusion is ever reached, echoing this course's consistent theme that communication should be structured around what a specific audience actually needs, not around the order the underlying work was actually performed",
+      "d": "This concept has no relationship to the audience-tailored communication or visualization-based cognitive-load principles already covered earlier in this course"
+    },
+    "correct": "c",
+    "theory": {
+      "text": "This closes the entire communicating-research topic by tying presentation structure itself back to the audience-tailored communication theme running throughout this whole topic (air-016, air-031, air-032, air-047, air-048). A busy leadership audience typically has genuinely limited time and attention to devote to any single research presentation, and what they most need to walk away with is the practical implication and recommended action — leading with that conclusion first, then offering the supporting methodology and evidence afterward for anyone who genuinely wants to dig deeper, respects that reality directly. A methodology-first structure, however methodologically thorough and honest, risks losing a time-constrained audience's attention before the actually decision-relevant conclusion is ever reached at the very end — reinforcing this course's consistent closing theme that genuinely effective research communication is structured around what a specific audience actually needs in order to understand and act on a finding, not around the chronological order in which the underlying research work happened to be performed."
+    }
+  },
+  {
+    "id": "air-050",
+    "topic": "experimental-design-ai",
+    "question": "Andina Retail Group's AI researcher, when a new experimental result seems surprisingly strong, deliberately tries harder to find a flaw in the experimental setup before accepting the result at face value, rather than accepting an unexpectedly favorable result more readily than an unexpectedly unfavorable one. Why does applying extra scrutiny specifically to surprisingly favorable results, not just unfavorable ones, reflect sound experimental discipline?",
+    "options": {
+      "a": "There's a natural human tendency to scrutinize a disappointing or unfavorable result closely while accepting a pleasantly surprising, favorable result more readily and with less scrutiny — but an experimental flaw (a data leak, a bug, an unintended confound) is exactly as likely to produce a surprisingly good-looking result as a surprisingly bad one, so applying at least as much scrutiny to unexpectedly favorable results as to unfavorable ones, rather than less, guards against exactly the kind of asymmetric bias that can let a genuinely broken experimental setup masquerade as a genuine breakthrough",
+      "b": "This concept has no relationship to the data-leakage or sanity-check-baseline discipline already covered earlier in this course",
+      "c": "Experimental flaws like data leakage or setup bugs can only ever produce disappointing, unfavorable-looking results, never a surprisingly strong, favorable-looking one",
+      "d": "A surprisingly strong experimental result should always be accepted at face value with no additional scrutiny, since a favorable outcome is inherently less likely to reflect an underlying experimental flaw than an unfavorable one"
+    },
+    "correct": "a",
+    "theory": {
+      "text": "This adds a final, genuinely important discipline to the experimental-design-ai topic, tying together the data-leakage check from air-022 and the sanity-check-baseline reasoning from air-021 into a broader mindset. There's a natural, well-documented human tendency to scrutinize a disappointing or unfavorable result closely, looking hard for what might have gone wrong, while accepting a pleasantly surprising, favorable result far more readily, with considerably less scrutiny applied before it gets accepted and reported. But an experimental flaw like data leakage, an evaluation bug, or an unintended confound is exactly as capable of producing a surprisingly good-looking result as a surprisingly bad one — arguably more capable, since these are precisely the kinds of errors that artificially inflate apparent performance. Applying at least as much rigorous scrutiny to an unexpectedly favorable result as to an unfavorable one, rather than the natural asymmetric instinct to accept good news more readily, guards directly against a genuinely broken experimental setup quietly masquerading as a genuine, exciting breakthrough — closing this course's experimental-design content with the same rigorous, self-skeptical discipline it has emphasized throughout, applied here to the researcher's own psychology, not just to the technical experimental setup itself."
+    }
+  }
+]
