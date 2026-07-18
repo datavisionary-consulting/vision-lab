@@ -34,7 +34,7 @@ export default function CourseHub({ onSelect }) {
               >
                 <div className="hub-icon">{c.icon}</div>
                 <h3>{c.title}</h3>
-                <p>{c.kind === 'sql' ? 'Interactive SQL problems' : 'Spaced-repetition MCQ trainer'}</p>
+                <p>{c.blurb || (c.kind === 'sql' ? 'Interactive SQL problems' : 'Spaced-repetition MCQ trainer')}</p>
                 {!c.enabled && <div className="hub-soon">Coming soon</div>}
               </div>
             ))}

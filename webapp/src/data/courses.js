@@ -329,6 +329,22 @@ export const COURSES = [
     storageKey: 'vlab_progress_sql_v1',
     enabled: true,
   },
+  {
+    id: 'ielts-reading',
+    kind: 'ielts-reading',
+    title: 'IELTS Reading',
+    category: 'IELTS Preparation',
+    icon: '📘',
+    blurb: 'Timed reading practice · IELTS Academic format',
+    dataFile: dataUrl('ielts-reading/tests.json'),
+    levels: [
+      { id: 'B2', label: 'B2 · Upper-Intermediate' },
+      { id: 'C1', label: 'C1 · Advanced' },
+      { id: 'C2', label: 'C2 · Proficient' },
+    ],
+    storageKey: 'vlab_progress_ielts-reading_v1',
+    enabled: true,
+  },
 ];
 
 export const getCourse = (id) => COURSES.find((c) => c.id === id);

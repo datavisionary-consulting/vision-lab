@@ -1,0 +1,969 @@
+[
+  {
+    "id": "ielts-r-b2-test01",
+    "level": "B2",
+    "title": "B2 Practice Test 1",
+    "timeLimitMin": 60,
+    "passages": [
+      {
+        "id": "b2-p1",
+        "title": "The History of the Bicycle",
+        "subject": "history & technology",
+        "paragraphs": ["A", "B", "C", "D", "E", "F"],
+        "text": "A  In 1817, a German inventor named Karl Drais unveiled a strange two-wheeled machine he called the laufmaschine, or \"running machine.\" Unlike the bicycles we recognise today, Drais's invention had no pedals at all: riders straddled the wooden frame and propelled themselves forward by pushing against the ground with their feet, gliding for short stretches once momentum built up. Although clumsy by modern standards, the machine caught the public's imagination as a novel way to travel faster than walking, and imitators soon appeared across Europe.\n\nB  It was not until the 1860s that a genuinely pedal-driven bicycle emerged, generally credited to the French mechanics Pierre Michaux and Pierre Lallement, who attached cranks and pedals directly to the front wheel. Riders quickly gave the resulting machine an unflattering nickname — the \"boneshaker\" — a reference to the jarring, bone-rattling experience of riding it over cobblestone streets on wheels made of wood and iron, with no suspension whatsoever to soften the ride.\n\nC  By the 1870s, manufacturers had begun producing bicycles with a dramatically oversized front wheel and a tiny rear one, a design now remembered as the penny-farthing. The large wheel allowed for greater speed with each pedal rotation, but mounting and dismounting required real skill, and a sudden stop could send the rider tumbling head-first over the handlebars. Despite — or perhaps because of — this danger, the penny-farthing became closely associated with athleticism and daring, ridden mainly by young, adventurous men keen to display their nerve in public.\n\nD  The design that finally displaced the penny-farthing arrived in the late 1880s and became known as the \"safety bicycle.\" It paired two wheels of equal size with a chain-driven rear wheel, allowing the pedals to sit safely between them rather than directly on the front axle. Its appeal was cemented by a separate invention: John Boyd Dunlop's practical pneumatic tyre, which cushioned the ride far more effectively than the solid rubber tyres used previously. Together, these innovations made cycling dramatically safer, more comfortable, and accessible to a far wider range of riders than the penny-farthing had ever been.\n\nE  The safety bicycle's arrival had consequences that extended well beyond transport. For many women, it offered an unprecedented degree of independent mobility, and it is often credited with accelerating changes in women's fashion, since the long, restrictive skirts common at the time proved impractical for cycling and were gradually replaced by looser, more practical garments. The bicycle also became an affordable and reliable means of transport for working-class commuters who could not afford a horse or, later, a motor car, reshaping how ordinary people moved around expanding industrial cities.\n\nF  The bicycle has continued to evolve long after its nineteenth-century breakthroughs. In the 1970s, a group of enthusiasts in Marin County, California, began adapting sturdy frames and wide tyres for riding down unpaved mountain trails, giving rise to the modern mountain bike. More recently, many cities have invested in dedicated cycling lanes and bike-share schemes to encourage everyday commuting, while electric bicycles, which supplement pedal power with a small motor, have made cycling practical for longer distances and hillier terrain. Far from a finished nineteenth-century invention, the bicycle remains a technology still being reshaped by new needs and materials.",
+        "questions": [
+          {
+            "id": "b2-p1-q1", "number": 1, "type": "multiple-choice",
+            "prompt": "The passage suggests that the earliest two-wheeled vehicle, the draisine, differed from later bicycles chiefly because...",
+            "options": { "a": "it could only be ridden by children", "b": "riders pushed it along with their feet using no pedals", "c": "it had a chain-driven rear wheel", "d": "it was primarily used for racing" },
+            "correctAnswer": "b",
+            "explanation": "Paragraph A states directly that Drais's machine \"had no pedals at all\" and that riders propelled it by pushing against the ground with their feet."
+          },
+          {
+            "id": "b2-p1-q2", "number": 2, "type": "multiple-choice",
+            "prompt": "According to paragraph C, the penny-farthing's oversized front wheel was primarily associated with...",
+            "options": { "a": "speed and a certain sporting prestige", "b": "comfort for long-distance touring", "c": "practicality for delivering mail in cities", "d": "accessibility for elderly riders" },
+            "correctAnswer": "a",
+            "explanation": "Paragraph C links the design to \"athleticism and daring\" and notes it was ridden mainly by young men wanting to display their nerve, i.e. speed and prestige rather than comfort or accessibility."
+          },
+          {
+            "id": "b2-p1-q3", "number": 3, "type": "multiple-choice",
+            "prompt": "Which factor does the passage identify as central to the \"safety bicycle\" replacing the penny-farthing?",
+            "options": { "a": "government regulation banning large wheels", "b": "a sharp decline in the cost of steel", "c": "its adoption by professional racing leagues", "d": "the combination of equal-sized wheels and pneumatic tyres" },
+            "correctAnswer": "d",
+            "explanation": "Paragraph D credits the safety bicycle's success to pairing equal-sized wheels with Dunlop's pneumatic tyre, which together made cycling safer and more comfortable."
+          },
+          {
+            "id": "b2-p1-q4", "number": 4, "type": "matching-headings",
+            "prompt": "Choose the correct heading for Paragraph B.",
+            "groupId": "b2-p1-headings",
+            "groupIntro": { "i": "Early attempts without any pedals at all", "ii": "Pedals arrive, and so does an unflattering nickname", "iii": "Two wheels become accessible to everyone", "iv": "An unexpected role in social change", "v": "From extreme sport to everyday transport", "vi": "A machine still evolving today", "vii": "A dangerous but glamorous design" },
+            "correctAnswer": "ii",
+            "explanation": "Paragraph B introduces pedal-driven bicycles and the \"boneshaker\" nickname riders gave them."
+          },
+          {
+            "id": "b2-p1-q5", "number": 5, "type": "matching-headings",
+            "prompt": "Choose the correct heading for Paragraph C.",
+            "groupId": "b2-p1-headings",
+            "groupIntro": { "i": "Early attempts without any pedals at all", "ii": "Pedals arrive, and so does an unflattering nickname", "iii": "Two wheels become accessible to everyone", "iv": "An unexpected role in social change", "v": "From extreme sport to everyday transport", "vi": "A machine still evolving today", "vii": "A dangerous but glamorous design" },
+            "correctAnswer": "vii",
+            "explanation": "Paragraph C describes the penny-farthing's danger alongside its association with daring and prestige — a dangerous but glamorous design."
+          },
+          {
+            "id": "b2-p1-q6", "number": 6, "type": "matching-headings",
+            "prompt": "Choose the correct heading for Paragraph D.",
+            "groupId": "b2-p1-headings",
+            "groupIntro": { "i": "Early attempts without any pedals at all", "ii": "Pedals arrive, and so does an unflattering nickname", "iii": "Two wheels become accessible to everyone", "iv": "An unexpected role in social change", "v": "From extreme sport to everyday transport", "vi": "A machine still evolving today", "vii": "A dangerous but glamorous design" },
+            "correctAnswer": "iii",
+            "explanation": "Paragraph D explains that the safety bicycle was accessible to a far wider range of riders than the penny-farthing."
+          },
+          {
+            "id": "b2-p1-q7", "number": 7, "type": "matching-headings",
+            "prompt": "Choose the correct heading for Paragraph E.",
+            "groupId": "b2-p1-headings",
+            "groupIntro": { "i": "Early attempts without any pedals at all", "ii": "Pedals arrive, and so does an unflattering nickname", "iii": "Two wheels become accessible to everyone", "iv": "An unexpected role in social change", "v": "From extreme sport to everyday transport", "vi": "A machine still evolving today", "vii": "A dangerous but glamorous design" },
+            "correctAnswer": "iv",
+            "explanation": "Paragraph E discusses the bicycle's role in women's independence and fashion change, and in working-class mobility — an unexpected role in social change."
+          },
+          {
+            "id": "b2-p1-q8", "number": 8, "type": "matching-headings",
+            "prompt": "Choose the correct heading for Paragraph F.",
+            "groupId": "b2-p1-headings",
+            "groupIntro": { "i": "Early attempts without any pedals at all", "ii": "Pedals arrive, and so does an unflattering nickname", "iii": "Two wheels become accessible to everyone", "iv": "An unexpected role in social change", "v": "From extreme sport to everyday transport", "vi": "A machine still evolving today", "vii": "A dangerous but glamorous design" },
+            "correctAnswer": "vi",
+            "explanation": "Paragraph F covers mountain bikes, urban cycling infrastructure, and e-bikes, describing a technology \"still being reshaped\" today."
+          },
+          {
+            "id": "b2-p1-q9", "number": 9, "type": "true-false-notgiven",
+            "prompt": "Karl Drais patented the pneumatic tyre.",
+            "correctAnswer": "FALSE",
+            "explanation": "The pneumatic tyre is attributed to John Boyd Dunlop in paragraph D, decades after Drais's 1817 machine; the statement is false."
+          },
+          {
+            "id": "b2-p1-q10", "number": 10, "type": "true-false-notgiven",
+            "prompt": "The bicycle contributed to changes in women's clothing and greater independence.",
+            "correctAnswer": "TRUE",
+            "explanation": "Paragraph E states the bicycle offered women independent mobility and is credited with accelerating changes toward more practical clothing."
+          },
+          {
+            "id": "b2-p1-q11", "number": 11, "type": "matching-information",
+            "prompt": "Which paragraph mentions the origin of mountain biking?",
+            "correctAnswer": "F",
+            "explanation": "Paragraph F describes enthusiasts in Marin County, California, adapting bicycles for mountain trails in the 1970s."
+          },
+          {
+            "id": "b2-p1-q12", "number": 12, "type": "matching-information",
+            "prompt": "Which paragraph refers to a design nicknamed for how rough its ride felt?",
+            "correctAnswer": "B",
+            "explanation": "Paragraph B explains that riders nicknamed the pedal-driven bicycle the \"boneshaker\" because of its jarring ride."
+          },
+          {
+            "id": "b2-p1-q13", "number": 13, "type": "sentence-completion",
+            "groupId": "b2-p1-summary",
+            "groupIntro": "Complete the summary below. Choose NO MORE THAN TWO WORDS from the passage for each answer.\n\nThe earliest bicycle-like machine, invented in 1817, had no ______(13). Decades later, the safety bicycle's popularity was boosted by the invention of the ______(14), which greatly improved comfort and grip.",
+            "maxWords": 2,
+            "correctAnswer": "pedals",
+            "acceptableAnswers": ["pedals"],
+            "explanation": "Paragraph A states the draisine had no pedals at all."
+          },
+          {
+            "id": "b2-p1-q14", "number": 14, "type": "sentence-completion",
+            "groupId": "b2-p1-summary",
+            "maxWords": 2,
+            "correctAnswer": "pneumatic tyre",
+            "acceptableAnswers": ["pneumatic tyre", "pneumatic tire", "pneumatic tyres"],
+            "explanation": "Paragraph D attributes improved comfort and grip to Dunlop's pneumatic tyre."
+          }
+        ]
+      },
+      {
+        "id": "b2-p2",
+        "title": "Coral Reef Restoration",
+        "subject": "environment & science",
+        "paragraphs": ["A", "B", "C", "D", "E", "F"],
+        "text": "A  Although coral reefs cover only a tiny fraction of the ocean floor, they support an estimated quarter of all known marine species at some stage of their lives, from fish and crustaceans to the countless smaller organisms that shelter among their branching structures. This disproportionate richness has earned reefs the nickname \"rainforests of the sea,\" a comparison that highlights both their ecological importance and, increasingly, the scale of the threats they face.\n\nB  One of the most visible of these threats is coral bleaching. Coral polyps live in partnership with microscopic algae that supply them with much of their energy and give healthy coral its vivid colour. When ocean temperatures rise even slightly above normal for a sustained period, stressed coral expels these algae, turning stark white. A bleached coral is not necessarily dead, but if warm conditions persist, the coral is deprived of its main energy source and can starve.\n\nC  In response, marine scientists have developed several restoration techniques, the most established of which is coral gardening. Small fragments are carefully broken from healthy colonies and grown on suspended frames or ropes in underwater nurseries, sheltered from many of the stresses of the open reef. Once the fragments have grown large enough, divers transplant them onto damaged sections of reef, gradually helping the structure regrow.\n\nD  A newer and more experimental approach focuses on selective breeding. Researchers identify coral colonies that survived previous bleaching events relatively unharmed and deliberately cross them, in the hope that their offspring will inherit a greater tolerance for warmer water. Early results are promising, but this work remains slow, since coral colonies can take years to reach reproductive maturity.\n\nE  Restoration alone, however, cannot outpace the underlying problem. Scientists involved in these projects are careful to stress that gardening and selective breeding can only repair a small fraction of degraded reef, and that their long-term success depends entirely on parallel efforts to reduce global greenhouse gas emissions and curb local sources of pollution, such as agricultural runoff, that place additional stress on already vulnerable coral.\n\nF  Recognising this, many restoration projects now also invest in training local fishers and tourism operators as reef stewards, teaching them to monitor coral health and avoid damaging practices such as anchoring on live reef. Aligning the economic interests of coastal communities with reef conservation, proponents argue, offers a more durable path forward than relying on marine scientists alone.",
+        "questions": [
+          {
+            "id": "b2-p2-q1", "number": 15, "type": "multiple-choice",
+            "prompt": "Why does the passage compare coral reefs to rainforests?",
+            "options": { "a": "both are found only in tropical countries", "b": "both have been completely destroyed by human activity", "c": "both support a disproportionately large number of species relative to the area they cover", "d": "both were discovered only in the twentieth century" },
+            "correctAnswer": "c",
+            "explanation": "Paragraph A notes reefs cover a tiny fraction of the ocean floor yet support around a quarter of marine species, a disproportionate richness that earns the rainforest comparison."
+          },
+          {
+            "id": "b2-p2-q2", "number": 16, "type": "multiple-choice",
+            "prompt": "According to paragraph B, coral bleaching occurs when...",
+            "options": { "a": "coral is physically broken by storms", "b": "pollution directly poisons coral tissue", "c": "coral is deliberately harvested by fishers", "d": "warmer water causes coral to expel the algae living within it" },
+            "correctAnswer": "d",
+            "explanation": "Paragraph B explains that sustained warm water causes stressed coral to expel its algae, leaving it white."
+          },
+          {
+            "id": "b2-p2-q3", "number": 17, "type": "multiple-choice",
+            "prompt": "What is the main purpose of coral gardening described in paragraph C?",
+            "options": { "a": "to grow coral fragments before transplanting them onto damaged reefs", "b": "to sell coral fragments to aquariums", "c": "to study coral genetics in a laboratory", "d": "to prevent tourists from touching wild reefs" },
+            "correctAnswer": "a",
+            "explanation": "Paragraph C describes growing fragments in nurseries before divers transplant them onto damaged reef sections."
+          },
+          {
+            "id": "b2-p2-q4", "number": 18, "type": "matching-headings",
+            "prompt": "Choose the correct heading for Paragraph B.",
+            "groupId": "b2-p2-headings",
+            "groupIntro": { "i": "A threat driven by rising temperatures", "ii": "Breeding for a warmer future", "iii": "Why restoration alone may not be enough", "iv": "Growing coral like a garden", "v": "Turning local communities into reef guardians", "vi": "The economic cost of coral loss", "vii": "Mapping the world's remaining reefs" },
+            "correctAnswer": "i",
+            "explanation": "Paragraph B explains bleaching, a threat directly caused by rising water temperature."
+          },
+          {
+            "id": "b2-p2-q5", "number": 19, "type": "matching-headings",
+            "prompt": "Choose the correct heading for Paragraph C.",
+            "groupId": "b2-p2-headings",
+            "groupIntro": { "i": "A threat driven by rising temperatures", "ii": "Breeding for a warmer future", "iii": "Why restoration alone may not be enough", "iv": "Growing coral like a garden", "v": "Turning local communities into reef guardians", "vi": "The economic cost of coral loss", "vii": "Mapping the world's remaining reefs" },
+            "correctAnswer": "iv",
+            "explanation": "Paragraph C describes coral gardening — literally growing coral fragments on frames before transplanting them."
+          },
+          {
+            "id": "b2-p2-q6", "number": 20, "type": "matching-headings",
+            "prompt": "Choose the correct heading for Paragraph D.",
+            "groupId": "b2-p2-headings",
+            "groupIntro": { "i": "A threat driven by rising temperatures", "ii": "Breeding for a warmer future", "iii": "Why restoration alone may not be enough", "iv": "Growing coral like a garden", "v": "Turning local communities into reef guardians", "vi": "The economic cost of coral loss", "vii": "Mapping the world's remaining reefs" },
+            "correctAnswer": "ii",
+            "explanation": "Paragraph D describes selective breeding aimed at producing heat-tolerant offspring."
+          },
+          {
+            "id": "b2-p2-q7", "number": 21, "type": "matching-headings",
+            "prompt": "Choose the correct heading for Paragraph E.",
+            "groupId": "b2-p2-headings",
+            "groupIntro": { "i": "A threat driven by rising temperatures", "ii": "Breeding for a warmer future", "iii": "Why restoration alone may not be enough", "iv": "Growing coral like a garden", "v": "Turning local communities into reef guardians", "vi": "The economic cost of coral loss", "vii": "Mapping the world's remaining reefs" },
+            "correctAnswer": "iii",
+            "explanation": "Paragraph E stresses that restoration cannot outpace warming without parallel emissions and pollution reductions."
+          },
+          {
+            "id": "b2-p2-q8", "number": 22, "type": "matching-headings",
+            "prompt": "Choose the correct heading for Paragraph F.",
+            "groupId": "b2-p2-headings",
+            "groupIntro": { "i": "A threat driven by rising temperatures", "ii": "Breeding for a warmer future", "iii": "Why restoration alone may not be enough", "iv": "Growing coral like a garden", "v": "Turning local communities into reef guardians", "vi": "The economic cost of coral loss", "vii": "Mapping the world's remaining reefs" },
+            "correctAnswer": "v",
+            "explanation": "Paragraph F describes training fishers and tourism operators as reef stewards — turning communities into guardians."
+          },
+          {
+            "id": "b2-p2-q9", "number": 23, "type": "true-false-notgiven",
+            "prompt": "Selective breeding aims to produce coral offspring more resistant to heat stress.",
+            "correctAnswer": "TRUE",
+            "explanation": "Paragraph D states researchers cross heat-surviving colonies hoping offspring inherit greater heat tolerance."
+          },
+          {
+            "id": "b2-p2-q10", "number": 24, "type": "true-false-notgiven",
+            "prompt": "The passage states that restoration efforts alone can fully offset the effects of global warming on reefs.",
+            "correctAnswer": "FALSE",
+            "explanation": "Paragraph E explicitly says restoration can only repair a small fraction of degraded reef and depends on parallel emissions reductions."
+          },
+          {
+            "id": "b2-p2-q11", "number": 25, "type": "matching-information",
+            "prompt": "Which paragraph mentions training people who fish or run tourism businesses to help protect reefs?",
+            "correctAnswer": "F",
+            "explanation": "Paragraph F describes training local fishers and tourism operators as reef stewards."
+          },
+          {
+            "id": "b2-p2-q12", "number": 26, "type": "matching-information",
+            "prompt": "Which paragraph explains the biological process behind bleaching?",
+            "correctAnswer": "B",
+            "explanation": "Paragraph B explains how coral expels its algae partner under heat stress, causing bleaching."
+          },
+          {
+            "id": "b2-p2-q13", "number": 27, "type": "sentence-completion",
+            "prompt": "Coral reefs are often referred to as the ______ of the sea because of the huge number of species they support.",
+            "maxWords": 2,
+            "correctAnswer": "rainforests",
+            "acceptableAnswers": ["rainforests", "rainforest"],
+            "explanation": "Paragraph A states reefs have earned the nickname \"rainforests of the sea.\""
+          }
+        ]
+      },
+      {
+        "id": "b2-p3",
+        "title": "The Psychology of Habit Formation",
+        "subject": "psychology & society",
+        "paragraphs": ["A", "B", "C", "D", "E", "F"],
+        "text": "A  Much of daily behaviour is not the product of deliberate choice but of habit: brushing one's teeth, taking a familiar route to work, or reaching for a phone upon waking are performed with little conscious thought. Psychologists define a habit as a behaviour that has become automatic, triggered by a particular context rather than actively decided upon each time it occurs, distinguishing it sharply from a one-off decision that requires weighing options.\n\nB  Researchers commonly describe habits as operating through a three-part \"habit loop\": a cue in the environment, a routine behaviour that follows, and a reward that reinforces the connection between the two. Over repeated cycles, this loop becomes encoded in a brain region called the basal ganglia, allowing the behaviour to run with minimal conscious effort and freeing up mental resources for other tasks.\n\nC  A frequently repeated claim holds that any new habit takes exactly twenty-one days to form. Actual research tells a more complicated story. A widely cited study by psychologist Phillippa Lally and colleagues tracked participants forming new habits and found the time required varied enormously, from around eighteen days for simple behaviours to well over two hundred for more complex ones, averaging out at roughly sixty-six days — far longer, and far more variable, than the popular figure suggests.\n\nD  Context turns out to matter enormously. Because habits are triggered by specific environmental cues, altering one's surroundings can either disrupt an unwanted habit or support a new one. Studies of people who move house, for instance, often find this to be an unusually effective moment to abandon old habits, precisely because many of the familiar cues that once triggered them are simply no longer present.\n\nE  Attempting to eliminate a habit loop entirely tends to be far less effective than replacing it. Because the underlying cue and reward typically remain psychologically appealing, simply trying to suppress the routine in between often leads to a swift relapse. A more durable strategy, researchers suggest, is to keep the same cue and the same reward while substituting a different, healthier routine in place of the old one.\n\nF  These findings have not gone unnoticed by businesses and public health campaigners, who increasingly design environments, reminders, and app notifications specifically to establish new routines among users, from prompting gym attendance to encouraging medication adherence. While often well-intentioned, this deliberate engineering of habitual behaviour has also raised ethical questions about the line between helpful encouragement and manipulation.",
+        "questions": [
+          {
+            "id": "b2-p3-q1", "number": 28, "type": "multiple-choice",
+            "prompt": "According to the passage, what most clearly distinguishes a habit from a deliberate decision?",
+            "options": { "a": "habits always involve physical movement", "b": "habits take longer to perform than decisions", "c": "habits are triggered automatically by context rather than consciously considered each time", "d": "habits are only formed in childhood" },
+            "correctAnswer": "c",
+            "explanation": "Paragraph A defines a habit as automatic and context-triggered, contrasting it with a decision that requires actively weighing options."
+          },
+          {
+            "id": "b2-p3-q2", "number": 29, "type": "multiple-choice",
+            "prompt": "What does the research mentioned in paragraph C reveal about the popular idea that habits form in 21 days?",
+            "options": { "a": "it is broadly accurate for most people", "b": "it has never been tested scientifically", "c": "it only applies to giving up a habit, not forming one", "d": "it substantially underestimates the time required, which varies widely" },
+            "correctAnswer": "d",
+            "explanation": "Paragraph C cites Lally's study finding an average of about 66 days with huge variation, far longer than the popular 21-day claim."
+          },
+          {
+            "id": "b2-p3-q3", "number": 30, "type": "multiple-choice",
+            "prompt": "Paragraph E suggests that the most effective way to break a bad habit is to...",
+            "options": { "a": "keep the same cue and reward but replace the routine in between", "b": "eliminate the cue that triggers it entirely", "c": "rely purely on willpower to resist the urge", "d": "wait for the habit to fade naturally over time" },
+            "correctAnswer": "a",
+            "explanation": "Paragraph E states that keeping the cue and reward while substituting a different routine is more durable than trying to suppress the routine outright."
+          },
+          {
+            "id": "b2-p3-q4", "number": 31, "type": "matching-headings",
+            "prompt": "Choose the correct heading for Paragraph B.",
+            "groupId": "b2-p3-headings",
+            "groupIntro": { "i": "A widely believed number that turns out to be wrong", "ii": "Surroundings shape behaviour more than we realise", "iii": "The three-part cycle behind every habit", "iv": "Substituting one routine for another", "v": "Designing environments to encourage new behaviour", "vi": "Why willpower alone rarely works", "vii": "The neuroscience of memory formation" },
+            "correctAnswer": "iii",
+            "explanation": "Paragraph B introduces the cue-routine-reward \"habit loop\" shared by all habits."
+          },
+          {
+            "id": "b2-p3-q5", "number": 32, "type": "matching-headings",
+            "prompt": "Choose the correct heading for Paragraph C.",
+            "groupId": "b2-p3-headings",
+            "groupIntro": { "i": "A widely believed number that turns out to be wrong", "ii": "Surroundings shape behaviour more than we realise", "iii": "The three-part cycle behind every habit", "iv": "Substituting one routine for another", "v": "Designing environments to encourage new behaviour", "vi": "Why willpower alone rarely works", "vii": "The neuroscience of memory formation" },
+            "correctAnswer": "i",
+            "explanation": "Paragraph C debunks the popular 21-day claim with actual research findings."
+          },
+          {
+            "id": "b2-p3-q6", "number": 33, "type": "matching-headings",
+            "prompt": "Choose the correct heading for Paragraph D.",
+            "groupId": "b2-p3-headings",
+            "groupIntro": { "i": "A widely believed number that turns out to be wrong", "ii": "Surroundings shape behaviour more than we realise", "iii": "The three-part cycle behind every habit", "iv": "Substituting one routine for another", "v": "Designing environments to encourage new behaviour", "vi": "Why willpower alone rarely works", "vii": "The neuroscience of memory formation" },
+            "correctAnswer": "ii",
+            "explanation": "Paragraph D discusses how environmental cues and moving house affect habit persistence."
+          },
+          {
+            "id": "b2-p3-q7", "number": 34, "type": "matching-headings",
+            "prompt": "Choose the correct heading for Paragraph E.",
+            "groupId": "b2-p3-headings",
+            "groupIntro": { "i": "A widely believed number that turns out to be wrong", "ii": "Surroundings shape behaviour more than we realise", "iii": "The three-part cycle behind every habit", "iv": "Substituting one routine for another", "v": "Designing environments to encourage new behaviour", "vi": "Why willpower alone rarely works", "vii": "The neuroscience of memory formation" },
+            "correctAnswer": "iv",
+            "explanation": "Paragraph E recommends replacing the routine while keeping the cue and reward the same."
+          },
+          {
+            "id": "b2-p3-q8", "number": 35, "type": "matching-headings",
+            "prompt": "Choose the correct heading for Paragraph F.",
+            "groupId": "b2-p3-headings",
+            "groupIntro": { "i": "A widely believed number that turns out to be wrong", "ii": "Surroundings shape behaviour more than we realise", "iii": "The three-part cycle behind every habit", "iv": "Substituting one routine for another", "v": "Designing environments to encourage new behaviour", "vi": "Why willpower alone rarely works", "vii": "The neuroscience of memory formation" },
+            "correctAnswer": "v",
+            "explanation": "Paragraph F describes businesses and campaigners deliberately designing cues and reminders to build new habits."
+          },
+          {
+            "id": "b2-p3-q9", "number": 36, "type": "true-false-notgiven",
+            "prompt": "The basal ganglia is mentioned as playing a role in automatic habitual behaviour.",
+            "correctAnswer": "TRUE",
+            "explanation": "Paragraph B states the habit loop becomes encoded in the basal ganglia."
+          },
+          {
+            "id": "b2-p3-q10", "number": 37, "type": "true-false-notgiven",
+            "prompt": "The passage states that changing one's physical environment has no effect on existing habits.",
+            "correctAnswer": "FALSE",
+            "explanation": "Paragraph D states the opposite — that altering surroundings can disrupt or support habits, citing the example of moving house."
+          },
+          {
+            "id": "b2-p3-q11", "number": 38, "type": "matching-information",
+            "prompt": "Which paragraph discusses businesses deliberately designing cues to encourage habitual behaviour?",
+            "correctAnswer": "F",
+            "explanation": "Paragraph F describes businesses and campaigners designing environments and notifications to establish new routines."
+          },
+          {
+            "id": "b2-p3-q12", "number": 39, "type": "matching-information",
+            "prompt": "Which paragraph introduces the basic three-part structure shared by all habits?",
+            "correctAnswer": "B",
+            "explanation": "Paragraph B introduces the cue-routine-reward habit loop."
+          },
+          {
+            "id": "b2-p3-q13", "number": 40, "type": "sentence-completion",
+            "prompt": "Habit formation is commonly broken down into a cue, a routine, and a ______.",
+            "maxWords": 1,
+            "correctAnswer": "reward",
+            "acceptableAnswers": ["reward", "rewards"],
+            "explanation": "Paragraph B names the three parts of the habit loop as cue, routine, and reward."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ielts-r-c1-test01",
+    "level": "C1",
+    "title": "C1 Practice Test 1",
+    "timeLimitMin": 60,
+    "passages": [
+      {
+        "id": "c1-p1",
+        "title": "The Economics of Urban Green Spaces",
+        "subject": "economics & environment",
+        "paragraphs": ["A", "B", "C", "D", "E", "F"],
+        "text": "A  Urban parks and green spaces have traditionally been treated in municipal budgeting as a discretionary amenity — pleasant to have, but competing for scarce funds and land against ostensibly more pressing priorities such as roads, housing, and schools. This framing, however, has come under sustained challenge from economists who argue that green space delivers measurable financial returns that are too often left out of the calculation altogether.\n\nB  Perhaps the most direct evidence comes from hedonic pricing studies, which isolate the effect of proximity to a park on residential property values by comparing otherwise similar homes at varying distances from green space. Across numerous cities, these studies consistently find that homes near well-maintained parks command a measurable price premium, indicating that the value of green space is, in effect, already being capitalised into local land prices — a signal that markets themselves already treat parks as an economic asset rather than a mere amenity.\n\nC  The financial case extends well beyond property values. Trees and vegetated surfaces absorb rainfall that would otherwise overwhelm stormwater drainage systems, reducing the need for expensive grey infrastructure such as larger pipes and retention tanks. Green cover also moderates the urban heat island effect, the tendency of cities to run several degrees warmer than surrounding rural areas, thereby lowering aggregate cooling costs during hot months and easing pressure on electricity grids at peak demand.\n\nD  A further, more contested line of research links access to green space with public health outcomes, including reduced rates of certain chronic illnesses and improved indicators of mental wellbeing, both of which carry downstream implications for healthcare spending and workplace productivity. Establishing a causal relationship here has proven methodologically difficult, however, since wealthier populations are both more likely to live near well-funded parks and to enjoy better health outcomes for a range of unrelated reasons, making it genuinely hard to isolate green space's own independent contribution.\n\nE  Even where the economic case for green space is accepted, its distribution across a city rarely is. Historically disadvantaged neighbourhoods are frequently found to have markedly less access to parks and tree cover than wealthier districts, and efforts to correct this imbalance can produce an uncomfortable side effect known as green gentrification: as new parks raise the desirability, and consequently the price, of surrounding housing, long-standing lower-income residents can find themselves priced out of the very neighbourhood improvements originally intended to benefit them.\n\nF  In response, a small but growing number of cities have begun pairing new green space investment with explicit affordability measures, such as community land trusts that keep a portion of nearby housing permanently below market rate, or dedicated equity funds that direct new park spending preferentially toward historically underserved neighbourhoods. The underlying ambition, proponents argue, is to reframe green space in municipal planning not as an optional amenity to be added once other priorities are satisfied, but as core infrastructure — comparable to roads or utilities — whose benefits and costs deserve to be planned and distributed with equal deliberateness.",
+        "questions": [
+          {
+            "id": "c1-p1-q1", "number": 1, "type": "multiple-choice",
+            "prompt": "What does the passage suggest hedonic pricing studies reveal about how markets value parks?",
+            "options": { "a": "the value of nearby green space is already reflected in local property prices", "b": "parks have no measurable effect on property values", "c": "property values near parks are consistently lower than average", "d": "hedonic pricing studies focus only on rural land values" },
+            "correctAnswer": "a",
+            "explanation": "Paragraph B states that price premiums near parks indicate green space value is already capitalised into land prices, i.e. markets already treat it as an asset."
+          },
+          {
+            "id": "c1-p1-q2", "number": 2, "type": "multiple-choice",
+            "prompt": "According to paragraph C, one financial benefit of vegetated surfaces is that they...",
+            "options": { "a": "eliminate the need for any stormwater infrastructure", "b": "increase electricity demand during hot months", "c": "reduce reliance on some forms of costly grey infrastructure by absorbing rainfall", "d": "are primarily valued for their effect on chronic illness rates" },
+            "correctAnswer": "c",
+            "explanation": "Paragraph C explains that vegetation absorbs rainfall, reducing the need for expensive grey infrastructure like pipes and tanks."
+          },
+          {
+            "id": "c1-p1-q3", "number": 3, "type": "multiple-choice",
+            "prompt": "Why does the passage describe the link between green space and health outcomes as methodologically difficult to establish?",
+            "options": { "a": "no study has ever examined the relationship", "b": "health outcomes are considered irrelevant to municipal budgeting", "c": "hedonic pricing studies have disproven any health benefit", "d": "wealthier populations who live near parks also tend to have better health for other, unrelated reasons, making causation hard to isolate" },
+            "correctAnswer": "d",
+            "explanation": "Paragraph D explains that wealth is a confounding factor, since wealthier people both live near parks and have better health for unrelated reasons."
+          },
+          {
+            "id": "c1-p1-q4", "number": 4, "type": "matching-headings",
+            "prompt": "Choose the correct heading for Paragraph B.",
+            "groupId": "c1-p1-headings",
+            "groupIntro": { "i": "Markets already pricing in a hidden asset", "ii": "Savings on pipes, tanks, and power bills", "iii": "A benefit that is difficult to prove conclusively", "iv": "When improvement becomes displacement", "v": "Treating parks as infrastructure, not an afterthought", "vi": "Comparing budgets across different cities", "vii": "The history of the public park movement" },
+            "correctAnswer": "i",
+            "explanation": "Paragraph B shows markets already capitalising park value into property prices."
+          },
+          {
+            "id": "c1-p1-q5", "number": 5, "type": "matching-headings",
+            "prompt": "Choose the correct heading for Paragraph C.",
+            "groupId": "c1-p1-headings",
+            "groupIntro": { "i": "Markets already pricing in a hidden asset", "ii": "Savings on pipes, tanks, and power bills", "iii": "A benefit that is difficult to prove conclusively", "iv": "When improvement becomes displacement", "v": "Treating parks as infrastructure, not an afterthought", "vi": "Comparing budgets across different cities", "vii": "The history of the public park movement" },
+            "correctAnswer": "ii",
+            "explanation": "Paragraph C describes avoided infrastructure and cooling costs."
+          },
+          {
+            "id": "c1-p1-q6", "number": 6, "type": "matching-headings",
+            "prompt": "Choose the correct heading for Paragraph D.",
+            "groupId": "c1-p1-headings",
+            "groupIntro": { "i": "Markets already pricing in a hidden asset", "ii": "Savings on pipes, tanks, and power bills", "iii": "A benefit that is difficult to prove conclusively", "iv": "When improvement becomes displacement", "v": "Treating parks as infrastructure, not an afterthought", "vi": "Comparing budgets across different cities", "vii": "The history of the public park movement" },
+            "correctAnswer": "iii",
+            "explanation": "Paragraph D discusses the methodologically contested health-outcome link."
+          },
+          {
+            "id": "c1-p1-q7", "number": 7, "type": "matching-headings",
+            "prompt": "Choose the correct heading for Paragraph E.",
+            "groupId": "c1-p1-headings",
+            "groupIntro": { "i": "Markets already pricing in a hidden asset", "ii": "Savings on pipes, tanks, and power bills", "iii": "A benefit that is difficult to prove conclusively", "iv": "When improvement becomes displacement", "v": "Treating parks as infrastructure, not an afterthought", "vi": "Comparing budgets across different cities", "vii": "The history of the public park movement" },
+            "correctAnswer": "iv",
+            "explanation": "Paragraph E describes green gentrification displacing long-standing residents."
+          },
+          {
+            "id": "c1-p1-q8", "number": 8, "type": "matching-headings",
+            "prompt": "Choose the correct heading for Paragraph F.",
+            "groupId": "c1-p1-headings",
+            "groupIntro": { "i": "Markets already pricing in a hidden asset", "ii": "Savings on pipes, tanks, and power bills", "iii": "A benefit that is difficult to prove conclusively", "iv": "When improvement becomes displacement", "v": "Treating parks as infrastructure, not an afterthought", "vi": "Comparing budgets across different cities", "vii": "The history of the public park movement" },
+            "correctAnswer": "v",
+            "explanation": "Paragraph F argues for reframing green space as core infrastructure rather than an optional amenity."
+          },
+          {
+            "id": "c1-p1-q9", "number": 9, "type": "true-false-notgiven",
+            "prompt": "Hedonic pricing studies compare homes at different distances from green space to isolate its effect on price.",
+            "correctAnswer": "TRUE",
+            "explanation": "Paragraph B describes exactly this method."
+          },
+          {
+            "id": "c1-p1-q10", "number": 10, "type": "true-false-notgiven",
+            "prompt": "The passage states that green gentrification only benefits long-standing lower-income residents.",
+            "correctAnswer": "FALSE",
+            "explanation": "Paragraph E states green gentrification can displace long-standing lower-income residents, the opposite of only benefiting them."
+          },
+          {
+            "id": "c1-p1-q11", "number": 11, "type": "matching-information",
+            "prompt": "Which paragraph mentions a specific policy tool designed to preserve housing affordability near new parks?",
+            "correctAnswer": "F",
+            "explanation": "Paragraph F mentions community land trusts and equity funds."
+          },
+          {
+            "id": "c1-p1-q12", "number": 12, "type": "matching-information",
+            "prompt": "Which paragraph discusses the urban heat island effect?",
+            "correctAnswer": "C",
+            "explanation": "Paragraph C explains how green cover moderates the urban heat island effect."
+          },
+          {
+            "id": "c1-p1-q13", "number": 13, "type": "sentence-completion",
+            "groupId": "c1-p1-summary",
+            "groupIntro": "Complete the summary below. Choose NO MORE THAN TWO WORDS from the passage for each answer.\n\nStudies show that homes located near parks tend to have a higher ______(13), suggesting their value is already recognised by the market. However, new green space can sometimes lead to ______(14), pushing out residents who lived there before the improvement.",
+            "maxWords": 2,
+            "correctAnswer": "price premium",
+            "acceptableAnswers": ["price premium", "premium"],
+            "explanation": "Paragraph B states homes near parks command a measurable price premium."
+          },
+          {
+            "id": "c1-p1-q14", "number": 14, "type": "sentence-completion",
+            "maxWords": 2,
+            "correctAnswer": "green gentrification",
+            "acceptableAnswers": ["green gentrification", "gentrification"],
+            "explanation": "Paragraph E names this effect green gentrification."
+          }
+        ]
+      },
+      {
+        "id": "c1-p2",
+        "title": "Deciphering Ancient Scripts",
+        "subject": "history & linguistics",
+        "paragraphs": ["A", "B", "C", "D", "E", "F"],
+        "text": "A  Of the writing systems humanity has invented over roughly five thousand years, a striking number remain wholly or partially undeciphered, their symbols still withholding whatever record they once preserved. Among the most famous are the Indus Valley script of the Bronze Age, the Rongorongo glyphs of Easter Island, and Linear A, used on Bronze Age Crete before its successor script was cracked. For archaeologists, deciphering such a script offers something material remains alone cannot: a civilisation's own words, rather than only the objects and structures its people left behind.\n\nB  The most celebrated decipherment success is Egyptian hieroglyphs, cracked in the 1820s by the French scholar Jean-François Champollion. His breakthrough depended on the Rosetta Stone, a slab bearing the same decree inscribed in three scripts: hieroglyphic, demotic, and Greek. Because Champollion could already read the Greek text, he was able to work backward, matching known royal names against their hieroglyphic equivalents and gradually establishing that many hieroglyphs functioned phonetically rather than purely as pictures, a discovery that unlocked the entire system.\n\nC  A second landmark decipherment, that of the Linear B script used in Bronze Age Greece, followed a strikingly different path. Unlike hieroglyphs, Linear B had no bilingual text to serve as a key. Architect and amateur linguist Michael Ventris instead built detailed grids charting which symbols recurred together and in what positions, gradually inferring the script's underlying grammatical patterns. To general surprise, the language beneath the symbols turned out to be an early form of Greek, a conclusion reached almost entirely through internal statistical patterning rather than any external translation.\n\nD  Other scripts have resisted every such approach. The Indus script, found on thousands of small stone seals from cities across present-day Pakistan and northwestern India, has yielded no equivalent to the Rosetta Stone, and the individual inscriptions themselves are frustratingly brief, averaging only about five symbols each. This scarcity of continuous text, combined with ongoing scholarly disagreement over which language family the underlying speech even belonged to, has left the script's decipherment — assuming it is fully phonetic language at all, a point some researchers still dispute — an unresolved and perhaps intractable puzzle.\n\nE  In recent decades, researchers have turned to computational methods borrowed from cryptography and statistical linguistics, training algorithms to detect recurring patterns across large corpora of undeciphered symbols. Such techniques have helped narrow certain structural hypotheses, for instance offering statistical evidence about whether a script is more likely logographic, with symbols representing whole words, or syllabic, with symbols representing sound units. To date, however, no computational approach has produced a verified full decipherment of a previously unread script working from pattern analysis alone.\n\nF  Given this history, specialists in the field urge considerable caution toward decipherment claims that attract wide public attention. The record includes numerous announced \"breakthroughs\" that later proved impossible to sustain once tested against a wider body of inscriptions. A genuinely convincing decipherment, scholars argue, must do more than produce a plausible reading of one or two convenient examples: it must generate consistent, grammatically coherent readings across a substantial and independent body of texts, a considerably higher bar than many headline-grabbing claims have managed to clear.",
+        "questions": [
+          {
+            "id": "c1-p2-q1", "number": 15, "type": "multiple-choice",
+            "prompt": "According to paragraph A, what can a deciphered script offer that material remains alone cannot?",
+            "options": { "a": "a precise date for when a civilisation began", "b": "the civilisation's own words, not just its objects and structures", "c": "proof of trade relationships with other civilisations", "d": "an estimate of ancient population size" },
+            "correctAnswer": "b",
+            "explanation": "Paragraph A states decipherment offers a civilisation's own words, unlike material remains alone."
+          },
+          {
+            "id": "c1-p2-q2", "number": 16, "type": "multiple-choice",
+            "prompt": "What made Champollion's decipherment of hieroglyphs possible, according to paragraph B?",
+            "options": { "a": "a large collection of undeciphered inscriptions from Crete", "b": "statistical grids charting which symbols recurred together", "c": "a text bearing the same content in three scripts, including one he could already read", "d": "computational pattern-matching software" },
+            "correctAnswer": "c",
+            "explanation": "Paragraph B describes the Rosetta Stone's trilingual text as the key to Champollion's success."
+          },
+          {
+            "id": "c1-p2-q3", "number": 17, "type": "multiple-choice",
+            "prompt": "What distinguishes Ventris's decipherment of Linear B, according to paragraph C, from Champollion's decipherment of hieroglyphs?",
+            "options": { "a": "Ventris worked with a bilingual inscription similar to the Rosetta Stone", "b": "Ventris proved the script recorded a language unrelated to any known language family", "c": "Ventris's work has since been shown to be incorrect", "d": "Ventris achieved decipherment largely through internal statistical patterning, without any bilingual key" },
+            "correctAnswer": "d",
+            "explanation": "Paragraph C states Ventris had no bilingual key and relied on statistical patterning instead."
+          },
+          {
+            "id": "c1-p2-q4", "number": 18, "type": "matching-headings",
+            "prompt": "Choose the correct heading for Paragraph B.",
+            "groupId": "c1-p2-headings",
+            "groupIntro": { "i": "A famous success built on a text written three times over", "ii": "Too little text and no key to unlock it", "iii": "Cracking a code through pattern alone", "iv": "Machines join the search, with limited results so far", "v": "Why some celebrated claims do not survive scrutiny", "vi": "A catalogue of scripts still waiting to be read", "vii": "The economic value of ancient inscriptions" },
+            "correctAnswer": "i",
+            "explanation": "Paragraph B describes the trilingual Rosetta Stone enabling decipherment."
+          },
+          {
+            "id": "c1-p2-q5", "number": 19, "type": "matching-headings",
+            "prompt": "Choose the correct heading for Paragraph C.",
+            "groupId": "c1-p2-headings",
+            "groupIntro": { "i": "A famous success built on a text written three times over", "ii": "Too little text and no key to unlock it", "iii": "Cracking a code through pattern alone", "iv": "Machines join the search, with limited results so far", "v": "Why some celebrated claims do not survive scrutiny", "vi": "A catalogue of scripts still waiting to be read", "vii": "The economic value of ancient inscriptions" },
+            "correctAnswer": "iii",
+            "explanation": "Paragraph C describes Ventris cracking Linear B through pattern analysis alone."
+          },
+          {
+            "id": "c1-p2-q6", "number": 20, "type": "matching-headings",
+            "prompt": "Choose the correct heading for Paragraph D.",
+            "groupId": "c1-p2-headings",
+            "groupIntro": { "i": "A famous success built on a text written three times over", "ii": "Too little text and no key to unlock it", "iii": "Cracking a code through pattern alone", "iv": "Machines join the search, with limited results so far", "v": "Why some celebrated claims do not survive scrutiny", "vi": "A catalogue of scripts still waiting to be read", "vii": "The economic value of ancient inscriptions" },
+            "correctAnswer": "ii",
+            "explanation": "Paragraph D explains the Indus script has no bilingual key and very short inscriptions."
+          },
+          {
+            "id": "c1-p2-q7", "number": 21, "type": "matching-headings",
+            "prompt": "Choose the correct heading for Paragraph E.",
+            "groupId": "c1-p2-headings",
+            "groupIntro": { "i": "A famous success built on a text written three times over", "ii": "Too little text and no key to unlock it", "iii": "Cracking a code through pattern alone", "iv": "Machines join the search, with limited results so far", "v": "Why some celebrated claims do not survive scrutiny", "vi": "A catalogue of scripts still waiting to be read", "vii": "The economic value of ancient inscriptions" },
+            "correctAnswer": "iv",
+            "explanation": "Paragraph E describes computational methods that have had limited success so far."
+          },
+          {
+            "id": "c1-p2-q8", "number": 22, "type": "matching-headings",
+            "prompt": "Choose the correct heading for Paragraph F.",
+            "groupId": "c1-p2-headings",
+            "groupIntro": { "i": "A famous success built on a text written three times over", "ii": "Too little text and no key to unlock it", "iii": "Cracking a code through pattern alone", "iv": "Machines join the search, with limited results so far", "v": "Why some celebrated claims do not survive scrutiny", "vi": "A catalogue of scripts still waiting to be read", "vii": "The economic value of ancient inscriptions" },
+            "correctAnswer": "v",
+            "explanation": "Paragraph F discusses decipherment claims that failed to survive wider scrutiny."
+          },
+          {
+            "id": "c1-p2-q9", "number": 23, "type": "yes-no-notgiven",
+            "prompt": "The writer believes that computational methods have now fully deciphered at least one previously unread ancient script.",
+            "correctAnswer": "NO",
+            "explanation": "Paragraph E explicitly states no computational approach has produced a verified full decipherment to date."
+          },
+          {
+            "id": "c1-p2-q10", "number": 24, "type": "yes-no-notgiven",
+            "prompt": "The writer suggests that a convincing decipherment needs to work consistently across many inscriptions, not just a few.",
+            "correctAnswer": "YES",
+            "explanation": "Paragraph F states a genuine decipherment must generate consistent readings across a substantial, independent body of texts."
+          },
+          {
+            "id": "c1-p2-q11", "number": 25, "type": "matching-information",
+            "prompt": "Which paragraph discusses a script that lacks both a bilingual key and enough continuous text to analyse statistically?",
+            "correctAnswer": "D",
+            "explanation": "Paragraph D describes the Indus script's lack of a bilingual key and its very short inscriptions."
+          },
+          {
+            "id": "c1-p2-q12", "number": 26, "type": "matching-information",
+            "prompt": "Which paragraph describes techniques borrowed from cryptography?",
+            "correctAnswer": "E",
+            "explanation": "Paragraph E mentions computational methods borrowed from cryptography and statistical linguistics."
+          },
+          {
+            "id": "c1-p2-q13", "number": 27, "type": "sentence-completion",
+            "prompt": "A genuine decipherment must produce consistent readings across a substantial and independent body of ______.",
+            "maxWords": 1,
+            "correctAnswer": "texts",
+            "acceptableAnswers": ["texts", "inscriptions"],
+            "explanation": "Paragraph F states this requirement directly."
+          }
+        ]
+      },
+      {
+        "id": "c1-p3",
+        "title": "The Ethics of Gene Editing",
+        "subject": "science & ethics",
+        "paragraphs": ["A", "B", "C", "D", "E", "F"],
+        "text": "A  The discovery of CRISPR-Cas9, a bacterial defence mechanism repurposed as a precise gene-editing tool, transformed genetic engineering from a slow and costly specialism into something far more widely accessible. Where earlier techniques required years of development for a single genetic change, CRISPR allows researchers to target specific DNA sequences with comparative speed and modest expense. This dramatic increase in accessibility has brought corresponding urgency to a set of ethical questions that were, until recently, largely theoretical.\n\nB  Central to this debate is a distinction between somatic and germline editing. Somatic editing alters the genetic material only within the cells of the individual being treated — correcting a mutation responsible for a blood disorder in an adult patient, for example — and any changes made are not passed on to that person's children. This form of editing has attracted comparatively broad support, since its risks and benefits are largely confined to the consenting patient. Germline editing, by contrast, alters reproductive cells or early embryos, meaning any changes become heritable, passed down to all future descendants of that individual — a prospect that raises far more contentious ethical territory.\n\nC  The contested nature of germline editing was thrown into sharp relief in 2018, when a scientist in China announced the birth of twins whose embryos he had edited to confer resistance to HIV. The announcement was met with near-universal condemnation from the international scientific community, not primarily because the underlying genetic goal was considered illegitimate, but because the work proceeded without adequate prior safety testing, without the transparency ordinarily expected of such research, and without any established framework of ethical oversight or peer consultation. The episode has since become a widely cited cautionary example, credited with accelerating calls for clearer international governance.\n\nD  A related distinction separates editing intended as therapy from editing aimed at enhancement. Correcting a mutation known to cause a serious disease is generally regarded, even by many otherwise cautious ethicists, as comparatively easy to justify. Editing embryos for traits unrelated to disease — height or eye colour, for instance — raises a different order of concern. Critics warn that enhancement editing, given its likely cost, could deepen existing social inequality by becoming available chiefly to wealthier families, and that widespread pursuit of a narrow set of favoured traits risks quietly narrowing society's tolerance for natural human variation, including disability.\n\nE  Beyond these ethical distinctions lie genuine technical limitations. Gene editing does not always alter every targeted cell uniformly, a phenomenon known as mosaicism, and it can occasionally introduce unintended changes elsewhere in the genome, known as off-target effects. The long-term biological consequences of such off-target changes remain incompletely understood, a concern that weighs particularly heavily in the germline context, where any unforeseen error would be passed on irreversibly to subsequent generations rather than affecting only the treated individual.\n\nF  In response, several countries have introduced moratoriums specifically targeting heritable germline editing, and international scientific bodies have proposed shared oversight frameworks intended to coordinate research standards across borders. Enforcement, however, remains genuinely difficult: research jurisdictions vary considerably in their regulatory stringency, and the underlying technology continues to advance faster than most regulatory frameworks can be updated. Some ethicists doubt that a single global consensus is realistically achievable at all, given how markedly cultural attitudes toward reproduction, genetic difference, and disability continue to differ from one society to another.",
+        "questions": [
+          {
+            "id": "c1-p3-q1", "number": 28, "type": "multiple-choice",
+            "prompt": "According to paragraph A, what changed as a result of CRISPR-Cas9's development?",
+            "options": { "a": "gene editing became slower and more expensive than previous techniques", "b": "gene editing became significantly faster and more accessible than earlier techniques", "c": "gene editing was banned in most countries", "d": "gene editing was limited exclusively to bacterial research" },
+            "correctAnswer": "b",
+            "explanation": "Paragraph A states CRISPR allows comparatively fast, modest-expense editing, unlike slower, costlier earlier techniques."
+          },
+          {
+            "id": "c1-p3-q2", "number": 29, "type": "multiple-choice",
+            "prompt": "Why does the passage suggest germline editing raises more contentious ethical questions than somatic editing?",
+            "options": { "a": "it is technically impossible to perform", "b": "it has never been attempted in any country", "c": "any changes are heritable and passed to future descendants, not confined to the treated individual", "d": "it is significantly cheaper than somatic editing" },
+            "correctAnswer": "c",
+            "explanation": "Paragraph B states germline changes become heritable, passed to future descendants, unlike somatic edits."
+          },
+          {
+            "id": "c1-p3-q3", "number": 30, "type": "multiple-select",
+            "prompt": "According to paragraph D, which TWO concerns are raised specifically about enhancement editing, as opposed to therapeutic editing?",
+            "options": { "a": "it could deepen social inequality if only wealthier families can afford it", "b": "it is technically identical to somatic editing", "c": "it might narrow society's tolerance for natural human variation, including disability", "d": "it has already been banned in every country" },
+            "correctAnswer": ["a", "c"],
+            "explanation": "Paragraph D raises both the cost/equity concern and the narrowing-tolerance-for-variation concern specifically about enhancement editing."
+          },
+          {
+            "id": "c1-p3-q4", "number": 31, "type": "matching-headings",
+            "prompt": "Choose the correct heading for Paragraph B.",
+            "groupId": "c1-p3-headings",
+            "groupIntro": { "i": "A case that drew international condemnation", "ii": "Two different genetic targets, two different ethical weights", "iii": "A line between individual treatment and inherited change", "iv": "Errors that current techniques cannot fully rule out", "v": "Coordinating rules across borders proves difficult", "vi": "The falling cost of genetic research", "vii": "Public opinion on gene editing worldwide" },
+            "correctAnswer": "iii",
+            "explanation": "Paragraph B distinguishes somatic (individual) from germline (inherited) editing."
+          },
+          {
+            "id": "c1-p3-q5", "number": 32, "type": "matching-headings",
+            "prompt": "Choose the correct heading for Paragraph C.",
+            "groupId": "c1-p3-headings",
+            "groupIntro": { "i": "A case that drew international condemnation", "ii": "Two different genetic targets, two different ethical weights", "iii": "A line between individual treatment and inherited change", "iv": "Errors that current techniques cannot fully rule out", "v": "Coordinating rules across borders proves difficult", "vi": "The falling cost of genetic research", "vii": "Public opinion on gene editing worldwide" },
+            "correctAnswer": "i",
+            "explanation": "Paragraph C describes the 2018 China case and its international condemnation."
+          },
+          {
+            "id": "c1-p3-q6", "number": 33, "type": "matching-headings",
+            "prompt": "Choose the correct heading for Paragraph D.",
+            "groupId": "c1-p3-headings",
+            "groupIntro": { "i": "A case that drew international condemnation", "ii": "Two different genetic targets, two different ethical weights", "iii": "A line between individual treatment and inherited change", "iv": "Errors that current techniques cannot fully rule out", "v": "Coordinating rules across borders proves difficult", "vi": "The falling cost of genetic research", "vii": "Public opinion on gene editing worldwide" },
+            "correctAnswer": "ii",
+            "explanation": "Paragraph D distinguishes therapy from enhancement editing and their differing ethical weight."
+          },
+          {
+            "id": "c1-p3-q7", "number": 34, "type": "matching-headings",
+            "prompt": "Choose the correct heading for Paragraph E.",
+            "groupId": "c1-p3-headings",
+            "groupIntro": { "i": "A case that drew international condemnation", "ii": "Two different genetic targets, two different ethical weights", "iii": "A line between individual treatment and inherited change", "iv": "Errors that current techniques cannot fully rule out", "v": "Coordinating rules across borders proves difficult", "vi": "The falling cost of genetic research", "vii": "Public opinion on gene editing worldwide" },
+            "correctAnswer": "iv",
+            "explanation": "Paragraph E describes mosaicism and off-target effects as technical limitations."
+          },
+          {
+            "id": "c1-p3-q8", "number": 35, "type": "matching-headings",
+            "prompt": "Choose the correct heading for Paragraph F.",
+            "groupId": "c1-p3-headings",
+            "groupIntro": { "i": "A case that drew international condemnation", "ii": "Two different genetic targets, two different ethical weights", "iii": "A line between individual treatment and inherited change", "iv": "Errors that current techniques cannot fully rule out", "v": "Coordinating rules across borders proves difficult", "vi": "The falling cost of genetic research", "vii": "Public opinion on gene editing worldwide" },
+            "correctAnswer": "v",
+            "explanation": "Paragraph F discusses the difficulty of coordinating oversight across national jurisdictions."
+          },
+          {
+            "id": "c1-p3-q9", "number": 36, "type": "true-false-notgiven",
+            "prompt": "The 2018 case in China was condemned primarily because scientists disagreed with the underlying goal of HIV resistance.",
+            "correctAnswer": "FALSE",
+            "explanation": "Paragraph C states condemnation stemmed from lack of safety testing, transparency, and oversight, not disagreement with the genetic goal itself."
+          },
+          {
+            "id": "c1-p3-q10", "number": 37, "type": "true-false-notgiven",
+            "prompt": "Mosaicism refers to a gene edit not affecting every targeted cell uniformly.",
+            "correctAnswer": "TRUE",
+            "explanation": "Paragraph E defines mosaicism exactly this way."
+          },
+          {
+            "id": "c1-p3-q11", "number": 38, "type": "matching-information",
+            "prompt": "Which paragraph discusses the technical risk of unintended changes elsewhere in the genome?",
+            "correctAnswer": "E",
+            "explanation": "Paragraph E describes off-target effects as unintended changes elsewhere in the genome."
+          },
+          {
+            "id": "c1-p3-q12", "number": 39, "type": "matching-information",
+            "prompt": "Which paragraph describes attempts to coordinate oversight across different countries?",
+            "correctAnswer": "F",
+            "explanation": "Paragraph F describes moratoriums and international oversight frameworks."
+          },
+          {
+            "id": "c1-p3-q13", "number": 40, "type": "sentence-completion",
+            "prompt": "Editing intended to correct a disease-causing mutation is often called ______, while editing unrelated to disease is called enhancement.",
+            "maxWords": 1,
+            "correctAnswer": "therapy",
+            "acceptableAnswers": ["therapy", "therapeutic editing"],
+            "explanation": "Paragraph D contrasts therapy with enhancement editing."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ielts-r-c2-test01",
+    "level": "C2",
+    "title": "C2 Practice Test 1",
+    "timeLimitMin": 60,
+    "passages": [
+      {
+        "id": "c2-p1",
+        "title": "The Fragility of Collective Memory",
+        "subject": "psychology & society",
+        "paragraphs": ["A", "B", "C", "D", "E", "F"],
+        "text": "A  Collective memory denotes the shared understanding of past events held by a community or nation, transmitted not through the direct personal experience of every individual but through commemoration, formal education, and media narrative. It is, in this sense, categorically distinct from autobiographical memory, the record an individual retains of events they personally witnessed, even though the two frequently interact and reinforce one another within a given society.\n\nB  A defining feature of collective memory, extensively documented across historical and sociological research, is its malleability. Far from functioning as a fixed archival record, it is continuously reconstructed to align with a group's present needs, values, and sense of identity. National historical narratives, for instance, are regularly revised across successive generations, with particular episodes emphasised, downplayed, or reinterpreted as prevailing values shift — a dynamic that operates within families and smaller communities in much the same way it operates at national scale.\n\nC  Some of the most striking evidence for this malleability comes from research into so-called flashbulb memories: the vivid, high-confidence recollections individuals report of learning about shocking public events, such as where they were and what they were doing at the time. Longitudinal studies that re-interview the same individuals years after such an event, however, have repeatedly found substantial inaccuracies in these recollections, even as the individuals' confidence in their own accuracy remains undiminished. This dissociation between subjective confidence and objective accuracy has become one of the most robust findings in memory research.\n\nD  Repeated public retelling — through anniversary commemorations, museum exhibits, and media retrospectives — tends to reinforce a particular version of events over time, gradually crowding out competing individual or minority accounts that diverge from the dominant narrative. Where control over media and educational curricula is unevenly distributed among groups within a society, this dynamic risks entrenching a homogenised official narrative at the expense of a more accurate plurality of lived experience, particularly among historically marginalised communities whose perspectives were less able to shape the dominant account in the first place.\n\nE  The digital era has introduced a further, genuinely double-edged transformation. Social media platforms and algorithmically curated feeds now surface anniversaries and retrospective content at unprecedented scale, through automated features that resurface past events on their commemorative dates. This can accelerate both the spread and the entrenchment of a particular framing of events. At the same time, however, these same platforms have lowered the barrier for previously marginalised groups to circulate counter-narratives that challenge the dominant account, a capability that was considerably more constrained in earlier, more centralised media environments.\n\nF  These dynamics carry direct implications for historiography and processes of political reconciliation. Groups that have experienced the same historical episode from structurally different positions frequently retain genuinely incompatible collective memories of it, and this incompatibility need not stem from deliberate deceit on either side; it can instead be a structural consequence of how collective memory forms and is reinforced differently within each group. Effective truth and reconciliation processes, many scholars argue, depend on acknowledging this structural feature explicitly, rather than assuming that presenting a single, agreed factual record will automatically dissolve memories that have been shaped by decades of divergent commemorative practice.",
+        "questions": [
+          {
+            "id": "c2-p1-q1", "number": 1, "type": "multiple-choice",
+            "prompt": "According to paragraph A, what fundamentally distinguishes collective memory from autobiographical memory?",
+            "options": { "a": "collective memory is transmitted through commemoration, education and media rather than direct personal experience", "b": "collective memory is always more accurate than autobiographical memory", "c": "autobiographical memory cannot be influenced by media", "d": "collective memory only exists in written form" },
+            "correctAnswer": "a",
+            "explanation": "Paragraph A defines collective memory as transmitted through commemoration, education, and media narrative, unlike directly experienced autobiographical memory."
+          },
+          {
+            "id": "c2-p1-q2", "number": 2, "type": "multiple-choice",
+            "prompt": "What does flashbulb memory research, as described in paragraph C, reveal about the relationship between confidence and accuracy?",
+            "options": { "a": "confidence in a memory reliably predicts its accuracy", "b": "flashbulb memories are always more accurate than ordinary memories", "c": "individuals with vivid, high-confidence memories of shocking events are often significantly inaccurate despite that confidence", "d": "confidence in a memory tends to decrease over time" },
+            "correctAnswer": "c",
+            "explanation": "Paragraph C states longitudinal studies found substantial inaccuracies despite undiminished confidence, a dissociation between confidence and accuracy."
+          },
+          {
+            "id": "c2-p1-q3", "number": 3, "type": "multiple-choice",
+            "prompt": "According to paragraph E, what is the \"double-edged\" effect of digital platforms on collective memory?",
+            "options": { "a": "they have eliminated the possibility of any narrative reinforcement", "b": "they have made collective memory entirely accurate for the first time", "c": "they exclusively benefit historically marginalised communities", "d": "they accelerate the entrenchment of dominant narratives while also enabling counter-narratives that were previously harder to circulate" },
+            "correctAnswer": "d",
+            "explanation": "Paragraph E describes both accelerated entrenchment of dominant framings and easier circulation of counter-narratives as the double-edged effect."
+          },
+          {
+            "id": "c2-p1-q4", "number": 4, "type": "matching-headings",
+            "prompt": "Choose the correct heading for Paragraph B.",
+            "groupId": "c2-p1-headings",
+            "groupIntro": { "i": "A memory reshaped to fit the present", "ii": "When vivid certainty does not guarantee accuracy", "iii": "Whose version of events gets repeated", "iv": "A new, double-edged stage for old dynamics", "v": "Living with two incompatible pasts", "vi": "Measuring memory in laboratory conditions", "vii": "The origins of national commemoration" },
+            "correctAnswer": "i",
+            "explanation": "Paragraph B describes collective memory as continuously reconstructed to fit present needs and values."
+          },
+          {
+            "id": "c2-p1-q5", "number": 5, "type": "matching-headings",
+            "prompt": "Choose the correct heading for Paragraph C.",
+            "groupId": "c2-p1-headings",
+            "groupIntro": { "i": "A memory reshaped to fit the present", "ii": "When vivid certainty does not guarantee accuracy", "iii": "Whose version of events gets repeated", "iv": "A new, double-edged stage for old dynamics", "v": "Living with two incompatible pasts", "vi": "Measuring memory in laboratory conditions", "vii": "The origins of national commemoration" },
+            "correctAnswer": "ii",
+            "explanation": "Paragraph C shows flashbulb memories can be inaccurate despite high confidence."
+          },
+          {
+            "id": "c2-p1-q6", "number": 6, "type": "matching-headings",
+            "prompt": "Choose the correct heading for Paragraph D.",
+            "groupId": "c2-p1-headings",
+            "groupIntro": { "i": "A memory reshaped to fit the present", "ii": "When vivid certainty does not guarantee accuracy", "iii": "Whose version of events gets repeated", "iv": "A new, double-edged stage for old dynamics", "v": "Living with two incompatible pasts", "vi": "Measuring memory in laboratory conditions", "vii": "The origins of national commemoration" },
+            "correctAnswer": "iii",
+            "explanation": "Paragraph D discusses how repeated retelling reinforces a dominant version at the expense of competing accounts."
+          },
+          {
+            "id": "c2-p1-q7", "number": 7, "type": "matching-headings",
+            "prompt": "Choose the correct heading for Paragraph E.",
+            "groupId": "c2-p1-headings",
+            "groupIntro": { "i": "A memory reshaped to fit the present", "ii": "When vivid certainty does not guarantee accuracy", "iii": "Whose version of events gets repeated", "iv": "A new, double-edged stage for old dynamics", "v": "Living with two incompatible pasts", "vi": "Measuring memory in laboratory conditions", "vii": "The origins of national commemoration" },
+            "correctAnswer": "iv",
+            "explanation": "Paragraph E discusses social media as a new, double-edged stage for reinforcing and contesting narratives."
+          },
+          {
+            "id": "c2-p1-q8", "number": 8, "type": "matching-headings",
+            "prompt": "Choose the correct heading for Paragraph F.",
+            "groupId": "c2-p1-headings",
+            "groupIntro": { "i": "A memory reshaped to fit the present", "ii": "When vivid certainty does not guarantee accuracy", "iii": "Whose version of events gets repeated", "iv": "A new, double-edged stage for old dynamics", "v": "Living with two incompatible pasts", "vi": "Measuring memory in laboratory conditions", "vii": "The origins of national commemoration" },
+            "correctAnswer": "v",
+            "explanation": "Paragraph F discusses groups holding genuinely incompatible collective memories of the same events."
+          },
+          {
+            "id": "c2-p1-q9", "number": 9, "type": "true-false-notgiven",
+            "prompt": "Collective memory is described as continuously reconstructed rather than a fixed record.",
+            "correctAnswer": "TRUE",
+            "explanation": "Paragraph B states collective memory is continuously reconstructed rather than a fixed archival record."
+          },
+          {
+            "id": "c2-p1-q10", "number": 10, "type": "true-false-notgiven",
+            "prompt": "The passage states that incompatible collective memories between groups necessarily result from deliberate deceit by one side.",
+            "correctAnswer": "FALSE",
+            "explanation": "Paragraph F states this incompatibility need not stem from deliberate deceit and can be a structural consequence instead."
+          },
+          {
+            "id": "c2-p1-q11", "number": 11, "type": "matching-information",
+            "prompt": "Which paragraph discusses automated features that resurface past events on their anniversaries?",
+            "correctAnswer": "E",
+            "explanation": "Paragraph E describes automated \"on this day\"-style features surfacing anniversaries at scale."
+          },
+          {
+            "id": "c2-p1-q12", "number": 12, "type": "matching-information",
+            "prompt": "Which paragraph discusses implications for reconciliation processes?",
+            "correctAnswer": "F",
+            "explanation": "Paragraph F discusses truth and reconciliation processes directly."
+          },
+          {
+            "id": "c2-p1-q13", "number": 13, "type": "sentence-completion",
+            "groupId": "c2-p1-summary",
+            "groupIntro": "Complete the summary below. Choose NO MORE THAN TWO WORDS from the passage for each answer.\n\nResearch into ______(13) memories shows that people can remain highly confident about a recollection even when it is inaccurate. Because collective memory is shaped differently within each group, reconciliation processes must acknowledge that incompatible memories can arise without any ______(14) on either side.",
+            "maxWords": 2,
+            "correctAnswer": "flashbulb",
+            "acceptableAnswers": ["flashbulb", "flashbulb memories"],
+            "explanation": "Paragraph C introduces flashbulb memory research."
+          },
+          {
+            "id": "c2-p1-q14", "number": 14, "type": "sentence-completion",
+            "maxWords": 2,
+            "correctAnswer": "deceit",
+            "acceptableAnswers": ["deceit", "deliberate deceit"],
+            "explanation": "Paragraph F states incompatibility need not stem from deliberate deceit."
+          }
+        ]
+      },
+      {
+        "id": "c2-p2",
+        "title": "Quantum Computing and the Limits of Classical Simulation",
+        "subject": "science & technology",
+        "paragraphs": ["A", "B", "C", "D", "E", "F"],
+        "text": "A  Conventional digital computers encode information as bits, each definitively either a zero or a one, and perform computation by manipulating vast quantities of these bits according to deterministic logical rules. Quantum computers instead encode information in quantum bits, or qubits, which can exist in a superposition of the zero and one states simultaneously and can additionally be entangled with one another such that the state of one qubit is correlated with the state of another regardless of the physical distance separating them. This fundamentally different substrate, in principle, opens the possibility of solving certain narrow classes of computational problem in a time that remains practically infeasible for any classical machine.\n\nB  The core motivation for building physical quantum hardware, rather than merely simulating quantum behaviour on an ordinary computer, lies in a stark computational asymmetry. Exactly simulating the behaviour of a modest number of qubits on a classical computer requires memory and processing resources that grow exponentially with the number of qubits being simulated. Beyond only a few dozen qubits, this exponential growth rapidly exceeds the combined capacity of even the most powerful classical supercomputers currently in existence, which is precisely the computational wall that physical quantum hardware is intended to circumvent by directly harnessing quantum mechanical behaviour rather than approximating it.\n\nC  Several research groups have reported quantum processors completing narrowly defined benchmark tasks measurably faster than the best available classical supercomputers, achievements often described in the press as demonstrations of \"quantum advantage\" or \"quantum supremacy.\" An important caveat typically accompanies such claims: the benchmark tasks in question are generally chosen specifically because they are known to be difficult for classical computers to simulate, rather than because they correspond to problems of genuine practical or commercial interest. A demonstrated speed advantage on such a narrow, purpose-built benchmark therefore does not straightforwardly imply any comparable advantage for the broad range of computational problems that industries and researchers actually care about solving.\n\nD  A further, substantial obstacle concerns error correction. Physical qubits are notoriously fragile, highly susceptible to environmental noise and interference, a phenomenon known as decoherence, which can corrupt a computation before it completes. Reliable large-scale quantum computation therefore requires extensive error correction, a process that itself consumes a considerable number of imperfect physical qubits merely to encode a single reliable \"logical\" qubit robust enough to trust for meaningful computation. Current hardware remains firmly within what researchers term the noisy intermediate-scale quantum era, a stage still well short of the scale and reliability most anticipated valuable applications would actually require.\n\nE  Given these constraints, the most credible near- and medium-term applications tend to be problems structurally well suited to quantum approaches specifically, rather than quantum computing serving as a general-purpose replacement for classical computation across every conceivable task. Promising candidates include certain classes of optimisation problem, the quantum simulation of molecular and chemical systems relevant to drug discovery and materials science, and a narrower set of cryptographically adjacent problems, all domains where the underlying mathematics maps unusually well onto quantum mechanical operations.\n\nF  In light of the substantial remaining engineering challenges around error correction and hardware scaling, and the deliberately narrow nature of demonstrated speed advantages achieved so far, many specialists in the field urge caution against overstating quantum computing's near-term practical impact. Meaningful commercial transformation across most industries, these specialists argue, remains realistically a matter of years rather than an already-arrived shift, notwithstanding the very substantial ongoing investment the field continues to attract and its genuine, if still largely unrealised, long-term promise.",
+        "questions": [
+          {
+            "id": "c2-p2-q1", "number": 15, "type": "multiple-choice",
+            "prompt": "According to paragraph A, what capability distinguishes a qubit from a classical bit?",
+            "options": { "a": "a qubit can only represent the value zero", "b": "a qubit can exist in superposition of zero and one and can be entangled with other qubits", "c": "a qubit requires no physical hardware at all", "d": "a qubit is always faster than a classical bit regardless of the task" },
+            "correctAnswer": "b",
+            "explanation": "Paragraph A describes qubits as capable of superposition and entanglement, unlike classical bits."
+          },
+          {
+            "id": "c2-p2-q2", "number": 16, "type": "multiple-choice",
+            "prompt": "According to paragraph B, why is physical quantum hardware built rather than relying on classical simulation of quantum behaviour?",
+            "options": { "a": "classical simulation is illegal in most countries", "b": "classical computers cannot represent bits at all", "c": "classical simulation of even a modest number of qubits requires resources that grow exponentially and rapidly exceed supercomputer capacity", "d": "quantum hardware is significantly cheaper to build than classical computers" },
+            "correctAnswer": "c",
+            "explanation": "Paragraph B explains that exact classical simulation of qubits grows exponentially and quickly exceeds supercomputer capacity."
+          },
+          {
+            "id": "c2-p2-q3", "number": 17, "type": "multiple-choice",
+            "prompt": "What caveat does paragraph C attach to reported \"quantum advantage\" claims?",
+            "options": { "a": "the benchmark tasks used are typically chosen because they are difficult for classical computers, not because they reflect problems of practical interest", "b": "quantum processors have never actually outperformed classical supercomputers on any task", "c": "quantum advantage has already been demonstrated across all major industries", "d": "the claims have been formally retracted by the research groups involved" },
+            "correctAnswer": "a",
+            "explanation": "Paragraph C states benchmark tasks are chosen for being hard for classical computers, not for practical relevance."
+          },
+          {
+            "id": "c2-p2-q4", "number": 18, "type": "matching-headings",
+            "prompt": "Choose the correct heading for Paragraph B.",
+            "groupId": "c2-p2-headings",
+            "groupIntro": { "i": "A wall classical computers cannot climb", "ii": "A narrow victory, not a general one", "iii": "The fragile foundation beneath every calculation", "iv": "Where quantum computing is likely to matter first", "v": "Tempering enthusiasm with realism", "vi": "The history of the transistor", "vii": "Comparing costs across computing platforms" },
+            "correctAnswer": "i",
+            "explanation": "Paragraph B describes the exponential computational wall that classical simulation hits."
+          },
+          {
+            "id": "c2-p2-q5", "number": 19, "type": "matching-headings",
+            "prompt": "Choose the correct heading for Paragraph C.",
+            "groupId": "c2-p2-headings",
+            "groupIntro": { "i": "A wall classical computers cannot climb", "ii": "A narrow victory, not a general one", "iii": "The fragile foundation beneath every calculation", "iv": "Where quantum computing is likely to matter first", "v": "Tempering enthusiasm with realism", "vi": "The history of the transistor", "vii": "Comparing costs across computing platforms" },
+            "correctAnswer": "ii",
+            "explanation": "Paragraph C explains that quantum advantage claims rest on narrow, purpose-built benchmarks, not general advantage."
+          },
+          {
+            "id": "c2-p2-q6", "number": 20, "type": "matching-headings",
+            "prompt": "Choose the correct heading for Paragraph D.",
+            "groupId": "c2-p2-headings",
+            "groupIntro": { "i": "A wall classical computers cannot climb", "ii": "A narrow victory, not a general one", "iii": "The fragile foundation beneath every calculation", "iv": "Where quantum computing is likely to matter first", "v": "Tempering enthusiasm with realism", "vi": "The history of the transistor", "vii": "Comparing costs across computing platforms" },
+            "correctAnswer": "iii",
+            "explanation": "Paragraph D discusses decoherence and the fragility of physical qubits."
+          },
+          {
+            "id": "c2-p2-q7", "number": 21, "type": "matching-headings",
+            "prompt": "Choose the correct heading for Paragraph E.",
+            "groupId": "c2-p2-headings",
+            "groupIntro": { "i": "A wall classical computers cannot climb", "ii": "A narrow victory, not a general one", "iii": "The fragile foundation beneath every calculation", "iv": "Where quantum computing is likely to matter first", "v": "Tempering enthusiasm with realism", "vi": "The history of the transistor", "vii": "Comparing costs across computing platforms" },
+            "correctAnswer": "iv",
+            "explanation": "Paragraph E lists the most promising near-term application domains."
+          },
+          {
+            "id": "c2-p2-q8", "number": 22, "type": "matching-headings",
+            "prompt": "Choose the correct heading for Paragraph F.",
+            "groupId": "c2-p2-headings",
+            "groupIntro": { "i": "A wall classical computers cannot climb", "ii": "A narrow victory, not a general one", "iii": "The fragile foundation beneath every calculation", "iv": "Where quantum computing is likely to matter first", "v": "Tempering enthusiasm with realism", "vi": "The history of the transistor", "vii": "Comparing costs across computing platforms" },
+            "correctAnswer": "v",
+            "explanation": "Paragraph F urges caution against overstating near-term practical impact."
+          },
+          {
+            "id": "c2-p2-q9", "number": 23, "type": "true-false-notgiven",
+            "prompt": "The passage states that current quantum hardware has already surpassed the noisy intermediate-scale quantum stage.",
+            "correctAnswer": "FALSE",
+            "explanation": "Paragraph D states hardware remains firmly within the noisy intermediate-scale quantum era, not beyond it."
+          },
+          {
+            "id": "c2-p2-q10", "number": 24, "type": "true-false-notgiven",
+            "prompt": "Error correction requires multiple physical qubits to encode a single reliable logical qubit.",
+            "correctAnswer": "TRUE",
+            "explanation": "Paragraph D states error correction consumes a considerable number of physical qubits to encode one logical qubit."
+          },
+          {
+            "id": "c2-p2-q11", "number": 25, "type": "matching-information",
+            "prompt": "Which paragraph discusses specific fields such as drug discovery and materials science as promising application areas?",
+            "correctAnswer": "E",
+            "explanation": "Paragraph E mentions quantum simulation for drug discovery and materials science."
+          },
+          {
+            "id": "c2-p2-q12", "number": 26, "type": "matching-information",
+            "prompt": "Which paragraph explains the phenomenon of decoherence?",
+            "correctAnswer": "D",
+            "explanation": "Paragraph D defines decoherence as environmental noise corrupting qubits."
+          },
+          {
+            "id": "c2-p2-q13", "number": 27, "type": "sentence-completion",
+            "prompt": "Current quantum hardware is often described as being in the noisy intermediate-scale quantum, or ______, era.",
+            "maxWords": 1,
+            "correctAnswer": "NISQ",
+            "acceptableAnswers": ["NISQ", "noisy intermediate-scale quantum"],
+            "explanation": "Paragraph D names this stage the noisy intermediate-scale quantum (NISQ) era."
+          }
+        ]
+      },
+      {
+        "id": "c2-p3",
+        "title": "Contesting the Concept of Cultural Authenticity",
+        "subject": "anthropology & humanities",
+        "paragraphs": ["A", "B", "C", "D", "E", "F"],
+        "text": "A  The term \"authenticity\" is invoked constantly in discussions of cultural practice — the cuisine of a particular region, the craftsmanship behind a traditional object, the performance of a folk musical form — typically as though it named a straightforward, objectively verifiable property that a given practice either does or does not possess. Anthropologists working on questions of cultural heritage have, for decades, pressed a more unsettling question: whether authenticity is a coherent analytical category at all, or whether it is itself a culturally and historically contingent judgement, one that reveals more about the person making the claim than about any intrinsic property of the practice being judged.\n\nB  Part of what complicates the concept is the historical constructedness of many supposedly ancient traditions. Practices widely presented, and sincerely believed, to represent an unbroken continuation of an unchanging past frequently turn out, upon closer historical examination, to be considerably more recent inventions, or substantial modifications of earlier practice adapted to serve later social or political purposes — a phenomenon scholars have termed \"invented tradition.\" This discovery does not necessarily diminish the meaningfulness such practices hold for the communities that maintain them, but it does undermine any straightforward claim to a single, fixed, original form against which the authenticity of current practice might be objectively measured.\n\nC  Rather than treating authenticity as a property intrinsic to a cultural object or practice, many scholars now argue it functions primarily as a claim asserted by particular actors, for particular purposes. Community members may invoke authenticity to assert insider status or cultural ownership; commercial operators may invoke it to enhance the market value of a product; political institutions may invoke it to legitimise a particular national narrative. Because these actors frequently have divergent interests, the very same cultural practice can be simultaneously described as authentic by one party and dismissed as inauthentic by another, with neither judgement resolvable by appeal to some independent, objective fact of the matter.\n\nD  This dynamic is thrown into particularly sharp relief in tourism contexts, where cultural performances adapted for visiting audiences are frequently singled out as inauthentic, contaminated by commercial motive. Critics of this framing point out that culture has, throughout recorded history, continuously adapted in response to outside contact, trade, conquest, and economic pressure of every kind, long predating the modern tourism industry; adaptation itself is not a new or uniquely corrupting force. This raises an awkward question rarely addressed head-on: why adaptation undertaken specifically for a tourist audience should be regarded as especially inauthentic, when adaptation in response to countless other historical pressures is not typically judged in the same way.\n\nE  A further complication arises from tension between insider and outsider perspectives. Communities themselves are frequently divided internally over what should count as authentic within their own tradition, reflecting genuine, ongoing debate rather than any settled consensus. Outside observers — including well-meaning scholars, cultural institutions, and consumers seeking an \"authentic\" experience — often instead impose a static, idealised version of a culture, one that fails to match the internal diversity, disagreement, and continuous change that practitioners themselves recognise and comfortably live with as an unremarkable feature of any living tradition.\n\nF  In light of these difficulties, some scholars have proposed largely retiring the concept of authenticity in favour of alternative framings such as continuity, transformation, or plurality of practice. Such framings, proponents argue, better capture how a cultural practice can remain meaningfully connected to its own history while also legitimately continuing to change, without requiring anyone to designate a single frozen version as uniquely correct and every subsequent variation as a corrupted departure from it.",
+        "questions": [
+          {
+            "id": "c2-p3-q1", "number": 28, "type": "multiple-choice",
+            "prompt": "According to paragraph B, what does the concept of \"invented tradition\" reveal about many supposedly ancient practices?",
+            "options": { "a": "they have remained completely unchanged for centuries", "b": "they are frequently more recent inventions or substantial modifications of earlier practice than commonly believed", "c": "they were invented exclusively by outside observers rather than communities themselves", "d": "they are entirely fabricated and hold no meaning for communities today" },
+            "correctAnswer": "b",
+            "explanation": "Paragraph B states such practices frequently turn out to be more recent inventions or substantial modifications than commonly believed."
+          },
+          {
+            "id": "c2-p3-q2", "number": 29, "type": "multiple-choice",
+            "prompt": "According to paragraph C, why can the same cultural practice be described as both authentic and inauthentic by different people?",
+            "options": { "a": "because authenticity functions as a claim asserted by different actors with different interests, rather than an intrinsic, objectively verifiable property", "b": "because cultural practices physically change their properties depending on who observes them", "c": "because anthropologists have proven that authenticity does not exist in any form", "d": "because only commercial operators ever make claims about authenticity" },
+            "correctAnswer": "a",
+            "explanation": "Paragraph C explains authenticity as a claim asserted by actors with divergent interests, not an intrinsic property."
+          },
+          {
+            "id": "c2-p3-q3", "number": 30, "type": "multiple-choice",
+            "prompt": "What question does paragraph D raise about tourism-oriented cultural adaptation?",
+            "options": { "a": "whether tourism should be banned in regions with significant cultural heritage", "b": "whether tourists are capable of appreciating authentic culture at all", "c": "why adaptation for tourist audiences is singled out as inauthentic when culture has always adapted to other historical pressures", "d": "whether cultural performances should be standardised for tourist audiences" },
+            "correctAnswer": "c",
+            "explanation": "Paragraph D raises exactly this question about singling out tourist-oriented adaptation as especially inauthentic."
+          },
+          {
+            "id": "c2-p3-q4", "number": 31, "type": "matching-headings",
+            "prompt": "Choose the correct heading for Paragraph B.",
+            "groupId": "c2-p3-headings",
+            "groupIntro": { "i": "Not as old as it appears", "ii": "A judgement made by someone, for a reason", "iii": "Singling out one kind of adaptation among many", "iv": "A version outsiders impose, and insiders don't recognise", "v": "Retiring a troublesome word", "vi": "Measuring the market value of tradition", "vii": "The origins of anthropology as a discipline" },
+            "correctAnswer": "i",
+            "explanation": "Paragraph B discusses invented tradition — practices that are not as old as they appear."
+          },
+          {
+            "id": "c2-p3-q5", "number": 32, "type": "matching-headings",
+            "prompt": "Choose the correct heading for Paragraph C.",
+            "groupId": "c2-p3-headings",
+            "groupIntro": { "i": "Not as old as it appears", "ii": "A judgement made by someone, for a reason", "iii": "Singling out one kind of adaptation among many", "iv": "A version outsiders impose, and insiders don't recognise", "v": "Retiring a troublesome word", "vi": "Measuring the market value of tradition", "vii": "The origins of anthropology as a discipline" },
+            "correctAnswer": "ii",
+            "explanation": "Paragraph C frames authenticity as a claim made by particular actors for particular purposes."
+          },
+          {
+            "id": "c2-p3-q6", "number": 33, "type": "matching-headings",
+            "prompt": "Choose the correct heading for Paragraph D.",
+            "groupId": "c2-p3-headings",
+            "groupIntro": { "i": "Not as old as it appears", "ii": "A judgement made by someone, for a reason", "iii": "Singling out one kind of adaptation among many", "iv": "A version outsiders impose, and insiders don't recognise", "v": "Retiring a troublesome word", "vi": "Measuring the market value of tradition", "vii": "The origins of anthropology as a discipline" },
+            "correctAnswer": "iii",
+            "explanation": "Paragraph D questions why tourism-driven adaptation is singled out among many historical forms of adaptation."
+          },
+          {
+            "id": "c2-p3-q7", "number": 34, "type": "matching-headings",
+            "prompt": "Choose the correct heading for Paragraph E.",
+            "groupId": "c2-p3-headings",
+            "groupIntro": { "i": "Not as old as it appears", "ii": "A judgement made by someone, for a reason", "iii": "Singling out one kind of adaptation among many", "iv": "A version outsiders impose, and insiders don't recognise", "v": "Retiring a troublesome word", "vi": "Measuring the market value of tradition", "vii": "The origins of anthropology as a discipline" },
+            "correctAnswer": "iv",
+            "explanation": "Paragraph E discusses outsiders imposing an idealised version that insiders don't recognise as matching their lived diversity."
+          },
+          {
+            "id": "c2-p3-q8", "number": 35, "type": "matching-headings",
+            "prompt": "Choose the correct heading for Paragraph F.",
+            "groupId": "c2-p3-headings",
+            "groupIntro": { "i": "Not as old as it appears", "ii": "A judgement made by someone, for a reason", "iii": "Singling out one kind of adaptation among many", "iv": "A version outsiders impose, and insiders don't recognise", "v": "Retiring a troublesome word", "vi": "Measuring the market value of tradition", "vii": "The origins of anthropology as a discipline" },
+            "correctAnswer": "v",
+            "explanation": "Paragraph F proposes retiring \"authenticity\" in favour of alternative framings."
+          },
+          {
+            "id": "c2-p3-q9", "number": 36, "type": "true-false-notgiven",
+            "prompt": "The passage states that adaptation of cultural practice in response to outside pressure began with the modern tourism industry.",
+            "correctAnswer": "FALSE",
+            "explanation": "Paragraph D states adaptation has occurred throughout recorded history, long predating modern tourism."
+          },
+          {
+            "id": "c2-p3-q10", "number": 37, "type": "true-false-notgiven",
+            "prompt": "Communities themselves are described as sometimes disagreeing internally about what counts as authentic within their own tradition.",
+            "correctAnswer": "TRUE",
+            "explanation": "Paragraph E states communities are frequently divided internally over what counts as authentic."
+          },
+          {
+            "id": "c2-p3-q11", "number": 38, "type": "matching-information",
+            "prompt": "Which paragraph proposes alternative concepts to replace the idea of authenticity?",
+            "correctAnswer": "F",
+            "explanation": "Paragraph F proposes continuity, transformation, or plurality of practice as alternative framings."
+          },
+          {
+            "id": "c2-p3-q12", "number": 39, "type": "matching-information",
+            "prompt": "Which paragraph discusses outside observers imposing an idealised version of a culture?",
+            "correctAnswer": "E",
+            "explanation": "Paragraph E describes outside observers imposing a static, idealised version of a culture."
+          },
+          {
+            "id": "c2-p3-q13", "number": 40, "type": "sentence-completion",
+            "prompt": "Some scholars propose replacing 'authenticity' with concepts such as continuity, transformation, or ______ of practice.",
+            "maxWords": 1,
+            "correctAnswer": "plurality",
+            "acceptableAnswers": ["plurality", "a plurality"],
+            "explanation": "Paragraph F lists continuity, transformation, or plurality of practice as alternative framings."
+          }
+        ]
+      }
+    ]
+  }
+]
