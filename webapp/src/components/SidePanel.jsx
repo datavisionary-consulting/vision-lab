@@ -13,6 +13,13 @@ export default function SidePanel({ theory, onClose }) {
       <div className="side-panel-body">
         <p>{theory.text}</p>
         {theory.image && <img src={theory.image} alt="" />}
+        {theory.source && (
+          <p className="side-panel-source">
+            Source: {theory.sourceUrl ? (
+              <a href={theory.sourceUrl} target="_blank" rel="noopener">{theory.source}</a>
+            ) : theory.source}
+          </p>
+        )}
       </div>
     </div>
   );

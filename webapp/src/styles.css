@@ -104,6 +104,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .side-panel-header button:hover{color:var(--text)}
 .side-panel-body{padding:15px;overflow-y:auto;font-size:.85rem;line-height:1.7;color:#d8d4cc}
 .side-panel-body img{max-width:100%;border-radius:8px;margin-top:12px;border:1px solid var(--border)}
+.side-panel-source{margin-top:14px;padding-top:10px;border-top:1px solid var(--border);font-size:.72rem;font-style:italic;color:var(--muted)}
+.side-panel-source a{color:var(--acc2);text-decoration:none}
+.side-panel-source a:hover{text-decoration:underline}
 @media (max-width:1100px){
   .quiz-layout{flex-direction:column;align-items:stretch}
   .side-panel{width:100%;position:static;max-height:50vh}
