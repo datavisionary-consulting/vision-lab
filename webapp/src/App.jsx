@@ -5,11 +5,13 @@ import CourseHub from './components/CourseHub';
 import Trainer from './components/Trainer';
 import SqlTrainer from './components/SqlTrainer';
 import IeltsReadingTrainer from './components/IeltsReadingTrainer';
+import IeltsListeningTrainer from './components/IeltsListeningTrainer';
 
 const KIND_COMPONENT = {
   trainer: Trainer,
   sql: SqlTrainer,
   'ielts-reading': IeltsReadingTrainer,
+  'ielts-listening': IeltsListeningTrainer,
 };
 
 export default function App() {

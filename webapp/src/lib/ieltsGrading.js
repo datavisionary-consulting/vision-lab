@@ -11,6 +11,7 @@ export function gradeAnswer(q, userAnswer) {
     case 'multiple-choice':
     case 'matching-headings':
     case 'matching-information':
+    case 'matching':
       return normalizeText(userAnswer) === normalizeText(q.correctAnswer);
 
     case 'multiple-select': {

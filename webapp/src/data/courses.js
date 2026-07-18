@@ -345,6 +345,22 @@ export const COURSES = [
     storageKey: 'vlab_progress_ielts-reading_v1',
     enabled: true,
   },
+  {
+    id: 'ielts-listening',
+    kind: 'ielts-listening',
+    title: 'IELTS Listening',
+    category: 'IELTS Preparation',
+    icon: '🎧',
+    blurb: 'Timed listening practice · IELTS Academic format',
+    dataFile: dataUrl('ielts-listening/tests.json'),
+    levels: [
+      { id: 'B2', label: 'B2 · Upper-Intermediate' },
+      { id: 'C1', label: 'C1 · Advanced' },
+      { id: 'C2', label: 'C2 · Proficient' },
+    ],
+    storageKey: 'vlab_progress_ielts-listening_v1',
+    enabled: true,
+  },
 ];
 
 export const getCourse = (id) => COURSES.find((c) => c.id === id);

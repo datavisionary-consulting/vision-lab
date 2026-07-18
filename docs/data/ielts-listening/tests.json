@@ -1,0 +1,2396 @@
+[
+  {
+    "id": "ielts-l-b2-test01",
+    "level": "B2",
+    "title": "B2 Listening Practice Test 1",
+    "timeLimitMin": 30,
+    "sections": [
+      {
+        "id": "b2-l-s1",
+        "title": "Section 1: Booking a Community Sports Centre Membership",
+        "context": "everyday social",
+        "script": [
+          {
+            "speaker": "Receptionist",
+            "text": "Good morning, Riverside Community Sports Centre, how can I help you?"
+          },
+          {
+            "speaker": "Caller",
+            "text": "Hi, I'd like to ask about joining the centre, becoming a member."
+          },
+          {
+            "speaker": "Receptionist",
+            "text": "Of course. Can I take your name first?"
+          },
+          {
+            "speaker": "Caller",
+            "text": "Yes, it's Michael Turner."
+          },
+          {
+            "speaker": "Receptionist",
+            "text": "Could you spell your surname for me?"
+          },
+          {
+            "speaker": "Caller",
+            "text": "Sure, T, U, R, N, E, R."
+          },
+          {
+            "speaker": "Receptionist",
+            "text": "Great, thank you. And could I get a contact phone number?"
+          },
+          {
+            "speaker": "Caller",
+            "text": "Yes, it's oh seven nine one two, four four five, six one eight."
+          },
+          {
+            "speaker": "Receptionist",
+            "text": "Perfect. Now, we have a few different membership types. There's the Standard membership, which is thirty two pounds a month and gives you access to the gym and swimming pool. Then there's the Premium membership, forty five pounds a month, which adds unlimited fitness classes. And we also do an Off-Peak membership for twenty two pounds, but that only allows entry before ten in the morning or after seven in the evening."
+          },
+          {
+            "speaker": "Caller",
+            "text": "I think the Premium one sounds good actually, since I want to try some classes."
+          },
+          {
+            "speaker": "Receptionist",
+            "text": "Great choice. Now, memberships normally start on the first of the month, but if you sign up today we can actually start you from this Saturday instead, so you don't have to wait."
+          },
+          {
+            "speaker": "Caller",
+            "text": "Oh, that's convenient, let's do that then."
+          },
+          {
+            "speaker": "Receptionist",
+            "text": "Wonderful. And one last thing, could I take your email address, for the confirmation?"
+          },
+          {
+            "speaker": "Caller",
+            "text": "Yes, it's michael dot turner at mailbox dot co dot uk."
+          },
+          {
+            "speaker": "Receptionist",
+            "text": "Got it. You'll receive a confirmation email within the next hour, along with your membership card details."
+          },
+          {
+            "speaker": "Caller",
+            "text": "Great, thank you very much."
+          },
+          {
+            "speaker": "Receptionist",
+            "text": "You're welcome, and welcome to Riverside!"
+          }
+        ],
+        "questions": [
+          {
+            "id": "b2-l-s1-q1",
+            "number": 1,
+            "type": "sentence-completion",
+            "prompt": "Caller's first name: ______",
+            "maxWords": 1,
+            "correctAnswer": "Michael",
+            "acceptableAnswers": [
+              "Michael"
+            ],
+            "explanation": "The caller states his name is Michael Turner near the start of the call."
+          },
+          {
+            "id": "b2-l-s1-q2",
+            "number": 2,
+            "type": "sentence-completion",
+            "prompt": "Caller's surname: ______",
+            "maxWords": 1,
+            "correctAnswer": "Turner",
+            "acceptableAnswers": [
+              "Turner"
+            ],
+            "explanation": "The caller spells his surname T-U-R-N-E-R for the receptionist."
+          },
+          {
+            "id": "b2-l-s1-q3",
+            "number": 3,
+            "type": "sentence-completion",
+            "prompt": "Contact phone number: ______",
+            "maxWords": 1,
+            "correctAnswer": "07912445618",
+            "acceptableAnswers": [
+              "07912445618",
+              "07912 445618",
+              "0791244 5618"
+            ],
+            "explanation": "The caller reads out the phone number as oh-seven-nine-one-two, four-four-five, six-one-eight."
+          },
+          {
+            "id": "b2-l-s1-q4",
+            "number": 4,
+            "type": "multiple-choice",
+            "prompt": "Which membership does the caller decide to join?",
+            "options": {
+              "a": "Premium",
+              "b": "Standard",
+              "c": "Off-Peak",
+              "d": "Family"
+            },
+            "correctAnswer": "a",
+            "explanation": "The caller says the Premium option sounds good since he wants to try fitness classes."
+          },
+          {
+            "id": "b2-l-s1-q5",
+            "number": 5,
+            "type": "sentence-completion",
+            "prompt": "Price of the membership chosen: £______ per month",
+            "maxWords": 1,
+            "correctAnswer": "45",
+            "acceptableAnswers": [
+              "45",
+              "forty five",
+              "£45"
+            ],
+            "explanation": "The receptionist states Premium membership is forty five pounds a month."
+          },
+          {
+            "id": "b2-l-s1-q6",
+            "number": 6,
+            "type": "sentence-completion",
+            "prompt": "The membership will start on: ______",
+            "maxWords": 1,
+            "correctAnswer": "Saturday",
+            "acceptableAnswers": [
+              "Saturday",
+              "this Saturday"
+            ],
+            "explanation": "The receptionist offers to start the membership this Saturday instead of the usual first of the month."
+          },
+          {
+            "id": "b2-l-s1-q7",
+            "number": 7,
+            "type": "sentence-completion",
+            "prompt": "The caller's email provider is called: ______",
+            "maxWords": 1,
+            "correctAnswer": "mailbox",
+            "acceptableAnswers": [
+              "mailbox",
+              "mailbox.co.uk"
+            ],
+            "explanation": "The caller gives the email as michael.turner@mailbox.co.uk."
+          },
+          {
+            "id": "b2-l-s1-q8",
+            "number": 8,
+            "type": "multiple-choice",
+            "prompt": "According to the receptionist, the Off-Peak membership can be used...",
+            "options": {
+              "a": "only on weekends",
+              "b": "only for the swimming pool",
+              "c": "before 10am or after 7pm",
+              "d": "with no time restrictions"
+            },
+            "correctAnswer": "c",
+            "explanation": "The receptionist explains Off-Peak membership only allows entry before ten in the morning or after seven in the evening."
+          },
+          {
+            "id": "b2-l-s1-q9",
+            "number": 9,
+            "type": "matching",
+            "prompt": "What is the price of the Off-Peak membership?",
+            "groupId": "b2-l-s1-prices",
+            "groupIntro": {
+              "a": "£22",
+              "b": "£32",
+              "c": "£45"
+            },
+            "correctAnswer": "a",
+            "explanation": "The receptionist states the Off-Peak membership costs twenty two pounds."
+          },
+          {
+            "id": "b2-l-s1-q10",
+            "number": 10,
+            "type": "short-answer",
+            "prompt": "What will be included in the confirmation email besides confirmation of membership?",
+            "maxWords": 3,
+            "correctAnswer": "membership card details",
+            "acceptableAnswers": [
+              "membership card details",
+              "card details"
+            ],
+            "explanation": "The receptionist says the confirmation email will include the membership card details."
+          }
+        ]
+      },
+      {
+        "id": "b2-l-s2",
+        "title": "Section 2: Orientation Talk for New Library Volunteers",
+        "context": "social monologue",
+        "script": [
+          {
+            "speaker": "Coordinator",
+            "text": "Good afternoon everyone, and welcome to Fairview Library. I'm the volunteer coordinator, and I'll be giving you a short introduction before you start."
+          },
+          {
+            "speaker": "Coordinator",
+            "text": "The library is open from nine in the morning until six in the evening, Monday to Saturday, and we're closed on Sundays and public holidays."
+          },
+          {
+            "speaker": "Coordinator",
+            "text": "As volunteers, your main tasks will include returning borrowed books to the correct shelves, helping visitors locate books using the catalogue computers, and assisting with our children's story time sessions on Wednesday afternoons."
+          },
+          {
+            "speaker": "Coordinator",
+            "text": "There's no formal uniform, but you will be given a name badge, which you must wear at all times while you're on the premises."
+          },
+          {
+            "speaker": "Coordinator",
+            "text": "You can leave your coat and any personal belongings in the lockers in the staff room, just behind the main desk."
+          },
+          {
+            "speaker": "Coordinator",
+            "text": "For health and safety, please note the fire exits are located at the front entrance and at the rear, near the children's section. In the event of an alarm, the assembly point is in the car park, by the flagpole."
+          },
+          {
+            "speaker": "Coordinator",
+            "text": "We ask that each volunteer commit to a minimum of three hours per week, though of course you're welcome to do more if you'd like to."
+          },
+          {
+            "speaker": "Coordinator",
+            "text": "If you're ever unable to attend your scheduled shift, please contact me directly, my name is Mrs Patel, rather than simply not turning up."
+          },
+          {
+            "speaker": "Coordinator",
+            "text": "Before you begin, everyone needs to complete a half-day induction session, which will take place next Tuesday morning."
+          },
+          {
+            "speaker": "Coordinator",
+            "text": "And finally, we do recognise long service, volunteers who complete over a year with us receive a small certificate and are invited to our annual volunteer appreciation event."
+          }
+        ],
+        "questions": [
+          {
+            "id": "b2-l-s2-q1",
+            "number": 11,
+            "type": "sentence-completion",
+            "prompt": "The library is open until ______ in the evening.",
+            "maxWords": 1,
+            "correctAnswer": "six",
+            "acceptableAnswers": [
+              "six",
+              "6",
+              "6pm",
+              "six pm"
+            ],
+            "explanation": "The coordinator states the library is open until six in the evening."
+          },
+          {
+            "id": "b2-l-s2-q2",
+            "number": 12,
+            "type": "multiple-choice",
+            "prompt": "According to the talk, the library is closed on...",
+            "options": {
+              "a": "Saturdays",
+              "b": "Wednesdays",
+              "c": "never",
+              "d": "Sundays and public holidays"
+            },
+            "correctAnswer": "d",
+            "explanation": "The coordinator says the library is closed on Sundays and public holidays."
+          },
+          {
+            "id": "b2-l-s2-q3",
+            "number": 13,
+            "type": "sentence-completion",
+            "prompt": "Children's story time takes place on ______ afternoons.",
+            "maxWords": 1,
+            "correctAnswer": "Wednesday",
+            "acceptableAnswers": [
+              "Wednesday",
+              "Wednesdays"
+            ],
+            "explanation": "The coordinator mentions story time sessions on Wednesday afternoons."
+          },
+          {
+            "id": "b2-l-s2-q4",
+            "number": 14,
+            "type": "sentence-completion",
+            "prompt": "Volunteers must wear a ______ at all times.",
+            "maxWords": 2,
+            "correctAnswer": "name badge",
+            "acceptableAnswers": [
+              "name badge",
+              "badge"
+            ],
+            "explanation": "The coordinator states volunteers must wear their name badge at all times on the premises."
+          },
+          {
+            "id": "b2-l-s2-q5",
+            "number": 15,
+            "type": "sentence-completion",
+            "prompt": "Personal belongings can be left in lockers in the ______.",
+            "maxWords": 2,
+            "correctAnswer": "staff room",
+            "acceptableAnswers": [
+              "staff room",
+              "staffroom"
+            ],
+            "explanation": "The coordinator says lockers are located in the staff room behind the main desk."
+          },
+          {
+            "id": "b2-l-s2-q6",
+            "number": 16,
+            "type": "multiple-choice",
+            "prompt": "Where is the assembly point in case of a fire alarm?",
+            "options": {
+              "a": "the car park, by the flagpole",
+              "b": "the front entrance",
+              "c": "the children's section",
+              "d": "the staff room"
+            },
+            "correctAnswer": "a",
+            "explanation": "The coordinator states the assembly point is in the car park, by the flagpole."
+          },
+          {
+            "id": "b2-l-s2-q7",
+            "number": 17,
+            "type": "sentence-completion",
+            "prompt": "Volunteers are asked to commit to a minimum of ______ hours per week.",
+            "maxWords": 1,
+            "correctAnswer": "three",
+            "acceptableAnswers": [
+              "three",
+              "3"
+            ],
+            "explanation": "The coordinator asks for a minimum commitment of three hours per week."
+          },
+          {
+            "id": "b2-l-s2-q8",
+            "number": 18,
+            "type": "short-answer",
+            "prompt": "Who should volunteers contact if they cannot attend a shift?",
+            "maxWords": 2,
+            "correctAnswer": "Mrs Patel",
+            "acceptableAnswers": [
+              "Mrs Patel",
+              "Mrs. Patel",
+              "the coordinator"
+            ],
+            "explanation": "The coordinator identifies herself as Mrs Patel and asks to be contacted directly."
+          },
+          {
+            "id": "b2-l-s2-q9",
+            "number": 19,
+            "type": "sentence-completion",
+            "prompt": "The induction session will take place next ______.",
+            "maxWords": 1,
+            "correctAnswer": "Tuesday",
+            "acceptableAnswers": [
+              "Tuesday"
+            ],
+            "explanation": "The coordinator says the half-day induction session is next Tuesday morning."
+          },
+          {
+            "id": "b2-l-s2-q10",
+            "number": 20,
+            "type": "short-answer",
+            "prompt": "What do volunteers receive after completing over a year of service?",
+            "maxWords": 2,
+            "correctAnswer": "a certificate",
+            "acceptableAnswers": [
+              "a certificate",
+              "certificate"
+            ],
+            "explanation": "The coordinator says long-serving volunteers receive a small certificate."
+          }
+        ]
+      },
+      {
+        "id": "b2-l-s3",
+        "title": "Section 3: Students Planning a Group Presentation",
+        "context": "educational conversation",
+        "script": [
+          {
+            "speaker": "Tom",
+            "text": "So we need to decide on our presentation topic today, the deadline for choosing is Friday."
+          },
+          {
+            "speaker": "Sara",
+            "text": "Right, I was thinking we could do something on renewable energy, maybe comparing solar and wind power."
+          },
+          {
+            "speaker": "Tom",
+            "text": "That sounds good, but I think we should narrow it down a bit, maybe just focus on how they're used in different countries."
+          },
+          {
+            "speaker": "Sara",
+            "text": "Okay, that works. We could look at Denmark for wind power, since they generate a huge percentage of their electricity that way."
+          },
+          {
+            "speaker": "Tom",
+            "text": "And for solar, maybe we look at somewhere like Spain or Australia, both have a lot of sunshine."
+          },
+          {
+            "speaker": "Sara",
+            "text": "Good idea. I think I'll take the wind power section, and you can do solar, if that's alright with you."
+          },
+          {
+            "speaker": "Tom",
+            "text": "Sure, that's fine. How long does the presentation need to be?"
+          },
+          {
+            "speaker": "Sara",
+            "text": "Fifteen minutes total, plus five minutes for questions afterwards."
+          },
+          {
+            "speaker": "Tom",
+            "text": "Okay, so about seven or eight minutes each then."
+          },
+          {
+            "speaker": "Sara",
+            "text": "That sounds right. Should we also include some information on the disadvantages, not just the benefits?"
+          },
+          {
+            "speaker": "Tom",
+            "text": "Yes, definitely, the tutor mentioned last week that presentations focusing only on advantages tend to lose marks."
+          },
+          {
+            "speaker": "Sara",
+            "text": "Good point. I'll make sure to mention the issue with wind turbines and noise complaints near residential areas."
+          },
+          {
+            "speaker": "Tom",
+            "text": "And I'll cover the fact that solar panels need quite a large amount of space to generate significant power."
+          },
+          {
+            "speaker": "Sara",
+            "text": "Perfect. When should we meet again to put the slides together?"
+          },
+          {
+            "speaker": "Tom",
+            "text": "How about Wednesday afternoon, in the library, around two o'clock?"
+          },
+          {
+            "speaker": "Sara",
+            "text": "Works for me. I'll book a study room in advance so we're not stuck without a space."
+          },
+          {
+            "speaker": "Tom",
+            "text": "Great, and don't forget we need at least five academic sources for the reference list."
+          },
+          {
+            "speaker": "Sara",
+            "text": "Right, I'll start looking for journal articles this weekend."
+          }
+        ],
+        "questions": [
+          {
+            "id": "b2-l-s3-q1",
+            "number": 21,
+            "type": "multiple-choice",
+            "prompt": "What is the deadline for choosing a presentation topic?",
+            "options": {
+              "a": "Wednesday",
+              "b": "Friday",
+              "c": "Monday",
+              "d": "next week"
+            },
+            "correctAnswer": "b",
+            "explanation": "Tom states the deadline for choosing the topic is Friday."
+          },
+          {
+            "id": "b2-l-s3-q2",
+            "number": 22,
+            "type": "sentence-completion",
+            "prompt": "Sara will research ______ power.",
+            "maxWords": 1,
+            "correctAnswer": "wind",
+            "acceptableAnswers": [
+              "wind"
+            ],
+            "explanation": "Sara says she will take the wind power section."
+          },
+          {
+            "id": "b2-l-s3-q3",
+            "number": 23,
+            "type": "sentence-completion",
+            "prompt": "Tom will research ______ power.",
+            "maxWords": 1,
+            "correctAnswer": "solar",
+            "acceptableAnswers": [
+              "solar"
+            ],
+            "explanation": "Tom takes the solar power section, since Sara takes wind."
+          },
+          {
+            "id": "b2-l-s3-q4",
+            "number": 24,
+            "type": "multiple-choice",
+            "prompt": "Which two countries does Tom mention as examples for solar power?",
+            "options": {
+              "a": "Denmark and Norway",
+              "b": "Germany and France",
+              "c": "the UK and Ireland",
+              "d": "Spain and Australia"
+            },
+            "correctAnswer": "d",
+            "explanation": "Tom suggests looking at Spain or Australia for solar power, since both have a lot of sunshine."
+          },
+          {
+            "id": "b2-l-s3-q5",
+            "number": 25,
+            "type": "sentence-completion",
+            "prompt": "Total presentation time including questions: ______ minutes.",
+            "maxWords": 1,
+            "correctAnswer": "20",
+            "acceptableAnswers": [
+              "20",
+              "twenty"
+            ],
+            "explanation": "Sara states fifteen minutes total plus five minutes for questions, which is twenty minutes."
+          },
+          {
+            "id": "b2-l-s3-q6",
+            "number": 26,
+            "type": "sentence-completion",
+            "prompt": "The tutor previously said presentations focusing only on ______ tend to lose marks.",
+            "maxWords": 1,
+            "correctAnswer": "advantages",
+            "acceptableAnswers": [
+              "advantages",
+              "benefits"
+            ],
+            "explanation": "Tom recalls the tutor's warning about presentations that focus only on advantages."
+          },
+          {
+            "id": "b2-l-s3-q7",
+            "number": 27,
+            "type": "short-answer",
+            "prompt": "What problem does Sara mention regarding wind turbines?",
+            "maxWords": 3,
+            "correctAnswer": "noise complaints",
+            "acceptableAnswers": [
+              "noise complaints",
+              "noise",
+              "noise complaints near residential areas"
+            ],
+            "explanation": "Sara says she will mention the issue with wind turbines and noise complaints near residential areas."
+          },
+          {
+            "id": "b2-l-s3-q8",
+            "number": 28,
+            "type": "short-answer",
+            "prompt": "What limitation does Tom mention about solar panels?",
+            "maxWords": 5,
+            "correctAnswer": "they need a large amount of space",
+            "acceptableAnswers": [
+              "they need a large amount of space",
+              "large amount of space",
+              "need a lot of space",
+              "require a large area",
+              "a large amount of space"
+            ],
+            "explanation": "Tom says solar panels need quite a large amount of space to generate significant power."
+          },
+          {
+            "id": "b2-l-s3-q9",
+            "number": 29,
+            "type": "sentence-completion",
+            "prompt": "They will meet again on ______ afternoon.",
+            "maxWords": 1,
+            "correctAnswer": "Wednesday",
+            "acceptableAnswers": [
+              "Wednesday"
+            ],
+            "explanation": "Tom suggests meeting on Wednesday afternoon in the library."
+          },
+          {
+            "id": "b2-l-s3-q10",
+            "number": 30,
+            "type": "sentence-completion",
+            "prompt": "The presentation requires at least ______ academic sources.",
+            "maxWords": 1,
+            "correctAnswer": "five",
+            "acceptableAnswers": [
+              "five",
+              "5"
+            ],
+            "explanation": "Tom reminds Sara they need at least five academic sources for the reference list."
+          }
+        ]
+      },
+      {
+        "id": "b2-l-s4",
+        "title": "Section 4: A Lecture on Urban Beekeeping",
+        "context": "academic lecture",
+        "script": [
+          {
+            "speaker": "Lecturer",
+            "text": "Today I want to talk briefly about a growing trend in cities around the world: urban beekeeping, or keeping honeybee colonies within city environments rather than in the countryside."
+          },
+          {
+            "speaker": "Lecturer",
+            "text": "Beekeeping in cities isn't actually a new idea, rooftop hives have existed in some cities since the nineteenth century, but it's become considerably more popular over the last two decades."
+          },
+          {
+            "speaker": "Lecturer",
+            "text": "One reason for this growth is concern about declining bee populations generally, caused by factors such as pesticide use, habitat loss, and disease, which has led many people to want to support bee populations however they can."
+          },
+          {
+            "speaker": "Lecturer",
+            "text": "Interestingly, some research actually suggests that urban bees can be healthier than their rural counterparts, partly because cities often have a wider variety of flowering plants across parks, gardens, and street trees, providing a more varied diet."
+          },
+          {
+            "speaker": "Lecturer",
+            "text": "However, urban beekeeping is not without its challenges. Space is often limited, meaning hives are frequently placed on rooftops, which requires careful planning around weight, access, and safety."
+          },
+          {
+            "speaker": "Lecturer",
+            "text": "Local regulations also vary considerably. Some cities require beekeepers to register their hives, while others place restrictions on how close a hive can be to a neighbouring property, largely due to concerns about allergic reactions to stings."
+          },
+          {
+            "speaker": "Lecturer",
+            "text": "Another challenge is that as urban beekeeping has grown more popular, some experts now worry about hive density, having too many hives concentrated in one small area, which can actually increase competition for the available flowers and end up harming both wild bee species and the honeybees themselves."
+          },
+          {
+            "speaker": "Lecturer",
+            "text": "Because of this, some cities have begun encouraging residents to plant more bee-friendly flowers instead of simply adding more hives, arguing that expanding the food supply matters more than increasing the number of colonies."
+          },
+          {
+            "speaker": "Lecturer",
+            "text": "For anyone interested in taking up urban beekeeping, most experts recommend starting with just one hive in the first year, partly to keep the workload manageable, and partly to get a realistic sense of the time commitment involved before expanding further."
+          },
+          {
+            "speaker": "Lecturer",
+            "text": "In our next session, we'll look specifically at the legal and insurance considerations involved in keeping bees within city limits."
+          }
+        ],
+        "questions": [
+          {
+            "id": "b2-l-s4-q1",
+            "number": 31,
+            "type": "multiple-choice",
+            "prompt": "According to the lecture, rooftop beehives have existed since...",
+            "options": {
+              "a": "the twentieth century",
+              "b": "only the last ten years",
+              "c": "the nineteenth century",
+              "d": "ancient times"
+            },
+            "correctAnswer": "c",
+            "explanation": "The lecturer states rooftop hives have existed in some cities since the nineteenth century."
+          },
+          {
+            "id": "b2-l-s4-q2",
+            "number": 32,
+            "type": "sentence-completion",
+            "prompt": "One reason for the growth in urban beekeeping is concern about declining ______ populations.",
+            "maxWords": 1,
+            "correctAnswer": "bee",
+            "acceptableAnswers": [
+              "bee",
+              "bee populations"
+            ],
+            "explanation": "The lecturer names concern about declining bee populations as one driver of urban beekeeping's growth."
+          },
+          {
+            "id": "b2-l-s4-q3",
+            "number": 33,
+            "type": "multiple-choice",
+            "prompt": "According to the lecturer, urban bees may be healthier than rural bees partly because cities offer...",
+            "options": {
+              "a": "a wider variety of flowering plants",
+              "b": "fewer predators",
+              "c": "warmer temperatures year-round",
+              "d": "less pesticide use only in some areas"
+            },
+            "correctAnswer": "a",
+            "explanation": "The lecturer explains cities often provide a wider variety of flowering plants, giving bees a more varied diet."
+          },
+          {
+            "id": "b2-l-s4-q4",
+            "number": 34,
+            "type": "sentence-completion",
+            "prompt": "Hives are often placed on ______ due to limited space in cities.",
+            "maxWords": 1,
+            "correctAnswer": "rooftops",
+            "acceptableAnswers": [
+              "rooftops",
+              "roofs",
+              "rooftop"
+            ],
+            "explanation": "The lecturer says limited space means hives are frequently placed on rooftops."
+          },
+          {
+            "id": "b2-l-s4-q5",
+            "number": 35,
+            "type": "short-answer",
+            "prompt": "What concern do some local regulations address regarding hive placement near neighbouring properties?",
+            "maxWords": 3,
+            "correctAnswer": "allergic reactions to stings",
+            "acceptableAnswers": [
+              "allergic reactions",
+              "allergic reactions to stings",
+              "allergies to stings"
+            ],
+            "explanation": "The lecturer says restrictions largely relate to concerns about allergic reactions to stings."
+          },
+          {
+            "id": "b2-l-s4-q6",
+            "number": 36,
+            "type": "sentence-completion",
+            "prompt": "Too many hives in one area can increase ______ for available flowers.",
+            "maxWords": 1,
+            "correctAnswer": "competition",
+            "acceptableAnswers": [
+              "competition"
+            ],
+            "explanation": "The lecturer explains high hive density can increase competition for available flowers."
+          },
+          {
+            "id": "b2-l-s4-q7",
+            "number": 37,
+            "type": "multiple-choice",
+            "prompt": "What alternative approach are some cities encouraging instead of adding more hives?",
+            "options": {
+              "a": "banning beekeeping entirely",
+              "b": "reducing the number of parks",
+              "c": "relocating hives to rural areas",
+              "d": "planting more bee-friendly flowers"
+            },
+            "correctAnswer": "d",
+            "explanation": "The lecturer says some cities encourage residents to plant more bee-friendly flowers instead of adding more hives."
+          },
+          {
+            "id": "b2-l-s4-q8",
+            "number": 38,
+            "type": "sentence-completion",
+            "prompt": "Most experts recommend starting with just ______ hive in the first year.",
+            "maxWords": 1,
+            "correctAnswer": "one",
+            "acceptableAnswers": [
+              "one",
+              "1",
+              "a single"
+            ],
+            "explanation": "The lecturer says most experts recommend starting with just one hive in the first year."
+          },
+          {
+            "id": "b2-l-s4-q9",
+            "number": 39,
+            "type": "short-answer",
+            "prompt": "Why do experts recommend starting with only one hive?",
+            "maxWords": 8,
+            "correctAnswer": "to keep the workload manageable and get a realistic sense of the time commitment",
+            "acceptableAnswers": [
+              "to keep the workload manageable and get a realistic sense of the time commitment",
+              "to keep the workload manageable",
+              "manageable workload",
+              "to understand the time commitment",
+              "time commitment",
+              "keep the workload manageable"
+            ],
+            "explanation": "The lecturer explains this keeps the workload manageable and gives a realistic sense of the time commitment before expanding."
+          },
+          {
+            "id": "b2-l-s4-q10",
+            "number": 40,
+            "type": "sentence-completion",
+            "prompt": "The next lecture session will cover ______ and insurance considerations.",
+            "maxWords": 1,
+            "correctAnswer": "legal",
+            "acceptableAnswers": [
+              "legal",
+              "the legal"
+            ],
+            "explanation": "The lecturer says the next session will look at legal and insurance considerations."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ielts-l-c1-test01",
+    "level": "C1",
+    "title": "C1 Listening Practice Test 1",
+    "timeLimitMin": 30,
+    "sections": [
+      {
+        "id": "c1-l-s1",
+        "title": "Section 1: Arranging a Home Removal Quote",
+        "context": "everyday social",
+        "script": [
+          {
+            "speaker": "Agent",
+            "text": "Good afternoon, Swift Removals, how can I help you today?"
+          },
+          {
+            "speaker": "Customer",
+            "text": "Hi, I'm relocating next month and I'd like to get a quote for the move."
+          },
+          {
+            "speaker": "Agent",
+            "text": "Certainly. Could I take your name, please?"
+          },
+          {
+            "speaker": "Customer",
+            "text": "Yes, it's Elena Chen."
+          },
+          {
+            "speaker": "Agent",
+            "text": "And could you spell your surname for our records?"
+          },
+          {
+            "speaker": "Customer",
+            "text": "Of course, C, H, E, N."
+          },
+          {
+            "speaker": "Agent",
+            "text": "Thank you. Now, could you tell me a bit about the property you're moving from?"
+          },
+          {
+            "speaker": "Customer",
+            "text": "It's a two-bedroom flat, third floor, and unfortunately there's no lift in the building."
+          },
+          {
+            "speaker": "Agent",
+            "text": "Ah, that's useful to know, as it does affect the quote slightly, since it means more time and manpower getting items down the stairs. And where are you moving to?"
+          },
+          {
+            "speaker": "Customer",
+            "text": "A house, about forty minutes away, with off-street parking directly outside, which should make things easier."
+          },
+          {
+            "speaker": "Agent",
+            "text": "That's helpful. Now, do you require packing materials and packing service as well, or will you be packing everything yourself?"
+          },
+          {
+            "speaker": "Customer",
+            "text": "I think I'll pack the smaller items myself, but I'd like you to handle the furniture and anything fragile, like glassware."
+          },
+          {
+            "speaker": "Agent",
+            "text": "No problem. Based on that, I'd estimate the move will take a team of three around six hours, and the cost would come to approximately eight hundred and fifty pounds, though that's before we've seen the property in person."
+          },
+          {
+            "speaker": "Customer",
+            "text": "That sounds reasonable. Do you offer any kind of insurance for breakages?"
+          },
+          {
+            "speaker": "Agent",
+            "text": "Yes, we include basic cover as standard, but for higher-value items we'd recommend our extended cover, which is an additional forty pounds and covers up to two thousand pounds per item."
+          },
+          {
+            "speaker": "Customer",
+            "text": "I think I'll take the extended cover, just to be safe."
+          },
+          {
+            "speaker": "Agent",
+            "text": "Good choice. Lastly, what date are you hoping to move?"
+          },
+          {
+            "speaker": "Customer",
+            "text": "The fifteenth of next month, if possible, ideally a weekday since I've heard weekends get booked up quickly."
+          },
+          {
+            "speaker": "Agent",
+            "text": "Let me check, yes, we do have availability that Wednesday. I'll send you a written quote by email within twenty four hours, along with a booking confirmation form."
+          },
+          {
+            "speaker": "Customer",
+            "text": "Perfect, thank you very much."
+          }
+        ],
+        "questions": [
+          {
+            "id": "c1-l-s1-q1",
+            "number": 1,
+            "type": "sentence-completion",
+            "prompt": "Customer's first name: ______",
+            "maxWords": 1,
+            "correctAnswer": "Elena",
+            "acceptableAnswers": [
+              "Elena"
+            ],
+            "explanation": "The customer gives her name as Elena Chen."
+          },
+          {
+            "id": "c1-l-s1-q2",
+            "number": 2,
+            "type": "sentence-completion",
+            "prompt": "Customer's surname: ______",
+            "maxWords": 1,
+            "correctAnswer": "Chen",
+            "acceptableAnswers": [
+              "Chen"
+            ],
+            "explanation": "The customer spells her surname C-H-E-N."
+          },
+          {
+            "id": "c1-l-s1-q3",
+            "number": 3,
+            "type": "multiple-choice",
+            "prompt": "What floor is the customer's current flat on?",
+            "options": {
+              "a": "third",
+              "b": "ground",
+              "c": "second",
+              "d": "fourth"
+            },
+            "correctAnswer": "a",
+            "explanation": "The customer says it's a two-bedroom flat on the third floor."
+          },
+          {
+            "id": "c1-l-s1-q4",
+            "number": 4,
+            "type": "sentence-completion",
+            "prompt": "The building has no ______.",
+            "maxWords": 1,
+            "correctAnswer": "lift",
+            "acceptableAnswers": [
+              "lift",
+              "elevator"
+            ],
+            "explanation": "The customer mentions there's no lift in the building."
+          },
+          {
+            "id": "c1-l-s1-q5",
+            "number": 5,
+            "type": "sentence-completion",
+            "prompt": "The new property is a ______ located about forty minutes away.",
+            "maxWords": 1,
+            "correctAnswer": "house",
+            "acceptableAnswers": [
+              "house"
+            ],
+            "explanation": "The customer is moving to a house about forty minutes away."
+          },
+          {
+            "id": "c1-l-s1-q6",
+            "number": 6,
+            "type": "multiple-choice",
+            "prompt": "What will the customer pack herself?",
+            "options": {
+              "a": "furniture",
+              "b": "glassware",
+              "c": "nothing",
+              "d": "smaller items"
+            },
+            "correctAnswer": "d",
+            "explanation": "The customer says she'll pack the smaller items herself, leaving furniture and fragile items to the movers."
+          },
+          {
+            "id": "c1-l-s1-q7",
+            "number": 7,
+            "type": "sentence-completion",
+            "prompt": "Estimated cost of the move: £______",
+            "maxWords": 1,
+            "correctAnswer": "850",
+            "acceptableAnswers": [
+              "850",
+              "eight hundred and fifty",
+              "£850"
+            ],
+            "explanation": "The agent estimates the cost at approximately eight hundred and fifty pounds."
+          },
+          {
+            "id": "c1-l-s1-q8",
+            "number": 8,
+            "type": "sentence-completion",
+            "prompt": "Extended insurance cover costs an additional £______.",
+            "maxWords": 1,
+            "correctAnswer": "40",
+            "acceptableAnswers": [
+              "40",
+              "forty",
+              "£40"
+            ],
+            "explanation": "The agent says extended cover is an additional forty pounds."
+          },
+          {
+            "id": "c1-l-s1-q9",
+            "number": 9,
+            "type": "matching",
+            "prompt": "Which type of cover does the customer choose?",
+            "groupId": "c1-l-s1-cover",
+            "groupIntro": {
+              "a": "basic cover",
+              "b": "extended cover"
+            },
+            "correctAnswer": "b",
+            "explanation": "The customer decides to take the extended cover to be safe."
+          },
+          {
+            "id": "c1-l-s1-q10",
+            "number": 10,
+            "type": "sentence-completion",
+            "prompt": "The customer hopes to move on the ______ of next month.",
+            "maxWords": 1,
+            "correctAnswer": "fifteenth",
+            "acceptableAnswers": [
+              "fifteenth",
+              "15th"
+            ],
+            "explanation": "The customer says the fifteenth of next month, ideally a weekday."
+          }
+        ]
+      },
+      {
+        "id": "c1-l-s2",
+        "title": "Section 2: Guided Tour Introduction at a Botanical Garden",
+        "context": "social monologue",
+        "script": [
+          {
+            "speaker": "Guide",
+            "text": "Good morning everyone, and welcome to Elmwood Botanical Gardens. My name's Rachel, and I'll be guiding you around the grounds for the next ninety minutes."
+          },
+          {
+            "speaker": "Guide",
+            "text": "The gardens were originally established in eighteen sixty two as a private collection, before being opened to the public in nineteen twenty eight."
+          },
+          {
+            "speaker": "Guide",
+            "text": "We're currently standing in what's known as the Temperate House, which houses plant species from regions with mild climates, including several rare specimens brought back from botanical expeditions in the early twentieth century."
+          },
+          {
+            "speaker": "Guide",
+            "text": "As we move further in, you'll notice the Tropical House is kept at a significantly higher humidity, around eighty five percent, to replicate rainforest conditions as closely as possible."
+          },
+          {
+            "speaker": "Guide",
+            "text": "One thing visitors often ask about is our collection of carnivorous plants, located in the smaller glasshouse to the left. These plants have adapted to nutrient-poor soil by trapping and digesting insects instead."
+          },
+          {
+            "speaker": "Guide",
+            "text": "Please note that photography is permitted throughout the gardens, but flash photography is not allowed in the Tropical House, as it can disturb some of the more sensitive plant species."
+          },
+          {
+            "speaker": "Guide",
+            "text": "If you'd like to purchase plants or seeds to take home, our gift shop, located near the main entrance, stocks a selection propagated directly from specimens in our own collection."
+          },
+          {
+            "speaker": "Guide",
+            "text": "There's also a café beside the Rose Garden, which is a lovely spot for a break, particularly in early summer when the roses are at their best."
+          },
+          {
+            "speaker": "Guide",
+            "text": "For those interested in a more in-depth visit, we run specialist workshops on propagation and plant care most Saturdays, though these do require advance booking."
+          },
+          {
+            "speaker": "Guide",
+            "text": "We'll begin our walk now, please do stay together as a group, and feel free to ask questions as we go."
+          }
+        ],
+        "questions": [
+          {
+            "id": "c1-l-s2-q1",
+            "number": 11,
+            "type": "sentence-completion",
+            "prompt": "The tour will last ______ minutes.",
+            "maxWords": 1,
+            "correctAnswer": "90",
+            "acceptableAnswers": [
+              "90",
+              "ninety"
+            ],
+            "explanation": "The guide says she'll be guiding the group for the next ninety minutes."
+          },
+          {
+            "id": "c1-l-s2-q2",
+            "number": 12,
+            "type": "multiple-choice",
+            "prompt": "When were the gardens opened to the public?",
+            "options": {
+              "a": "1862",
+              "b": "1950",
+              "c": "2000",
+              "d": "1928"
+            },
+            "correctAnswer": "d",
+            "explanation": "The guide says the gardens were opened to the public in 1928, after being established as a private collection in 1862."
+          },
+          {
+            "id": "c1-l-s2-q3",
+            "number": 13,
+            "type": "sentence-completion",
+            "prompt": "The Temperate House contains species from regions with ______ climates.",
+            "maxWords": 1,
+            "correctAnswer": "mild",
+            "acceptableAnswers": [
+              "mild"
+            ],
+            "explanation": "The guide describes the Temperate House as housing species from regions with mild climates."
+          },
+          {
+            "id": "c1-l-s2-q4",
+            "number": 14,
+            "type": "sentence-completion",
+            "prompt": "The Tropical House is kept at around ______ percent humidity.",
+            "maxWords": 1,
+            "correctAnswer": "85",
+            "acceptableAnswers": [
+              "85",
+              "eighty five",
+              "85%"
+            ],
+            "explanation": "The guide states the Tropical House is kept at around eighty five percent humidity."
+          },
+          {
+            "id": "c1-l-s2-q5",
+            "number": 15,
+            "type": "short-answer",
+            "prompt": "How have carnivorous plants adapted to nutrient-poor soil?",
+            "maxWords": 4,
+            "correctAnswer": "by trapping and digesting insects",
+            "acceptableAnswers": [
+              "by trapping and digesting insects",
+              "trapping and digesting insects",
+              "by trapping insects",
+              "trapping insects"
+            ],
+            "explanation": "The guide explains carnivorous plants trap and digest insects to compensate for nutrient-poor soil."
+          },
+          {
+            "id": "c1-l-s2-q6",
+            "number": 16,
+            "type": "multiple-choice",
+            "prompt": "Where is flash photography not allowed?",
+            "options": {
+              "a": "the Tropical House",
+              "b": "the gift shop",
+              "c": "the Rose Garden",
+              "d": "the café"
+            },
+            "correctAnswer": "a",
+            "explanation": "The guide says flash photography is not allowed in the Tropical House."
+          },
+          {
+            "id": "c1-l-s2-q7",
+            "number": 17,
+            "type": "sentence-completion",
+            "prompt": "The gift shop is located near the ______.",
+            "maxWords": 2,
+            "correctAnswer": "main entrance",
+            "acceptableAnswers": [
+              "main entrance",
+              "entrance"
+            ],
+            "explanation": "The guide says the gift shop is located near the main entrance."
+          },
+          {
+            "id": "c1-l-s2-q8",
+            "number": 18,
+            "type": "short-answer",
+            "prompt": "Where is the café located?",
+            "maxWords": 4,
+            "correctAnswer": "beside the Rose Garden",
+            "acceptableAnswers": [
+              "beside the Rose Garden",
+              "next to the Rose Garden",
+              "by the Rose Garden"
+            ],
+            "explanation": "The guide says the café is located beside the Rose Garden."
+          },
+          {
+            "id": "c1-l-s2-q9",
+            "number": 19,
+            "type": "sentence-completion",
+            "prompt": "Specialist workshops run most ______.",
+            "maxWords": 1,
+            "correctAnswer": "Saturdays",
+            "acceptableAnswers": [
+              "Saturdays",
+              "Saturday"
+            ],
+            "explanation": "The guide says workshops run most Saturdays."
+          },
+          {
+            "id": "c1-l-s2-q10",
+            "number": 20,
+            "type": "sentence-completion",
+            "prompt": "Workshops require ______ booking.",
+            "maxWords": 1,
+            "correctAnswer": "advance",
+            "acceptableAnswers": [
+              "advance"
+            ],
+            "explanation": "The guide notes these workshops require advance booking."
+          }
+        ]
+      },
+      {
+        "id": "c1-l-s3",
+        "title": "Section 3: Postgraduate Students Discussing a Research Proposal",
+        "context": "educational conversation",
+        "script": [
+          {
+            "speaker": "Priya",
+            "text": "So, for our research proposal on urban traffic congestion, I think we need to narrow the scope, the topic as it stands is far too broad."
+          },
+          {
+            "speaker": "James",
+            "text": "Agreed. Our supervisor mentioned last week that we should pick one specific intervention to focus on, rather than trying to cover congestion pricing, public transport, and cycling infrastructure all at once."
+          },
+          {
+            "speaker": "Priya",
+            "text": "Right, I think congestion pricing is the most interesting option, especially since there's already useful data from cities like London and Singapore that have implemented it."
+          },
+          {
+            "speaker": "James",
+            "text": "That makes sense. Should our research question focus on the economic impact, or more on how effective it actually is at reducing traffic?"
+          },
+          {
+            "speaker": "Priya",
+            "text": "I think effectiveness is more measurable with the data available, so let's focus the main research question there, though we could touch on economic impact as a secondary point."
+          },
+          {
+            "speaker": "James",
+            "text": "Good idea. For our methodology, are we planning to do a comparative case study, or something more quantitative, like statistical analysis of traffic volume data?"
+          },
+          {
+            "speaker": "Priya",
+            "text": "I'd lean towards a comparative case study, comparing London and Singapore specifically, since both have several years of data available now."
+          },
+          {
+            "speaker": "James",
+            "text": "That works well with the timeline we have. What about limitations, we should acknowledge those early rather than leave them until the end."
+          },
+          {
+            "speaker": "Priya",
+            "text": "True. One clear limitation is that we can't easily control for other variables that changed in those cities around the same time, like new public transport lines opening."
+          },
+          {
+            "speaker": "James",
+            "text": "Good point, I'll make a note of that. When's the proposal actually due?"
+          },
+          {
+            "speaker": "Priya",
+            "text": "The third of next month, and we need to submit a draft to our supervisor by next Friday for feedback first."
+          },
+          {
+            "speaker": "James",
+            "text": "Right, so we should really start writing the literature review this week, given how much reading it involves."
+          },
+          {
+            "speaker": "Priya",
+            "text": "Agreed, I'll start with recent papers on London's scheme, and you could look into Singapore's, since you've already read some background on it."
+          },
+          {
+            "speaker": "James",
+            "text": "Sounds good, let's touch base again on Monday to compare notes."
+          }
+        ],
+        "questions": [
+          {
+            "id": "c1-l-s3-q1",
+            "number": 21,
+            "type": "multiple-choice",
+            "prompt": "What does the supervisor recommend regarding the topic?",
+            "options": {
+              "a": "broadening it further",
+              "b": "abandoning congestion pricing",
+              "c": "focusing on one specific intervention",
+              "d": "submitting without changes"
+            },
+            "correctAnswer": "c",
+            "explanation": "James says the supervisor recommended picking one specific intervention rather than covering several at once."
+          },
+          {
+            "id": "c1-l-s3-q2",
+            "number": 22,
+            "type": "sentence-completion",
+            "prompt": "Priya suggests focusing on ______ pricing.",
+            "maxWords": 1,
+            "correctAnswer": "congestion",
+            "acceptableAnswers": [
+              "congestion"
+            ],
+            "explanation": "Priya says congestion pricing is the most interesting option."
+          },
+          {
+            "id": "c1-l-s3-q3",
+            "number": 23,
+            "type": "multiple-choice",
+            "prompt": "Which cities have useful existing data on congestion pricing?",
+            "options": {
+              "a": "London and Singapore",
+              "b": "Paris and Tokyo",
+              "c": "New York and Berlin",
+              "d": "Sydney and Toronto"
+            },
+            "correctAnswer": "a",
+            "explanation": "Priya mentions useful data already exists from London and Singapore."
+          },
+          {
+            "id": "c1-l-s3-q4",
+            "number": 24,
+            "type": "sentence-completion",
+            "prompt": "The main research question will focus on ______, with economic impact as a secondary point.",
+            "maxWords": 1,
+            "correctAnswer": "effectiveness",
+            "acceptableAnswers": [
+              "effectiveness"
+            ],
+            "explanation": "Priya says effectiveness is more measurable, so the main question focuses there."
+          },
+          {
+            "id": "c1-l-s3-q5",
+            "number": 25,
+            "type": "multiple-choice",
+            "prompt": "What methodology do they decide on?",
+            "options": {
+              "a": "a survey of commuters",
+              "b": "a comparative case study",
+              "c": "a purely quantitative statistical analysis",
+              "d": "an experiment"
+            },
+            "correctAnswer": "b",
+            "explanation": "Priya proposes a comparative case study comparing London and Singapore."
+          },
+          {
+            "id": "c1-l-s3-q6",
+            "number": 26,
+            "type": "short-answer",
+            "prompt": "What limitation do they identify regarding other variables?",
+            "maxWords": 8,
+            "correctAnswer": "they can't control for other changes, like new public transport lines",
+            "acceptableAnswers": [
+              "they can't control for other changes, like new public transport lines",
+              "can't control for other variables",
+              "other variables changed",
+              "new public transport lines opening",
+              "can't control for other changes"
+            ],
+            "explanation": "Priya notes they can't easily control for other variables, like new public transport lines opening."
+          },
+          {
+            "id": "c1-l-s3-q7",
+            "number": 27,
+            "type": "sentence-completion",
+            "prompt": "The research proposal is due on the ______ of next month.",
+            "maxWords": 1,
+            "correctAnswer": "third",
+            "acceptableAnswers": [
+              "third",
+              "3rd"
+            ],
+            "explanation": "Priya says the proposal is due the third of next month."
+          },
+          {
+            "id": "c1-l-s3-q8",
+            "number": 28,
+            "type": "sentence-completion",
+            "prompt": "A draft must be submitted to the supervisor by next ______.",
+            "maxWords": 1,
+            "correctAnswer": "Friday",
+            "acceptableAnswers": [
+              "Friday"
+            ],
+            "explanation": "Priya says a draft must go to the supervisor by next Friday."
+          },
+          {
+            "id": "c1-l-s3-q9",
+            "number": 29,
+            "type": "short-answer",
+            "prompt": "What will Priya start researching first?",
+            "maxWords": 5,
+            "correctAnswer": "recent papers on London's scheme",
+            "acceptableAnswers": [
+              "recent papers on London's scheme",
+              "London's scheme",
+              "recent papers on London",
+              "London's congestion pricing scheme"
+            ],
+            "explanation": "Priya says she'll start with recent papers on London's scheme."
+          },
+          {
+            "id": "c1-l-s3-q10",
+            "number": 30,
+            "type": "sentence-completion",
+            "prompt": "They agree to meet again on ______ to compare notes.",
+            "maxWords": 1,
+            "correctAnswer": "Monday",
+            "acceptableAnswers": [
+              "Monday"
+            ],
+            "explanation": "James suggests touching base again on Monday."
+          }
+        ]
+      },
+      {
+        "id": "c1-l-s4",
+        "title": "Section 4: A Lecture on the History of Cartography",
+        "context": "academic lecture",
+        "script": [
+          {
+            "speaker": "Lecturer",
+            "text": "This week's lecture looks at the history of cartography, the science and practice of mapmaking, from its earliest known origins through to the modern era."
+          },
+          {
+            "speaker": "Lecturer",
+            "text": "Some of the oldest surviving maps date back over four thousand years, to ancient Babylonian clay tablets, though these were highly schematic rather than geographically precise in the way we might expect today."
+          },
+          {
+            "speaker": "Lecturer",
+            "text": "A major turning point came with the ancient Greek scholar Eratosthenes, who is credited with calculating the circumference of the Earth with surprising accuracy, using nothing more than the angle of shadows cast at midday in two different cities."
+          },
+          {
+            "speaker": "Lecturer",
+            "text": "During the medieval period in Europe, mapmaking became heavily influenced by religious symbolism, with many maps placing Jerusalem at the centre of the world, prioritising theological meaning over geographic accuracy."
+          },
+          {
+            "speaker": "Lecturer",
+            "text": "The situation changed considerably during the Age of Exploration, when accurate navigation became commercially and politically vital, driving significant advances in the precision of coastal and maritime charts."
+          },
+          {
+            "speaker": "Lecturer",
+            "text": "One especially influential figure from this period is Gerardus Mercator, whose sixteenth century map projection allowed sailors to plot a straight-line compass course, even though it famously distorts the relative size of landmasses, particularly near the poles."
+          },
+          {
+            "speaker": "Lecturer",
+            "text": "This distortion has actually remained controversial into the modern era, since the Mercator projection, despite its practical usefulness for navigation, tends to make regions near the equator, including much of Africa and South America, appear considerably smaller than they actually are relative to Europe and North America."
+          },
+          {
+            "speaker": "Lecturer",
+            "text": "The twentieth century then brought aerial photography and, later, satellite imagery, which transformed mapmaking from something based largely on ground surveys into something that could capture vast areas with remarkable precision from above."
+          },
+          {
+            "speaker": "Lecturer",
+            "text": "Today, digital mapping technology has arguably caused an even bigger shift, allowing maps to be continuously updated, personalised to an individual user's needs, and interactive in ways earlier cartographers could never have imagined."
+          },
+          {
+            "speaker": "Lecturer",
+            "text": "Next week, we'll examine how these digital mapping technologies raise new questions around data privacy, something entirely absent from the historical maps we've discussed today."
+          }
+        ],
+        "questions": [
+          {
+            "id": "c1-l-s4-q1",
+            "number": 31,
+            "type": "sentence-completion",
+            "prompt": "The oldest surviving maps date back over ______ years.",
+            "maxWords": 1,
+            "correctAnswer": "4000",
+            "acceptableAnswers": [
+              "4000",
+              "four thousand",
+              "4,000"
+            ],
+            "explanation": "The lecturer states the oldest surviving maps date back over four thousand years."
+          },
+          {
+            "id": "c1-l-s4-q2",
+            "number": 32,
+            "type": "multiple-choice",
+            "prompt": "What method did Eratosthenes use to calculate the Earth's circumference?",
+            "options": {
+              "a": "satellite measurements",
+              "b": "ship navigation logs",
+              "c": "astronomical telescopes",
+              "d": "the angle of shadows cast at midday"
+            },
+            "correctAnswer": "d",
+            "explanation": "The lecturer says Eratosthenes used the angle of shadows cast at midday in two different cities."
+          },
+          {
+            "id": "c1-l-s4-q3",
+            "number": 33,
+            "type": "sentence-completion",
+            "prompt": "Medieval European maps often placed ______ at the centre of the world.",
+            "maxWords": 1,
+            "correctAnswer": "Jerusalem",
+            "acceptableAnswers": [
+              "Jerusalem"
+            ],
+            "explanation": "The lecturer states many medieval maps placed Jerusalem at the centre of the world."
+          },
+          {
+            "id": "c1-l-s4-q4",
+            "number": 34,
+            "type": "multiple-choice",
+            "prompt": "According to the lecture, medieval maps prioritised...",
+            "options": {
+              "a": "theological meaning",
+              "b": "geographic accuracy",
+              "c": "trade routes",
+              "d": "military strategy"
+            },
+            "correctAnswer": "a",
+            "explanation": "The lecturer says medieval maps prioritised theological meaning over geographic accuracy."
+          },
+          {
+            "id": "c1-l-s4-q5",
+            "number": 35,
+            "type": "sentence-completion",
+            "prompt": "Gerardus Mercator's map projection allowed sailors to plot a ______ compass course.",
+            "maxWords": 2,
+            "correctAnswer": "straight-line",
+            "acceptableAnswers": [
+              "straight-line",
+              "straight line"
+            ],
+            "explanation": "The lecturer says Mercator's projection allowed sailors to plot a straight-line compass course."
+          },
+          {
+            "id": "c1-l-s4-q6",
+            "number": 36,
+            "type": "short-answer",
+            "prompt": "What does the Mercator projection distort, according to the lecture?",
+            "maxWords": 5,
+            "correctAnswer": "the relative size of landmasses",
+            "acceptableAnswers": [
+              "the relative size of landmasses",
+              "relative size of landmasses",
+              "size of landmasses",
+              "landmass size"
+            ],
+            "explanation": "The lecturer explains the projection distorts the relative size of landmasses, especially near the poles."
+          },
+          {
+            "id": "c1-l-s4-q7",
+            "number": 37,
+            "type": "sentence-completion",
+            "prompt": "The Mercator projection tends to make regions near the ______ appear smaller than they actually are.",
+            "maxWords": 1,
+            "correctAnswer": "equator",
+            "acceptableAnswers": [
+              "equator"
+            ],
+            "explanation": "The lecturer says regions near the equator appear considerably smaller than they actually are."
+          },
+          {
+            "id": "c1-l-s4-q8",
+            "number": 38,
+            "type": "multiple-choice",
+            "prompt": "What technology transformed mapmaking during the twentieth century?",
+            "options": {
+              "a": "clay tablets",
+              "b": "magnetic compasses",
+              "c": "aerial photography and satellite imagery",
+              "d": "hand-drawn coastal charts"
+            },
+            "correctAnswer": "c",
+            "explanation": "The lecturer says aerial photography and later satellite imagery transformed twentieth-century mapmaking."
+          },
+          {
+            "id": "c1-l-s4-q9",
+            "number": 39,
+            "type": "short-answer",
+            "prompt": "What quality of modern digital maps does the lecturer highlight as a major shift?",
+            "maxWords": 6,
+            "correctAnswer": "they can be continuously updated and personalised",
+            "acceptableAnswers": [
+              "they can be continuously updated and personalised",
+              "continuously updated",
+              "personalised",
+              "interactive",
+              "continuously updated and personalised"
+            ],
+            "explanation": "The lecturer highlights that digital maps can be continuously updated, personalised, and interactive."
+          },
+          {
+            "id": "c1-l-s4-q10",
+            "number": 40,
+            "type": "sentence-completion",
+            "prompt": "Next week's lecture will examine ______ raised by digital mapping technologies.",
+            "maxWords": 2,
+            "correctAnswer": "data privacy",
+            "acceptableAnswers": [
+              "data privacy",
+              "privacy"
+            ],
+            "explanation": "The lecturer says next week's session covers questions around data privacy."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ielts-l-c2-test01",
+    "level": "C2",
+    "title": "C2 Listening Practice Test 1",
+    "timeLimitMin": 30,
+    "sections": [
+      {
+        "id": "c2-l-s1",
+        "title": "Section 1: Negotiating Terms for a Freelance Design Contract",
+        "context": "everyday social",
+        "script": [
+          {
+            "speaker": "Client",
+            "text": "Hi Daniel, thanks for hopping on this call, I wanted to go over the contract details before we finalise everything."
+          },
+          {
+            "speaker": "Daniel",
+            "text": "Of course, happy to talk it through. What would you like to start with?"
+          },
+          {
+            "speaker": "Client",
+            "text": "Let's begin with the scope of work. I want to make sure we're both clear on exactly what's included in the initial fee."
+          },
+          {
+            "speaker": "Daniel",
+            "text": "Sure, so the initial fee covers the full brand identity package, that's the logo, colour palette, and typography guidelines, plus up to three rounds of revisions."
+          },
+          {
+            "speaker": "Client",
+            "text": "And if we need a fourth round?"
+          },
+          {
+            "speaker": "Daniel",
+            "text": "Additional revisions beyond the third are billed at my hourly rate, which is currently seventy five pounds an hour."
+          },
+          {
+            "speaker": "Client",
+            "text": "That's fair. What about the timeline, how long should we expect the whole process to take?"
+          },
+          {
+            "speaker": "Daniel",
+            "text": "Typically six weeks from the kickoff meeting to final delivery, assuming feedback is returned within three business days at each stage, delays on your end would naturally push the timeline back correspondingly."
+          },
+          {
+            "speaker": "Client",
+            "text": "Understood. And payment terms, I believe you mentioned fifty percent upfront?"
+          },
+          {
+            "speaker": "Daniel",
+            "text": "That's right, fifty percent as a deposit before work begins, and the remaining fifty percent upon final delivery and sign-off."
+          },
+          {
+            "speaker": "Client",
+            "text": "Would you consider splitting it into three instalments instead, given the project size?"
+          },
+          {
+            "speaker": "Daniel",
+            "text": "I could do that, actually, thirty percent upfront, thirty percent at the midpoint review, and the remaining forty percent on completion."
+          },
+          {
+            "speaker": "Client",
+            "text": "That works better for our cash flow, thank you. One more thing, who retains the copyright once the project is finished?"
+          },
+          {
+            "speaker": "Daniel",
+            "text": "Standard practice is that copyright transfers to you fully upon final payment, though I do retain the right to display the work in my portfolio unless you'd prefer otherwise."
+          },
+          {
+            "speaker": "Client",
+            "text": "That's fine, we're happy for it to be included in your portfolio. And what happens if either party wants to terminate the contract early?"
+          },
+          {
+            "speaker": "Daniel",
+            "text": "There's a two week notice clause either way, and you'd be responsible for paying for work completed up to that point, calculated at the hourly rate."
+          },
+          {
+            "speaker": "Client",
+            "text": "Understood, that all sounds reasonable. I'll have our legal team review the draft and get back to you by Friday."
+          },
+          {
+            "speaker": "Daniel",
+            "text": "Perfect, I'll send the updated draft with the revised payment schedule this afternoon."
+          }
+        ],
+        "questions": [
+          {
+            "id": "c2-l-s1-q1",
+            "number": 1,
+            "type": "sentence-completion",
+            "prompt": "The initial fee covers the brand identity package, including the logo, colour palette, and ______ guidelines.",
+            "maxWords": 1,
+            "correctAnswer": "typography",
+            "acceptableAnswers": [
+              "typography"
+            ],
+            "explanation": "Daniel lists the logo, colour palette, and typography guidelines as covered by the initial fee."
+          },
+          {
+            "id": "c2-l-s1-q2",
+            "number": 2,
+            "type": "sentence-completion",
+            "prompt": "The initial fee includes up to ______ rounds of revisions.",
+            "maxWords": 1,
+            "correctAnswer": "three",
+            "acceptableAnswers": [
+              "three",
+              "3"
+            ],
+            "explanation": "Daniel says the fee covers up to three rounds of revisions."
+          },
+          {
+            "id": "c2-l-s1-q3",
+            "number": 3,
+            "type": "sentence-completion",
+            "prompt": "Additional revisions are billed at £______ per hour.",
+            "maxWords": 1,
+            "correctAnswer": "75",
+            "acceptableAnswers": [
+              "75",
+              "seventy five",
+              "£75"
+            ],
+            "explanation": "Daniel says additional revisions are billed at seventy five pounds an hour."
+          },
+          {
+            "id": "c2-l-s1-q4",
+            "number": 4,
+            "type": "multiple-choice",
+            "prompt": "How long does the whole process typically take?",
+            "options": {
+              "a": "six weeks",
+              "b": "three weeks",
+              "c": "two months",
+              "d": "ten days"
+            },
+            "correctAnswer": "a",
+            "explanation": "Daniel says the process typically takes six weeks from kickoff to final delivery."
+          },
+          {
+            "id": "c2-l-s1-q5",
+            "number": 5,
+            "type": "sentence-completion",
+            "prompt": "Feedback should be returned within ______ business days at each stage.",
+            "maxWords": 1,
+            "correctAnswer": "three",
+            "acceptableAnswers": [
+              "three",
+              "3"
+            ],
+            "explanation": "Daniel says the timeline assumes feedback returned within three business days at each stage."
+          },
+          {
+            "id": "c2-l-s1-q6",
+            "number": 6,
+            "type": "matching",
+            "prompt": "Under the revised payment schedule, what percentage is paid at the midpoint review?",
+            "groupId": "c2-l-s1-payment",
+            "groupIntro": {
+              "a": "30%",
+              "b": "40%",
+              "c": "50%"
+            },
+            "correctAnswer": "a",
+            "explanation": "Daniel proposes thirty percent upfront, thirty percent at the midpoint review, and forty percent on completion."
+          },
+          {
+            "id": "c2-l-s1-q7",
+            "number": 7,
+            "type": "sentence-completion",
+            "prompt": "Under the revised schedule, ______ percent is paid on completion.",
+            "maxWords": 1,
+            "correctAnswer": "40",
+            "acceptableAnswers": [
+              "40",
+              "forty",
+              "40%"
+            ],
+            "explanation": "Daniel says the remaining forty percent is paid on completion under the revised schedule."
+          },
+          {
+            "id": "c2-l-s1-q8",
+            "number": 8,
+            "type": "multiple-choice",
+            "prompt": "Who retains the right to display the work in a portfolio, according to Daniel?",
+            "options": {
+              "a": "the client only",
+              "b": "neither party",
+              "c": "a third party",
+              "d": "Daniel, unless the client prefers otherwise"
+            },
+            "correctAnswer": "d",
+            "explanation": "Daniel says he retains the right to display the work in his portfolio unless the client prefers otherwise."
+          },
+          {
+            "id": "c2-l-s1-q9",
+            "number": 9,
+            "type": "sentence-completion",
+            "prompt": "Either party can terminate the contract with ______ weeks' notice.",
+            "maxWords": 1,
+            "correctAnswer": "two",
+            "acceptableAnswers": [
+              "two",
+              "2"
+            ],
+            "explanation": "Daniel mentions a two week notice clause for early termination by either party."
+          },
+          {
+            "id": "c2-l-s1-q10",
+            "number": 10,
+            "type": "short-answer",
+            "prompt": "How is payment calculated for work completed before early termination?",
+            "maxWords": 4,
+            "correctAnswer": "at the hourly rate",
+            "acceptableAnswers": [
+              "at the hourly rate",
+              "hourly rate",
+              "calculated at the hourly rate"
+            ],
+            "explanation": "Daniel says work completed before termination is calculated at the hourly rate."
+          }
+        ]
+      },
+      {
+        "id": "c2-l-s2",
+        "title": "Section 2: Induction Briefing for New Volunteers at an Archaeological Dig",
+        "context": "social monologue",
+        "script": [
+          {
+            "speaker": "Supervisor",
+            "text": "Welcome to the excavation, everyone. Before we head out to the trenches, I want to run through a few essential points regarding site protocol and safety."
+          },
+          {
+            "speaker": "Supervisor",
+            "text": "First, this site is classified as a scheduled monument, which means every artefact, however small or seemingly insignificant, must be logged in situ before it's removed, using the grid reference system we'll demonstrate shortly."
+          },
+          {
+            "speaker": "Supervisor",
+            "text": "You'll each be assigned to a specific one metre grid square, and depending on the context you're excavating, you may be working in either the topsoil layer or, further down, what we believe to be a medieval occupation layer."
+          },
+          {
+            "speaker": "Supervisor",
+            "text": "All finds, without exception, must be placed in the labelled tray corresponding to your grid square, never mixed between squares, as this would compromise the stratigraphic record and undermine the entire dating process for the site."
+          },
+          {
+            "speaker": "Supervisor",
+            "text": "Please be aware that we occasionally encounter human remains at this site, given its historical use as a burial ground. Should this occur, you must stop work immediately in that square and notify a supervisor, rather than continuing to excavate."
+          },
+          {
+            "speaker": "Supervisor",
+            "text": "Regarding tools, trowels should be used for careful, controlled excavation, while the larger mattocks are reserved strictly for removing overburden under direct supervisor guidance, not for general use."
+          },
+          {
+            "speaker": "Supervisor",
+            "text": "Weather permitting, we'll break for lunch at half past twelve, and there's a designated rest area with shade beside the site office, where drinking water is available throughout the day."
+          },
+          {
+            "speaker": "Supervisor",
+            "text": "At the end of each day, all tools must be cleaned and returned to the site office, and any finds trays should be handed to the finds officer for initial processing and preliminary cataloguing."
+          },
+          {
+            "speaker": "Supervisor",
+            "text": "If you're unsure about anything at all while excavating, please don't hesitate to ask, it's considerably better to pause and check than to risk damaging or mis-recording a find."
+          },
+          {
+            "speaker": "Supervisor",
+            "text": "Right, let's head out, and thank you all again for volunteering your time to this project."
+          }
+        ],
+        "questions": [
+          {
+            "id": "c2-l-s2-q1",
+            "number": 11,
+            "type": "sentence-completion",
+            "prompt": "This site is classified as a ______ monument.",
+            "maxWords": 1,
+            "correctAnswer": "scheduled",
+            "acceptableAnswers": [
+              "scheduled"
+            ],
+            "explanation": "The supervisor states the site is classified as a scheduled monument."
+          },
+          {
+            "id": "c2-l-s2-q2",
+            "number": 12,
+            "type": "multiple-choice",
+            "prompt": "What must happen before any artefact is removed?",
+            "options": {
+              "a": "it must be logged in situ using the grid reference system",
+              "b": "it must be photographed only",
+              "c": "it must be washed",
+              "d": "it must be shown to the finds officer first"
+            },
+            "correctAnswer": "a",
+            "explanation": "The supervisor says every artefact must be logged in situ using the grid reference system before removal."
+          },
+          {
+            "id": "c2-l-s2-q3",
+            "number": 13,
+            "type": "sentence-completion",
+            "prompt": "Volunteers may be working in the topsoil layer or a ______ occupation layer.",
+            "maxWords": 1,
+            "correctAnswer": "medieval",
+            "acceptableAnswers": [
+              "medieval"
+            ],
+            "explanation": "The supervisor mentions the topsoil layer or, further down, a medieval occupation layer."
+          },
+          {
+            "id": "c2-l-s2-q4",
+            "number": 14,
+            "type": "sentence-completion",
+            "prompt": "Finds must be placed in the tray corresponding to the volunteer's ______.",
+            "maxWords": 2,
+            "correctAnswer": "grid square",
+            "acceptableAnswers": [
+              "grid square",
+              "grid"
+            ],
+            "explanation": "The supervisor says finds must go in the tray corresponding to the volunteer's grid square."
+          },
+          {
+            "id": "c2-l-s2-q5",
+            "number": 15,
+            "type": "short-answer",
+            "prompt": "What should a volunteer do if human remains are discovered?",
+            "maxWords": 6,
+            "correctAnswer": "stop work immediately and notify a supervisor",
+            "acceptableAnswers": [
+              "stop work immediately and notify a supervisor",
+              "stop work and notify a supervisor",
+              "notify a supervisor",
+              "stop work immediately"
+            ],
+            "explanation": "The supervisor says volunteers must stop work immediately and notify a supervisor if human remains are found."
+          },
+          {
+            "id": "c2-l-s2-q6",
+            "number": 16,
+            "type": "multiple-choice",
+            "prompt": "According to the supervisor, mattocks are reserved for...",
+            "options": {
+              "a": "careful controlled excavation",
+              "b": "removing overburden under supervisor guidance",
+              "c": "cleaning finds",
+              "d": "general use by all volunteers"
+            },
+            "correctAnswer": "b",
+            "explanation": "The supervisor says mattocks are reserved for removing overburden under direct supervisor guidance."
+          },
+          {
+            "id": "c2-l-s2-q7",
+            "number": 17,
+            "type": "sentence-completion",
+            "prompt": "Lunch break is scheduled for half past ______.",
+            "maxWords": 1,
+            "correctAnswer": "twelve",
+            "acceptableAnswers": [
+              "twelve",
+              "12"
+            ],
+            "explanation": "The supervisor says lunch break is at half past twelve, weather permitting."
+          },
+          {
+            "id": "c2-l-s2-q8",
+            "number": 18,
+            "type": "sentence-completion",
+            "prompt": "The rest area with shade is located beside the ______.",
+            "maxWords": 2,
+            "correctAnswer": "site office",
+            "acceptableAnswers": [
+              "site office"
+            ],
+            "explanation": "The supervisor says the rest area with shade is beside the site office."
+          },
+          {
+            "id": "c2-l-s2-q9",
+            "number": 19,
+            "type": "short-answer",
+            "prompt": "Who should finds trays be handed to at the end of the day?",
+            "maxWords": 2,
+            "correctAnswer": "the finds officer",
+            "acceptableAnswers": [
+              "the finds officer",
+              "finds officer"
+            ],
+            "explanation": "The supervisor says finds trays should be handed to the finds officer at the end of each day."
+          },
+          {
+            "id": "c2-l-s2-q10",
+            "number": 20,
+            "type": "sentence-completion",
+            "prompt": "Trowels are used for careful, ______ excavation.",
+            "maxWords": 1,
+            "correctAnswer": "controlled",
+            "acceptableAnswers": [
+              "controlled"
+            ],
+            "explanation": "The supervisor says trowels should be used for careful, controlled excavation."
+          }
+        ]
+      },
+      {
+        "id": "c2-l-s3",
+        "title": "Section 3: Reviewing Survey Methodology for a Study on Sleep and Academic Performance",
+        "context": "educational conversation",
+        "script": [
+          {
+            "speaker": "Noah",
+            "text": "So I've had a first look through the draft methodology for the sleep study, and I think there are a few issues worth raising before we finalise it."
+          },
+          {
+            "speaker": "Freya",
+            "text": "Go ahead, I'd rather catch problems now than after we've collected the data."
+          },
+          {
+            "speaker": "Noah",
+            "text": "My main concern is the reliance on self-reported sleep duration. Self-report measures are notoriously unreliable, people tend to overestimate how much they actually sleep."
+          },
+          {
+            "speaker": "Freya",
+            "text": "That's a fair point. Should we incorporate actigraphy instead, using wrist-worn devices to track sleep objectively?"
+          },
+          {
+            "speaker": "Noah",
+            "text": "Ideally, yes, though that raises budget concerns, since we'd need enough devices for the full sample and time to distribute and collect them."
+          },
+          {
+            "speaker": "Freya",
+            "text": "True. Could we do a hybrid approach, actigraphy for a smaller subsample, alongside self-report for the full sample?"
+          },
+          {
+            "speaker": "Noah",
+            "text": "That could work well actually, it would let us validate the self-report data against the objective measure, at least for that subgroup."
+          },
+          {
+            "speaker": "Freya",
+            "text": "Good. What about the sampling strategy, are we still planning convenience sampling through the university's undergraduate mailing list?"
+          },
+          {
+            "speaker": "Noah",
+            "text": "That was the original plan, but I worry it'll skew toward students who are already fairly conscientious about email, potentially students with better time-management habits generally."
+          },
+          {
+            "speaker": "Freya",
+            "text": "Which could introduce selection bias into the sample."
+          },
+          {
+            "speaker": "Noah",
+            "text": "Exactly, so maybe we should also recruit through noticeboards in halls of residence, to capture a slightly broader cross-section of students."
+          },
+          {
+            "speaker": "Freya",
+            "text": "Makes sense. And regarding the academic performance measure, are we using GPA, or something more specific?"
+          },
+          {
+            "speaker": "Noah",
+            "text": "I'd suggest using performance on a single standardised module exam, taken by all participants, rather than overall GPA, since GPA is influenced by too many other confounding variables across different modules and instructors."
+          },
+          {
+            "speaker": "Freya",
+            "text": "Good point, that gives us a cleaner, more controlled dependent variable. Should we also control for caffeine intake, given its known effect on both sleep and alertness?"
+          },
+          {
+            "speaker": "Noah",
+            "text": "Definitely, we should add a caffeine intake question to the survey, even if just as a covariate rather than a primary variable."
+          },
+          {
+            "speaker": "Freya",
+            "text": "Agreed. I'll revise the methodology section incorporating all of this by Thursday, and then we can send it to our supervisor for comment."
+          },
+          {
+            "speaker": "Noah",
+            "text": "Sounds good. I'll draft the revised recruitment plan in the meantime."
+          }
+        ],
+        "questions": [
+          {
+            "id": "c2-l-s3-q1",
+            "number": 21,
+            "type": "multiple-choice",
+            "prompt": "What is Noah's main initial concern about the methodology?",
+            "options": {
+              "a": "the sample size is too large",
+              "b": "the study lacks a supervisor",
+              "c": "the timeline is too short",
+              "d": "reliance on self-reported sleep duration"
+            },
+            "correctAnswer": "d",
+            "explanation": "Noah says his main concern is the reliance on self-reported sleep duration."
+          },
+          {
+            "id": "c2-l-s3-q2",
+            "number": 22,
+            "type": "sentence-completion",
+            "prompt": "Self-report measures tend to ______ how much people actually sleep.",
+            "maxWords": 1,
+            "correctAnswer": "overestimate",
+            "acceptableAnswers": [
+              "overestimate"
+            ],
+            "explanation": "Noah says people tend to overestimate how much they actually sleep in self-report measures."
+          },
+          {
+            "id": "c2-l-s3-q3",
+            "number": 23,
+            "type": "sentence-completion",
+            "prompt": "They propose using ______ to track sleep objectively.",
+            "maxWords": 1,
+            "correctAnswer": "actigraphy",
+            "acceptableAnswers": [
+              "actigraphy"
+            ],
+            "explanation": "Freya suggests incorporating actigraphy, using wrist-worn devices, to track sleep objectively."
+          },
+          {
+            "id": "c2-l-s3-q4",
+            "number": 24,
+            "type": "multiple-choice",
+            "prompt": "What hybrid approach do they agree on?",
+            "options": {
+              "a": "actigraphy for a subsample alongside self-report for the full sample",
+              "b": "actigraphy for the full sample only",
+              "c": "self-report for a small subsample only",
+              "d": "no self-report at all"
+            },
+            "correctAnswer": "a",
+            "explanation": "Freya proposes actigraphy for a smaller subsample alongside self-report for the full sample, and Noah agrees."
+          },
+          {
+            "id": "c2-l-s3-q5",
+            "number": 25,
+            "type": "sentence-completion",
+            "prompt": "Noah worries the original sampling strategy may skew toward students with better ______ habits.",
+            "maxWords": 2,
+            "correctAnswer": "time-management",
+            "acceptableAnswers": [
+              "time-management",
+              "time management"
+            ],
+            "explanation": "Noah worries the mailing-list approach skews toward students with better time-management habits."
+          },
+          {
+            "id": "c2-l-s3-q6",
+            "number": 26,
+            "type": "short-answer",
+            "prompt": "What term does Freya use to describe the problem with the original sampling strategy?",
+            "maxWords": 2,
+            "correctAnswer": "selection bias",
+            "acceptableAnswers": [
+              "selection bias"
+            ],
+            "explanation": "Freya names this problem selection bias."
+          },
+          {
+            "id": "c2-l-s3-q7",
+            "number": 27,
+            "type": "sentence-completion",
+            "prompt": "To reach a broader group of students, they propose recruiting through noticeboards in ______.",
+            "maxWords": 3,
+            "correctAnswer": "halls of residence",
+            "acceptableAnswers": [
+              "halls of residence",
+              "halls of residence noticeboards"
+            ],
+            "explanation": "Noah proposes also recruiting through noticeboards in halls of residence."
+          },
+          {
+            "id": "c2-l-s3-q8",
+            "number": 28,
+            "type": "multiple-choice",
+            "prompt": "What academic performance measure does Noah suggest instead of overall GPA?",
+            "options": {
+              "a": "attendance records",
+              "b": "a self-assessment survey",
+              "c": "a single standardised module exam",
+              "d": "coursework grades only"
+            },
+            "correctAnswer": "c",
+            "explanation": "Noah suggests using performance on a single standardised module exam instead of overall GPA."
+          },
+          {
+            "id": "c2-l-s3-q9",
+            "number": 29,
+            "type": "short-answer",
+            "prompt": "Why does Noah prefer a single module exam over GPA?",
+            "maxWords": 8,
+            "correctAnswer": "GPA is influenced by too many confounding variables",
+            "acceptableAnswers": [
+              "GPA is influenced by too many confounding variables",
+              "too many confounding variables",
+              "GPA is influenced by other variables",
+              "confounding variables across modules and instructors"
+            ],
+            "explanation": "Noah explains GPA is influenced by too many confounding variables across different modules and instructors."
+          },
+          {
+            "id": "c2-l-s3-q10",
+            "number": 30,
+            "type": "sentence-completion",
+            "prompt": "They also agree to control for ______ intake as a covariate.",
+            "maxWords": 1,
+            "correctAnswer": "caffeine",
+            "acceptableAnswers": [
+              "caffeine"
+            ],
+            "explanation": "Freya and Noah agree to control for caffeine intake as a covariate."
+          }
+        ]
+      },
+      {
+        "id": "c2-l-s4",
+        "title": "Section 4: A Lecture on the Precautionary Principle in Environmental Policy",
+        "context": "academic lecture",
+        "script": [
+          {
+            "speaker": "Lecturer",
+            "text": "Today's lecture examines the precautionary principle, an influential but frequently contested concept within environmental policy and regulation."
+          },
+          {
+            "speaker": "Lecturer",
+            "text": "In its most commonly cited formulation, the principle holds that where an action or policy carries a plausible risk of causing severe or irreversible harm, the absence of full scientific certainty should not be used as a justification for postponing preventive measures."
+          },
+          {
+            "speaker": "Lecturer",
+            "text": "The principle first gained significant international traction in the nineteen ninety two Rio Declaration on Environment and Development, though earlier, more localised formulations existed in West German environmental policy as far back as the nineteen seventies."
+          },
+          {
+            "speaker": "Lecturer",
+            "text": "Proponents argue the principle is essential precisely because environmental and public health harms are frequently irreversible, meaning that waiting for definitive proof before acting risks allowing catastrophic damage that could never be adequately remedied afterwards."
+          },
+          {
+            "speaker": "Lecturer",
+            "text": "Critics, however, raise several substantive objections. One frequent criticism is that the principle is inherently vague, since reasonable people can disagree considerably about what threshold of plausibility or severity should actually trigger preventive action."
+          },
+          {
+            "speaker": "Lecturer",
+            "text": "A further, more structural critique holds that the principle can be applied asymmetrically, effectively blocking genuinely beneficial innovations under the banner of caution, while simultaneously permitting existing, potentially equally risky, practices to continue simply because they're already established and familiar."
+          },
+          {
+            "speaker": "Lecturer",
+            "text": "Economists in particular have also raised concerns about opportunity cost, arguing that resources diverted toward precautionary regulation of a given uncertain risk are resources unavailable for addressing other, better-evidenced harms that could arguably deliver a greater net benefit to public welfare."
+          },
+          {
+            "speaker": "Lecturer",
+            "text": "In response, some scholars have proposed a more proportionate formulation, suggesting that the intensity of the precautionary response should scale directly with both the severity of potential harm and the quality of the available scientific evidence, rather than functioning as a simple binary switch between acting and not acting."
+          },
+          {
+            "speaker": "Lecturer",
+            "text": "This proportionate approach has itself faced pushback, primarily on the grounds that it reintroduces exactly the kind of complex judgement calls the principle was originally designed to circumvent when scientific certainty is genuinely lacking."
+          },
+          {
+            "speaker": "Lecturer",
+            "text": "Next week, we'll examine several detailed case studies where the precautionary principle was invoked, including debates that arose around genetically modified crops and specific chemical regulation frameworks within the European Union."
+          }
+        ],
+        "questions": [
+          {
+            "id": "c2-l-s4-q1",
+            "number": 31,
+            "type": "sentence-completion",
+            "prompt": "The precautionary principle states that lack of full scientific ______ should not justify delaying preventive measures.",
+            "maxWords": 1,
+            "correctAnswer": "certainty",
+            "acceptableAnswers": [
+              "certainty"
+            ],
+            "explanation": "The lecturer states absence of full scientific certainty should not justify postponing preventive measures."
+          },
+          {
+            "id": "c2-l-s4-q2",
+            "number": 32,
+            "type": "multiple-choice",
+            "prompt": "According to the lecture, the precautionary principle first gained major international traction in...",
+            "options": {
+              "a": "the 1970s in West Germany",
+              "b": "the 1992 Rio Declaration",
+              "c": "a 2015 UN resolution",
+              "d": "nineteenth-century Britain"
+            },
+            "correctAnswer": "b",
+            "explanation": "The lecturer says the principle gained major international traction in the 1992 Rio Declaration."
+          },
+          {
+            "id": "c2-l-s4-q3",
+            "number": 33,
+            "type": "sentence-completion",
+            "prompt": "Earlier, more localised formulations existed in ______ environmental policy as far back as the 1970s.",
+            "maxWords": 2,
+            "correctAnswer": "West German",
+            "acceptableAnswers": [
+              "West German",
+              "West Germany"
+            ],
+            "explanation": "The lecturer says earlier formulations existed in West German environmental policy in the 1970s."
+          },
+          {
+            "id": "c2-l-s4-q4",
+            "number": 34,
+            "type": "multiple-choice",
+            "prompt": "What is one criticism raised against the principle, according to the lecture?",
+            "options": {
+              "a": "it is too specific and detailed",
+              "b": "it has never influenced any real policy",
+              "c": "it applies only to economic issues",
+              "d": "it is inherently vague about what triggers action"
+            },
+            "correctAnswer": "d",
+            "explanation": "The lecturer says one frequent criticism is that the principle is inherently vague about what should trigger action."
+          },
+          {
+            "id": "c2-l-s4-q5",
+            "number": 35,
+            "type": "short-answer",
+            "prompt": "According to critics, what can the principle do asymmetrically?",
+            "maxWords": 10,
+            "correctAnswer": "block beneficial innovations while permitting existing risky practices to continue",
+            "acceptableAnswers": [
+              "block beneficial innovations while permitting existing risky practices to continue",
+              "block beneficial innovations",
+              "block innovations while permitting existing practices",
+              "permit existing practices to continue"
+            ],
+            "explanation": "The lecturer explains critics say the principle can block beneficial innovations while letting existing risky practices continue."
+          },
+          {
+            "id": "c2-l-s4-q6",
+            "number": 36,
+            "type": "sentence-completion",
+            "prompt": "Economists have raised concerns about ______ cost, since resources spent on one precaution are unavailable elsewhere.",
+            "maxWords": 1,
+            "correctAnswer": "opportunity",
+            "acceptableAnswers": [
+              "opportunity"
+            ],
+            "explanation": "The lecturer says economists raise concerns about opportunity cost."
+          },
+          {
+            "id": "c2-l-s4-q7",
+            "number": 37,
+            "type": "multiple-choice",
+            "prompt": "What do some scholars propose as an alternative to a simple binary approach?",
+            "options": {
+              "a": "a proportionate response scaling with harm severity and evidence quality",
+              "b": "abolishing the principle entirely",
+              "c": "applying the principle only to chemical regulation",
+              "d": "removing scientific evidence from consideration"
+            },
+            "correctAnswer": "a",
+            "explanation": "The lecturer describes a proportionate formulation scaling with harm severity and evidence quality as the proposed alternative."
+          },
+          {
+            "id": "c2-l-s4-q8",
+            "number": 38,
+            "type": "sentence-completion",
+            "prompt": "The proportionate approach has faced criticism for reintroducing complex ______ calls.",
+            "maxWords": 1,
+            "correctAnswer": "judgement",
+            "acceptableAnswers": [
+              "judgement",
+              "judgment"
+            ],
+            "explanation": "The lecturer says the proportionate approach reintroduces complex judgement calls."
+          },
+          {
+            "id": "c2-l-s4-q9",
+            "number": 39,
+            "type": "short-answer",
+            "prompt": "What example topics will next week's lecture cover as case studies?",
+            "maxWords": 8,
+            "correctAnswer": "genetically modified crops and chemical regulation in the EU",
+            "acceptableAnswers": [
+              "genetically modified crops and chemical regulation in the EU",
+              "genetically modified crops",
+              "chemical regulation",
+              "genetically modified crops and chemical regulation frameworks"
+            ],
+            "explanation": "The lecturer says next week covers case studies including genetically modified crops and chemical regulation in the EU."
+          },
+          {
+            "id": "c2-l-s4-q10",
+            "number": 40,
+            "type": "sentence-completion",
+            "prompt": "Next week's case studies include chemical regulation frameworks within the ______.",
+            "maxWords": 2,
+            "correctAnswer": "European Union",
+            "acceptableAnswers": [
+              "European Union",
+              "EU"
+            ],
+            "explanation": "The lecturer mentions chemical regulation frameworks within the European Union as a case study."
+          }
+        ]
+      }
+    ]
+  }
+]
