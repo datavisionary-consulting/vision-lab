@@ -23,8 +23,12 @@ const MALE_NAMES = [
 export function guessVoiceGender(voice) {
   if (!voice?.name) return null;
   const name = voice.name.toLowerCase();
-  if (/\bfemale\b/.test(name)) return 'female';
-  if (/\bmale\b/.test(name)) return 'male';
+  // Plain substring checks, not \bfemale\b / \bmale\b: Android's Google TTS
+  // voices are commonly named like "en-us-x-sfg#female_1-local", where the
+  // trailing "_1" is a word character, so a trailing \b boundary never
+  // matches and the whole check silently fails on those devices.
+  if (name.includes('female')) return 'female';
+  if (name.includes('male')) return 'male';
   if (FEMALE_NAMES.some((n) => name.includes(n))) return 'female';
   if (MALE_NAMES.some((n) => name.includes(n))) return 'male';
   return null;
