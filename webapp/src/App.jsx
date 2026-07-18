@@ -7,6 +7,7 @@ import SqlTrainer from './components/SqlTrainer';
 import IeltsReadingTrainer from './components/IeltsReadingTrainer';
 import IeltsListeningTrainer from './components/IeltsListeningTrainer';
 import IeltsWritingTrainer from './components/IeltsWritingTrainer';
+import IeltsSpeakingTrainer from './components/IeltsSpeakingTrainer';
 
 const KIND_COMPONENT = {
   trainer: Trainer,
@@ -14,6 +15,7 @@ const KIND_COMPONENT = {
   'ielts-reading': IeltsReadingTrainer,
   'ielts-listening': IeltsListeningTrainer,
   'ielts-writing': IeltsWritingTrainer,
+  'ielts-speaking': IeltsSpeakingTrainer,
 };
 
 export default function App() {

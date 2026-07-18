@@ -1,0 +1,146 @@
+[
+  {
+    "id": "ielts-s-b2-test01",
+    "level": "B2",
+    "title": "B2 Speaking Practice Test 1",
+    "part1": {
+      "topic": "Free Time and Hobbies",
+      "questions": [
+        "What do you usually do in your free time?",
+        "Have your hobbies changed since you were a child?",
+        "Do you prefer spending free time alone or with others?",
+        "Is free time important to you? Why?"
+      ],
+      "modelAnswers": [
+        "Honestly, I spend most of my free time either reading or going for walks with friends. I find it's a nice way to switch off after a busy day, and I usually try to fit in at least a bit of both most weeks.",
+        "Definitely, yes. As a kid I was really into drawing, but these days I barely pick up a pencil. I think my interests have shifted more towards things I can do outdoors, probably because I spend so much time sitting down at work.",
+        "It really depends on my mood, to be honest. Sometimes I need a bit of quiet time on my own to recharge, but I'd say overall I enjoy spending time with friends more, especially at weekends.",
+        "Yes, extremely. Without it I think I'd burn out pretty quickly. Having time to relax and do things I actually enjoy helps me stay motivated and focused when I am working."
+      ]
+    },
+    "part2": {
+      "cueCardTitle": "Describe a book you have recently read",
+      "cueCardPoints": ["what the book was about", "why you decided to read it", "how long it took you to read", "and explain whether you would recommend it to others"],
+      "prepSeconds": 60,
+      "speakSeconds": 120,
+      "modelAnswer": "I'd like to talk about a novel I finished reading a couple of months ago. It was a historical fiction book set during the early twentieth century. It followed the story of a young woman navigating quite a difficult period in her family's life, and it dealt with themes like resilience and change.\n\nI actually picked it up because a friend of mine recommended it, she'd read it for a book club and said it was one of the best things she'd read that year, so I was curious.\n\nIt took me about three weeks to finish, which is fairly typical for me, since I usually only read before bed for maybe twenty or thirty minutes at a time.\n\nI would definitely recommend it, actually, especially to anyone who enjoys character-driven stories rather than fast-paced plots. It's not the kind of book you rush through, but I found it really rewarding, and it's stayed with me since I finished it, which for me is usually a good sign that a book was worth reading.",
+      "followUpQuestions": ["Do you prefer fiction or non-fiction books?", "How has the way people read changed in recent years?"]
+    },
+    "part3": {
+      "questions": [
+        "Do you think reading habits have changed a lot because of technology?",
+        "Should schools do more to encourage children to read for pleasure?",
+        "What are the benefits of reading compared to watching a film?",
+        "Do you think physical books will still exist in fifty years?"
+      ],
+      "modelAnswers": [
+        "I think so, yes. A lot of people now read on their phones or e-readers rather than physical books, and there's also a lot more competition for people's attention, with social media and so on, so I think overall reading time has probably gone down for a lot of people.",
+        "I'd say definitely. There's a difference between reading because you have to for schoolwork and reading because you actually enjoy it, and I think schools could do more to nurture that second kind, maybe by giving students more choice over what they read.",
+        "I think reading tends to engage your imagination more, since you're building the world in your head rather than having it shown to you. It's also usually a slower, more focused activity, which I think has its own value in a world that's often quite fast-paced.",
+        "I actually think they will, yes, even if they become less common. There's something about the physical experience of a book that a lot of people still value, so I imagine it'll become more of a niche preference rather than disappearing completely."
+      ]
+    },
+    "bandDescriptors": [
+      { "criterion": "Fluency and Coherence", "points": ["Speaks at a natural pace with few noticeable hesitations", "Ideas connect logically from one to the next", "Uses a range of linking words naturally, not just \"and\" and \"so\" repeated throughout"] },
+      { "criterion": "Lexical Resource", "points": ["Uses precise, varied vocabulary appropriate to the topic", "Can paraphrase smoothly when a specific word isn't immediately available, rather than stopping"] },
+      { "criterion": "Grammatical Range and Accuracy", "points": ["Uses a mix of simple and complex sentence structures", "Occasional errors are present but rarely affect understanding"] },
+      { "criterion": "Pronunciation", "points": ["Uses natural stress, rhythm, and intonation", "Is easy to understand throughout, even with a noticeable accent"] }
+    ]
+  },
+  {
+    "id": "ielts-s-c1-test01",
+    "level": "C1",
+    "title": "C1 Speaking Practice Test 1",
+    "part1": {
+      "topic": "Work and Study",
+      "questions": [
+        "Do you work or are you a student at the moment?",
+        "What do you find most challenging about your work or studies?",
+        "How do you usually relax after a demanding day?",
+        "Do you think it's important to enjoy what you do for a living?"
+      ],
+      "modelAnswers": [
+        "At the moment I'm working full-time, in a fairly fast-paced role, though I did consider going back to study a while ago. For now, though, I'm quite happy focusing on my career.",
+        "Probably managing competing priorities, if I'm honest. There's rarely just one thing to focus on, so being able to judge what actually needs attention first is something I'm still working on, even after a few years in the role.",
+        "I try to disconnect from screens for at least an hour, which sounds simple but is surprisingly difficult. Cooking something for dinner tends to help me unwind, since it forces me to focus on something completely unrelated to work.",
+        "I do, yes, though I'd say it's not the only thing that matters. Enjoying your work certainly makes the day-to-day easier, but I think having a sense that the work is meaningful in some way matters just as much."
+      ]
+    },
+    "part2": {
+      "cueCardTitle": "Describe a time when you had to solve a difficult problem",
+      "cueCardPoints": ["what the problem was", "how you approached solving it", "who, if anyone, helped you", "and explain how you felt once it was resolved"],
+      "prepSeconds": 60,
+      "speakSeconds": 120,
+      "modelAnswer": "I'll talk about a situation from a previous job, actually, where a project I was responsible for ran into a fairly serious issue close to the deadline, a supplier we relied on suddenly couldn't deliver on time, which put the whole timeline at risk.\n\nMy first step was really just to stay calm and map out exactly what our options were, rather than panicking straight away, which I think is easy to do in that kind of situation. I looked into whether we could source the same materials from an alternative supplier, even at a slightly higher cost, since meeting the deadline mattered more at that point than saving a bit of money.\n\nI did get help from a colleague who had worked with a few other suppliers before and could make some quick introductions, which honestly saved a lot of time compared to me starting completely from scratch.\n\nIn the end, we managed to resolve it with about two days to spare, and I remember feeling genuinely relieved, but also a bit more confident afterwards, knowing I could handle that kind of pressure without everything falling apart.",
+      "followUpQuestions": ["Are you generally someone who prefers to solve problems alone or ask for help?", "What qualities do you think make someone good at solving problems?"]
+    },
+    "part3": {
+      "questions": [
+        "Do you think people today are less resilient when facing difficulties than in the past?",
+        "What role should schools play in teaching problem-solving skills?",
+        "How does workplace pressure affect people's ability to think clearly?",
+        "Is it always better to solve a problem quickly, or is it sometimes worth taking more time?"
+      ],
+      "modelAnswers": [
+        "That's an interesting question. I'm not sure it's necessarily that people are less resilient, but I do think modern life removes a lot of everyday hardships people used to just have to deal with, so maybe we're just less practiced at coping with genuine difficulty when it does show up.",
+        "I think schools could do a lot more here, honestly. A lot of education still focuses on finding the one correct answer, whereas real-life problems are rarely that clear-cut, so giving students more open-ended challenges could help prepare them better.",
+        "In my experience, a moderate amount of pressure can actually sharpen focus, but beyond a certain point it tends to have the opposite effect, making it harder to think through options calmly rather than just reacting.",
+        "I don't think speed should always be the priority, no. For some problems, a quick fix is fine, but for more complex ones, rushing can mean you miss a better solution, or even create new problems down the line."
+      ]
+    },
+    "bandDescriptors": [
+      { "criterion": "Fluency and Coherence", "points": ["Speaks at a natural pace with few noticeable hesitations", "Ideas connect logically from one to the next", "Uses a range of linking words naturally, not just \"and\" and \"so\" repeated throughout"] },
+      { "criterion": "Lexical Resource", "points": ["Uses precise, varied vocabulary appropriate to the topic", "Can paraphrase smoothly when a specific word isn't immediately available, rather than stopping"] },
+      { "criterion": "Grammatical Range and Accuracy", "points": ["Uses a mix of simple and complex sentence structures", "Occasional errors are present but rarely affect understanding"] },
+      { "criterion": "Pronunciation", "points": ["Uses natural stress, rhythm, and intonation", "Is easy to understand throughout, even with a noticeable accent"] }
+    ]
+  },
+  {
+    "id": "ielts-s-c2-test01",
+    "level": "C2",
+    "title": "C2 Speaking Practice Test 1",
+    "part1": {
+      "topic": "Technology and Society",
+      "questions": [
+        "How much has technology changed the way you communicate with others?",
+        "Do you think you rely on technology more than you would like to?",
+        "What's one piece of technology you find difficult to live without?",
+        "Do you think older generations have adapted well to new technology?"
+      ],
+      "modelAnswers": [
+        "Quite dramatically, honestly. Most of my day-to-day communication now happens through messaging apps rather than phone calls, which I think has changed the nature of conversation itself, it's become a lot more asynchronous, and in some ways more superficial.",
+        "I'd say yes, probably more than I'd like to admit. I've tried a few times to cut back on my phone use, with mixed success, and it's made me realise how deeply it's woven into even fairly mundane parts of my routine.",
+        "Probably my phone's mapping app, oddly enough. It's such a small thing, but I genuinely struggle to navigate unfamiliar places without it now, whereas ten years ago I'd have just asked someone or used a paper map without a second thought.",
+        "I think it varies enormously, to be honest. Some older people I know are remarkably comfortable with new technology, while others find even basic features genuinely intimidating, and I suspect that gap has more to do with confidence and exposure than age itself."
+      ]
+    },
+    "part2": {
+      "cueCardTitle": "Describe a piece of technology that has significantly changed your daily life",
+      "cueCardPoints": ["what the technology is", "when you started using it", "how it has changed your habits", "and explain whether you think this change has been positive overall"],
+      "prepSeconds": 60,
+      "speakSeconds": 120,
+      "modelAnswer": "I think I'll talk about smartphones more broadly, since it's genuinely hard to pick a single app that's had a bigger impact than the device itself. I got my first one around university, so it's been a fairly constant presence for over a decade now.\n\nIn terms of how it's changed my habits, honestly, in almost every way imaginable, how I navigate, how I pay for things, how I stay in touch with people, even how I fall asleep, since I'll admit I often scroll through something before bed, which probably isn't great.\n\nAs for whether the change has been positive overall, I'd say it's genuinely mixed. On one hand, the convenience is undeniable, and I wouldn't want to give up things like instant access to information or being reachable in an emergency. On the other hand, I do think it's made it harder to be fully present in the moment, and I sometimes catch myself reaching for it out of habit rather than any real need.\n\nSo overall, I'd say it's a net positive, but one that requires a certain amount of conscious effort to manage well, rather than something that's purely beneficial without any real cost.",
+      "followUpQuestions": ["Do you think technology generally improves quality of life, or does it sometimes make things worse?", "How do you think technology will change daily life over the next decade?"]
+    },
+    "part3": {
+      "questions": [
+        "To what extent should governments regulate emerging technologies?",
+        "Do you think increasing reliance on technology is widening the gap between generations?",
+        "What are the potential downsides of a society that is highly dependent on technology?",
+        "Should there be limits on how much technology is used in education?"
+      ],
+      "modelAnswers": [
+        "I think a reasonable degree of regulation is necessary, particularly where there's a clear risk of harm, but I'd be cautious about regulation that's so heavy-handed it stifles genuinely beneficial innovation before its risks and benefits are even properly understood.",
+        "In some ways, yes, I think it can create a real communication gap, particularly when older and younger generations default to completely different platforms or ways of interacting, though I don't think this divide is inevitable, given enough patience and willingness to adapt on both sides.",
+        "I'd point to a couple of things, really, a loss of certain practical skills that used to be common knowledge, and a kind of fragility, where systems become so interconnected that a single failure can cause fairly widespread disruption.",
+        "I think there's a strong case for some limits, yes, particularly for younger children, since there's growing evidence that excessive screen time can affect attention and social development, though I'd stop short of removing technology from education altogether, since it clearly has genuine benefits too when used thoughtfully."
+      ]
+    },
+    "bandDescriptors": [
+      { "criterion": "Fluency and Coherence", "points": ["Speaks at a natural pace with few noticeable hesitations", "Ideas connect logically from one to the next", "Uses a range of linking words naturally, not just \"and\" and \"so\" repeated throughout"] },
+      { "criterion": "Lexical Resource", "points": ["Uses precise, varied vocabulary appropriate to the topic", "Can paraphrase smoothly when a specific word isn't immediately available, rather than stopping"] },
+      { "criterion": "Grammatical Range and Accuracy", "points": ["Uses a mix of simple and complex sentence structures", "Occasional errors are present but rarely affect understanding"] },
+      { "criterion": "Pronunciation", "points": ["Uses natural stress, rhythm, and intonation", "Is easy to understand throughout, even with a noticeable accent"] }
+    ]
+  }
+]

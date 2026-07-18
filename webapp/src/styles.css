@@ -296,6 +296,17 @@ textarea.writing-editor{min-height:400px}
 .band-descriptor ul{margin:6px 0 0 16px;font-size:.78rem;line-height:1.5;color:var(--muted)}
 .band-select-label{display:flex;align-items:center;gap:10px;font-size:.82rem;margin-top:8px}
 .band-select-label select{width:auto}
+.speaking-part-card{max-width:700px;width:100%;margin:0 auto;text-align:left}
+.speaking-question-list{margin:10px 0 16px 18px;display:flex;flex-direction:column;gap:8px;font-size:.87rem;line-height:1.5}
+.cue-card{background:var(--surf2);border:1px solid var(--ielts);border-radius:10px;padding:16px;margin-bottom:14px}
+.cue-card h4{color:var(--ielts);margin-bottom:8px}
+.cue-card ul{margin:6px 0 0 18px;font-size:.85rem;line-height:1.6}
+.audio-recorder{margin-top:12px}
+.recording-indicator{display:flex;align-items:center;gap:10px;font-size:.85rem;color:var(--red)}
+.recording-dot{width:10px;height:10px;border-radius:50%;background:var(--red);animation:pulse-dot 1.2s infinite}
+@keyframes pulse-dot{0%,100%{opacity:1}50%{opacity:.3}}
+.recording-playback{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.recording-playback audio{height:36px}
 
 /* ── FOOTER ── */
 .site-footer{background:var(--surf);border-top:1px solid var(--border);padding:8px 24px;text-align:center}
