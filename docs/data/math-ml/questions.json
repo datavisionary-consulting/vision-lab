@@ -11,7 +11,9 @@
     },
     "correct": "c",
     "theory": {
-      "text": "Treating a customer's attributes as a single vector rather than five loose numbers is what makes the whole toolbox of linear algebra usable: you can measure how similar two customers are with a distance or dot product, average a segment of customers by adding their vectors, or transform every customer's profile at once by multiplying by a matrix. None of that structure exists if the five numbers are just independent columns with no defined relationship between them. This vector framing is the entry point for almost every downstream technique in this course — clustering customers, building recommendation scores, and reducing many features into a few meaningful dimensions all start from treating a record as a point in space rather than a row of unrelated facts."
+      "text": "Treating a customer's attributes as a single vector rather than five loose numbers is what makes the whole toolbox of linear algebra usable: you can measure how similar two customers are with a distance or dot product, average a segment of customers by adding their vectors, or transform every customer's profile at once by multiplying by a matrix. None of that structure exists if the five numbers are just independent columns with no defined relationship between them. This vector framing is the entry point for almost every downstream technique in this course — clustering customers, building recommendation scores, and reducing many features into a few meaningful dimensions all start from treating a record as a point in space rather than a row of unrelated facts.",
+      "source": "Marc Peter Deisenroth, A. Aldo Faisal & Cheng Soon Ong, *Mathematics for Machine Learning* (Cambridge University Press, 2020), Ch. 2, \"Linear Algebra\"",
+      "sourceUrl": "https://mml-book.com"
     },
     "tags": [
       "vectors",
@@ -30,7 +32,9 @@
     },
     "correct": "d",
     "theory": {
-      "text": "Multiplying a sales-quantity vector by a price matrix is the everyday business version of matrix-vector multiplication: each output entry is a weighted sum (a dot product) of the input vector with one row of the matrix. If the price matrix is 3 rows (regions) by 4 columns (products) and the sales vector has 4 entries (one per product), the result has 3 entries — one revenue total per region — because each row combines all 4 product quantities using that region's prices. This is exactly why matrix dimensions have to be compatible: the number of columns in the matrix must match the number of entries in the vector, because each output is built by 'lining up' the vector against a row."
+      "text": "Multiplying a sales-quantity vector by a price matrix is the everyday business version of matrix-vector multiplication: each output entry is a weighted sum (a dot product) of the input vector with one row of the matrix. If the price matrix is 3 rows (regions) by 4 columns (products) and the sales vector has 4 entries (one per product), the result has 3 entries — one revenue total per region — because each row combines all 4 product quantities using that region's prices. This is exactly why matrix dimensions have to be compatible: the number of columns in the matrix must match the number of entries in the vector, because each output is built by 'lining up' the vector against a row.",
+      "source": "Marc Peter Deisenroth, A. Aldo Faisal & Cheng Soon Ong, *Mathematics for Machine Learning* (Cambridge University Press, 2020), Ch. 2, \"Linear Algebra\"",
+      "sourceUrl": "https://mml-book.com"
     },
     "tags": [
       "matrix-multiplication",
@@ -49,7 +53,9 @@
     },
     "correct": "c",
     "theory": {
-      "text": "A system of linear equations is just a compact way of writing several 'this combination must add up to that total' statements at once. In a production-planning setup, each equation says: the resource consumed by all products, combined, must equal the resource available. Solving the system finds the one (or zero, or infinitely many) production quantities that satisfy every resource constraint simultaneously and exactly. It says nothing about profit by itself — profit maximization is a separate, further step (covered under optimization) — solving the system only answers the narrower question of feasibility: which quantities make all the constraints line up exactly."
+      "text": "A system of linear equations is just a compact way of writing several 'this combination must add up to that total' statements at once. In a production-planning setup, each equation says: the resource consumed by all products, combined, must equal the resource available. Solving the system finds the one (or zero, or infinitely many) production quantities that satisfy every resource constraint simultaneously and exactly. It says nothing about profit by itself — profit maximization is a separate, further step (covered under optimization) — solving the system only answers the narrower question of feasibility: which quantities make all the constraints line up exactly.",
+      "source": "Marc Peter Deisenroth, A. Aldo Faisal & Cheng Soon Ong, *Mathematics for Machine Learning* (Cambridge University Press, 2020), Ch. 2, \"Linear Algebra\"",
+      "sourceUrl": "https://mml-book.com"
     },
     "tags": [
       "linear-systems",
@@ -68,7 +74,9 @@
     },
     "correct": "d",
     "theory": {
-      "text": "Gaussian elimination replaces blind trial-and-error with a guaranteed, repeatable procedure: at each step, you use one equation to eliminate a variable from all the others below it (by adding or subtracting scaled multiples of rows), the same way you might eliminate one product's contribution from a combined resource-usage total to isolate another product's usage. After enough elimination steps, the last equation involves only one unknown, which you solve directly, then substitute backward to find the rest. This is the same core idea used to compute a matrix's inverse and to determine whether a system has one, zero, or infinitely many solutions — it's a foundational tool, not just a solving trick for small systems."
+      "text": "Gaussian elimination replaces blind trial-and-error with a guaranteed, repeatable procedure: at each step, you use one equation to eliminate a variable from all the others below it (by adding or subtracting scaled multiples of rows), the same way you might eliminate one product's contribution from a combined resource-usage total to isolate another product's usage. After enough elimination steps, the last equation involves only one unknown, which you solve directly, then substitute backward to find the rest. This is the same core idea used to compute a matrix's inverse and to determine whether a system has one, zero, or infinitely many solutions — it's a foundational tool, not just a solving trick for small systems.",
+      "source": "Marc Peter Deisenroth, A. Aldo Faisal & Cheng Soon Ong, *Mathematics for Machine Learning* (Cambridge University Press, 2020), Ch. 2, \"Linear Algebra\"",
+      "sourceUrl": "https://mml-book.com"
     },
     "tags": [
       "gaussian-elimination"
@@ -86,7 +94,9 @@
     },
     "correct": "a",
     "theory": {
-      "text": "A matrix inverse exists only when the matrix's transformation is fully reversible — no information is lost or duplicated in the mapping from inputs to outputs. When that holds, for any desired output (target return vector) there is one and only one input (investment vector) that would have produced it, and you find it by multiplying the target by the inverse matrix. This is the linear-algebra version of 'undoing' a calculation. It has nothing to do with whether the returns are actually good; invertibility is a purely structural property of the transformation, not a statement about the quality of the outcome."
+      "text": "A matrix inverse exists only when the matrix's transformation is fully reversible — no information is lost or duplicated in the mapping from inputs to outputs. When that holds, for any desired output (target return vector) there is one and only one input (investment vector) that would have produced it, and you find it by multiplying the target by the inverse matrix. This is the linear-algebra version of 'undoing' a calculation. It has nothing to do with whether the returns are actually good; invertibility is a purely structural property of the transformation, not a statement about the quality of the outcome.",
+      "source": "Marc Peter Deisenroth, A. Aldo Faisal & Cheng Soon Ong, *Mathematics for Machine Learning* (Cambridge University Press, 2020), Ch. 2, \"Linear Algebra\"",
+      "sourceUrl": "https://mml-book.com"
     },
     "tags": [
       "matrix-inverse"
@@ -104,7 +114,9 @@
     },
     "correct": "a",
     "theory": {
-      "text": "A matrix fails to be invertible exactly when its columns (or rows) are not fully independent — some column can be written as a combination of the others, contributing no genuinely new information. Here, since 'discount percentage' is always exactly twice 'coupon value ratio,' the two columns carry identical information in different units, so the matrix cannot be uniquely undone: infinitely many input combinations would produce the same output. In applied analytics this is the textbook definition of multicollinearity, and it's a real, common problem — not a sign of bad data collection, but a sign that two features should probably be combined or one should be dropped before further modeling."
+      "text": "A matrix fails to be invertible exactly when its columns (or rows) are not fully independent — some column can be written as a combination of the others, contributing no genuinely new information. Here, since 'discount percentage' is always exactly twice 'coupon value ratio,' the two columns carry identical information in different units, so the matrix cannot be uniquely undone: infinitely many input combinations would produce the same output. In applied analytics this is the textbook definition of multicollinearity, and it's a real, common problem — not a sign of bad data collection, but a sign that two features should probably be combined or one should be dropped before further modeling.",
+      "source": "Marc Peter Deisenroth, A. Aldo Faisal & Cheng Soon Ong, *Mathematics for Machine Learning* (Cambridge University Press, 2020), Ch. 2, \"Linear Algebra\"",
+      "sourceUrl": "https://mml-book.com"
     },
     "tags": [
       "singular-matrix",
@@ -123,7 +135,9 @@
     },
     "correct": "d",
     "theory": {
-      "text": "Spanning is best understood through a mixing analogy: if you have a few base paint colors, the set of all colors you can ever produce by mixing them in different proportions is the 'span' of those base colors. Formally, a set of vectors spans a space if every point in that space can be reached by scaling and adding the vectors in the set — a linear combination. This concept matters for feature engineering: if a business's reporting metrics can all be derived as combinations of a small set of 'base' KPIs, those base KPIs span the space of everything the business currently measures, and any new metric outside that span is genuinely new information, not just a repackaging of what's already tracked."
+      "text": "Spanning is best understood through a mixing analogy: if you have a few base paint colors, the set of all colors you can ever produce by mixing them in different proportions is the 'span' of those base colors. Formally, a set of vectors spans a space if every point in that space can be reached by scaling and adding the vectors in the set — a linear combination. This concept matters for feature engineering: if a business's reporting metrics can all be derived as combinations of a small set of 'base' KPIs, those base KPIs span the space of everything the business currently measures, and any new metric outside that span is genuinely new information, not just a repackaging of what's already tracked.",
+      "source": "Marc Peter Deisenroth, A. Aldo Faisal & Cheng Soon Ong, *Mathematics for Machine Learning* (Cambridge University Press, 2020), Ch. 2, \"Linear Algebra\"",
+      "sourceUrl": "https://mml-book.com"
     },
     "tags": [
       "span",
@@ -142,7 +156,9 @@
     },
     "correct": "c",
     "theory": {
-      "text": "Linear dependence means at least one vector in a set can be written as a combination of the others, so removing it loses no information the set as a whole could express. Since net margin is fully determined by gross margin and tax rate, tracking all three is redundant from an information standpoint — the dashboard could drop any one of the three and still reconstruct it from the remaining two. This is exactly the same underlying idea as multicollinearity in a dataset (question math-006): dependency isn't inherently a data quality problem, but it does mean you have fewer independent pieces of real information than the number of columns suggests."
+      "text": "Linear dependence means at least one vector in a set can be written as a combination of the others, so removing it loses no information the set as a whole could express. Since net margin is fully determined by gross margin and tax rate, tracking all three is redundant from an information standpoint — the dashboard could drop any one of the three and still reconstruct it from the remaining two. This is exactly the same underlying idea as multicollinearity in a dataset (question math-006): dependency isn't inherently a data quality problem, but it does mean you have fewer independent pieces of real information than the number of columns suggests.",
+      "source": "Marc Peter Deisenroth, A. Aldo Faisal & Cheng Soon Ong, *Mathematics for Machine Learning* (Cambridge University Press, 2020), Ch. 2, \"Linear Algebra\"",
+      "sourceUrl": "https://mml-book.com"
     },
     "tags": [
       "linear-independence"
@@ -160,7 +176,9 @@
     },
     "correct": "b",
     "theory": {
-      "text": "A basis is a set of vectors that is simultaneously spanning (every vector in the space can be built from it) and linearly independent (no vector in the set is redundant given the others). That's precisely 'the smallest set from which everything else can be built, with nothing extra.' Translating this to a KPI dashboard: finding a basis for a company's metrics means finding the minimal set of genuinely independent business signals, with every other reported number expressible as some combination of them. This is a conceptual bridge to Principal Component Analysis later in the course, which finds a basis ranked by how much of the data's variation each direction explains."
+      "text": "A basis is a set of vectors that is simultaneously spanning (every vector in the space can be built from it) and linearly independent (no vector in the set is redundant given the others). That's precisely 'the smallest set from which everything else can be built, with nothing extra.' Translating this to a KPI dashboard: finding a basis for a company's metrics means finding the minimal set of genuinely independent business signals, with every other reported number expressible as some combination of them. This is a conceptual bridge to Principal Component Analysis later in the course, which finds a basis ranked by how much of the data's variation each direction explains.",
+      "source": "Marc Peter Deisenroth, A. Aldo Faisal & Cheng Soon Ong, *Mathematics for Machine Learning* (Cambridge University Press, 2020), Ch. 2, \"Linear Algebra\"",
+      "sourceUrl": "https://mml-book.com"
     },
     "tags": [
       "basis"
@@ -178,7 +196,9 @@
     },
     "correct": "d",
     "theory": {
-      "text": "Rank measures how many linearly independent rows or columns a matrix actually has, which is the same as counting the true degrees of freedom in the data — not the number of columns you happened to record. A rank of 4 out of 10 columns means that, despite tracking 10 financial ratios, the data effectively lives in a 4-dimensional space: once you know 4 well-chosen values, the other 6 are fully determined (or nearly so) by linear combinations of those 4. This is a very common finding in business datasets, where many reported metrics are derived from, or tightly coupled to, a smaller set of underlying drivers."
+      "text": "Rank measures how many linearly independent rows or columns a matrix actually has, which is the same as counting the true degrees of freedom in the data — not the number of columns you happened to record. A rank of 4 out of 10 columns means that, despite tracking 10 financial ratios, the data effectively lives in a 4-dimensional space: once you know 4 well-chosen values, the other 6 are fully determined (or nearly so) by linear combinations of those 4. This is a very common finding in business datasets, where many reported metrics are derived from, or tightly coupled to, a smaller set of underlying drivers.",
+      "source": "Marc Peter Deisenroth, A. Aldo Faisal & Cheng Soon Ong, *Mathematics for Machine Learning* (Cambridge University Press, 2020), Ch. 2, \"Linear Algebra\"",
+      "sourceUrl": "https://mml-book.com"
     },
     "tags": [
       "rank"
@@ -196,7 +216,9 @@
     },
     "correct": "b",
     "theory": {
-      "text": "An eigenvector of a matrix is a direction that the matrix only stretches or shrinks, without rotating it — and for a covariance matrix specifically, that stretching amount (the eigenvalue) measures how much the data spreads out along that direction. The eigenvector with the largest eigenvalue therefore points along the single direction in the original feature space where customers differ from each other the most. In practice this often turns out to be an interpretable combined signal, such as 'overall spend intensity,' blending several raw features (spend, frequency, basket size) into the one axis that best separates high-value from low-value customers — which is exactly why PCA is used for dimensionality reduction before segmentation."
+      "text": "An eigenvector of a matrix is a direction that the matrix only stretches or shrinks, without rotating it — and for a covariance matrix specifically, that stretching amount (the eigenvalue) measures how much the data spreads out along that direction. The eigenvector with the largest eigenvalue therefore points along the single direction in the original feature space where customers differ from each other the most. In practice this often turns out to be an interpretable combined signal, such as 'overall spend intensity,' blending several raw features (spend, frequency, basket size) into the one axis that best separates high-value from low-value customers — which is exactly why PCA is used for dimensionality reduction before segmentation.",
+      "source": "Marc Peter Deisenroth, A. Aldo Faisal & Cheng Soon Ong, *Mathematics for Machine Learning* (Cambridge University Press, 2020), Ch. 2, \"Linear Algebra\"",
+      "sourceUrl": "https://mml-book.com"
     },
     "tags": [
       "eigenvectors",
@@ -215,7 +237,9 @@
     },
     "correct": "a",
     "theory": {
-      "text": "Each eigenvalue of a covariance matrix quantifies how much of the data's total variance is captured along its corresponding eigenvector direction. When one eigenvalue (40) dwarfs the rest (3, and then near-zero), it means the customer data is effectively low-dimensional — most of the real differences between customers can be explained by just the top one or two components. Feeding all 10 original, largely redundant dimensions into a clustering algorithm mostly adds noise and computational cost; projecting onto the top components first (a standard PCA preprocessing step) keeps the signal while discarding directions that barely vary and are more likely to reflect noise than meaningful business differences."
+      "text": "Each eigenvalue of a covariance matrix quantifies how much of the data's total variance is captured along its corresponding eigenvector direction. When one eigenvalue (40) dwarfs the rest (3, and then near-zero), it means the customer data is effectively low-dimensional — most of the real differences between customers can be explained by just the top one or two components. Feeding all 10 original, largely redundant dimensions into a clustering algorithm mostly adds noise and computational cost; projecting onto the top components first (a standard PCA preprocessing step) keeps the signal while discarding directions that barely vary and are more likely to reflect noise than meaningful business differences.",
+      "source": "Marc Peter Deisenroth, A. Aldo Faisal & Cheng Soon Ong, *Mathematics for Machine Learning* (Cambridge University Press, 2020), Ch. 2, \"Linear Algebra\"",
+      "sourceUrl": "https://mml-book.com"
     },
     "tags": [
       "eigenvalues",
@@ -234,7 +258,9 @@
     },
     "correct": "d",
     "theory": {
-      "text": "The dot product of two vectors captures how much they point in the same direction, weighted by magnitude — it's large and positive when they align, near zero when they're roughly perpendicular (orthogonal), and negative when they point in opposing directions. For word-frequency vectors specifically, a dot product of exactly zero means there is no overlap at all between which words appear in each review with a positive count, since every term contributing to the dot product would require both reviews to have a nonzero count for that same word. This dot-product-as-similarity idea underlies many practical business tools, including basic text-similarity search and content-based recommendation."
+      "text": "The dot product of two vectors captures how much they point in the same direction, weighted by magnitude — it's large and positive when they align, near zero when they're roughly perpendicular (orthogonal), and negative when they point in opposing directions. For word-frequency vectors specifically, a dot product of exactly zero means there is no overlap at all between which words appear in each review with a positive count, since every term contributing to the dot product would require both reviews to have a nonzero count for that same word. This dot-product-as-similarity idea underlies many practical business tools, including basic text-similarity search and content-based recommendation.",
+      "source": "Marc Peter Deisenroth, A. Aldo Faisal & Cheng Soon Ong, *Mathematics for Machine Learning* (Cambridge University Press, 2020), Ch. 2, \"Linear Algebra\"",
+      "sourceUrl": "https://mml-book.com"
     },
     "tags": [
       "dot-product",
@@ -253,7 +279,9 @@
     },
     "correct": "b",
     "theory": {
-      "text": "Orthogonality between two feature vectors means their variation doesn't overlap — knowing one tells you nothing about the other in a linear sense. Deliberately engineering features to be orthogonal is a direct countermeasure to the multicollinearity problem: instead of feeding a model two correlated, partially-redundant signals, you construct two that each capture a genuinely separate slice of the picture (raw tenure trend vs. the leftover pattern after removing that trend). This doesn't automatically make the model more accurate — that depends on whether the separated signals are actually predictive — but it does make the model's coefficients more stable and interpretable, since the effect of one feature is no longer tangled up with the other."
+      "text": "Orthogonality between two feature vectors means their variation doesn't overlap — knowing one tells you nothing about the other in a linear sense. Deliberately engineering features to be orthogonal is a direct countermeasure to the multicollinearity problem: instead of feeding a model two correlated, partially-redundant signals, you construct two that each capture a genuinely separate slice of the picture (raw tenure trend vs. the leftover pattern after removing that trend). This doesn't automatically make the model more accurate — that depends on whether the separated signals are actually predictive — but it does make the model's coefficients more stable and interpretable, since the effect of one feature is no longer tangled up with the other.",
+      "source": "Marc Peter Deisenroth, A. Aldo Faisal & Cheng Soon Ong, *Mathematics for Machine Learning* (Cambridge University Press, 2020), Ch. 2, \"Linear Algebra\"",
+      "sourceUrl": "https://mml-book.com"
     },
     "tags": [
       "orthogonality",
@@ -272,7 +300,9 @@
     },
     "correct": "c",
     "theory": {
-      "text": "A strictly linear transformation must send the zero vector to zero — scale everything from the origin with no shift. Adding a constant base amount that doesn't depend on the inputs breaks that property: even if both inputs were zero, the output would still be that base amount, not zero. This combination — a weighted sum of inputs plus a constant offset — is called an affine transformation, and it's exactly the form of a standard linear regression equation (weights times features, plus an intercept). The distinction matters conceptually because many linear-algebra theorems (like properties of eigenvectors) apply cleanly to true linear maps but need the bias term handled separately or absorbed into an extra constant feature."
+      "text": "A strictly linear transformation must send the zero vector to zero — scale everything from the origin with no shift. Adding a constant base amount that doesn't depend on the inputs breaks that property: even if both inputs were zero, the output would still be that base amount, not zero. This combination — a weighted sum of inputs plus a constant offset — is called an affine transformation, and it's exactly the form of a standard linear regression equation (weights times features, plus an intercept). The distinction matters conceptually because many linear-algebra theorems (like properties of eigenvectors) apply cleanly to true linear maps but need the bias term handled separately or absorbed into an extra constant feature.",
+      "source": "Marc Peter Deisenroth, A. Aldo Faisal & Cheng Soon Ong, *Mathematics for Machine Learning* (Cambridge University Press, 2020), Ch. 2, \"Linear Algebra\"",
+      "sourceUrl": "https://mml-book.com"
     },
     "tags": [
       "affine-transformation",
@@ -291,7 +321,9 @@
     },
     "correct": "b",
     "theory": {
-      "text": "A derivative measures the instantaneous rate of change of a function — how much the output moves for an infinitesimally small nudge in the input, at a specific point. C'(1000) doesn't tell you the total cost at 1000 customers (that's just C(1000) itself); it tells you approximately how much cost would increase if you added one more customer while already at 1000. This is precisely the everyday business idea of 'marginal cost,' and it's the same underlying concept — instantaneous rate of change — that shows up throughout machine learning whenever a model asks 'how would nudging this one parameter change the outcome?'"
+      "text": "A derivative measures the instantaneous rate of change of a function — how much the output moves for an infinitesimally small nudge in the input, at a specific point. C'(1000) doesn't tell you the total cost at 1000 customers (that's just C(1000) itself); it tells you approximately how much cost would increase if you added one more customer while already at 1000. This is precisely the everyday business idea of 'marginal cost,' and it's the same underlying concept — instantaneous rate of change — that shows up throughout machine learning whenever a model asks 'how would nudging this one parameter change the outcome?'",
+      "source": "Marc Peter Deisenroth, A. Aldo Faisal & Cheng Soon Ong, *Mathematics for Machine Learning* (Cambridge University Press, 2020), Ch. 5, \"Vector Calculus\"",
+      "sourceUrl": "https://mml-book.com"
     },
     "tags": [
       "derivatives",
@@ -310,7 +342,9 @@
     },
     "correct": "d",
     "theory": {
-      "text": "A partial derivative isolates the effect of changing just one input while every other input is frozen — it answers 'if I move only this dial, and leave every other dial exactly where it is, how does the output respond?' Here, taking the partial derivative with respect to price while treating advertising spend as constant gives -12, meaning a small increase in price, with advertising unchanged, is predicted to decrease demand by about 12 units. This is the multivariable extension of ordinary marginal analysis: whenever a business outcome depends on several levers at once (price, ad spend, staffing, discount rate), a partial derivative tells you the isolated effect of pulling just one of them."
+      "text": "A partial derivative isolates the effect of changing just one input while every other input is frozen — it answers 'if I move only this dial, and leave every other dial exactly where it is, how does the output respond?' Here, taking the partial derivative with respect to price while treating advertising spend as constant gives -12, meaning a small increase in price, with advertising unchanged, is predicted to decrease demand by about 12 units. This is the multivariable extension of ordinary marginal analysis: whenever a business outcome depends on several levers at once (price, ad spend, staffing, discount rate), a partial derivative tells you the isolated effect of pulling just one of them.",
+      "source": "Marc Peter Deisenroth, A. Aldo Faisal & Cheng Soon Ong, *Mathematics for Machine Learning* (Cambridge University Press, 2020), Ch. 5, \"Vector Calculus\"",
+      "sourceUrl": "https://mml-book.com"
     },
     "tags": [
       "partial-derivatives"
@@ -328,7 +362,9 @@
     },
     "correct": "b",
     "theory": {
-      "text": "The gradient collects all of a function's partial derivatives into a single vector, and that vector has a specific geometric meaning: it points in the direction of steepest increase of the function at the current point. So the gradient of the revenue function isn't just three separate 'how does revenue respond to each lever individually' numbers — combined, it tells the analyst the single best simultaneous adjustment across all three levers that increases revenue as fast as possible, at least locally. This is the exact mechanism gradient-based optimization uses: rather than tweaking one lever at a time, it moves every parameter together, in the direction the gradient indicates."
+      "text": "The gradient collects all of a function's partial derivatives into a single vector, and that vector has a specific geometric meaning: it points in the direction of steepest increase of the function at the current point. So the gradient of the revenue function isn't just three separate 'how does revenue respond to each lever individually' numbers — combined, it tells the analyst the single best simultaneous adjustment across all three levers that increases revenue as fast as possible, at least locally. This is the exact mechanism gradient-based optimization uses: rather than tweaking one lever at a time, it moves every parameter together, in the direction the gradient indicates.",
+      "source": "Marc Peter Deisenroth, A. Aldo Faisal & Cheng Soon Ong, *Mathematics for Machine Learning* (Cambridge University Press, 2020), Ch. 5, \"Vector Calculus\"",
+      "sourceUrl": "https://mml-book.com"
     },
     "tags": [
       "gradient"
@@ -346,7 +382,9 @@
     },
     "correct": "c",
     "theory": {
-      "text": "As established in math-018, the gradient points toward the steepest local increase of whatever function it's computed on. When the function being optimized is an error or cost function — something you want as small as possible — you obviously don't want to move toward where it increases fastest; you want the opposite. That's the entire logic behind the update rule 'new parameter = old parameter minus (learning rate times gradient)': subtracting the gradient nudges every parameter in the direction that locally reduces error the most, repeating this many times gradually walks the parameters toward a minimum."
+      "text": "As established in math-018, the gradient points toward the steepest local increase of whatever function it's computed on. When the function being optimized is an error or cost function — something you want as small as possible — you obviously don't want to move toward where it increases fastest; you want the opposite. That's the entire logic behind the update rule 'new parameter = old parameter minus (learning rate times gradient)': subtracting the gradient nudges every parameter in the direction that locally reduces error the most, repeating this many times gradually walks the parameters toward a minimum.",
+      "source": "Marc Peter Deisenroth, A. Aldo Faisal & Cheng Soon Ong, *Mathematics for Machine Learning* (Cambridge University Press, 2020), Ch. 5, \"Vector Calculus\"",
+      "sourceUrl": "https://mml-book.com"
     },
     "tags": [
       "gradient-descent"
@@ -364,7 +402,9 @@
     },
     "correct": "a",
     "theory": {
-      "text": "The learning rate scales how big a step is taken in the direction opposite the gradient at each update. A well-sized step gradually walks the parameters down toward lower error. But if the step is too large, the update can jump straight past the minimum and land on the other side of the valley — often with an even steeper local slope than before — causing the error to bounce back and forth or grow without bound instead of settling down. This is why, in practice, tuning the learning rate is one of the first things adjusted when a model fails to train: a rate that's too small wastes time converging slowly, but a rate that's too large can make training fail outright."
+      "text": "The learning rate scales how big a step is taken in the direction opposite the gradient at each update. A well-sized step gradually walks the parameters down toward lower error. But if the step is too large, the update can jump straight past the minimum and land on the other side of the valley — often with an even steeper local slope than before — causing the error to bounce back and forth or grow without bound instead of settling down. This is why, in practice, tuning the learning rate is one of the first things adjusted when a model fails to train: a rate that's too small wastes time converging slowly, but a rate that's too large can make training fail outright.",
+      "source": "Marc Peter Deisenroth, A. Aldo Faisal & Cheng Soon Ong, *Mathematics for Machine Learning* (Cambridge University Press, 2020), Ch. 5, \"Vector Calculus\"",
+      "sourceUrl": "https://mml-book.com"
     },
     "tags": [
       "gradient-descent",
@@ -383,7 +423,9 @@
     },
     "correct": "b",
     "theory": {
-      "text": "The chain rule addresses situations where one quantity depends on a second quantity, which in turn depends on a third — a chain of dependencies. To find how the final output changes as the first input changes, you multiply the rates of change along each individual link in the chain. Here, profit depends on price, and price depends on the competitor's price, so the overall sensitivity of profit to the competitor's price is the product of the two individual sensitivities. This exact mechanism, applied repeatedly through many layers of dependency, is what allows a neural network's training algorithm (backpropagation) to compute how the final error depends on parameters buried deep inside the network, several computational layers removed from the output."
+      "text": "The chain rule addresses situations where one quantity depends on a second quantity, which in turn depends on a third — a chain of dependencies. To find how the final output changes as the first input changes, you multiply the rates of change along each individual link in the chain. Here, profit depends on price, and price depends on the competitor's price, so the overall sensitivity of profit to the competitor's price is the product of the two individual sensitivities. This exact mechanism, applied repeatedly through many layers of dependency, is what allows a neural network's training algorithm (backpropagation) to compute how the final error depends on parameters buried deep inside the network, several computational layers removed from the output.",
+      "source": "Marc Peter Deisenroth, A. Aldo Faisal & Cheng Soon Ong, *Mathematics for Machine Learning* (Cambridge University Press, 2020), Ch. 5, \"Vector Calculus\"",
+      "sourceUrl": "https://mml-book.com"
     },
     "tags": [
       "chain-rule"
@@ -401,7 +443,9 @@
     },
     "correct": "c",
     "theory": {
-      "text": "When a function takes several inputs and produces several outputs, a single gradient vector isn't enough — you need one partial derivative for every output-input pair. The Jacobian matrix organizes exactly that: row i, column j holds the partial derivative of output i with respect to input j. With 3 outputs and 4 inputs, that's 3 rows and 4 columns, a 3x4 matrix. In a supply-chain context, this single matrix answers a genuinely useful business question in one shot: for a small change in any of the 4 levers, how does each of the 3 cost/risk outcomes move — which is exactly the kind of multi-input, multi-output sensitivity analysis real operations decisions require."
+      "text": "When a function takes several inputs and produces several outputs, a single gradient vector isn't enough — you need one partial derivative for every output-input pair. The Jacobian matrix organizes exactly that: row i, column j holds the partial derivative of output i with respect to input j. With 3 outputs and 4 inputs, that's 3 rows and 4 columns, a 3x4 matrix. In a supply-chain context, this single matrix answers a genuinely useful business question in one shot: for a small change in any of the 4 levers, how does each of the 3 cost/risk outcomes move — which is exactly the kind of multi-input, multi-output sensitivity analysis real operations decisions require.",
+      "source": "Marc Peter Deisenroth, A. Aldo Faisal & Cheng Soon Ong, *Mathematics for Machine Learning* (Cambridge University Press, 2020), Ch. 5, \"Vector Calculus\"",
+      "sourceUrl": "https://mml-book.com"
     },
     "tags": [
       "jacobian"
@@ -419,7 +463,9 @@
     },
     "correct": "d",
     "theory": {
-      "text": "The gradient being zero only tells you the function is momentarily flat at that point — it could be a minimum, a maximum, or a saddle point (flat in some directions but curving up in one and down in another, like the middle of a horse saddle). The Hessian, the matrix of second derivatives, captures curvature, and checking whether it's positive definite (loosely: 'curves upward in every direction, no matter which way you look') is how you distinguish a true minimum from these other flat points. This second-order check is a standard part of confirming an optimization has actually found a minimum, not just a spot where progress has stalled."
+      "text": "The gradient being zero only tells you the function is momentarily flat at that point — it could be a minimum, a maximum, or a saddle point (flat in some directions but curving up in one and down in another, like the middle of a horse saddle). The Hessian, the matrix of second derivatives, captures curvature, and checking whether it's positive definite (loosely: 'curves upward in every direction, no matter which way you look') is how you distinguish a true minimum from these other flat points. This second-order check is a standard part of confirming an optimization has actually found a minimum, not just a spot where progress has stalled.",
+      "source": "Marc Peter Deisenroth, A. Aldo Faisal & Cheng Soon Ong, *Mathematics for Machine Learning* (Cambridge University Press, 2020), Ch. 5, \"Vector Calculus\"",
+      "sourceUrl": "https://mml-book.com"
     },
     "tags": [
       "hessian",
@@ -438,7 +484,9 @@
     },
     "correct": "c",
     "theory": {
-      "text": "A convex function has the bowl-shaped property that any local dip is also the global lowest point — there's no way to get trapped in a shallower valley that isn't the true minimum. This is exactly why convexity is such a prized property in optimization: for a convex cost function, gradient descent's local, step-by-step process (always moving downhill from wherever it currently is) is mathematically guaranteed to eventually reach the actual best possible solution, not just some decent one. Many classical models used in business analytics (linear regression with squared error, logistic regression) are deliberately built on convex cost functions specifically to get this guarantee."
+      "text": "A convex function has the bowl-shaped property that any local dip is also the global lowest point — there's no way to get trapped in a shallower valley that isn't the true minimum. This is exactly why convexity is such a prized property in optimization: for a convex cost function, gradient descent's local, step-by-step process (always moving downhill from wherever it currently is) is mathematically guaranteed to eventually reach the actual best possible solution, not just some decent one. Many classical models used in business analytics (linear regression with squared error, logistic regression) are deliberately built on convex cost functions specifically to get this guarantee.",
+      "source": "Marc Peter Deisenroth, A. Aldo Faisal & Cheng Soon Ong, *Mathematics for Machine Learning* (Cambridge University Press, 2020), Ch. 5, \"Vector Calculus\"",
+      "sourceUrl": "https://mml-book.com"
     },
     "tags": [
       "convexity"
@@ -456,7 +504,9 @@
     },
     "correct": "b",
     "theory": {
-      "text": "Without the guarantee convexity provides (math-024), gradient descent on a non-convex surface can settle into any of several local minima depending on where it started and how large its steps were, and it can also get temporarily stuck moving very slowly through flat saddle regions. In practice this is why neural network training involves techniques like careful random initialization, momentum, and adaptive learning rates — not because gradient descent stops working, but because on a bumpy, non-convex landscape, finding a genuinely good (even if not provably optimal) solution takes more care than it does for a simple convex model like linear regression."
+      "text": "Without the guarantee convexity provides (math-024), gradient descent on a non-convex surface can settle into any of several local minima depending on where it started and how large its steps were, and it can also get temporarily stuck moving very slowly through flat saddle regions. In practice this is why neural network training involves techniques like careful random initialization, momentum, and adaptive learning rates — not because gradient descent stops working, but because on a bumpy, non-convex landscape, finding a genuinely good (even if not provably optimal) solution takes more care than it does for a simple convex model like linear regression.",
+      "source": "Marc Peter Deisenroth, A. Aldo Faisal & Cheng Soon Ong, *Mathematics for Machine Learning* (Cambridge University Press, 2020), Ch. 5, \"Vector Calculus\"",
+      "sourceUrl": "https://mml-book.com"
     },
     "tags": [
       "non-convex",
@@ -475,7 +525,9 @@
     },
     "correct": "a",
     "theory": {
-      "text": "A plain partial derivative only tells you the rate of change along one axis at a time, holding everything else fixed — it can't directly answer 'what if I move diagonally, mixing two levers in a specific ratio at once?' A directional derivative generalizes this: it's the rate of change of the function along any chosen direction, computed as the dot product of the gradient vector with a unit vector pointing in that direction. This is the natural tool whenever a real decision involves adjusting several levers together in a fixed proportion rather than one at a time, which is closer to how budget reallocations usually actually happen in practice."
+      "text": "A plain partial derivative only tells you the rate of change along one axis at a time, holding everything else fixed — it can't directly answer 'what if I move diagonally, mixing two levers in a specific ratio at once?' A directional derivative generalizes this: it's the rate of change of the function along any chosen direction, computed as the dot product of the gradient vector with a unit vector pointing in that direction. This is the natural tool whenever a real decision involves adjusting several levers together in a fixed proportion rather than one at a time, which is closer to how budget reallocations usually actually happen in practice.",
+      "source": "Marc Peter Deisenroth, A. Aldo Faisal & Cheng Soon Ong, *Mathematics for Machine Learning* (Cambridge University Press, 2020), Ch. 5, \"Vector Calculus\"",
+      "sourceUrl": "https://mml-book.com"
     },
     "tags": [
       "directional-derivative"
@@ -493,7 +545,9 @@
     },
     "correct": "a",
     "theory": {
-      "text": "A Taylor expansion approximates a complicated function near a specific point using a simpler polynomial built from that point's value, its gradient (first derivative), and optionally its Hessian (second derivative) — a first-order Taylor expansion gives a linear (flat-plane) approximation, and a second-order one adds curvature for a quadratic (bowl-shaped) approximation. This local approximation is 'good enough' close to the point it's built around, even though it diverges from the true function further away. It's the mathematical justification behind why gradient descent's small, local steps make sense at all: at each point, the gradient-based linear approximation is trusted to be accurate enough to guide the next small move."
+      "text": "A Taylor expansion approximates a complicated function near a specific point using a simpler polynomial built from that point's value, its gradient (first derivative), and optionally its Hessian (second derivative) — a first-order Taylor expansion gives a linear (flat-plane) approximation, and a second-order one adds curvature for a quadratic (bowl-shaped) approximation. This local approximation is 'good enough' close to the point it's built around, even though it diverges from the true function further away. It's the mathematical justification behind why gradient descent's small, local steps make sense at all: at each point, the gradient-based linear approximation is trusted to be accurate enough to guide the next small move.",
+      "source": "Marc Peter Deisenroth, A. Aldo Faisal & Cheng Soon Ong, *Mathematics for Machine Learning* (Cambridge University Press, 2020), Ch. 5, \"Vector Calculus\"",
+      "sourceUrl": "https://mml-book.com"
     },
     "tags": [
       "taylor-series"
@@ -511,7 +565,9 @@
     },
     "correct": "a",
     "theory": {
-      "text": "Computing the exact gradient of a cost function defined over millions of transaction records means summing contributions from every single one of them, which is expensive to repeat at every training step. Stochastic (or mini-batch) gradient descent instead estimates the gradient from a small random subset each step — much cheaper computationally, and the noise mostly averages out over many steps, though any individual step's direction is a rougher estimate than the true full-dataset gradient would give. This trade-off (many cheap, noisy steps versus few expensive, precise ones) is exactly why it's the standard approach for training models on large business datasets, like retail transaction logs with millions of rows, where computing the true full gradient every step would be impractical."
+      "text": "Computing the exact gradient of a cost function defined over millions of transaction records means summing contributions from every single one of them, which is expensive to repeat at every training step. Stochastic (or mini-batch) gradient descent instead estimates the gradient from a small random subset each step — much cheaper computationally, and the noise mostly averages out over many steps, though any individual step's direction is a rougher estimate than the true full-dataset gradient would give. This trade-off (many cheap, noisy steps versus few expensive, precise ones) is exactly why it's the standard approach for training models on large business datasets, like retail transaction logs with millions of rows, where computing the true full gradient every step would be impractical.",
+      "source": "Marc Peter Deisenroth, A. Aldo Faisal & Cheng Soon Ong, *Mathematics for Machine Learning* (Cambridge University Press, 2020), Ch. 5, \"Vector Calculus\"",
+      "sourceUrl": "https://mml-book.com"
     },
     "tags": [
       "stochastic-gradient-descent"
@@ -529,7 +585,9 @@
     },
     "correct": "b",
     "theory": {
-      "text": "This is the same chain-of-dependency situation as the price/competitor-price example in math-021, just with more links: the error depends on layer-2's output, which depends on layer-1's output, which depends on layer-1's weights. To find how the error responds to a layer-1 weight, the chain rule says to multiply the sensitivities along the whole path — layer-1 weight to layer-1 output, layer-1 output to layer-2 output, layer-2 output to error. Applying the chain rule systematically backward through every layer of a network, reusing intermediate results instead of recomputing them, is precisely what the backpropagation algorithm automates, and it's why layer-1 weights absolutely do receive a gradient despite having no direct connection to the error."
+      "text": "This is the same chain-of-dependency situation as the price/competitor-price example in math-021, just with more links: the error depends on layer-2's output, which depends on layer-1's output, which depends on layer-1's weights. To find how the error responds to a layer-1 weight, the chain rule says to multiply the sensitivities along the whole path — layer-1 weight to layer-1 output, layer-1 output to layer-2 output, layer-2 output to error. Applying the chain rule systematically backward through every layer of a network, reusing intermediate results instead of recomputing them, is precisely what the backpropagation algorithm automates, and it's why layer-1 weights absolutely do receive a gradient despite having no direct connection to the error.",
+      "source": "Marc Peter Deisenroth, A. Aldo Faisal & Cheng Soon Ong, *Mathematics for Machine Learning* (Cambridge University Press, 2020), Ch. 5, \"Vector Calculus\"",
+      "sourceUrl": "https://mml-book.com"
     },
     "tags": [
       "chain-rule",
@@ -548,7 +606,9 @@
     },
     "correct": "a",
     "theory": {
-      "text": "For a linear map f(x) = Ax, each output component is a weighted sum of the inputs using one row of A, so the sensitivity of output i to input j is simply the (i,j) entry of A itself — the Jacobian of a linear transformation is the matrix defining that transformation. Since A has M rows (one per output) and N columns (one per input), the Jacobian is also M x N. This is a useful sanity-check pattern in general: whenever a transformation is purely linear, its gradient with respect to the input is just the matrix representing that linear map, no further calculus needed — the harder Jacobian computations arise once nonlinear functions get chained on top of linear ones."
+      "text": "For a linear map f(x) = Ax, each output component is a weighted sum of the inputs using one row of A, so the sensitivity of output i to input j is simply the (i,j) entry of A itself — the Jacobian of a linear transformation is the matrix defining that transformation. Since A has M rows (one per output) and N columns (one per input), the Jacobian is also M x N. This is a useful sanity-check pattern in general: whenever a transformation is purely linear, its gradient with respect to the input is just the matrix representing that linear map, no further calculus needed — the harder Jacobian computations arise once nonlinear functions get chained on top of linear ones.",
+      "source": "Marc Peter Deisenroth, A. Aldo Faisal & Cheng Soon Ong, *Mathematics for Machine Learning* (Cambridge University Press, 2020), Ch. 5, \"Vector Calculus\"",
+      "sourceUrl": "https://mml-book.com"
     },
     "tags": [
       "jacobian",
@@ -567,7 +627,9 @@
     },
     "correct": "c",
     "theory": {
-      "text": "The discrete/continuous distinction is about what values a random variable can actually take, not about what it describes. 'Number of items returned' can only be a whole number — you can't return 2.5 items — so its outcomes are countable and separate, making it discrete. A continuous random variable, by contrast, can take any value within some range, including all the fractional values in between (like an exact weight, time, or dollar amount measured with arbitrary precision). This distinction matters practically because discrete variables are described with a probability mass function (a probability assigned to each specific outcome), while continuous variables need a probability density function instead, since the probability of hitting any single exact value is technically zero."
+      "text": "The discrete/continuous distinction is about what values a random variable can actually take, not about what it describes. 'Number of items returned' can only be a whole number — you can't return 2.5 items — so its outcomes are countable and separate, making it discrete. A continuous random variable, by contrast, can take any value within some range, including all the fractional values in between (like an exact weight, time, or dollar amount measured with arbitrary precision). This distinction matters practically because discrete variables are described with a probability mass function (a probability assigned to each specific outcome), while continuous variables need a probability density function instead, since the probability of hitting any single exact value is technically zero.",
+      "source": "Marc Peter Deisenroth, A. Aldo Faisal & Cheng Soon Ong, *Mathematics for Machine Learning* (Cambridge University Press, 2020), Ch. 6, \"Probability and Distributions\"",
+      "sourceUrl": "https://mml-book.com"
     },
     "tags": [
       "random-variables"
@@ -585,7 +647,9 @@
     },
     "correct": "a",
     "theory": {
-      "text": "A probability distribution describes the full landscape of possible outcomes and how likely each one is, whereas a single point forecast collapses all of that into one number and silently discards the uncertainty. Two forecasts with the same average (expected value) can represent very different real situations — one tightly clustered around the average, another spread widely with meaningful chances of much higher or lower outcomes — and only the distribution reveals which situation you're actually in. That's exactly why inventory and staffing decisions in retail are built around distributions rather than single averages: holding safety stock is fundamentally a hedge against the less likely but still plausible high-demand tail of the distribution, not against the average case."
+      "text": "A probability distribution describes the full landscape of possible outcomes and how likely each one is, whereas a single point forecast collapses all of that into one number and silently discards the uncertainty. Two forecasts with the same average (expected value) can represent very different real situations — one tightly clustered around the average, another spread widely with meaningful chances of much higher or lower outcomes — and only the distribution reveals which situation you're actually in. That's exactly why inventory and staffing decisions in retail are built around distributions rather than single averages: holding safety stock is fundamentally a hedge against the less likely but still plausible high-demand tail of the distribution, not against the average case.",
+      "source": "Marc Peter Deisenroth, A. Aldo Faisal & Cheng Soon Ong, *Mathematics for Machine Learning* (Cambridge University Press, 2020), Ch. 6, \"Probability and Distributions\"",
+      "sourceUrl": "https://mml-book.com"
     },
     "tags": [
       "probability-distributions"
@@ -603,7 +667,9 @@
     },
     "correct": "d",
     "theory": {
-      "text": "Expected value is the probability-weighted average of every possible outcome — you multiply each outcome by its probability of occurring and sum the results, rather than just averaging the raw numbers or picking the most likely case. Here: (0.30 x 50,000) + (0.70 x 5,000) = 15,000 + 3,500 = $18,500. This single number is what a rational decision-maker comparing multiple uncertain options (different promotions, different investments) would compare across alternatives, since it summarizes the whole probability-weighted payoff into one comparable figure — though as math-032 notes, it deliberately discards information about the spread of possible outcomes around that average."
+      "text": "Expected value is the probability-weighted average of every possible outcome — you multiply each outcome by its probability of occurring and sum the results, rather than just averaging the raw numbers or picking the most likely case. Here: (0.30 x 50,000) + (0.70 x 5,000) = 15,000 + 3,500 = $18,500. This single number is what a rational decision-maker comparing multiple uncertain options (different promotions, different investments) would compare across alternatives, since it summarizes the whole probability-weighted payoff into one comparable figure — though as math-032 notes, it deliberately discards information about the spread of possible outcomes around that average.",
+      "source": "Marc Peter Deisenroth, A. Aldo Faisal & Cheng Soon Ong, *Mathematics for Machine Learning* (Cambridge University Press, 2020), Ch. 6, \"Probability and Distributions\"",
+      "sourceUrl": "https://mml-book.com"
     },
     "tags": [
       "expected-value"
@@ -621,7 +687,9 @@
     },
     "correct": "c",
     "theory": {
-      "text": "Variance measures how spread out a random variable's outcomes tend to be around its expected value — specifically, the average squared distance from the mean. Two distributions can share the exact same expected value while having wildly different variances, and that's exactly the case described here: both forecasts center on 1,000 units, but Forecast A's low variance (25) means actual outcomes are expected to stay close to that number, while Forecast B's high variance (10,000) means actual outcomes could deviate much further from 1,000 in either direction. For planning purposes, the expected value alone would make these two forecasts look identical, but the variance reveals that B is a genuinely riskier, less predictable bet."
+      "text": "Variance measures how spread out a random variable's outcomes tend to be around its expected value — specifically, the average squared distance from the mean. Two distributions can share the exact same expected value while having wildly different variances, and that's exactly the case described here: both forecasts center on 1,000 units, but Forecast A's low variance (25) means actual outcomes are expected to stay close to that number, while Forecast B's high variance (10,000) means actual outcomes could deviate much further from 1,000 in either direction. For planning purposes, the expected value alone would make these two forecasts look identical, but the variance reveals that B is a genuinely riskier, less predictable bet.",
+      "source": "Marc Peter Deisenroth, A. Aldo Faisal & Cheng Soon Ong, *Mathematics for Machine Learning* (Cambridge University Press, 2020), Ch. 6, \"Probability and Distributions\"",
+      "sourceUrl": "https://mml-book.com"
     },
     "tags": [
       "variance"
@@ -639,7 +707,9 @@
     },
     "correct": "a",
     "theory": {
-      "text": "Variance is computed from squared deviations from the mean, which means its units are also squared — 'units squared' is not directly interpretable next to a demand figure measured in plain units. Standard deviation is simply the square root of variance, which undoes that squaring and returns the spread measure to the original, interpretable unit. So a demand forecast of '1,000 units, standard deviation 50' can be read intuitively (typical outcomes fall within roughly 950 to 1,050), while '1,000 units, variance 2,500' requires a mental square-root step to mean the same thing. Both describe identical underlying uncertainty; standard deviation is just the more communicable form for reporting to a business audience."
+      "text": "Variance is computed from squared deviations from the mean, which means its units are also squared — 'units squared' is not directly interpretable next to a demand figure measured in plain units. Standard deviation is simply the square root of variance, which undoes that squaring and returns the spread measure to the original, interpretable unit. So a demand forecast of '1,000 units, standard deviation 50' can be read intuitively (typical outcomes fall within roughly 950 to 1,050), while '1,000 units, variance 2,500' requires a mental square-root step to mean the same thing. Both describe identical underlying uncertainty; standard deviation is just the more communicable form for reporting to a business audience.",
+      "source": "Marc Peter Deisenroth, A. Aldo Faisal & Cheng Soon Ong, *Mathematics for Machine Learning* (Cambridge University Press, 2020), Ch. 6, \"Probability and Distributions\"",
+      "sourceUrl": "https://mml-book.com"
     },
     "tags": [
       "standard-deviation"
@@ -657,7 +727,9 @@
     },
     "correct": "a",
     "theory": {
-      "text": "Covariance measures whether two variables tend to deviate from their own averages in the same direction at the same time. A large positive covariance means that, week over week, above-average advertising spend tends to coincide with above-average sales, and below-average spend with below-average sales. It's important to be precise about what this does and doesn't establish: covariance is a statement about co-movement in the data, not proof of causation — the positive relationship could reflect advertising driving sales, both being driven by a third factor like seasonality, or some mix of both. Raw covariance also doesn't have an easily interpretable scale, which is exactly the motivation for the correlation coefficient in the next question."
+      "text": "Covariance measures whether two variables tend to deviate from their own averages in the same direction at the same time. A large positive covariance means that, week over week, above-average advertising spend tends to coincide with above-average sales, and below-average spend with below-average sales. It's important to be precise about what this does and doesn't establish: covariance is a statement about co-movement in the data, not proof of causation — the positive relationship could reflect advertising driving sales, both being driven by a third factor like seasonality, or some mix of both. Raw covariance also doesn't have an easily interpretable scale, which is exactly the motivation for the correlation coefficient in the next question.",
+      "source": "Marc Peter Deisenroth, A. Aldo Faisal & Cheng Soon Ong, *Mathematics for Machine Learning* (Cambridge University Press, 2020), Ch. 6, \"Probability and Distributions\"",
+      "sourceUrl": "https://mml-book.com"
     },
     "tags": [
       "covariance"
@@ -675,7 +747,9 @@
     },
     "correct": "d",
     "theory": {
-      "text": "Raw covariance's numeric value depends on the units and scale of the two variables involved, so a covariance of 500 between ad spend (in dollars) and sales (in units) can't be directly compared to a covariance of 0.003 between two other metrics measured on different scales — the numbers aren't on a common footing. The correlation coefficient fixes this by dividing covariance by the product of the two variables' standard deviations, which rescales the result to always fall between -1 (perfectly opposite movement) and +1 (perfectly synchronized movement), with 0 meaning no linear relationship. That bounded, unit-free scale is what makes correlation the more commonly reported figure when comparing the strength of relationships across many different metric pairs in a business dashboard."
+      "text": "Raw covariance's numeric value depends on the units and scale of the two variables involved, so a covariance of 500 between ad spend (in dollars) and sales (in units) can't be directly compared to a covariance of 0.003 between two other metrics measured on different scales — the numbers aren't on a common footing. The correlation coefficient fixes this by dividing covariance by the product of the two variables' standard deviations, which rescales the result to always fall between -1 (perfectly opposite movement) and +1 (perfectly synchronized movement), with 0 meaning no linear relationship. That bounded, unit-free scale is what makes correlation the more commonly reported figure when comparing the strength of relationships across many different metric pairs in a business dashboard.",
+      "source": "Marc Peter Deisenroth, A. Aldo Faisal & Cheng Soon Ong, *Mathematics for Machine Learning* (Cambridge University Press, 2020), Ch. 6, \"Probability and Distributions\"",
+      "sourceUrl": "https://mml-book.com"
     },
     "tags": [
       "correlation"
@@ -693,7 +767,9 @@
     },
     "correct": "c",
     "theory": {
-      "text": "Two random variables are independent when knowing the outcome of one tells you nothing about the likely outcome of the other — formally, the joint probability of both together equals the simple product of their individual probabilities. Assuming transaction amount and time of day are independent means the model is asserting that the distribution of transaction amounts is the same regardless of what time it is, and vice versa. This is often a convenient simplification rather than a certainty — in reality, transaction amounts might genuinely differ between daytime and late-night purchases — and it's a common source of model inaccuracy when the independence assumption doesn't actually hold in the real data."
+      "text": "Two random variables are independent when knowing the outcome of one tells you nothing about the likely outcome of the other — formally, the joint probability of both together equals the simple product of their individual probabilities. Assuming transaction amount and time of day are independent means the model is asserting that the distribution of transaction amounts is the same regardless of what time it is, and vice versa. This is often a convenient simplification rather than a certainty — in reality, transaction amounts might genuinely differ between daytime and late-night purchases — and it's a common source of model inaccuracy when the independence assumption doesn't actually hold in the real data.",
+      "source": "Marc Peter Deisenroth, A. Aldo Faisal & Cheng Soon Ong, *Mathematics for Machine Learning* (Cambridge University Press, 2020), Ch. 6, \"Probability and Distributions\"",
+      "sourceUrl": "https://mml-book.com"
     },
     "tags": [
       "independence"
@@ -711,7 +787,9 @@
     },
     "correct": "a",
     "theory": {
-      "text": "A conditional probability describes the likelihood of one event given that another event is already known to have happened, and the notation P(A | B) is read 'the probability of A given B.' Here, '90% of defective shipments come from Supplier X' is exactly a statement of the form P(Supplier X | defective) — it's not saying 90% of all shipments are from Supplier X (that would be a plain marginal probability), it's specifically restricting attention to the subset of shipments already known to be defective. This distinction — conditioning narrows the population you're reasoning about — is the foundation for Bayes' theorem in the next question, which flips a conditional probability around."
+      "text": "A conditional probability describes the likelihood of one event given that another event is already known to have happened, and the notation P(A | B) is read 'the probability of A given B.' Here, '90% of defective shipments come from Supplier X' is exactly a statement of the form P(Supplier X | defective) — it's not saying 90% of all shipments are from Supplier X (that would be a plain marginal probability), it's specifically restricting attention to the subset of shipments already known to be defective. This distinction — conditioning narrows the population you're reasoning about — is the foundation for Bayes' theorem in the next question, which flips a conditional probability around.",
+      "source": "Marc Peter Deisenroth, A. Aldo Faisal & Cheng Soon Ong, *Mathematics for Machine Learning* (Cambridge University Press, 2020), Ch. 6, \"Probability and Distributions\"",
+      "sourceUrl": "https://mml-book.com"
     },
     "tags": [
       "conditional-probability"
@@ -729,7 +807,9 @@
     },
     "correct": "b",
     "theory": {
-      "text": "P(Supplier X | defective) and P(defective | Supplier X) are two entirely different quantities — conditional probability is not symmetric — and mixing them up is a common and costly reasoning error. Bayes' theorem exists precisely to convert one into the other: it combines the prior probability of the event you're now conditioning on (here, the overall 2% defect rate) with the known conditional probability in the reverse direction, to compute the one you actually want. In practical terms, knowing that most defects trace back to Supplier X does not by itself tell you what fraction of Supplier X's shipments are defective — you need Bayes' theorem, and the overall defect rate, to get from one statement to the other."
+      "text": "P(Supplier X | defective) and P(defective | Supplier X) are two entirely different quantities — conditional probability is not symmetric — and mixing them up is a common and costly reasoning error. Bayes' theorem exists precisely to convert one into the other: it combines the prior probability of the event you're now conditioning on (here, the overall 2% defect rate) with the known conditional probability in the reverse direction, to compute the one you actually want. In practical terms, knowing that most defects trace back to Supplier X does not by itself tell you what fraction of Supplier X's shipments are defective — you need Bayes' theorem, and the overall defect rate, to get from one statement to the other.",
+      "source": "Marc Peter Deisenroth, A. Aldo Faisal & Cheng Soon Ong, *Mathematics for Machine Learning* (Cambridge University Press, 2020), Ch. 6, \"Probability and Distributions\"",
+      "sourceUrl": "https://mml-book.com"
     },
     "tags": [
       "bayes-theorem"
@@ -747,7 +827,9 @@
     },
     "correct": "b",
     "theory": {
-      "text": "The prior is what you believe before seeing any evidence specific to this case — here, the general 10% churn rate across all customers. The likelihood measures how probable the observed evidence (a 60-day login gap) is under each possible scenario (churning customers vs. staying customers) — a long login gap is presumably much more common among customers who go on to churn. Bayes' theorem combines the prior with this likelihood to produce the posterior, an updated belief that's specific to this customer given what's now known about them. This prior-to-posterior update is the core mechanic of Bayesian reasoning: start from a general baseline, then revise it in light of new, case-specific evidence — the model didn't discard the historical data, it combined it with new evidence."
+      "text": "The prior is what you believe before seeing any evidence specific to this case — here, the general 10% churn rate across all customers. The likelihood measures how probable the observed evidence (a 60-day login gap) is under each possible scenario (churning customers vs. staying customers) — a long login gap is presumably much more common among customers who go on to churn. Bayes' theorem combines the prior with this likelihood to produce the posterior, an updated belief that's specific to this customer given what's now known about them. This prior-to-posterior update is the core mechanic of Bayesian reasoning: start from a general baseline, then revise it in light of new, case-specific evidence — the model didn't discard the historical data, it combined it with new evidence.",
+      "source": "Marc Peter Deisenroth, A. Aldo Faisal & Cheng Soon Ong, *Mathematics for Machine Learning* (Cambridge University Press, 2020), Ch. 6, \"Probability and Distributions\"",
+      "sourceUrl": "https://mml-book.com"
     },
     "tags": [
       "prior-posterior",
@@ -766,7 +848,9 @@
     },
     "correct": "c",
     "theory": {
-      "text": "A joint distribution describes the probability of every combination of two (or more) variables at once. A marginal probability recovers the probability of just one variable on its own, by summing the joint probabilities across every possible value of the other variable — effectively 'ignoring' or 'averaging out' the variable you're not interested in. Summing every 'online + [any payment method]' cell in the table gives exactly the marginal probability of purchasing online, regardless of how it was paid for. This is a routine operation in business reporting: a table cross-tabulating two dimensions can always be collapsed down to a one-dimensional summary of just one of them by marginalizing out the other."
+      "text": "A joint distribution describes the probability of every combination of two (or more) variables at once. A marginal probability recovers the probability of just one variable on its own, by summing the joint probabilities across every possible value of the other variable — effectively 'ignoring' or 'averaging out' the variable you're not interested in. Summing every 'online + [any payment method]' cell in the table gives exactly the marginal probability of purchasing online, regardless of how it was paid for. This is a routine operation in business reporting: a table cross-tabulating two dimensions can always be collapsed down to a one-dimensional summary of just one of them by marginalizing out the other.",
+      "source": "Marc Peter Deisenroth, A. Aldo Faisal & Cheng Soon Ong, *Mathematics for Machine Learning* (Cambridge University Press, 2020), Ch. 6, \"Probability and Distributions\"",
+      "sourceUrl": "https://mml-book.com"
     },
     "tags": [
       "marginal-probability"
@@ -784,7 +868,9 @@
     },
     "correct": "b",
     "theory": {
-      "text": "The Gaussian, or normal, distribution is the classic symmetric bell curve, and it's completely specified by only two parameters: its mean (where the peak sits) and its standard deviation (how wide the bell is). Its outsized importance in statistics comes largely from the Central Limit Theorem (the next topic): many real-world quantities that result from adding up lots of small, roughly independent effects — like total daily transaction amounts summed across thousands of individual purchases — tend to approximate a normal distribution even when the individual purchases themselves don't. That combination of mathematical tractability (just two numbers describe it fully) and how often it shows up naturally is why it underlies so many standard statistical techniques used in business reporting and forecasting."
+      "text": "The Gaussian, or normal, distribution is the classic symmetric bell curve, and it's completely specified by only two parameters: its mean (where the peak sits) and its standard deviation (how wide the bell is). Its outsized importance in statistics comes largely from the Central Limit Theorem (the next topic): many real-world quantities that result from adding up lots of small, roughly independent effects — like total daily transaction amounts summed across thousands of individual purchases — tend to approximate a normal distribution even when the individual purchases themselves don't. That combination of mathematical tractability (just two numbers describe it fully) and how often it shows up naturally is why it underlies so many standard statistical techniques used in business reporting and forecasting.",
+      "source": "Marc Peter Deisenroth, A. Aldo Faisal & Cheng Soon Ong, *Mathematics for Machine Learning* (Cambridge University Press, 2020), Ch. 6, \"Probability and Distributions\"",
+      "sourceUrl": "https://mml-book.com"
     },
     "tags": [
       "gaussian-distribution"
@@ -802,7 +888,9 @@
     },
     "correct": "c",
     "theory": {
-      "text": "The Central Limit Theorem is one of the most practically important results in statistics precisely because of what it does NOT require: it doesn't matter that individual customer spend is skewed. As long as you're averaging (or summing) a reasonably large number of independent draws, the distribution of those averages converges toward a normal distribution regardless of the shape of the original data. This is why so many business statistics — average order value across a sample, average conversion rate across a test group — can be reasoned about using normal-distribution-based tools (like confidence intervals) even when the raw underlying transaction data itself is nothing like a bell curve."
+      "text": "The Central Limit Theorem is one of the most practically important results in statistics precisely because of what it does NOT require: it doesn't matter that individual customer spend is skewed. As long as you're averaging (or summing) a reasonably large number of independent draws, the distribution of those averages converges toward a normal distribution regardless of the shape of the original data. This is why so many business statistics — average order value across a sample, average conversion rate across a test group — can be reasoned about using normal-distribution-based tools (like confidence intervals) even when the raw underlying transaction data itself is nothing like a bell curve.",
+      "source": "Marc Peter Deisenroth, A. Aldo Faisal & Cheng Soon Ong, *Mathematics for Machine Learning* (Cambridge University Press, 2020), Ch. 6, \"Probability and Distributions\"",
+      "sourceUrl": "https://mml-book.com"
     },
     "tags": [
       "central-limit-theorem"
@@ -820,7 +908,9 @@
     },
     "correct": "d",
     "theory": {
-      "text": "Maximum Likelihood Estimation approaches parameter-fitting by asking: out of all the possible mean/standard-deviation combinations a Gaussian distribution could have, which one makes the data I actually observed the most probable? It then picks that combination as the best estimate. For a Gaussian specifically, this turns out to have a clean, direct answer — the maximum-likelihood mean is just the sample average of the observed delivery times, and the maximum-likelihood standard deviation is essentially the sample standard deviation — but the general MLE principle (pick parameters that make the observed data most likely) extends far beyond the Gaussian case and underlies the fitting procedure for many other statistical models used in business forecasting."
+      "text": "Maximum Likelihood Estimation approaches parameter-fitting by asking: out of all the possible mean/standard-deviation combinations a Gaussian distribution could have, which one makes the data I actually observed the most probable? It then picks that combination as the best estimate. For a Gaussian specifically, this turns out to have a clean, direct answer — the maximum-likelihood mean is just the sample average of the observed delivery times, and the maximum-likelihood standard deviation is essentially the sample standard deviation — but the general MLE principle (pick parameters that make the observed data most likely) extends far beyond the Gaussian case and underlies the fitting procedure for many other statistical models used in business forecasting.",
+      "source": "Marc Peter Deisenroth, A. Aldo Faisal & Cheng Soon Ong, *Mathematics for Machine Learning* (Cambridge University Press, 2020), Ch. 6, \"Probability and Distributions\"",
+      "sourceUrl": "https://mml-book.com"
     },
     "tags": [
       "maximum-likelihood"
@@ -838,7 +928,9 @@
     },
     "correct": "b",
     "theory": {
-      "text": "The mean is sensitive to every value in a dataset, including extreme ones — a handful of multi-million-dollar mansions can pull the average up substantially. The median, by contrast, is simply the middle value once everything is sorted, so a few extreme outliers barely move it at all. When the mean sits well above the median, that's the classic signature of a right-skewed distribution: most values are clustered lower, with a long tail of unusually high values dragging the average upward. This is exactly why real-estate, income, and many other business datasets typically report the median as the more representative 'typical' figure, while still tracking the mean separately when total or average dollar values matter for other purposes like tax revenue projections."
+      "text": "The mean is sensitive to every value in a dataset, including extreme ones — a handful of multi-million-dollar mansions can pull the average up substantially. The median, by contrast, is simply the middle value once everything is sorted, so a few extreme outliers barely move it at all. When the mean sits well above the median, that's the classic signature of a right-skewed distribution: most values are clustered lower, with a long tail of unusually high values dragging the average upward. This is exactly why real-estate, income, and many other business datasets typically report the median as the more representative 'typical' figure, while still tracking the mean separately when total or average dollar values matter for other purposes like tax revenue projections.",
+      "source": "Marc Peter Deisenroth, A. Aldo Faisal & Cheng Soon Ong, *Mathematics for Machine Learning* (Cambridge University Press, 2020), Ch. 6, \"Probability and Distributions\"",
+      "sourceUrl": "https://mml-book.com"
     },
     "tags": [
       "mean-median-mode"
@@ -856,7 +948,9 @@
     },
     "correct": "b",
     "theory": {
-      "text": "The mode is simply the value that occurs most often in a dataset, and unlike the mean, it doesn't require the data to be numeric or orderable in a meaningful arithmetic sense — you can't average 'Small,' 'Medium,' and 'Large' the way you'd average dollar amounts, but you absolutely can count which one appears most frequently. For an inventory planner, knowing that 'Medium' is the mode directly informs stocking decisions (stock more of the most commonly purchased size) in a way that a mean simply cannot, since there's no meaningful numeric average of categorical sizes to compute in the first place."
+      "text": "The mode is simply the value that occurs most often in a dataset, and unlike the mean, it doesn't require the data to be numeric or orderable in a meaningful arithmetic sense — you can't average 'Small,' 'Medium,' and 'Large' the way you'd average dollar amounts, but you absolutely can count which one appears most frequently. For an inventory planner, knowing that 'Medium' is the mode directly informs stocking decisions (stock more of the most commonly purchased size) in a way that a mean simply cannot, since there's no meaningful numeric average of categorical sizes to compute in the first place.",
+      "source": "Marc Peter Deisenroth, A. Aldo Faisal & Cheng Soon Ong, *Mathematics for Machine Learning* (Cambridge University Press, 2020), Ch. 6, \"Probability and Distributions\"",
+      "sourceUrl": "https://mml-book.com"
     },
     "tags": [
       "mean-median-mode"
@@ -874,7 +968,9 @@
     },
     "correct": "c",
     "theory": {
-      "text": "Combining probability distributions for several random variables to analyze their sum (like total delay across 3 suppliers) is mathematically much simpler when the variables are independent, and models often lean on that assumption for exactly that convenience. But real supply chains frequently violate it: if all three suppliers route through the same shipping lane or region, a single disruptive event (a storm, a port closure) could delay all three simultaneously, meaning their delays are actually correlated, not independent. Wrongly assuming independence in that case would make severe simultaneous-delay scenarios look far less likely than they truly are — a risk-modeling mistake with direct financial consequences, since it would leave the business under-prepared for the correlated worst case."
+      "text": "Combining probability distributions for several random variables to analyze their sum (like total delay across 3 suppliers) is mathematically much simpler when the variables are independent, and models often lean on that assumption for exactly that convenience. But real supply chains frequently violate it: if all three suppliers route through the same shipping lane or region, a single disruptive event (a storm, a port closure) could delay all three simultaneously, meaning their delays are actually correlated, not independent. Wrongly assuming independence in that case would make severe simultaneous-delay scenarios look far less likely than they truly are — a risk-modeling mistake with direct financial consequences, since it would leave the business under-prepared for the correlated worst case.",
+      "source": "Marc Peter Deisenroth, A. Aldo Faisal & Cheng Soon Ong, *Mathematics for Machine Learning* (Cambridge University Press, 2020), Ch. 6, \"Probability and Distributions\"",
+      "sourceUrl": "https://mml-book.com"
     },
     "tags": [
       "independence",
@@ -893,7 +989,9 @@
     },
     "correct": "d",
     "theory": {
-      "text": "The Gaussian distribution's convenient properties (mean and standard deviation fully describing it, standard rules of thumb like '95% of values fall within about 2 standard deviations') depend on the data actually being roughly Gaussian-shaped. When real purchase data is right-skewed — many small transactions and a long tail of large ones — those same rules of thumb break down: a purchase in the 'long tail' might be a perfectly normal high-value customer, not a statistical outlier, but a Gaussian-based threshold could flag it as anomalous anyway. This is a common practical trap: analysts sometimes reach for Gaussian-based tools by default, when the data actually calls for skewed distributions or a transformation (like working with the logarithm of purchase amount) before Gaussian-based methods become appropriate."
+      "text": "The Gaussian distribution's convenient properties (mean and standard deviation fully describing it, standard rules of thumb like '95% of values fall within about 2 standard deviations') depend on the data actually being roughly Gaussian-shaped. When real purchase data is right-skewed — many small transactions and a long tail of large ones — those same rules of thumb break down: a purchase in the 'long tail' might be a perfectly normal high-value customer, not a statistical outlier, but a Gaussian-based threshold could flag it as anomalous anyway. This is a common practical trap: analysts sometimes reach for Gaussian-based tools by default, when the data actually calls for skewed distributions or a transformation (like working with the logarithm of purchase amount) before Gaussian-based methods become appropriate.",
+      "source": "Marc Peter Deisenroth, A. Aldo Faisal & Cheng Soon Ong, *Mathematics for Machine Learning* (Cambridge University Press, 2020), Ch. 6, \"Probability and Distributions\"",
+      "sourceUrl": "https://mml-book.com"
     },
     "tags": [
       "gaussian-distribution",
@@ -912,7 +1010,9 @@
     },
     "correct": "d",
     "theory": {
-      "text": "Any observed rate from a finite sample is itself a random variable with its own variance — running the exact same test again with a fresh 1,000 visitors per group would likely produce slightly different numbers even if the two variants are truly identical underneath. A 0.6 percentage-point gap on a modest sample size is well within the range that could plausibly arise from pure sampling noise rather than a genuine difference in performance. This is precisely why A/B testing frameworks use statistical significance tests, built directly on the probability and distribution concepts covered in this course, to estimate how likely an observed gap is to be real versus coincidental before a business commits to 'shipping' a change based on it."
+      "text": "Any observed rate from a finite sample is itself a random variable with its own variance — running the exact same test again with a fresh 1,000 visitors per group would likely produce slightly different numbers even if the two variants are truly identical underneath. A 0.6 percentage-point gap on a modest sample size is well within the range that could plausibly arise from pure sampling noise rather than a genuine difference in performance. This is precisely why A/B testing frameworks use statistical significance tests, built directly on the probability and distribution concepts covered in this course, to estimate how likely an observed gap is to be real versus coincidental before a business commits to 'shipping' a change based on it.",
+      "source": "Marc Peter Deisenroth, A. Aldo Faisal & Cheng Soon Ong, *Mathematics for Machine Learning* (Cambridge University Press, 2020), Ch. 6, \"Probability and Distributions\"",
+      "sourceUrl": "https://mml-book.com"
     },
     "tags": [
       "statistical-significance",
@@ -931,7 +1031,9 @@
     },
     "correct": "c",
     "theory": {
-      "text": "The objective function is simply the quantity an optimization problem is trying to make as small or as large as possible — here, total fuel cost, which the company wants to minimize by choosing the right combination of route decisions. Every optimization problem needs this piece clearly defined before anything else: without a precise objective function, 'find the best routes' is not yet a mathematical problem at all. Everything else covered in this topic — constraints, Lagrange multipliers, convexity, gradient-based methods — exists to answer the same underlying question: given an objective function (and possibly some limits on what inputs are allowed), what input values make it as small or large as possible?"
+      "text": "The objective function is simply the quantity an optimization problem is trying to make as small or as large as possible — here, total fuel cost, which the company wants to minimize by choosing the right combination of route decisions. Every optimization problem needs this piece clearly defined before anything else: without a precise objective function, 'find the best routes' is not yet a mathematical problem at all. Everything else covered in this topic — constraints, Lagrange multipliers, convexity, gradient-based methods — exists to answer the same underlying question: given an objective function (and possibly some limits on what inputs are allowed), what input values make it as small or large as possible?",
+      "source": "Marc Peter Deisenroth, A. Aldo Faisal & Cheng Soon Ong, *Mathematics for Machine Learning* (Cambridge University Press, 2020), Ch. 7, \"Continuous Optimization\"",
+      "sourceUrl": "https://mml-book.com"
     },
     "tags": [
       "objective-function"
@@ -949,7 +1051,9 @@
     },
     "correct": "a",
     "theory": {
-      "text": "A constraint defines the boundary of what counts as an acceptable (feasible) solution, separate from what you're actually trying to optimize. Here, the objective is still to minimize fuel cost, but now only among the subset of route plans that also satisfy the driver-hours limit — a route plan that achieves rock-bottom fuel cost by scheduling 60 driver-hours doesn't count as a valid answer, no matter how good its fuel number looks. This objective-function-plus-constraints structure is the standard shape of almost every real business optimization problem: minimize or maximize something, subject to real-world limits like budget, staffing, capacity, or regulatory requirements."
+      "text": "A constraint defines the boundary of what counts as an acceptable (feasible) solution, separate from what you're actually trying to optimize. Here, the objective is still to minimize fuel cost, but now only among the subset of route plans that also satisfy the driver-hours limit — a route plan that achieves rock-bottom fuel cost by scheduling 60 driver-hours doesn't count as a valid answer, no matter how good its fuel number looks. This objective-function-plus-constraints structure is the standard shape of almost every real business optimization problem: minimize or maximize something, subject to real-world limits like budget, staffing, capacity, or regulatory requirements.",
+      "source": "Marc Peter Deisenroth, A. Aldo Faisal & Cheng Soon Ong, *Mathematics for Machine Learning* (Cambridge University Press, 2020), Ch. 7, \"Continuous Optimization\"",
+      "sourceUrl": "https://mml-book.com"
     },
     "tags": [
       "constrained-optimization"
@@ -967,7 +1071,9 @@
     },
     "correct": "a",
     "theory": {
-      "text": "Directly enforcing a constraint (like driver-hours under 40) inside a gradient-based solver is awkward, because 'under 40' isn't itself a smooth function you can take a derivative of in the usual way. The Lagrange multiplier method sidesteps this by building a new combined function — the Lagrangian — that adds the constraint into the objective function, scaled by a new variable (the multiplier) that the optimization solves for as well. At the resulting solution, the multiplier's value has its own useful interpretation, covered next: it measures how sensitive the optimal fuel cost is to relaxing the driver-hours limit."
+      "text": "Directly enforcing a constraint (like driver-hours under 40) inside a gradient-based solver is awkward, because 'under 40' isn't itself a smooth function you can take a derivative of in the usual way. The Lagrange multiplier method sidesteps this by building a new combined function — the Lagrangian — that adds the constraint into the objective function, scaled by a new variable (the multiplier) that the optimization solves for as well. At the resulting solution, the multiplier's value has its own useful interpretation, covered next: it measures how sensitive the optimal fuel cost is to relaxing the driver-hours limit.",
+      "source": "Marc Peter Deisenroth, A. Aldo Faisal & Cheng Soon Ong, *Mathematics for Machine Learning* (Cambridge University Press, 2020), Ch. 7, \"Continuous Optimization\"",
+      "sourceUrl": "https://mml-book.com"
     },
     "tags": [
       "lagrange-multipliers"
@@ -985,7 +1091,9 @@
     },
     "correct": "c",
     "theory": {
-      "text": "One of the most business-useful facts about Lagrange multipliers is that their value at the optimal solution isn't just a mathematical byproduct — it directly estimates how much the optimal objective value would change if the constraint were loosened by one unit. Economists call this the 'shadow price' of a constraint: here, a multiplier of 340 means relaxing the 40-hour driver limit to 41 hours would be expected to reduce the optimal fuel cost by roughly $340. This turns an abstract optimization output into a concrete, actionable business number: it tells management exactly how much it would be worth paying for one more hour of driver capacity, before they even negotiate that extra hour."
+      "text": "One of the most business-useful facts about Lagrange multipliers is that their value at the optimal solution isn't just a mathematical byproduct — it directly estimates how much the optimal objective value would change if the constraint were loosened by one unit. Economists call this the 'shadow price' of a constraint: here, a multiplier of 340 means relaxing the 40-hour driver limit to 41 hours would be expected to reduce the optimal fuel cost by roughly $340. This turns an abstract optimization output into a concrete, actionable business number: it tells management exactly how much it would be worth paying for one more hour of driver capacity, before they even negotiate that extra hour.",
+      "source": "Marc Peter Deisenroth, A. Aldo Faisal & Cheng Soon Ong, *Mathematics for Machine Learning* (Cambridge University Press, 2020), Ch. 7, \"Continuous Optimization\"",
+      "sourceUrl": "https://mml-book.com"
     },
     "tags": [
       "shadow-price",
@@ -1004,7 +1112,9 @@
     },
     "correct": "d",
     "theory": {
-      "text": "The convexity guarantee discussed earlier for unconstrained problems (math-024) extends to the constrained case when both the objective function and the feasible region defined by the constraints are convex: there's no possibility of a 'good but not best' local optimum hiding elsewhere in the feasible region. This is why convex optimization is such a heavily favored formulation in applied analytics (and an entire specialized branch of mathematics and software tooling exists just for solving convex problems efficiently) — whenever a real business problem can be honestly formulated as convex, the solution a solver returns can be trusted as truly optimal, not merely 'the best one found so far.'"
+      "text": "The convexity guarantee discussed earlier for unconstrained problems (math-024) extends to the constrained case when both the objective function and the feasible region defined by the constraints are convex: there's no possibility of a 'good but not best' local optimum hiding elsewhere in the feasible region. This is why convex optimization is such a heavily favored formulation in applied analytics (and an entire specialized branch of mathematics and software tooling exists just for solving convex problems efficiently) — whenever a real business problem can be honestly formulated as convex, the solution a solver returns can be trusted as truly optimal, not merely 'the best one found so far.'",
+      "source": "Marc Peter Deisenroth, A. Aldo Faisal & Cheng Soon Ong, *Mathematics for Machine Learning* (Cambridge University Press, 2020), Ch. 7, \"Continuous Optimization\"",
+      "sourceUrl": "https://mml-book.com"
     },
     "tags": [
       "convex-optimization"
@@ -1022,7 +1132,9 @@
     },
     "correct": "b",
     "theory": {
-      "text": "An unconstrained regression fit is free to push its coefficients as large as needed to match every quirk in the training data, including noise — this is a core driver of overfitting. Adding a penalty term proportional to the size of the coefficients (L2 regularization) to the cost function acts like a soft version of a constraint that caps how large those coefficients are allowed to grow, similar in spirit to the explicit driver-hours constraint from math-052, except enforced through a penalty in the objective rather than a hard boundary. The result is a deliberate trade-off: the model fits the training data slightly less perfectly, but the restrained coefficients tend to reflect real underlying patterns rather than noise, which usually improves performance on genuinely new listings."
+      "text": "An unconstrained regression fit is free to push its coefficients as large as needed to match every quirk in the training data, including noise — this is a core driver of overfitting. Adding a penalty term proportional to the size of the coefficients (L2 regularization) to the cost function acts like a soft version of a constraint that caps how large those coefficients are allowed to grow, similar in spirit to the explicit driver-hours constraint from math-052, except enforced through a penalty in the objective rather than a hard boundary. The result is a deliberate trade-off: the model fits the training data slightly less perfectly, but the restrained coefficients tend to reflect real underlying patterns rather than noise, which usually improves performance on genuinely new listings.",
+      "source": "Marc Peter Deisenroth, A. Aldo Faisal & Cheng Soon Ong, *Mathematics for Machine Learning* (Cambridge University Press, 2020), Ch. 7, \"Continuous Optimization\"",
+      "sourceUrl": "https://mml-book.com"
     },
     "tags": [
       "regularization",
@@ -1041,7 +1153,9 @@
     },
     "correct": "d",
     "theory": {
-      "text": "Optimization procedures are only ever minimizing error on the specific data they're given, and that training data is never a perfect, noise-free representation of the true underlying relationship — it includes some amount of randomness and idiosyncrasy. A model complex enough to essentially fit every training data point exactly is likely also fitting that sample-specific noise, which won't repeat in the same way in new data — that's overfitting. Model B's slightly worse training fit is often actually preferable in practice, precisely because its performance on new, unseen data (the test set) is what actually matters for real-world decisions; the whole point of regularization, discussed in math-056, is to nudge an optimization procedure away from Model A's failure mode toward something closer to Model B's."
+      "text": "Optimization procedures are only ever minimizing error on the specific data they're given, and that training data is never a perfect, noise-free representation of the true underlying relationship — it includes some amount of randomness and idiosyncrasy. A model complex enough to essentially fit every training data point exactly is likely also fitting that sample-specific noise, which won't repeat in the same way in new data — that's overfitting. Model B's slightly worse training fit is often actually preferable in practice, precisely because its performance on new, unseen data (the test set) is what actually matters for real-world decisions; the whole point of regularization, discussed in math-056, is to nudge an optimization procedure away from Model A's failure mode toward something closer to Model B's.",
+      "source": "Marc Peter Deisenroth, A. Aldo Faisal & Cheng Soon Ong, *Mathematics for Machine Learning* (Cambridge University Press, 2020), Ch. 7, \"Continuous Optimization\"",
+      "sourceUrl": "https://mml-book.com"
     },
     "tags": [
       "overfitting",
@@ -1060,7 +1174,9 @@
     },
     "correct": "b",
     "theory": {
-      "text": "Duality in optimization pairs every constrained problem (the primal, phrased in terms of the original decision variables — here, production quantities) with a related problem phrased in terms of the constraints instead (the dual, whose variables are essentially the Lagrange multipliers from math-053 and math-054). Solving the dual doesn't just double-check the primal's answer — its variables, at the optimal solution, directly give the shadow price of each constraint, exactly the 'how much would one more unit of this scarce resource be worth' information a manager needs to decide whether it's worth negotiating for more of a limited resource. This dual perspective — reasoning about the value of constraints themselves, not just the decision variables — is a distinctively useful lens for business resource-allocation questions."
+      "text": "Duality in optimization pairs every constrained problem (the primal, phrased in terms of the original decision variables — here, production quantities) with a related problem phrased in terms of the constraints instead (the dual, whose variables are essentially the Lagrange multipliers from math-053 and math-054). Solving the dual doesn't just double-check the primal's answer — its variables, at the optimal solution, directly give the shadow price of each constraint, exactly the 'how much would one more unit of this scarce resource be worth' information a manager needs to decide whether it's worth negotiating for more of a limited resource. This dual perspective — reasoning about the value of constraints themselves, not just the decision variables — is a distinctively useful lens for business resource-allocation questions.",
+      "source": "Marc Peter Deisenroth, A. Aldo Faisal & Cheng Soon Ong, *Mathematics for Machine Learning* (Cambridge University Press, 2020), Ch. 7, \"Continuous Optimization\"",
+      "sourceUrl": "https://mml-book.com"
     },
     "tags": [
       "duality",
@@ -1079,7 +1195,9 @@
     },
     "correct": "d",
     "theory": {
-      "text": "Plain gradient descent only knows the current slope, so it has to guess an appropriate step size (the learning rate) somewhat blindly, which is exactly the failure mode explored in math-020 — too large a step overshoots. Newton's method additionally uses the Hessian to understand how the slope itself is curving, which lets it calculate a more precisely-sized step that can land much closer to the minimum in a single move, particularly for well-behaved convex problems. The trade-off is cost: computing and working with a full Hessian matrix is substantially more expensive than just a gradient, especially as the number of parameters grows, which is exactly why plain (or approximate second-order) gradient methods remain the default for very large models despite Newton's method's faster theoretical convergence."
+      "text": "Plain gradient descent only knows the current slope, so it has to guess an appropriate step size (the learning rate) somewhat blindly, which is exactly the failure mode explored in math-020 — too large a step overshoots. Newton's method additionally uses the Hessian to understand how the slope itself is curving, which lets it calculate a more precisely-sized step that can land much closer to the minimum in a single move, particularly for well-behaved convex problems. The trade-off is cost: computing and working with a full Hessian matrix is substantially more expensive than just a gradient, especially as the number of parameters grows, which is exactly why plain (or approximate second-order) gradient methods remain the default for very large models despite Newton's method's faster theoretical convergence.",
+      "source": "Marc Peter Deisenroth, A. Aldo Faisal & Cheng Soon Ong, *Mathematics for Machine Learning* (Cambridge University Press, 2020), Ch. 7, \"Continuous Optimization\"",
+      "sourceUrl": "https://mml-book.com"
     },
     "tags": [
       "newtons-method",
@@ -1098,7 +1216,9 @@
     },
     "correct": "a",
     "theory": {
-      "text": "An equality constraint like 'total spend = $500,000' always holds exactly at any feasible solution, so a Lagrange multiplier for it is always 'in play.' An inequality constraint like 'total spend <= $500,000' is more flexible: the optimal solution might land exactly at the $500,000 limit (the constraint is active/binding), or it might land comfortably below it, in which case the constraint isn't actually restricting anything at the optimum (inactive). The KKT (Karush-Kuhn-Tucker) conditions generalize the Lagrange-multiplier framework to handle this either/or possibility, including a rule that the multiplier on an inactive inequality constraint must be zero — capturing the intuitive idea that a spending limit you didn't come close to hitting shouldn't be treated as having shaped your optimal decision."
+      "text": "An equality constraint like 'total spend = $500,000' always holds exactly at any feasible solution, so a Lagrange multiplier for it is always 'in play.' An inequality constraint like 'total spend <= $500,000' is more flexible: the optimal solution might land exactly at the $500,000 limit (the constraint is active/binding), or it might land comfortably below it, in which case the constraint isn't actually restricting anything at the optimum (inactive). The KKT (Karush-Kuhn-Tucker) conditions generalize the Lagrange-multiplier framework to handle this either/or possibility, including a rule that the multiplier on an inactive inequality constraint must be zero — capturing the intuitive idea that a spending limit you didn't come close to hitting shouldn't be treated as having shaped your optimal decision.",
+      "source": "Marc Peter Deisenroth, A. Aldo Faisal & Cheng Soon Ong, *Mathematics for Machine Learning* (Cambridge University Press, 2020), Ch. 7, \"Continuous Optimization\"",
+      "sourceUrl": "https://mml-book.com"
     },
     "tags": [
       "kkt-conditions"

@@ -27,7 +27,11 @@
       "Using COUNT(*) instead of COUNT(DISTINCT o.order_id) — counts line items, not orders, overstating how many distinct purchases actually happened.",
       "Joining order_items directly to products without going through orders — leaves you with no way to filter by status at all."
     ],
-    "key_concept": "This is the first pattern every analyst needs before they can trust any revenue number: a multi-table JOIN with an aggregate filter. Revenue never lives on one table — it's assembled from a product's catalog data, the line items of what was actually bought, and the order's own fulfillment status — so joining through the intermediate table (orders) is what lets you apply that status filter at all. COUNT(DISTINCT col) vs COUNT(*) is the classic trap here: once you join products to order_items, a single order can appear on multiple rows (one per line item), so a plain COUNT(*) silently counts items, not orders."
+    "key_concept": {
+      "text": "This is the first pattern every analyst needs before they can trust any revenue number: a multi-table JOIN with an aggregate filter. Revenue never lives on one table — it's assembled from a product's catalog data, the line items of what was actually bought, and the order's own fulfillment status — so joining through the intermediate table (orders) is what lets you apply that status filter at all. COUNT(DISTINCT col) vs COUNT(*) is the classic trap here: once you join products to order_items, a single order can appear on multiple rows (one per line item), so a plain COUNT(*) silently counts items, not orders.",
+      "source": "SQLite official documentation — SELECT statement (joins, aggregation, GROUP BY)",
+      "sourceUrl": "https://sqlite.org/lang_select.html"
+    }
   },
   {
     "id": "E-002",
@@ -55,7 +59,11 @@
       "Using WHERE o.customer_id IS NULL instead of WHERE o.order_id IS NULL — works here but is fragile if customer_id ever becomes nullable on the orders side.",
       "Using NOT IN (SELECT customer_id FROM orders) — dangerous if orders.customer_id can contain NULLs, since NOT IN against a list containing NULL returns no rows at all; NOT EXISTS is the safer equivalent."
     ],
-    "key_concept": "LEFT JOIN followed by IS NULL on the right-hand table's key is the standard anti-join pattern: it finds every row in table A that has no corresponding match in table B. This shows up constantly in retail and supply-chain analytics — customers with no orders, warehouses with no recent shipments, SKUs with no recorded sales — anywhere the business question is really 'find what's missing,' not 'find what's there.'"
+    "key_concept": {
+      "text": "LEFT JOIN followed by IS NULL on the right-hand table's key is the standard anti-join pattern: it finds every row in table A that has no corresponding match in table B. This shows up constantly in retail and supply-chain analytics — customers with no orders, warehouses with no recent shipments, SKUs with no recorded sales — anywhere the business question is really 'find what's missing,' not 'find what's there.'",
+      "source": "SQLite official documentation — SELECT statement (joins, aggregation, GROUP BY)",
+      "sourceUrl": "https://sqlite.org/lang_select.html"
+    }
   },
   {
     "id": "E-003",
@@ -87,7 +95,11 @@
       "Grouping only by product_name without product_id — two unrelated products sharing a name would get silently merged into one row.",
       "Using price from the products table instead of unit_price from order_items — ignores the fact that prices change over time, so historical revenue should reflect what was actually charged at the moment of sale."
     ],
-    "key_concept": "ORDER BY must come before LIMIT conceptually — the database sorts the full result set first, then truncates it, never the other way around. The unit_price-vs-catalog-price distinction here is worth internalizing broadly: any transactional table storing its own copy of a price, quantity, or rate at the moment of the transaction is preserving history on purpose, and joining back to a 'current' catalog value instead would quietly rewrite that history every time the catalog changes."
+    "key_concept": {
+      "text": "ORDER BY must come before LIMIT conceptually — the database sorts the full result set first, then truncates it, never the other way around. The unit_price-vs-catalog-price distinction here is worth internalizing broadly: any transactional table storing its own copy of a price, quantity, or rate at the moment of the transaction is preserving history on purpose, and joining back to a 'current' catalog value instead would quietly rewrite that history every time the catalog changes.",
+      "source": "SQLite official documentation — SELECT statement (joins, aggregation, GROUP BY)",
+      "sourceUrl": "https://sqlite.org/lang_select.html"
+    }
   },
   {
     "id": "E-004",
@@ -115,7 +127,11 @@
       "COUNT(*) instead of COUNT(DISTINCT order_id) — usually identical here, but stops being safe the moment the data has any duplicate rows.",
       "Forgetting that date-truncation syntax is dialect-specific: MySQL uses DATE_FORMAT(order_date, '%Y-%m'), PostgreSQL uses TO_CHAR, SQLite/this trainer uses strftime('%Y-%m', ...)."
     ],
-    "key_concept": "Truncating a date down to just its year and month is the starting point for essentially all time-series business reporting — monthly revenue trends, monthly staffing plans, monthly demand forecasts. The exact function differs by SQL dialect, but the underlying idea is always the same: collapse a precise timestamp down to the coarser grain the business question actually needs, then GROUP BY that coarser value."
+    "key_concept": {
+      "text": "Truncating a date down to just its year and month is the starting point for essentially all time-series business reporting — monthly revenue trends, monthly staffing plans, monthly demand forecasts. The exact function differs by SQL dialect, but the underlying idea is always the same: collapse a precise timestamp down to the coarser grain the business question actually needs, then GROUP BY that coarser value.",
+      "source": "SQLite official documentation — Date and time functions",
+      "sourceUrl": "https://sqlite.org/lang_datefunc.html"
+    }
   },
   {
     "id": "E-005",
@@ -142,7 +158,11 @@
       "SUM(...) / COUNT(DISTINCT order_id) written as one flat query — can be made to work but is error-prone to get right; a derived table that pre-computes per-order totals first is cleaner and harder to get wrong.",
       "Forgetting to filter for completed orders before averaging."
     ],
-    "key_concept": "AOV is an 'aggregate of an aggregate': first sum each order's line items into one order total, then average those order totals. That first step can't be skipped or folded into the outer query directly — you need a derived table (or a CTE, covered later in this course) to compute the per-order subtotal before the outer AVG() can operate on the right thing. Any KPI phrased as 'average X per Y' is usually hiding this same two-step structure."
+    "key_concept": {
+      "text": "AOV is an 'aggregate of an aggregate': first sum each order's line items into one order total, then average those order totals. That first step can't be skipped or folded into the outer query directly — you need a derived table (or a CTE, covered later in this course) to compute the per-order subtotal before the outer AVG() can operate on the right thing. Any KPI phrased as 'average X per Y' is usually hiding this same two-step structure.",
+      "source": "SQLite official documentation — Expressions (CASE, subqueries, NULL handling)",
+      "sourceUrl": "https://sqlite.org/lang_expr.html"
+    }
   },
   {
     "id": "M-001",
@@ -173,7 +193,11 @@
       "Not using COALESCE — customers with no orders would show NULL total_sales instead of the 0.00 the report actually needs.",
       "Forgetting the second LEFT JOIN to order_items, which is where the actual dollar amounts live."
     ],
-    "key_concept": "This is one of the most consequential rules in SQL, and it trips up even experienced analysts: when a filter condition belongs to the OUTER-joined table, it must go in the ON clause, not the WHERE clause. ON o.status = 'completed' filters which order rows are allowed to match before the join happens, preserving unmatched customers with NULLs; WHERE o.status = 'completed' filters the combined result afterward, which throws out exactly the NULL rows that made the LEFT JOIN worth using in the first place."
+    "key_concept": {
+      "text": "This is one of the most consequential rules in SQL, and it trips up even experienced analysts: when a filter condition belongs to the OUTER-joined table, it must go in the ON clause, not the WHERE clause. ON o.status = 'completed' filters which order rows are allowed to match before the join happens, preserving unmatched customers with NULLs; WHERE o.status = 'completed' filters the combined result afterward, which throws out exactly the NULL rows that made the LEFT JOIN worth using in the first place.",
+      "source": "SQLite official documentation — SELECT statement (joins, aggregation, GROUP BY)",
+      "sourceUrl": "https://sqlite.org/lang_select.html"
+    }
   },
   {
     "id": "M-002",
@@ -201,7 +225,11 @@
       "Using plain COUNT instead of SUM(CASE WHEN ...) for a conditional count.",
       "Dividing by the count of all customers (including those who never bought anything) instead of dividing by the count of actual buyers, which would understate the true repeat rate."
     ],
-    "key_concept": "SUM(CASE WHEN condition THEN 1 ELSE 0 END) is the standard way to get a conditional count in SQL — it turns a business classification rule into arithmetic the aggregate function can sum. Whenever a business question needs 'group customers by how many times they did X, then summarize those groups,' that's a signal you need two levels of aggregation: an inner query to compute the per-entity count, and an outer query to classify and summarize based on it."
+    "key_concept": {
+      "text": "SUM(CASE WHEN condition THEN 1 ELSE 0 END) is the standard way to get a conditional count in SQL — it turns a business classification rule into arithmetic the aggregate function can sum. Whenever a business question needs 'group customers by how many times they did X, then summarize those groups,' that's a signal you need two levels of aggregation: an inner query to compute the per-entity count, and an outer query to classify and summarize based on it.",
+      "source": "SQLite official documentation — Expressions (CASE, subqueries, NULL handling)",
+      "sourceUrl": "https://sqlite.org/lang_expr.html"
+    }
   },
   {
     "id": "M-003",
@@ -231,7 +259,11 @@
       "Dividing by zero when prev_month_revenue is NULL for the very first month — worth wrapping with NULLIF in a production query.",
       "Trying to compute LAG() directly inside the same aggregation query as the SUM() — window functions need the aggregation already done, which is exactly why the CTE splits this into two clean steps."
     ],
-    "key_concept": "LAG(col) OVER (ORDER BY ...) reaches back and grabs the value from the previous row in whatever order you specify — here, the previous month's revenue. Month-over-month growth is just (current − previous) / previous × 100 once you have that previous value sitting right next to the current one. This LAG-after-aggregation pattern, built on a CTE, is the standard shape for essentially any 'compare this period to the last one' report."
+    "key_concept": {
+      "text": "LAG(col) OVER (ORDER BY ...) reaches back and grabs the value from the previous row in whatever order you specify — here, the previous month's revenue. Month-over-month growth is just (current − previous) / previous × 100 once you have that previous value sitting right next to the current one. This LAG-after-aggregation pattern, built on a CTE, is the standard shape for essentially any 'compare this period to the last one' report.",
+      "source": "SQLite official documentation — Window functions",
+      "sourceUrl": "https://sqlite.org/windowfunctions.html"
+    }
   },
   {
     "id": "M-004",
@@ -261,7 +293,11 @@
       "Not joining back to orders to filter by status — lets cancelled-order line items pollute the affinity counts.",
       "Grouping by product names instead of product IDs — breaks the moment two unrelated products happen to share a name."
     ],
-    "key_concept": "Self-joining a table to itself on a shared key (here, order_id) with an inequality on a second column (product_id < product_id) is the standard 'find every pair within a group' pattern — this exact structure is what powers real market-basket analysis and recommendation widgets. The strict less-than, rather than not-equal, is what guarantees each pair is counted exactly once and a product is never paired with itself."
+    "key_concept": {
+      "text": "Self-joining a table to itself on a shared key (here, order_id) with an inequality on a second column (product_id < product_id) is the standard 'find every pair within a group' pattern — this exact structure is what powers real market-basket analysis and recommendation widgets. The strict less-than, rather than not-equal, is what guarantees each pair is counted exactly once and a product is never paired with itself.",
+      "source": "SQLite official documentation — SELECT statement (joins, aggregation, GROUP BY)",
+      "sourceUrl": "https://sqlite.org/lang_select.html"
+    }
   },
   {
     "id": "M-005",
@@ -292,7 +328,11 @@
       "Not filtering at all — returns every historical salary row per employee instead of just the currently active one.",
       "Using MAX(from_date) to guess the current row — works on clean data but is fragile; to_date IS NULL is the explicit, unambiguous contract this schema was designed around."
     ],
-    "key_concept": "This is a Slowly Changing Dimension (SCD Type 2) pattern in miniature — a concept this training platform's Data Architecture course covers at the modeling level, and here you're querying it directly. A NULL end date is the schema's way of marking 'this record is still in effect,' which is exactly why NULL-safe comparisons matter: a careless = NULL doesn't error, it just silently returns nothing, which is a much more dangerous failure mode than a query that crashes."
+    "key_concept": {
+      "text": "This is a Slowly Changing Dimension (SCD Type 2) pattern in miniature — a concept this training platform's Data Architecture course covers at the modeling level, and here you're querying it directly. A NULL end date is the schema's way of marking 'this record is still in effect,' which is exactly why NULL-safe comparisons matter: a careless = NULL doesn't error, it just silently returns nothing, which is a much more dangerous failure mode than a query that crashes.",
+      "source": "SQLite official documentation — Expressions (CASE, subqueries, NULL handling)",
+      "sourceUrl": "https://sqlite.org/lang_expr.html"
+    }
   },
   {
     "id": "M-006",
@@ -325,7 +365,11 @@
       "Trying to reference a computed alias (salary_spread) from elsewhere in the same SELECT — most databases don't allow that; you repeat the underlying expression instead.",
       "Forgetting WHERE s.to_date IS NULL — silently computes statistics over the entire historical record instead of the current workforce."
     ],
-    "key_concept": "Computing several aggregates side by side in one GROUP BY (count, average, min, max, and a derived spread) is a core reporting pattern — a single query that would otherwise take several separate ones. The 'can't reference this SELECT's own alias' rule is a common early surprise: SQL conceptually evaluates the SELECT list's expressions independently, so MAX(s.amount) - MIN(s.amount) has to be spelled out again rather than referencing max_salary and min_salary by name."
+    "key_concept": {
+      "text": "Computing several aggregates side by side in one GROUP BY (count, average, min, max, and a derived spread) is a core reporting pattern — a single query that would otherwise take several separate ones. The 'can't reference this SELECT's own alias' rule is a common early surprise: SQL conceptually evaluates the SELECT list's expressions independently, so MAX(s.amount) - MIN(s.amount) has to be spelled out again rather than referencing max_salary and min_salary by name.",
+      "source": "SQLite official documentation — Aggregate functions",
+      "sourceUrl": "https://sqlite.org/lang_aggfunc.html"
+    }
   },
   {
     "id": "M-007",
@@ -356,7 +400,11 @@
       "Writing HAVING COUNT(*) >= 2 in dialects that require repeating the underlying expression rather than reusing a SELECT alias directly in HAVING.",
       "Integer division: in many SQL engines 1/3 evaluates to 0 because both operands are integers — always force floating-point with 100.0 * ... or an explicit CAST."
     ],
-    "key_concept": "HAVING filters entire groups after aggregation has already happened; WHERE filters individual rows before aggregation even starts — mixing these up (like filtering to only cancelled rows with WHERE) destroys information the aggregation still needs. Conditional aggregation with CASE, rather than running two separate queries and stitching them together, is the more flexible general pattern any time a report needs both a total and a specific subset of that total side by side."
+    "key_concept": {
+      "text": "HAVING filters entire groups after aggregation has already happened; WHERE filters individual rows before aggregation even starts — mixing these up (like filtering to only cancelled rows with WHERE) destroys information the aggregation still needs. Conditional aggregation with CASE, rather than running two separate queries and stitching them together, is the more flexible general pattern any time a report needs both a total and a specific subset of that total side by side.",
+      "source": "SQLite official documentation — Expressions (CASE, subqueries, NULL handling)",
+      "sourceUrl": "https://sqlite.org/lang_expr.html"
+    }
   },
   {
     "id": "M-008",
@@ -385,7 +433,11 @@
       "Writing SUM(oi.quantity * oi.unit_price) OVER (...) without the inner GROUP BY's SUM first — skips the per-day aggregation step the running total actually needs to build on.",
       "Leaving out ORDER BY inside the OVER(...) clause — without it, the window has no defined sequence to accumulate over, and you get the grand total repeated on every row instead of a true running total."
     ],
-    "key_concept": "SUM(SUM(col)) OVER (ORDER BY date) looks redundant but does two genuinely different jobs: the inner SUM aggregates each day's line items down to one daily total, and the outer SUM, as a window function ordered by date, accumulates those daily totals into a running total. This nested-aggregation-plus-window pattern is the standard way to build any cumulative metric — running revenue, running units shipped, running headcount — on top of data that starts out at a finer grain."
+    "key_concept": {
+      "text": "SUM(SUM(col)) OVER (ORDER BY date) looks redundant but does two genuinely different jobs: the inner SUM aggregates each day's line items down to one daily total, and the outer SUM, as a window function ordered by date, accumulates those daily totals into a running total. This nested-aggregation-plus-window pattern is the standard way to build any cumulative metric — running revenue, running units shipped, running headcount — on top of data that starts out at a finer grain.",
+      "source": "SQLite official documentation — Window functions",
+      "sourceUrl": "https://sqlite.org/windowfunctions.html"
+    }
   },
   {
     "id": "M-009",
@@ -415,7 +467,11 @@
       "Forgetting to join back using the first_order_date to restrict which order's items get summed — without it, you'd sum every order the customer ever placed, not just the first one.",
       "Reaching for ROW_NUMBER() instead of MIN() inside the CTE — a perfectly valid alternative, but more machinery than this particular question needs."
     ],
-    "key_concept": "This is a two-step pattern worth recognizing on sight: first, a CTE narrows down to the specific date or id you actually care about (here, MIN(order_date) per customer); second, you join back to the full table using that value to pull the rest of that row's details. Any time a business question is phrased as 'find the first/last/best X, then tell me more about it,' this find-then-join-back shape is usually the cleanest way to answer it."
+    "key_concept": {
+      "text": "This is a two-step pattern worth recognizing on sight: first, a CTE narrows down to the specific date or id you actually care about (here, MIN(order_date) per customer); second, you join back to the full table using that value to pull the rest of that row's details. Any time a business question is phrased as 'find the first/last/best X, then tell me more about it,' this find-then-join-back shape is usually the cleanest way to answer it.",
+      "source": "SQLite official documentation — WITH clause (Common Table Expressions)",
+      "sourceUrl": "https://sqlite.org/lang_with.html"
+    }
   },
   {
     "id": "M-010",
@@ -445,7 +501,11 @@
       "Joining to a separately-grouped subquery instead of using a correlated subquery — also valid, but generally less readable for a 'compare to your own group's average' question.",
       "Forgetting to filter for currently-active salaries (to_date IS NULL) in both the outer query and the correlated subquery — a stale historical salary sneaking into either side skews the comparison."
     ],
-    "key_concept": "A correlated subquery is one whose inner query explicitly references a column from the outer query's current row (here, e.department) — conceptually, it re-runs once per outer row, each time scoped to that row's own department. This is a very natural way to express 'compare this record to some summary of its own group,' and it can always be rewritten using a window function instead — AVG(s.amount) OVER (PARTITION BY e.department) — which this training platform's DAX course covers from a different angle as filter-context-scoped aggregation."
+    "key_concept": {
+      "text": "A correlated subquery is one whose inner query explicitly references a column from the outer query's current row (here, e.department) — conceptually, it re-runs once per outer row, each time scoped to that row's own department. This is a very natural way to express 'compare this record to some summary of its own group,' and it can always be rewritten using a window function instead — AVG(s.amount) OVER (PARTITION BY e.department) — which this training platform's DAX course covers from a different angle as filter-context-scoped aggregation.",
+      "source": "SQLite official documentation — Expressions (CASE, subqueries, NULL handling)",
+      "sourceUrl": "https://sqlite.org/lang_expr.html"
+    }
   },
   {
     "id": "H-001",
@@ -474,7 +534,11 @@
       "Using INNER JOIN instead of LEFT JOIN for the final aggregation — this would drop any cohort with 0% retention entirely instead of correctly showing it with a zero.",
       "Not anchoring strictly to the calendar month immediately after — counting any later return order as 'retention' answers a looser, different question than Month-1 retention specifically."
     ],
-    "key_concept": "Cohort analysis is one of the most common real-world analytics builds, and this three-step CTE shape generalizes far beyond retention: (1) a CTE defining the cohort itself, (2) a second CTE defining the 'success event' you're measuring, (3) a LEFT JOIN plus aggregation to compute the rate while still preserving cohorts with zero successes. Month-arithmetic syntax is dialect-specific — this trainer uses SQLite's date(col, '+1 month'); MySQL uses DATE_ADD(col, INTERVAL 1 MONTH)."
+    "key_concept": {
+      "text": "Cohort analysis is one of the most common real-world analytics builds, and this three-step CTE shape generalizes far beyond retention: (1) a CTE defining the cohort itself, (2) a second CTE defining the 'success event' you're measuring, (3) a LEFT JOIN plus aggregation to compute the rate while still preserving cohorts with zero successes. Month-arithmetic syntax is dialect-specific — this trainer uses SQLite's date(col, '+1 month'); MySQL uses DATE_ADD(col, INTERVAL 1 MONTH).",
+      "source": "SQLite official documentation — WITH clause (Common Table Expressions)",
+      "sourceUrl": "https://sqlite.org/lang_with.html"
+    }
   },
   {
     "id": "H-002",
@@ -504,7 +568,11 @@
       "Using RANK() instead of ROW_NUMBER() — if two products tie for first in a category, RANK() would give both rank 1, returning two rows for that one category instead of the single row the report needs.",
       "Trying to filter rn = 1 in the same SELECT that computes ROW_NUMBER() — window function results can't be filtered at the same query level they're computed at; they need to be wrapped in an outer query or CTE first."
     ],
-    "key_concept": "'Top N per group' is one of the single most common real-world query patterns, and the standard solution is always the same two-step shape: rank rows within each group using ROW_NUMBER() OVER (PARTITION BY group ORDER BY metric DESC), then filter to WHERE rn = 1 (or rn <= N) in an outer query. PARTITION BY is the key piece — it resets the ranking counter separately for each category, the same way GROUP BY resets an aggregate calculation for each group."
+    "key_concept": {
+      "text": "'Top N per group' is one of the single most common real-world query patterns, and the standard solution is always the same two-step shape: rank rows within each group using ROW_NUMBER() OVER (PARTITION BY group ORDER BY metric DESC), then filter to WHERE rn = 1 (or rn <= N) in an outer query. PARTITION BY is the key piece — it resets the ranking counter separately for each category, the same way GROUP BY resets an aggregate calculation for each group.",
+      "source": "SQLite official documentation — Window functions",
+      "sourceUrl": "https://sqlite.org/windowfunctions.html"
+    }
   },
   {
     "id": "H-003",
@@ -537,7 +605,11 @@
       "Forgetting PARTITION BY customer_id in the LAG() call — without it, LAG picks up the previous row across the entire table regardless of which customer it belongs to, mixing customers' order sequences together.",
       "Reaching for a DATEDIFF function that doesn't exist in this dialect — SQLite has no DATEDIFF; julianday(d1) - julianday(d2) is the equivalent, while MySQL does have DATEDIFF(d1, d2) natively."
     ],
-    "key_concept": "LAG(col) OVER (PARTITION BY customer_id ORDER BY order_date) is what makes this question answerable at all: PARTITION BY keeps each customer's order history in its own separate sequence, so the 'previous row' LAG returns is always that same customer's actual previous order, never someone else's. This is the general recipe for any 'time since the last event, per entity' metric — replenishment cadence, days since last login, days since last support ticket."
+    "key_concept": {
+      "text": "LAG(col) OVER (PARTITION BY customer_id ORDER BY order_date) is what makes this question answerable at all: PARTITION BY keeps each customer's order history in its own separate sequence, so the 'previous row' LAG returns is always that same customer's actual previous order, never someone else's. This is the general recipe for any 'time since the last event, per entity' metric — replenishment cadence, days since last login, days since last support ticket.",
+      "source": "SQLite official documentation — Window functions",
+      "sourceUrl": "https://sqlite.org/windowfunctions.html"
+    }
   },
   {
     "id": "H-004",
@@ -569,7 +641,11 @@
       "Not handling a NULL to_date on the most recent salary row — COALESCE to a far-future sentinel date like '9999-12-31' so it sorts and compares correctly.",
       "Forgetting to exclude the employee's current (most recent) salary row from the output — since it has no 'next' salary yet, it needs to be filtered out rather than shown with a meaningless next_salary."
     ],
-    "key_concept": "Self-joining a temporal history table to itself, with each alias representing a different point in the timeline (here, 'this salary' and 'the one that came right after it'), is the standard way to reconstruct a sequence of changes from a table that only stores each period as its own row. Combined with the SCD Type 2 pattern from M-005, this is exactly how you'd build a raise-history audit trail from any properly-modeled slowly changing dimension."
+    "key_concept": {
+      "text": "Self-joining a temporal history table to itself, with each alias representing a different point in the timeline (here, 'this salary' and 'the one that came right after it'), is the standard way to reconstruct a sequence of changes from a table that only stores each period as its own row. Combined with the SCD Type 2 pattern from M-005, this is exactly how you'd build a raise-history audit trail from any properly-modeled slowly changing dimension.",
+      "source": "SQLite official documentation — SELECT statement (joins, aggregation, GROUP BY)",
+      "sourceUrl": "https://sqlite.org/lang_select.html"
+    }
   },
   {
     "id": "H-005",
@@ -600,7 +676,11 @@
       "Using ROW_NUMBER() DESC without then filtering WHERE rn = 1 — returns every historical row instead of isolating just each customer's latest order.",
       "Not excluding customers with only a single order — WHERE prev_date IS NOT NULL is what filters out customers you don't yet have a baseline cadence for."
     ],
-    "key_concept": "This question chains several patterns from earlier in this problem set into one multi-step business rule: each CTE handles exactly one piece of the logic (find the latest order and its predecessor, then apply the business threshold), which is far easier to write and debug than trying to express the whole rule in a single flat query. Combining ROW_NUMBER() (to isolate 'the latest row per customer') with LAG() (to grab 'the value from the row before it') in the same windowed query is a genuinely powerful combination that shows up throughout real churn-detection and anomaly-flagging pipelines."
+    "key_concept": {
+      "text": "This question chains several patterns from earlier in this problem set into one multi-step business rule: each CTE handles exactly one piece of the logic (find the latest order and its predecessor, then apply the business threshold), which is far easier to write and debug than trying to express the whole rule in a single flat query. Combining ROW_NUMBER() (to isolate 'the latest row per customer') with LAG() (to grab 'the value from the row before it') in the same windowed query is a genuinely powerful combination that shows up throughout real churn-detection and anomaly-flagging pipelines.",
+      "source": "SQLite official documentation — Window functions",
+      "sourceUrl": "https://sqlite.org/windowfunctions.html"
+    }
   },
   {
     "id": "H-006",
@@ -633,7 +713,11 @@
       "Forgetting PARTITION BY department on any of the three window functions — without it, ranks and averages would be computed globally across the whole company instead of within each department.",
       "Reaching for GROUP BY instead of window functions — GROUP BY would collapse each department down to one summary row, losing exactly the individual-employee detail this report needs to keep."
     ],
-    "key_concept": "RANK, DENSE_RANK, and ROW_NUMBER differ only in how they handle ties: RANK leaves gaps after a tie (1,2,2,4), DENSE_RANK doesn't (1,2,2,3), and ROW_NUMBER never allows ties at all (1,2,3,4), even among equal values. Stacking multiple window functions that share the same PARTITION BY in one SELECT — a rank, an average, and a difference — is a clean, efficient way to enrich every individual row with group-level context, without the self-join or extra subquery that would otherwise be needed."
+    "key_concept": {
+      "text": "RANK, DENSE_RANK, and ROW_NUMBER differ only in how they handle ties: RANK leaves gaps after a tie (1,2,2,4), DENSE_RANK doesn't (1,2,2,3), and ROW_NUMBER never allows ties at all (1,2,3,4), even among equal values. Stacking multiple window functions that share the same PARTITION BY in one SELECT — a rank, an average, and a difference — is a clean, efficient way to enrich every individual row with group-level context, without the self-join or extra subquery that would otherwise be needed.",
+      "source": "SQLite official documentation — Window functions",
+      "sourceUrl": "https://sqlite.org/windowfunctions.html"
+    }
   },
   {
     "id": "X-001",
@@ -665,7 +749,11 @@
       "Using COUNT instead of SUM when the report needs revenue amounts, not row counts.",
       "Leaving off ELSE 0 in the CASE expression — an implicit ELSE NULL still technically works inside SUM (NULLs are skipped), but it's easy to reason about incorrectly, so an explicit ELSE 0 is clearer and safer."
     ],
-    "key_concept": "SUM(CASE WHEN category = 'X' THEN value ELSE 0 END), repeated once per column you want to spread out, is the universal pivot pattern in SQL dialects (like MySQL and SQLite) that have no native PIVOT operator. This is exactly the same underlying idea as a pivot table in a spreadsheet or a matrix visual in a BI tool — reshaping rows of category-tagged data into one column per category — just expressed directly in SQL instead of a point-and-click interface. A pivot with categories not known in advance would require dynamically generating this SQL, since the column list itself has to be fixed at query-write time."
+    "key_concept": {
+      "text": "SUM(CASE WHEN category = 'X' THEN value ELSE 0 END), repeated once per column you want to spread out, is the universal pivot pattern in SQL dialects (like MySQL and SQLite) that have no native PIVOT operator. This is exactly the same underlying idea as a pivot table in a spreadsheet or a matrix visual in a BI tool — reshaping rows of category-tagged data into one column per category — just expressed directly in SQL instead of a point-and-click interface. A pivot with categories not known in advance would require dynamically generating this SQL, since the column list itself has to be fixed at query-write time.",
+      "source": "SQLite official documentation — Expressions (CASE, subqueries, NULL handling)",
+      "sourceUrl": "https://sqlite.org/lang_expr.html"
+    }
   },
   {
     "id": "X-002",
@@ -701,7 +789,11 @@
       "Missing what an empty SUM() OVER () actually does — with no PARTITION BY and no ORDER BY, it computes one grand total across all rows in the result and repeats it on every row, which is exactly the denominator a percent-of-total calculation needs.",
       "Using NTILE(4) with ORDER BY ascending — that would put the lowest-value customers in quartile 1; ORDER BY lifetime_value DESC is what makes quartile 1 mean 'top 25%.'"
     ],
-    "key_concept": "This CLV query stacks two techniques covered separately elsewhere in this problem set: a CTE to pre-aggregate each customer down to their lifetime totals, then multiple window functions in the outer query to add group-relative context (percent of total, quartile bucket) without collapsing any individual customer row. A bare SUM() OVER() — no PARTITION BY, no ORDER BY — is worth remembering as its own idiom: it's how you get a single grand-total value repeated on every row, which is exactly what a percent-of-total calculation needs as its denominator."
+    "key_concept": {
+      "text": "This CLV query stacks two techniques covered separately elsewhere in this problem set: a CTE to pre-aggregate each customer down to their lifetime totals, then multiple window functions in the outer query to add group-relative context (percent of total, quartile bucket) without collapsing any individual customer row. A bare SUM() OVER() — no PARTITION BY, no ORDER BY — is worth remembering as its own idiom: it's how you get a single grand-total value repeated on every row, which is exactly what a percent-of-total calculation needs as its denominator.",
+      "source": "SQLite official documentation — Window functions",
+      "sourceUrl": "https://sqlite.org/windowfunctions.html"
+    }
   },
   {
     "id": "X-003",
@@ -730,7 +822,11 @@
       "Using UNION instead of UNION ALL — plain UNION deduplicates rows, which can incorrectly collapse two different employees who happen to have identical name/department/level combinations.",
       "Skipping cycle protection — this dataset is a clean tree with no loops, but a production version of this query over real, occasionally-messy org data should add a depth limit or explicit cycle check to avoid an infinite recursive loop."
     ],
-    "key_concept": "A recursive CTE has three parts: an anchor member (the base-case rows to start from), a UNION ALL, and a recursive member that joins the CTE back to itself, growing the result one level at a time until no more matches are found. This is the standard way to query any hierarchy — org charts, product category trees, bill-of-materials structures in manufacturing — where the number of levels isn't fixed in advance and a fixed number of JOINs can't cover every possible depth."
+    "key_concept": {
+      "text": "A recursive CTE has three parts: an anchor member (the base-case rows to start from), a UNION ALL, and a recursive member that joins the CTE back to itself, growing the result one level at a time until no more matches are found. This is the standard way to query any hierarchy — org charts, product category trees, bill-of-materials structures in manufacturing — where the number of levels isn't fixed in advance and a fixed number of JOINs can't cover every possible depth.",
+      "source": "SQLite official documentation — WITH clause (Common Table Expressions)",
+      "sourceUrl": "https://sqlite.org/lang_with.html"
+    }
   },
   {
     "id": "X-004",
@@ -761,7 +857,11 @@
       "Dividing by the count of distinct products instead of the count of completed orders — answers a completely different, meaningless question.",
       "Forgetting to filter by order status before counting — lets line items from cancelled orders inflate the co-purchase figures."
     ],
-    "key_concept": "This extends the self-join pairing pattern from M-004 with a scalar subquery in the SELECT list to compute a percentage-of-total denominator — the same 'grand total repeated for every row' idea seen with the empty SUM() OVER() window function in X-002, just expressed here as a subquery instead. product_id_1 < product_id_2 in the join condition remains the key trick that prevents both double-counted pairs and a product being paired with itself, and this exact structure is the starting point for real association-rule mining and collaborative-filtering recommendation systems."
+    "key_concept": {
+      "text": "This extends the self-join pairing pattern from M-004 with a scalar subquery in the SELECT list to compute a percentage-of-total denominator — the same 'grand total repeated for every row' idea seen with the empty SUM() OVER() window function in X-002, just expressed here as a subquery instead. product_id_1 < product_id_2 in the join condition remains the key trick that prevents both double-counted pairs and a product being paired with itself, and this exact structure is the starting point for real association-rule mining and collaborative-filtering recommendation systems.",
+      "source": "SQLite official documentation — SELECT statement (joins, aggregation, GROUP BY)",
+      "sourceUrl": "https://sqlite.org/lang_select.html"
+    }
   },
   {
     "id": "X-005",
@@ -793,6 +893,10 @@
       "Forgetting that PERCENT_RANK returns a fraction from 0 to 1, not a percentage — it needs to be multiplied by 100 to match what the report is asking for.",
       "Treating PERCENT_RANK and CUME_DIST as interchangeable — PERCENT_RANK is (rank − 1) / (n − 1) while CUME_DIST is rank / n, and the two diverge noticeably whenever there are ties in the data."
     ],
-    "key_concept": "NTILE(n) divides an ordered result set into n equal-sized buckets — useful for quartiles, deciles, or any 'split into even groups' need. PERCENT_RANK answers 'what fraction of rows have a strictly lower value than me,' while CUME_DIST answers 'what fraction of rows have a value less than or equal to mine' — the two are easy to conflate but genuinely different once ties enter the picture. These percentile functions are standard tools in compensation benchmarking, and the same functions apply directly to any 'where does this value sit within its distribution' business question, like ranking a store's performance against its peers."
+    "key_concept": {
+      "text": "NTILE(n) divides an ordered result set into n equal-sized buckets — useful for quartiles, deciles, or any 'split into even groups' need. PERCENT_RANK answers 'what fraction of rows have a strictly lower value than me,' while CUME_DIST answers 'what fraction of rows have a value less than or equal to mine' — the two are easy to conflate but genuinely different once ties enter the picture. These percentile functions are standard tools in compensation benchmarking, and the same functions apply directly to any 'where does this value sit within its distribution' business question, like ranking a store's performance against its peers.",
+      "source": "SQLite official documentation — Window functions",
+      "sourceUrl": "https://sqlite.org/windowfunctions.html"
+    }
   }
 ]

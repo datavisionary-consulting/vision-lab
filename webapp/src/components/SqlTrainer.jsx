@@ -11,7 +11,7 @@ const DIFF_COLORS = { Easy: '#2d7d6f', Medium: '#e67e22', Hard: '#b85c38', Exper
 const DIFF_BG = { Easy: '#2d7d6f22', Medium: '#e67e2222', Hard: '#b85c3822', Expert: '#c0392b22' };
 
 function researchTextForProblem(p) {
-  return `Problem: ${p.title}\n\n${p.problem}\n\nKey concept: ${p.key_concept}\n\nSolution:\n${p.solution}`;
+  return `Problem: ${p.title}\n\n${p.problem}\n\nKey concept: ${p.key_concept.text}\n\nSolution:\n${p.solution}`;
 }
 
 export default function SqlTrainer({ course, onBack }) {
@@ -264,7 +264,14 @@ export default function SqlTrainer({ course, onBack }) {
       {showConcept && (
         <div className="concept-box">
           <h3>📖 Key Concept</h3>
-          <div className="concept-text">{p.key_concept}</div>
+          <div className="concept-text">{p.key_concept.text}</div>
+          {p.key_concept.source && (
+            <p className="side-panel-source">
+              Source: {p.key_concept.sourceUrl ? (
+                <a href={p.key_concept.sourceUrl} target="_blank" rel="noopener">{p.key_concept.source}</a>
+              ) : p.key_concept.source}
+            </p>
+          )}
         </div>
       )}
       {showConcept && (
