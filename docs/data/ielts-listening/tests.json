@@ -213,7 +213,11 @@
             ],
             "explanation": "The receptionist says the confirmation email will include the membership card details."
           }
-        ]
+        ],
+        "speakerGenders": {
+          "Receptionist": "female",
+          "Caller": "male"
+        }
       },
       {
         "id": "b2-l-s2",
@@ -396,7 +400,10 @@
             ],
             "explanation": "The coordinator says long-serving volunteers receive a small certificate."
           }
-        ]
+        ],
+        "speakerGenders": {
+          "Coordinator": "female"
+        }
       },
       {
         "id": "b2-l-s3",
@@ -610,7 +617,11 @@
             ],
             "explanation": "Tom reminds Sara they need at least five academic sources for the reference list."
           }
-        ]
+        ],
+        "speakerGenders": {
+          "Sara": "female",
+          "Tom": "male"
+        }
       },
       {
         "id": "b2-l-s4",
@@ -798,7 +809,10 @@
             ],
             "explanation": "The lecturer says the next session will look at legal and insurance considerations."
           }
-        ]
+        ],
+        "speakerGenders": {
+          "Lecturer": "male"
+        }
       }
     ]
   },
@@ -1026,7 +1040,11 @@
             ],
             "explanation": "The customer says the fifteenth of next month, ideally a weekday."
           }
-        ]
+        ],
+        "speakerGenders": {
+          "Agent": "male",
+          "Customer": "female"
+        }
       },
       {
         "id": "c1-l-s2",
@@ -1209,7 +1227,10 @@
             ],
             "explanation": "The guide notes these workshops require advance booking."
           }
-        ]
+        ],
+        "speakerGenders": {
+          "Guide": "female"
+        }
       },
       {
         "id": "c1-l-s3",
@@ -1408,7 +1429,11 @@
             ],
             "explanation": "James suggests touching base again on Monday."
           }
-        ]
+        ],
+        "speakerGenders": {
+          "James": "male",
+          "Priya": "female"
+        }
       },
       {
         "id": "c1-l-s4",
@@ -1594,7 +1619,10 @@
             ],
             "explanation": "The lecturer says next week's session covers questions around data privacy."
           }
-        ]
+        ],
+        "speakerGenders": {
+          "Lecturer": "female"
+        }
       }
     ]
   },
@@ -1818,7 +1846,11 @@
             ],
             "explanation": "Daniel says work completed before termination is calculated at the hourly rate."
           }
-        ]
+        ],
+        "speakerGenders": {
+          "Client": "female",
+          "Daniel": "male"
+        }
       },
       {
         "id": "c2-l-s2",
@@ -1997,7 +2029,10 @@
             ],
             "explanation": "The supervisor says trowels should be used for careful, controlled excavation."
           }
-        ]
+        ],
+        "speakerGenders": {
+          "Supervisor": "male"
+        }
       },
       {
         "id": "c2-l-s3",
@@ -2205,7 +2240,11 @@
             ],
             "explanation": "Freya and Noah agree to control for caffeine intake as a covariate."
           }
-        ]
+        ],
+        "speakerGenders": {
+          "Freya": "female",
+          "Noah": "male"
+        }
       },
       {
         "id": "c2-l-s4",
@@ -2389,7 +2428,10 @@
             ],
             "explanation": "The lecturer mentions chemical regulation frameworks within the European Union as a case study."
           }
-        ]
+        ],
+        "speakerGenders": {
+          "Lecturer": "male"
+        }
       }
     ]
   }

@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
+import { guessVoiceGender } from '../lib/voiceGender';
 
 const PITCHES = [1, 1.3, 0.8, 1.15];
 const RATES = [0.8, 1, 1.2];
@@ -14,7 +15,7 @@ function hashString(s) {
 // available to author real IELTS-style recordings, so this uses the
 // browser's native voice as a practical, license-free substitute — quality
 // varies by browser/OS, closest to real on Chrome/Edge desktop.
-export default function AudioPlayer({ script, onComplete }) {
+export default function AudioPlayer({ script, speakerGenders, onComplete }) {
   const supported = typeof window !== 'undefined' && 'speechSynthesis' in window;
   const [status, setStatus] = useState('idle'); // idle | playing | paused | done
   const [turnIndex, setTurnIndex] = useState(0);
@@ -47,15 +48,24 @@ export default function AudioPlayer({ script, onComplete }) {
     return natural.length ? natural : english;
   }, [voices]);
 
+  const voicesByGender = useMemo(() => {
+    const female = englishVoices.filter((v) => guessVoiceGender(v) === 'female');
+    const male = englishVoices.filter((v) => guessVoiceGender(v) === 'male');
+    return { female, male };
+  }, [englishVoices]);
+
   const speakerVoice = useMemo(() => {
     const speakers = [...new Set(script.map((t) => t.speaker))];
     const map = {};
     speakers.forEach((sp, i) => {
-      const idx = englishVoices.length ? hashString(sp) % englishVoices.length : 0;
-      map[sp] = { voice: englishVoices[idx] || null, pitch: PITCHES[i % PITCHES.length] };
+      const wantGender = speakerGenders?.[sp];
+      const pool = (wantGender && voicesByGender[wantGender].length ? voicesByGender[wantGender] : null)
+        || englishVoices;
+      const idx = pool.length ? hashString(sp) % pool.length : 0;
+      map[sp] = { voice: pool[idx] || null, pitch: PITCHES[i % PITCHES.length] };
     });
     return map;
-  }, [script, englishVoices]);
+  }, [script, englishVoices, voicesByGender, speakerGenders]);
 
   const speakTurn = (index) => {
     if (stoppedRef.current) return;

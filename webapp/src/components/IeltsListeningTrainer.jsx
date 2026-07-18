@@ -289,7 +289,7 @@ export default function IeltsListeningTrainer({ course, onBack }) {
       <div className="ielts-split">
         <div className="passage-pane">
           <h3>{section.title}</h3>
-          <AudioPlayer key={section.id} script={section.script} />
+          <AudioPlayer key={section.id} script={section.script} speakerGenders={section.speakerGenders} />
           <p className="audio-hint">Read the questions on the right, then play the audio. The transcript is hidden during the test, matching the real exam — it's revealed in your results afterward.</p>
         </div>
         <div className="question-pane">
