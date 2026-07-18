@@ -38,15 +38,24 @@ export default function AudioPlayer({ script, onComplete }) {
     };
   }, [supported]);
 
+  const englishVoices = useMemo(() => {
+    const english = voices.filter((v) => v.lang && v.lang.toLowerCase().startsWith('en'));
+    if (!english.length) return [];
+    // Prefer higher-quality neural/online voices (e.g. Edge's "Microsoft ... Online (Natural)")
+    // over legacy robotic-sounding SAPI voices when both are installed.
+    const natural = english.filter((v) => /natural|online|neural/i.test(v.name));
+    return natural.length ? natural : english;
+  }, [voices]);
+
   const speakerVoice = useMemo(() => {
     const speakers = [...new Set(script.map((t) => t.speaker))];
     const map = {};
     speakers.forEach((sp, i) => {
-      const idx = voices.length ? hashString(sp) % voices.length : 0;
-      map[sp] = { voice: voices[idx] || null, pitch: PITCHES[i % PITCHES.length] };
+      const idx = englishVoices.length ? hashString(sp) % englishVoices.length : 0;
+      map[sp] = { voice: englishVoices[idx] || null, pitch: PITCHES[i % PITCHES.length] };
     });
     return map;
-  }, [script, voices]);
+  }, [script, englishVoices]);
 
   const speakTurn = (index) => {
     if (stoppedRef.current) return;
@@ -60,6 +69,7 @@ export default function AudioPlayer({ script, onComplete }) {
     const utter = new SpeechSynthesisUtterance(turn.text);
     const sv = speakerVoice[turn.speaker];
     if (sv?.voice) utter.voice = sv.voice;
+    utter.lang = sv?.voice?.lang || 'en-US';
     utter.pitch = sv?.pitch || 1;
     utter.rate = rateRef.current;
     utter.onend = () => {
@@ -123,6 +133,11 @@ export default function AudioPlayer({ script, onComplete }) {
         {status === 'paused' && `Paused at turn ${turnIndex + 1} of ${script.length}`}
         {status === 'done' && `Finished (${script.length} turns) — replay allowed for practice, the real exam only plays once`}
       </div>
+      {voices.length > 0 && englishVoices.length === 0 && (
+        <div className="audio-voice-warning">
+          No English voice is installed on this device, so playback may mispronounce English words. On Windows: Settings → Time &amp; Language → Speech → Manage voices → Add an English voice.
+        </div>
+      )}
     </div>
   );
 }
