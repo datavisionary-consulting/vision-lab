@@ -1,0 +1,130 @@
+[
+  {
+    "id": "ielts-w-b2-test01",
+    "level": "B2",
+    "title": "B2 Writing Practice Test 1",
+    "task1": {
+      "id": "b2-w-t1",
+      "prompt": "The table below shows the percentage of households with internet access in four countries in 2010 and 2020. Summarise the information by selecting and reporting the main features, and make comparisons where relevant. Write at least 150 words.",
+      "timeLimitMin": 20,
+      "minWords": 150,
+      "chart": {
+        "type": "table",
+        "data": {
+          "columns": ["Country", "2010", "2020"],
+          "rows": [
+            ["Country A", "45%", "82%"],
+            ["Country B", "60%", "91%"],
+            ["Country C", "30%", "68%"],
+            ["Country D", "52%", "79%"]
+          ]
+        }
+      },
+      "modelAnswer": "The table illustrates the percentage of households with internet access in four countries, Country A, B, C and D, in 2010 compared with 2020.\n\nOverall, internet access increased substantially in all four countries over the ten-year period, although the extent of this growth varied considerably between them.\n\nIn 2010, Country B had the highest proportion of connected households at 60%, followed by Country D at 52%. Country A stood at 45%, while Country C recorded the lowest figure of the group, at just 30%.\n\nBy 2020, all four countries had seen marked increases. Country B remained in the lead, reaching 91%, a rise of 31 percentage points. Country A experienced the largest overall increase, climbing from 45% to 82%, an improvement of 37 percentage points, moving it ahead of Country D, which reached 79%. Country C, despite starting from the lowest base, still more than doubled its figure to 68%, though it remained the lowest of the four countries throughout the period shown.\n\nIn summary, while Country B consistently led in household internet access, Country A recorded the most rapid growth of the four nations.",
+      "bandDescriptors": [
+        { "criterion": "Task Achievement", "points": ["Covers all key figures and trends without listing every single number", "Gives a clear overview statement identifying the main pattern before the detail", "Makes accurate, specific comparisons between data points"] },
+        { "criterion": "Coherence and Cohesion", "points": ["Organises information logically, e.g. by time period or by country", "Uses linking words naturally (while, although, by contrast) rather than mechanically"] },
+        { "criterion": "Lexical Resource", "points": ["Uses varied vocabulary to describe trends (increased substantially, remained the lowest) instead of repeating the same words", "Uses accurate data-specific vocabulary (percentage points, proportion, figure)"] },
+        { "criterion": "Grammatical Range and Accuracy", "points": ["Uses a mix of sentence structures, not just simple statements", "Uses accurate comparative and superlative forms (the largest increase, more than doubled)"] }
+      ]
+    },
+    "task2": {
+      "id": "b2-w-t2",
+      "prompt": "Some people believe that children should begin learning a foreign language as soon as they start school, rather than waiting until they are older. To what extent do you agree or disagree?",
+      "timeLimitMin": 40,
+      "minWords": 250,
+      "modelAnswer": "It is sometimes argued that foreign language learning should begin the moment children start formal schooling, rather than being introduced later in their education. I largely agree with this view, though I believe the way languages are taught to young children matters just as much as the timing.\n\nThe strongest argument in favour of early language learning is neurological. Young children's brains are generally considered more receptive to acquiring new sounds and grammatical patterns than those of older learners, partly because they have not yet fully settled into the phonetic patterns of their first language. This is often why children who learn a second language early tend to develop more native-like pronunciation than those who begin as teenagers or adults.\n\nThere is also a practical argument concerning available time. A child who begins learning a language at five, rather than eleven or twelve, simply has more years of exposure by the time they reach adulthood, which can translate into a genuinely higher level of fluency without requiring intensive study later in life.\n\nHowever, early introduction alone is not sufficient. If language lessons for young children rely heavily on formal grammar instruction rather than playful, immersive activities appropriate to their developmental stage, the potential advantage of an early start could be squandered, or worse, could discourage a young child from enjoying language learning at all.\n\nIn conclusion, while I broadly support introducing foreign languages from the start of formal schooling, given the clear cognitive and time-related advantages, I would qualify this by stressing that the method of instruction, not simply its early timing, ultimately determines whether that early start translates into a genuine long-term benefit.",
+      "bandDescriptors": [
+        { "criterion": "Task Response", "points": ["Presents a clear position that is maintained throughout the essay", "Addresses the extent of agreement, not just a simple yes or no", "Supports ideas with developed explanation, not just assertion"] },
+        { "criterion": "Coherence and Cohesion", "points": ["Organises ideas into clear paragraphs, each built around one central idea", "Uses cohesive devices naturally rather than mechanically listing firstly, secondly, thirdly"] },
+        { "criterion": "Lexical Resource", "points": ["Uses precise, topic-appropriate vocabulary (neurological, phonetic patterns, immersive)", "Avoids repeating the same words from the prompt without variation"] },
+        { "criterion": "Grammatical Range and Accuracy", "points": ["Uses a range of complex sentence structures (conditionals, subordinate clauses)", "Maintains good grammatical control with few errors"] }
+      ]
+    }
+  },
+  {
+    "id": "ielts-w-c1-test01",
+    "level": "C1",
+    "title": "C1 Writing Practice Test 1",
+    "task1": {
+      "id": "c1-w-t1",
+      "prompt": "The bar chart below shows the average number of hours per week that two age groups spend on five different leisure activities. Summarise the information by selecting and reporting the main features, and make comparisons where relevant. Write at least 150 words.",
+      "timeLimitMin": 20,
+      "minWords": 150,
+      "chart": {
+        "type": "bar",
+        "data": {
+          "categories": ["Watching TV", "Sport/Exercise", "Reading", "Socialising", "Gaming"],
+          "series": [
+            { "name": "18-30 years", "values": [8, 5, 2, 6, 7] },
+            { "name": "50-65 years", "values": [12, 3, 6, 4, 1] }
+          ]
+        }
+      },
+      "modelAnswer": "The bar chart compares the average number of hours per week that two age groups, those aged 18 to 30 and those aged 50 to 65, spend on five different leisure activities: watching television, sport and exercise, reading, socialising, and gaming.\n\nOverall, the two age groups show markedly different leisure patterns, with younger adults favouring more active and social pursuits, while older adults spend considerably more time on television and reading.\n\nThe most striking difference appears in gaming, where 18 to 30 year olds average seven hours per week compared with just one hour among 50 to 65 year olds. A similar, though less extreme, pattern is seen in socialising, at six hours against four.\n\nBy contrast, the older age group spends noticeably more time watching television, at twelve hours per week, compared with eight hours for younger adults, and considerably more time reading, at six hours against just two.\n\nSport and exercise is the only category where both groups show broadly comparable engagement, although younger adults still report slightly higher weekly hours, at five compared with three.\n\nIn summary, while television dominates leisure time for the older age group, younger adults distribute their leisure time more evenly across active, social, and digital pursuits.",
+      "bandDescriptors": [
+        { "criterion": "Task Achievement", "points": ["Identifies the clearest contrasts between the two groups, not just isolated figures", "Gives an overview that captures the overall pattern before the supporting detail", "Selects the most significant comparisons rather than describing every bar"] },
+        { "criterion": "Coherence and Cohesion", "points": ["Groups related comparisons together (e.g. digital/social activities vs. TV/reading) rather than listing categories in a fixed order", "Uses contrast markers (by contrast, whereas) precisely"] },
+        { "criterion": "Lexical Resource", "points": ["Uses a range of comparison language (markedly, considerably, broadly comparable)", "Avoids repeating hours per week in every sentence"] },
+        { "criterion": "Grammatical Range and Accuracy", "points": ["Uses accurate comparative structures (compared with, against) and complex noun phrases", "Varies sentence openings rather than always starting with the category name"] }
+      ]
+    },
+    "task2": {
+      "id": "c1-w-t2",
+      "prompt": "Many people think that the growing use of online shopping will eventually replace traditional physical stores completely. To what extent do you agree or disagree?",
+      "timeLimitMin": 40,
+      "minWords": 250,
+      "modelAnswer": "The rapid expansion of online shopping has led some to predict that physical stores will eventually disappear altogether. While I acknowledge the significant advantages online retail offers, I disagree that it will completely replace traditional stores, since physical retail continues to serve needs that purely digital shopping cannot fully replicate.\n\nThere is no question that online shopping offers genuine convenience: consumers can compare prices instantly, avoid travel time, and shop at any hour, advantages that have understandably driven its rapid growth, particularly for standardised products where the physical experience of shopping adds little value.\n\nHowever, for many categories of goods, the physical experience remains genuinely important to consumers. Clothing and footwear, for instance, benefit enormously from being tried on before purchase, and furniture or homeware often benefit from being seen and touched directly, since photographs cannot fully convey texture, scale, or quality in the way a physical visit can.\n\nPhysical stores also serve a social function that online shopping cannot replace. For many people, browsing a shopping district is a recreational activity in itself, offering spontaneous discovery and social interaction that a purely transactional online purchase does not provide.\n\nFurthermore, businesses themselves are increasingly recognising that the two models complement rather than simply compete with each other, with many retailers now operating hybrid models that let customers browse online before completing a purchase, or return items, in a physical store.\n\nIn conclusion, although online shopping will likely continue to grow and capture an increasing share of overall retail spending, I believe physical stores will persist, not as relics of an older era, but as a complementary channel serving needs that online shopping alone cannot fully satisfy.",
+      "bandDescriptors": [
+        { "criterion": "Task Response", "points": ["Takes a clear, specific position (disagree with complete replacement) rather than a vague middle ground", "Acknowledges the opposing view's genuine strengths before countering it", "Every paragraph directly supports the stated position"] },
+        { "criterion": "Coherence and Cohesion", "points": ["Uses paragraphing to separate distinct supporting arguments clearly", "Signals the logical relationship between ideas (however, furthermore) rather than just sequencing them"] },
+        { "criterion": "Lexical Resource", "points": ["Uses precise collocations (drove its rapid growth, complement rather than compete)", "Avoids simplistic vocabulary like good/bad in favour of more precise evaluative language"] },
+        { "criterion": "Grammatical Range and Accuracy", "points": ["Uses a wide range of complex structures with control (relative clauses, participle clauses)", "Errors, where present, do not impede communication"] }
+      ]
+    }
+  },
+  {
+    "id": "ielts-w-c2-test01",
+    "level": "C2",
+    "title": "C2 Writing Practice Test 1",
+    "task1": {
+      "id": "c2-w-t1",
+      "prompt": "The diagram below shows the process of recycling plastic bottles. Summarise the information by describing the main stages of the process. Write at least 150 words.",
+      "timeLimitMin": 20,
+      "minWords": 150,
+      "chart": {
+        "type": "process",
+        "data": {
+          "steps": [
+            "Used plastic bottles are collected from household recycling bins, public collection points, and municipal waste facilities.",
+            "Collected bottles are transported to a sorting facility, where they are separated by plastic type and colour using manual labour and automated optical sorting technology.",
+            "Sorted bottles are compacted into large bales to reduce their volume for storage and onward transport.",
+            "Bales are shredded into small plastic flakes, which are then washed to remove residual labels, adhesive, and contaminants such as food residue.",
+            "Clean flakes are melted down and extruded into small plastic pellets, known as recyclate, which serve as raw material for new products.",
+            "The recycled pellets are sold to manufacturers, who combine them with virgin plastic, or use them alone, to produce new items such as clothing fibres, packaging, or new bottles."
+          ]
+        }
+      },
+      "modelAnswer": "The diagram illustrates the sequence of stages involved in recycling used plastic bottles, from initial collection through to the production of new plastic items.\n\nThe process begins with the collection of used bottles from household recycling bins, public collection points, and municipal waste facilities. These collected bottles are then transported to a dedicated sorting facility, where they are separated by plastic type and colour, using a combination of manual sorting and automated optical technology.\n\nOnce sorted, the bottles are compacted into large bales, which reduces their volume for more efficient storage and transport to the next stage. These bales then undergo shredding, breaking the plastic down into small flakes, which are subsequently washed to remove any remaining labels, adhesive residue, or food contamination.\n\nFollowing this cleaning stage, the flakes are melted and extruded into small pellets, known as recyclate, which function as a raw material. In the final stage, these recycled pellets are sold to manufacturers, who use them, either combined with new plastic or on their own, to produce items such as clothing fibres, packaging, or entirely new bottles.\n\nOverall, the process transforms discarded plastic through six distinct stages into a reusable raw material for manufacturing.",
+      "bandDescriptors": [
+        { "criterion": "Task Achievement", "points": ["Describes every stage of the process in the correct sequence", "Uses an overview sentence that names the start and end points of the process", "Uses passive voice appropriately, since the actor performing each stage is not the focus"] },
+        { "criterion": "Coherence and Cohesion", "points": ["Uses sequencing language (once sorted, following this stage) instead of only first/then/next", "Each paragraph covers a coherent group of stages rather than one sentence per step"] },
+        { "criterion": "Lexical Resource", "points": ["Uses precise process vocabulary (extruded, compacted, contamination)", "Avoids repeating the word 'stage' or 'process' excessively"] },
+        { "criterion": "Grammatical Range and Accuracy", "points": ["Uses passive constructions accurately and consistently where appropriate", "Uses relative clauses to add detail efficiently (pellets, known as recyclate, which function as...)"] }
+      ]
+    },
+    "task2": {
+      "id": "c2-w-t2",
+      "prompt": "Some argue that governments should invest primarily in public transportation rather than expanding road networks for private vehicles. Discuss both views and give your own opinion.",
+      "timeLimitMin": 40,
+      "minWords": 250,
+      "modelAnswer": "Whether governments should prioritise public transportation over road expansion for private vehicles is a contested question in urban policy, with reasonable arguments supporting each position.\n\nThose who favour prioritising public transportation typically point to its capacity to move far more people per unit of road space than private cars, thereby reducing traffic congestion more effectively than road expansion, which research consistently suggests tends to induce additional demand rather than genuinely solving congestion long-term. Public transport investment is also frequently linked to lower per-capita carbon emissions, since a single bus or train can replace dozens of individual car journeys, an increasingly urgent consideration given mounting pressure to meet climate commitments.\n\nConversely, those who favour continued road investment argue that private vehicles offer a flexibility, particularly for journeys in lower-density areas or for those with mobility constraints, that fixed-route public transport often struggles to match. They also note that many regions, particularly rural or suburban areas, currently lack the population density needed to support frequent, cost-effective public transport services, making road investment a more immediately practical use of limited public funds in those specific contexts.\n\nIn my view, while road investment retains a legitimate role in genuinely underserved areas, the balance of evidence favours prioritising public transportation in most urban contexts, given its superior capacity, lower environmental cost, and its tendency to actually reduce rather than merely redistribute congestion over time. That said, this priority should be pursued thoughtfully rather than dogmatically, recognising that a well-designed transport network for any given city will likely require some ongoing road investment alongside expanded public transport, rather than treating the two as strictly mutually exclusive alternatives.\n\nUltimately, the appropriate balance depends heavily on a city's existing density and infrastructure, rather than a single approach being universally correct.",
+      "bandDescriptors": [
+        { "criterion": "Task Response", "points": ["Discusses both views in genuine depth before stating a personal opinion, as the prompt requires", "The final opinion is clearly signalled and logically follows from the discussion", "Qualifies the opinion appropriately rather than overstating certainty"] },
+        { "criterion": "Coherence and Cohesion", "points": ["Devotes a distinct paragraph to each view before a separate opinion paragraph", "Uses cohesive devices to connect the two views' arguments to the final synthesis"] },
+        { "criterion": "Lexical Resource", "points": ["Uses precise, topic-specific vocabulary (induce additional demand, mutually exclusive, per-capita)", "Avoids vocabulary repetition across the two viewpoint paragraphs"] },
+        { "criterion": "Grammatical Range and Accuracy", "points": ["Uses sophisticated hedging language (tends to, is more likely to) appropriate for a nuanced discussion", "Maintains accuracy across long, complex sentences without losing control of meaning"] }
+      ]
+    }
+  }
+]

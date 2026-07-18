@@ -361,6 +361,22 @@ export const COURSES = [
     storageKey: 'vlab_progress_ielts-listening_v1',
     enabled: true,
   },
+  {
+    id: 'ielts-writing',
+    kind: 'ielts-writing',
+    title: 'IELTS Writing',
+    category: 'IELTS Preparation',
+    icon: '✍️',
+    blurb: 'Task 1 + Task 2 · self-assessed against a model answer',
+    dataFile: dataUrl('ielts-writing/tests.json'),
+    levels: [
+      { id: 'B2', label: 'B2 · Upper-Intermediate' },
+      { id: 'C1', label: 'C1 · Advanced' },
+      { id: 'C2', label: 'C2 · Proficient' },
+    ],
+    storageKey: 'vlab_progress_ielts-writing_v1',
+    enabled: true,
+  },
 ];
 
 export const getCourse = (id) => COURSES.find((c) => c.id === id);
