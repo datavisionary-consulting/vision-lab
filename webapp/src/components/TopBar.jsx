@@ -33,10 +33,13 @@ function FullscreenButton() {
   );
 }
 
-export default function TopBar({ title, onTitleClick }) {
+export default function TopBar({ title, onTitleClick, onDashboardClick }) {
   return (
     <div className="top-bar">
       <div className="top-bar-title" onClick={onTitleClick}>{title}</div>
+      <button className="dashboard-btn" onClick={onDashboardClick} title="Your progress" aria-label="Your progress">
+        📊<span className="dashboard-btn-label">Progress</span>
+      </button>
       <AuthButton />
       <FullscreenButton />
     </div>

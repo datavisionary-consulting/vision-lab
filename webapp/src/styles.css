@@ -15,6 +15,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .auth-btn{flex:0 0 auto;display:flex;align-items:center;gap:8px;padding:6px 16px;border:none;background:none;color:var(--muted);cursor:pointer;font-size:.8rem;transition:color .15s}
 .auth-btn:hover{color:var(--acc2)}
 .auth-btn img{width:22px;height:22px;border-radius:50%}
+.dashboard-btn{flex:0 0 auto;display:flex;align-items:center;gap:6px;padding:6px 12px;border:1px solid var(--border);border-radius:8px;background:none;color:var(--muted);cursor:pointer;font-size:.78rem;font-weight:600;transition:all .15s;margin-right:6px}
+.dashboard-btn:hover{color:var(--acc2);border-color:var(--acc)}
+@media(max-width:520px){.dashboard-btn-label{display:none}.dashboard-btn{padding:6px 10px}}
 
 /* ── COURSE HUB ── */
 .hub-wrap{display:flex;flex-direction:column;align-items:center;padding:32px 20px;gap:22px;min-height:calc(100vh - 48px)}
@@ -311,6 +314,28 @@ textarea.writing-editor{min-height:400px}
 @keyframes pulse-dot{0%,100%{opacity:1}50%{opacity:.3}}
 .recording-playback{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
 .recording-playback audio{height:36px}
+
+/* ── DASHBOARD ── */
+.dash-wrap .hub-grid{align-items:start}
+.dash-card{background:var(--surf);border:1px solid var(--border);border-left:3px solid var(--border);border-radius:var(--r);padding:16px 18px;cursor:pointer;transition:all .15s;text-align:left}
+.dash-card:hover{background:var(--surf2)}
+.dash-card.disabled{opacity:.4;cursor:not-allowed}
+.dash-card.ontrack{border-left-color:var(--green)}
+.dash-card.attention{border-left-color:var(--red)}
+.dash-card.unstarted{border-left-color:var(--border)}
+.dash-card-head{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.dash-card-head .dash-icon{font-size:1.3rem}
+.dash-card-head h3{font-size:.92rem;flex:1}
+.dash-flag{color:var(--red);font-size:.85rem}
+.dash-empty{font-size:.78rem;color:var(--muted)}
+.dash-bar{height:4px;background:var(--surf2);border-radius:2px;overflow:hidden;margin-bottom:10px}
+.dash-bar-fill{height:100%;background:var(--acc);border-radius:2px}
+.dash-stats-row{display:flex;gap:10px}
+.dash-stats-row>div{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px}
+.dash-stats-row-ielts{margin-bottom:8px}
+.dash-num{font-size:1rem;font-weight:700;color:var(--acc2)}
+.dash-num.warn{color:var(--red)}
+.dash-lbl{font-size:.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:.03em}
 
 /* ── FOOTER ── */
 .site-footer{background:var(--surf);border-top:1px solid var(--border);padding:8px 24px;text-align:center}
