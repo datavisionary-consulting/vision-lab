@@ -3,7 +3,6 @@ import { useCourseData } from '../hooks/useCourseData';
 import { useIeltsListeningProgress } from '../hooks/useIeltsListeningProgress';
 import { buildAttempt, filterByLevel, rawScoreToBand, scoreAttempt } from '../lib/ieltsListeningSession';
 import { gradeAnswer } from '../lib/ieltsGrading';
-import SidePanel from './SidePanel';
 import AudioPlayer from './AudioPlayer';
 
 function formatTime(totalSec) {
@@ -30,8 +29,17 @@ export default function IeltsListeningTrainer({ course, onBack }) {
   const [activeSectionIdx, setActiveSectionIdx] = useState(0);
   const [timeLeftSec, setTimeLeftSec] = useState(0);
   const [results, setResults] = useState(null);
-  const [openExplainId, setOpenExplainId] = useState(null);
+  const [openExplainIds, setOpenExplainIds] = useState(() => new Set());
   const [showTranscripts, setShowTranscripts] = useState(false);
+
+  const toggleExplain = (id) => {
+    setOpenExplainIds((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
+  };
 
   useEffect(() => {
     if (view !== 'test') return;
@@ -59,7 +67,7 @@ export default function IeltsListeningTrainer({ course, onBack }) {
     setActiveSectionIdx(0);
     setTimeLeftSec(test.timeLimitMin * 60);
     setResults(null);
-    setOpenExplainId(null);
+    setOpenExplainIds(new Set());
     setShowTranscripts(false);
     setView('test');
   };
@@ -73,7 +81,7 @@ export default function IeltsListeningTrainer({ course, onBack }) {
     const band = rawScoreToBand(scored.correctCount, scored.totalCount);
     recordAttempt(attempt.testId, activeTest.level, { ...scored, band });
     setResults({ ...scored, band });
-    setOpenExplainId(null);
+    setOpenExplainIds(new Set());
     setView('results');
   };
 
@@ -171,6 +179,7 @@ export default function IeltsListeningTrainer({ course, onBack }) {
           <div className="review-list">
             {attempt.questions.map((q) => {
               const isCorrect = gradeAnswer(q, answers[q.id]);
+              const isOpen = openExplainIds.has(q.id);
               return (
                 <div key={q.id} className={`review-row ${isCorrect ? 'correct' : 'wrong'}`}>
                   <div className="review-main">
@@ -182,8 +191,11 @@ export default function IeltsListeningTrainer({ course, onBack }) {
                     <span>Correct: <strong>{formatAnswer(q.correctAnswer)}</strong></span>
                   </div>
                   {q.explanation && (
-                    <button className="btn-review-theory" onClick={() => setOpenExplainId(q.id)}>📖 Explain</button>
+                    <button className="btn-review-theory" onClick={() => toggleExplain(q.id)}>
+                      {isOpen ? '✕ Hide' : '📖 Explain'}
+                    </button>
                   )}
+                  {isOpen && <p className="review-explanation">{q.explanation}</p>}
                 </div>
               );
             })}
@@ -193,12 +205,6 @@ export default function IeltsListeningTrainer({ course, onBack }) {
             <button className="btn-secondary" onClick={goHome}>Home</button>
           </div>
         </div>
-        {openExplainId && (
-          <SidePanel
-            theory={{ text: attempt.questions.find((q) => q.id === openExplainId)?.explanation }}
-            onClose={() => setOpenExplainId(null)}
-          />
-        )}
       </div>
     );
   }

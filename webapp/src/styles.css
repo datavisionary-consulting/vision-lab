@@ -259,6 +259,7 @@ table.result-table td{padding:7px 12px;border-bottom:1px solid #2a2a4a;color:var
 .review-row{background:var(--surf);border:1px solid var(--border);border-radius:10px;padding:12px 14px;text-align:left}
 .review-row.correct{border-left:3px solid var(--green)}
 .review-row.wrong{border-left:3px solid var(--red)}
+.review-explanation{margin-top:10px;padding-top:10px;border-top:1px solid var(--border);font-size:.82rem;line-height:1.5;color:var(--text)}
 .review-main{display:flex;gap:6px;font-size:.85rem;margin-bottom:6px}
 .review-answers{display:flex;flex-direction:column;gap:2px;font-size:.78rem;color:var(--muted);margin-bottom:8px}
 .audio-player{background:var(--surf2);border:1px solid var(--border);border-radius:10px;padding:14px;margin-bottom:14px}

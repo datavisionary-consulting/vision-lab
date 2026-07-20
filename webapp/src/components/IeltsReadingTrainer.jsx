@@ -3,7 +3,6 @@ import { useCourseData } from '../hooks/useCourseData';
 import { useIeltsProgress } from '../hooks/useIeltsProgress';
 import { buildAttempt, filterByLevel, rawScoreToBand, scoreAttempt } from '../lib/ieltsSession';
 import { gradeAnswer } from '../lib/ieltsGrading';
-import SidePanel from './SidePanel';
 
 const TFN_OPTIONS = {
   'true-false-notgiven': ['TRUE', 'FALSE', 'NOT GIVEN'],
@@ -34,7 +33,16 @@ export default function IeltsReadingTrainer({ course, onBack }) {
   const [activePassageIdx, setActivePassageIdx] = useState(0);
   const [timeLeftSec, setTimeLeftSec] = useState(0);
   const [results, setResults] = useState(null); // { correctCount, totalCount, byPassage, band }
-  const [openExplainId, setOpenExplainId] = useState(null);
+  const [openExplainIds, setOpenExplainIds] = useState(() => new Set());
+
+  const toggleExplain = (id) => {
+    setOpenExplainIds((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
+  };
 
   useEffect(() => {
     if (view !== 'test') return;
@@ -62,7 +70,7 @@ export default function IeltsReadingTrainer({ course, onBack }) {
     setActivePassageIdx(0);
     setTimeLeftSec(test.timeLimitMin * 60);
     setResults(null);
-    setOpenExplainId(null);
+    setOpenExplainIds(new Set());
     setView('test');
   };
 
@@ -75,7 +83,7 @@ export default function IeltsReadingTrainer({ course, onBack }) {
     const band = rawScoreToBand(scored.correctCount, scored.totalCount);
     recordAttempt(attempt.testId, activeTest.level, { ...scored, band });
     setResults({ ...scored, band });
-    setOpenExplainId(null);
+    setOpenExplainIds(new Set());
     setView('results');
   };
 
@@ -158,6 +166,7 @@ export default function IeltsReadingTrainer({ course, onBack }) {
           <div className="review-list">
             {attempt.questions.map((q) => {
               const isCorrect = gradeAnswer(q, answers[q.id]);
+              const isOpen = openExplainIds.has(q.id);
               return (
                 <div key={q.id} className={`review-row ${isCorrect ? 'correct' : 'wrong'}`}>
                   <div className="review-main">
@@ -169,8 +178,11 @@ export default function IeltsReadingTrainer({ course, onBack }) {
                     <span>Correct: <strong>{formatAnswer(q.correctAnswer)}</strong></span>
                   </div>
                   {q.explanation && (
-                    <button className="btn-review-theory" onClick={() => setOpenExplainId(q.id)}>📖 Explain</button>
+                    <button className="btn-review-theory" onClick={() => toggleExplain(q.id)}>
+                      {isOpen ? '✕ Hide' : '📖 Explain'}
+                    </button>
                   )}
+                  {isOpen && <p className="review-explanation">{q.explanation}</p>}
                 </div>
               );
             })}
@@ -180,12 +192,6 @@ export default function IeltsReadingTrainer({ course, onBack }) {
             <button className="btn-secondary" onClick={goHome}>Home</button>
           </div>
         </div>
-        {openExplainId && (
-          <SidePanel
-            theory={{ text: attempt.questions.find((q) => q.id === openExplainId)?.explanation }}
-            onClose={() => setOpenExplainId(null)}
-          />
-        )}
       </div>
     );
   }
