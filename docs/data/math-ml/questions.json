@@ -4,10 +4,10 @@
     "topic": "linear-algebra",
     "question": "A retail analyst represents each customer as a vector of 5 numbers: [monthly spend, visit frequency, avg basket size, return rate, loyalty tenure]. What is the main advantage of this representation over keeping the five numbers as separate unrelated columns?",
     "options": {
-      "a": "Vectors take up less disk space than five separate columns",
-      "b": "Vectors automatically remove outliers from the data",
+      "a": "Combining the five numbers into a single vector automatically rescales each feature to a common range, so no separate normalization step is needed before computing distances between customers",
+      "b": "A vector representation automatically detects and removes outlier customers before any distance or similarity calculations are performed",
       "c": "It lets the analyst apply vector operations (distance, dot product, scaling) to compare and combine customers mathematically, which a loose set of columns does not support",
-      "d": "It guarantees the five features are uncorrelated"
+      "d": "Storing the five numbers as a vector guarantees they are statistically independent of each other, since vector notation enforces orthogonality between components"
     },
     "correct": "c",
     "theory": {
@@ -25,9 +25,9 @@
     "topic": "linear-algebra",
     "question": "A pricing model converts a vector of unit sales for 4 products into total revenue by multiplying it by a matrix of unit prices across 3 regions (different regions charge different prices). What operation is this, and what shape is the result?",
     "options": {
-      "a": "Matrix transpose; result is a 4x3 matrix",
-      "b": "Element-wise addition; result is a 4-element vector",
-      "c": "Scalar multiplication; result is a single number",
+      "a": "Matrix transpose; flipping rows and columns of the price matrix gives a 4x3 matrix that already represents each region's total revenue",
+      "b": "Element-wise addition; adding the sales vector to each row of the price matrix gives a 4-element vector of combined totals",
+      "c": "Scalar multiplication; multiplying the sales vector by the average unit price collapses everything into a single overall revenue number",
       "d": "Matrix-vector multiplication; result is a 3-element vector, one total revenue figure per region"
     },
     "correct": "d",
@@ -46,10 +46,10 @@
     "topic": "linear-algebra",
     "question": "A small manufacturer makes 2 products using 2 shared resources. Each product's resource usage and the available resource totals can be written as a system of 2 linear equations in 2 unknowns (units of each product to produce). What does solving this system actually give the manufacturer?",
     "options": {
-      "a": "A ranking of which product is more profitable",
-      "b": "The maximum possible profit, regardless of resource limits",
+      "a": "A ranking of which product is more profitable, since solving the system reveals the relative profit contribution built into each equation's coefficients",
+      "b": "The maximum possible profit the manufacturer could earn, independent of how the two shared resources are actually allocated between products",
       "c": "The exact production quantities of each product that use up precisely all of both resources, if such a combination exists",
-      "d": "The average resource usage per unit produced"
+      "d": "The average amount of each resource consumed per unit produced, averaged evenly across both products regardless of their actual production mix"
     },
     "correct": "c",
     "theory": {
@@ -67,9 +67,9 @@
     "topic": "linear-algebra",
     "question": "Why is Gaussian elimination useful for solving a system of linear equations by hand or by computer, rather than just guessing and checking values?",
     "options": {
-      "a": "It only works when there is exactly one equation",
-      "b": "It converts the system into a probability distribution",
-      "c": "It randomly samples possible solutions until one works",
+      "a": "It only works when there is exactly one equation in the system, since eliminating a variable requires exactly one other equation to cancel it against algebraically.",
+      "b": "It converts the system of equations into a probability distribution over possible solutions, which can then be sampled to find likely values",
+      "c": "It randomly samples candidate solutions and checks each one against every equation until a combination that satisfies all of them is found",
       "d": "It systematically combines equations to cancel out variables one at a time, reducing the system to a simple triangular form that can be solved by substitution"
     },
     "correct": "d",
@@ -88,9 +88,9 @@
     "question": "A finance team builds a matrix A that converts a vector of investment amounts into a vector of expected returns. If A has an inverse, what does that guarantee?",
     "options": {
       "a": "Given any target return vector, there is exactly one investment vector that produces it, and it can be recovered by multiplying the target by A inverse",
-      "b": "The returns are independent of the investment amounts",
-      "c": "The investments are guaranteed to be profitable",
-      "d": "A is a square matrix with all positive entries"
+      "b": "The returns are statistically independent of the investment amounts, meaning changing the investment vector has no effect whatsoever on the resulting returns produced by the model.",
+      "c": "The investments are guaranteed to be profitable, since an invertible matrix can only map positive investment amounts to positive returns",
+      "d": "A is a square matrix with all positive entries, which is the condition linear algebra requires for a matrix to have a well-defined inverse"
     },
     "correct": "a",
     "theory": {
@@ -108,9 +108,9 @@
     "question": "A demand-forecasting matrix turns out to be singular (non-invertible) because one of its input features, 'discount percentage,' is always exactly twice another feature, 'coupon value ratio.' What does this tell the analyst about the dataset?",
     "options": {
       "a": "One feature is perfectly redundant with another, so the matrix cannot be uniquely reversed — this is the linear-algebra signature of multicollinearity",
-      "b": "The forecasting model will automatically ignore both features",
-      "c": "Singular matrices always mean the data contains errors",
-      "d": "The dataset has too many rows"
+      "b": "The forecasting model will automatically detect and ignore both redundant features during training, so the singular matrix causes no practical problem and requires no further action from the analyst.",
+      "c": "Singular matrices always indicate that the underlying dataset contains data-entry errors that need to be corrected before any further analysis",
+      "d": "The dataset simply has too many rows relative to the number of features, which is what causes a matrix to become singular in this situation"
     },
     "correct": "a",
     "theory": {
@@ -128,9 +128,9 @@
     "topic": "linear-algebra",
     "question": "In vector-space terms, what does it mean to say that a set of vectors 'spans' a space?",
     "options": {
-      "a": "The vectors are all the same length",
-      "b": "The set contains at least 100 vectors",
-      "c": "The vectors are sorted from smallest to largest",
+      "a": "The vectors are all the same length (magnitude), which is what allows them to be combined into any other vector in the space",
+      "b": "The set must contain at least as many vectors as the dimension of the space, and spanning simply refers to meeting that minimum count",
+      "c": "The vectors are arranged in order from smallest to largest magnitude, which is the property that lets them reach every point in the space",
       "d": "Every vector in that space can be built as some weighted combination (a linear combination) of the vectors in the set"
     },
     "correct": "d",
@@ -149,10 +149,10 @@
     "topic": "linear-algebra",
     "question": "A dashboard currently tracks 'gross margin,' 'net margin,' and 'tax rate,' and it turns out net margin can always be exactly computed from gross margin and tax rate. In linear-algebra terms, what is true of these three metrics as vectors?",
     "options": {
-      "a": "They are orthogonal to each other",
-      "b": "They cannot be represented as vectors at all",
+      "a": "They are orthogonal to each other, meaning each metric captures a completely separate direction of variation with zero overlap between them",
+      "b": "They cannot be represented as vectors at all, since a metric that is fully determined by two others falls outside the definition of a vector",
       "c": "They are linearly dependent — one of the three carries no information beyond what the other two already provide",
-      "d": "They form a basis for the space of all financial metrics"
+      "d": "They form a basis for the space of all financial metrics, since together the three cover every dimension of variation the dashboard could track"
     },
     "correct": "c",
     "theory": {
@@ -169,10 +169,10 @@
     "topic": "linear-algebra",
     "question": "A company wants the smallest possible set of 'core KPIs' such that every other metric it reports can be derived from that set, with no KPI in the core set derivable from the others. What linear-algebra concept describes exactly this smallest, non-redundant set?",
     "options": {
-      "a": "A probability distribution over the metrics",
+      "a": "A probability distribution over all the metrics, weighted by how frequently each one changes relative to the rest.",
       "b": "A basis for the space spanned by all the company's metrics",
-      "c": "The transpose of the metrics matrix",
-      "d": "The determinant of the metrics matrix"
+      "c": "The transpose of the company's metrics matrix",
+      "d": "The determinant of the company's metrics matrix"
     },
     "correct": "b",
     "theory": {
@@ -189,9 +189,9 @@
     "topic": "linear-algebra",
     "question": "A dataset of 10 correlated financial ratios is found to have a 'rank' of only 4 when analyzed as a matrix. What does that number 4 represent?",
     "options": {
-      "a": "The average correlation between all pairs of ratios",
-      "b": "The number of rows that contain missing values",
-      "c": "The number of ratios with a negative value",
+      "a": "The average correlation coefficient computed across all pairs of the ten ratios, rounded to the nearest whole number",
+      "b": "The number of rows in the dataset that contain at least one missing value among the ten financial ratios being analyzed across the full sample.",
+      "c": "The number of the ten ratios that happen to take on a negative value somewhere across the observations in the dataset",
       "d": "The number of genuinely independent directions of variation in the data — the other 6 ratios add no new independent information"
     },
     "correct": "d",
@@ -209,10 +209,10 @@
     "topic": "linear-algebra",
     "question": "In Principal Component Analysis (PCA) applied to customer purchase data, the 'first principal component' is the eigenvector of the data's covariance matrix with the largest eigenvalue. What does that eigenvector represent in plain business terms?",
     "options": {
-      "a": "The single customer who spends the most money",
+      "a": "The single customer whose combined purchase behavior across all features produces the highest overall spending score",
       "b": "The direction in feature space along which customer purchase behavior varies the most",
-      "c": "The average of all customer feature vectors",
-      "d": "A list of customers ranked by loyalty tenure"
+      "c": "The average of all customer feature vectors, representing the single typical customer around which the rest of the data is centered",
+      "d": "A list of customers ranked from highest to lowest loyalty tenure, since that single feature dominates the covariance structure"
     },
     "correct": "b",
     "theory": {
@@ -231,9 +231,9 @@
     "question": "If a covariance matrix's largest eigenvalue is 40 and the next largest is 3, with the rest close to 0, what should an analyst conclude before running a clustering algorithm on the raw 10-dimensional customer data?",
     "options": {
       "a": "Almost all the meaningful variation lives along just 1-2 directions, so reducing to those top 1-2 principal components before clustering will likely lose very little information while removing a lot of noise",
-      "b": "Every one of the 10 original dimensions should be kept because eigenvalues don't affect clustering",
-      "c": "The data is essentially useless and should be discarded",
-      "d": "The eigenvalues indicate the data has exactly 40 clusters"
+      "b": "Every one of the 10 original dimensions should be kept for clustering, because eigenvalues only describe variance and have no bearing on how a clustering algorithm actually groups the data points into segments.",
+      "c": "Because the smaller eigenvalues are close to zero, the dataset is essentially noise and should be discarded before any clustering is attempted",
+      "d": "The two leading eigenvalues, 40 and 3, directly indicate that the customer data naturally separates into exactly 40 and 3 clusters respectively"
     },
     "correct": "a",
     "theory": {
@@ -251,9 +251,9 @@
     "topic": "linear-algebra",
     "question": "Two product-review vectors (word-frequency counts) have a dot product of 0. What does that tell you about the reviews, assuming both vectors are non-zero?",
     "options": {
-      "a": "One review is exactly twice as long as the other",
-      "b": "The reviews are identical",
-      "c": "The dot product being 0 means one of the vectors contains an error",
+      "a": "One review is exactly twice as long as the other in total word count, which is the specific condition that drives a dot product to zero",
+      "b": "The reviews are identical in content, since a dot product of zero is the mathematical signature of two vectors matching each other exactly, word for word and phrase for phrase.",
+      "c": "A dot product of exactly 0 signals that one of the two word-frequency vectors was constructed incorrectly and should be recomputed",
       "d": "The reviews are orthogonal — they share no overlapping weighted direction, which for word-count vectors typically means they have essentially no vocabulary in common"
     },
     "correct": "d",
@@ -272,10 +272,10 @@
     "topic": "linear-algebra",
     "question": "A data scientist chooses two engineered features for a churn model, 'tenure_months' and 'tenure_residual' (tenure with the seasonal trend removed), specifically so the two features are orthogonal. Why would that design choice be useful?",
     "options": {
-      "a": "Orthogonal features take up less storage space",
+      "a": "Orthogonal features take up less storage space than correlated ones, since removing overlap between vectors reduces the amount of data needed",
       "b": "Orthogonal (uncorrelated) features each contribute distinct, non-overlapping information to the model, avoiding the redundancy problem that correlated features like the ones in math-006 create",
-      "c": "Orthogonal features always improve model accuracy regardless of content",
-      "d": "Orthogonality guarantees the features are normally distributed"
+      "c": "Orthogonal features always improve model accuracy regardless of their content, since eliminating correlation is by itself sufficient to boost predictive power in any model, no matter how noisy the features are.",
+      "d": "Orthogonality between two engineered features guarantees that both of them follow a normal distribution once they are decorrelated this way"
     },
     "correct": "b",
     "theory": {
@@ -293,10 +293,10 @@
     "topic": "linear-algebra",
     "question": "A model computes predicted price as: (a linear combination of square footage and location score) PLUS a fixed base amount that doesn't depend on either input. Is this a purely linear transformation, or something else?",
     "options": {
-      "a": "It cannot be represented using matrices or vectors",
-      "b": "It is a nonlinear transformation because it has more than one input",
+      "a": "It cannot be represented using matrices or vectors at all, since the constant base amount falls outside anything linear algebra can express",
+      "b": "It is a nonlinear transformation, since combining more than one input variable together automatically breaks the linearity of any transformation",
       "c": "It is an affine transformation — linear in the inputs plus a constant offset (the bias/intercept) — which is technically distinct from a purely linear map, even though it's often loosely called 'linear' in everyday usage",
-      "d": "It is a purely linear transformation, because it still uses weighted sums of the inputs"
+      "d": "It is a purely linear transformation, because it still uses weighted sums of the inputs, and adding a constant term doesn't change that classification"
     },
     "correct": "c",
     "theory": {
@@ -314,10 +314,10 @@
     "topic": "vector-calculus",
     "question": "A subscription business's total cost function C(x) gives cost as a function of number of customers served, x. What does the derivative C'(x) at x=1000 represent?",
     "options": {
-      "a": "The total cost of serving exactly 1000 customers",
+      "a": "The total cost of serving exactly 1000 customers, obtained by evaluating the cost function directly at that customer count",
       "b": "The instantaneous rate at which cost changes per additional customer, right around the 1000-customer point — the marginal cost there",
-      "c": "The maximum possible cost the business could ever incur",
-      "d": "The average cost per customer across all customer counts"
+      "c": "The maximum possible cost the business could ever incur, representing the ceiling the cost function approaches as customers increase without bound.",
+      "d": "The average cost per customer across the entire customer base, computed by dividing total cost by the number of customers served"
     },
     "correct": "b",
     "theory": {
@@ -335,9 +335,9 @@
     "topic": "vector-calculus",
     "question": "A demand model predicts units sold as a function of both price and advertising spend. The partial derivative of demand with respect to price, holding advertising spend fixed, is -12. What does -12 mean in context?",
     "options": {
-      "a": "The total demand at the current price and spend level is -12",
-      "b": "Advertising spend must increase by 12 units for every price change",
-      "c": "Price and advertising spend are unrelated",
+      "a": "The total number of units demanded at the current price and advertising level works out to negative 12 units overall",
+      "b": "Advertising spend must be increased by 12 units to offset each one-unit increase in price, in order to keep demand unchanged",
+      "c": "Price and advertising spend are completely unrelated to one another, so a partial derivative with respect to price says nothing about spend",
       "d": "Raising price by 1 unit, with advertising spend unchanged, is predicted to reduce demand by about 12 units"
     },
     "correct": "d",
@@ -355,10 +355,10 @@
     "topic": "vector-calculus",
     "question": "A marketing analyst has a model of expected revenue depending on three levers: TV budget, digital budget, and promotion depth. The gradient of this revenue function, evaluated at the current budget allocation, is a vector. What does that gradient vector point toward?",
     "options": {
-      "a": "The historical average revenue",
+      "a": "The historical average revenue earned over past budget periods, averaged across every previous allocation of TV, digital, and promotion spend",
       "b": "The direction, among all possible simultaneous adjustments to the three levers, that increases revenue the fastest from the current point",
-      "c": "The single lever that has the largest current budget",
-      "d": "The point where revenue is exactly zero"
+      "c": "The single lever among the three that currently receives the largest budget allocation, since gradients point toward the largest existing input",
+      "d": "The specific combination of budget levels at which the revenue function would evaluate to exactly zero, regardless of current allocation"
     },
     "correct": "b",
     "theory": {
@@ -375,10 +375,10 @@
     "topic": "vector-calculus",
     "question": "A forecasting model is being trained by adjusting its parameters to minimize prediction error. Why does gradient descent update each parameter in the direction OPPOSITE the gradient, rather than the same direction as the gradient?",
     "options": {
-      "a": "Because parameters can only be negative numbers",
-      "b": "Because the gradient always points toward zero",
+      "a": "Because model parameters can only take negative values, so subtracting the gradient is the only direction that keeps them mathematically valid",
+      "b": "Because the gradient vector always points directly toward zero regardless of the function, so moving opposite it points away from the origin",
       "c": "Because the gradient points toward the direction of steepest increase of the error, so moving the opposite way decreases the error the fastest — the goal is to minimize error, not maximize it",
-      "d": "Moving opposite the gradient is a historical convention with no mathematical reason"
+      "d": "Moving opposite the gradient is simply a historical convention carried over from early optimization software, without any underlying mathematical justification behind it, persisting purely out of habit."
     },
     "correct": "c",
     "theory": {
@@ -396,9 +396,9 @@
     "question": "A team training a demand-forecasting model sets the learning rate extremely high 'to make training finish faster.' What is the likely practical consequence?",
     "options": {
       "a": "The parameter updates may overshoot the minimum repeatedly, causing the error to oscillate wildly or even diverge (increase) instead of settling down",
-      "b": "The gradient itself will become undefined",
-      "c": "A high learning rate has no effect on the outcome, only on which programming language is used",
-      "d": "Training will converge to the true minimum error in fewer steps, with no downside"
+      "b": "The gradient itself becomes mathematically undefined once the learning rate exceeds a certain threshold, halting the training process entirely",
+      "c": "A high learning rate has no real effect on the training outcome, and only influences implementation details like which programming language or library is used",
+      "d": "Training will converge to the true minimum error in far fewer steps, since a larger learning rate simply speeds up progress with no downside"
     },
     "correct": "a",
     "theory": {
@@ -416,10 +416,10 @@
     "topic": "vector-calculus",
     "question": "A pricing model computes profit as a function of price, and price itself is set based on a competitor's price via another function. To find how profit responds to a change in the competitor's price, an analyst multiplies (d profit/d price) by (d price/d competitor's price). What rule is this an application of?",
     "options": {
-      "a": "The product rule for two independent functions",
+      "a": "The product rule for two independent functions, which multiplies their two rates of change because profit and price vary independently",
       "b": "The chain rule — combining the rates of change of a chain of dependent quantities to get the rate of change of the outermost one with respect to the innermost",
-      "c": "The rule only applies when both functions are linear",
-      "d": "Bayes' theorem"
+      "c": "This particular rule only applies when both the profit function and the pricing function are linear, and fails whenever either one is nonlinear in practice, even for a single pricing period.",
+      "d": "Bayes' theorem, which combines the prior relationship between price and profit with new evidence about the competitor's pricing behavior"
     },
     "correct": "b",
     "theory": {
@@ -436,10 +436,10 @@
     "topic": "vector-calculus",
     "question": "A supply-chain model produces 3 outputs (expected stockouts, expected holding cost, expected transport cost) as functions of 4 inputs (order quantity, safety stock, lead time, reorder point). The full matrix collecting every output's partial derivative with respect to every input is called what, and what are its dimensions?",
     "options": {
-      "a": "The Hessian matrix; 3x3",
-      "b": "The identity matrix; 4x4",
+      "a": "The Hessian matrix, sized 3x3 for the three outputs",
+      "b": "The identity matrix, sized 4x4 for the four inputs",
       "c": "The Jacobian matrix; 3x4, since there are 3 outputs and 4 inputs",
-      "d": "The covariance matrix; 4x4"
+      "d": "The covariance matrix, sized 4x4 for the four inputs, since it captures how strongly they vary together."
     },
     "correct": "c",
     "theory": {
@@ -456,9 +456,9 @@
     "topic": "vector-calculus",
     "question": "At a candidate minimum of a cost function, the Hessian matrix (matrix of second derivatives) is computed and found to be positive definite. What does that confirm?",
     "options": {
-      "a": "The function has no minimum anywhere",
-      "b": "The gradient at that point must be nonzero",
-      "c": "The cost function is linear",
+      "a": "The function has no minimum anywhere in its domain, since a positive definite Hessian indicates the surface keeps curving upward without limit",
+      "b": "The gradient at that point must actually be nonzero, and the positive definite Hessian is what pushes the remaining slope toward a minimum",
+      "c": "The cost function is purely linear at that point, since a positive definite Hessian only ever arises when there is no curvature at all",
       "d": "The point is indeed a local minimum — the function curves upward in every direction around that point, like the bottom of a bowl"
     },
     "correct": "d",
@@ -477,10 +477,10 @@
     "topic": "vector-calculus",
     "question": "A cost function used to train a demand-forecasting model is convex. Why is this property specifically valuable for gradient descent, compared to training on a non-convex cost function?",
     "options": {
-      "a": "Convexity guarantees the model will have zero prediction error",
-      "b": "Convex functions cannot be differentiated",
+      "a": "Convexity guarantees the trained model will achieve zero prediction error, since a bowl-shaped cost function always bottoms out exactly at zero",
+      "b": "Convex functions cannot be differentiated using ordinary calculus, which is why gradient descent instead relies on numerically estimating the slope",
       "c": "A convex function has a single global minimum with no other local minima to get stuck in, so gradient descent is guaranteed to find the true best solution given enough steps and a suitable learning rate",
-      "d": "Convex functions train faster on any hardware, with no exceptions"
+      "d": "Convex functions always train faster than non-convex ones on any hardware, since the bowl shape itself reduces the computational cost of each step"
     },
     "correct": "c",
     "theory": {
@@ -497,10 +497,10 @@
     "topic": "vector-calculus",
     "question": "Unlike linear regression's cost function, a deep neural network's cost function is typically non-convex, with many local minima and saddle points. What practical consequence does this have for training such a model?",
     "options": {
-      "a": "Non-convexity has no practical effect; gradient descent still always finds the global minimum",
+      "a": "Non-convexity has essentially no practical effect on training, since gradient descent is mathematically guaranteed to still locate the global minimum regardless of the surface's shape",
       "b": "Gradient descent may converge to a local minimum or get slowed near a saddle point rather than the true global minimum, so where training starts (parameter initialization) and how it's tuned can meaningfully affect the final result",
-      "c": "A non-convex cost function means the model has no gradient",
-      "d": "Non-convex functions cannot be optimized using derivatives at all"
+      "c": "A non-convex cost function means the model no longer has a well-defined gradient anywhere, making standard backpropagation impossible to apply",
+      "d": "Non-convex functions cannot be optimized using derivative-based methods at all, which is why neural networks instead rely entirely on random search"
     },
     "correct": "b",
     "theory": {
@@ -519,9 +519,9 @@
     "question": "From a fixed budget-allocation point, an analyst wants to know how revenue would change if they moved budget partly toward TV and partly toward digital simultaneously, in a specific 60/40 ratio — not purely along either axis. Which concept answers this directly?",
     "options": {
       "a": "A directional derivative — the rate of change of revenue along that specific 60/40 combined direction, computed from the gradient",
-      "b": "The mean of the two partial derivatives",
-      "c": "The determinant of the budget matrix",
-      "d": "The partial derivative with respect to TV budget alone"
+      "b": "The simple mean of the two partial derivatives with respect to TV and digital budget, averaged without regard to the 60/40 weighting",
+      "c": "The determinant of the budget matrix, which collapses the TV and digital allocations into the single rate of change along any direction",
+      "d": "The partial derivative with respect to TV budget alone, since that is the larger share of the 60/40 combined direction being considered"
     },
     "correct": "a",
     "theory": {
@@ -539,9 +539,9 @@
     "question": "An analyst wants a quick, simple approximation of how a complex nonlinear cost function will behave for small parameter changes near the current point, without recomputing the full nonlinear function each time. What mathematical tool provides exactly this kind of local approximation?",
     "options": {
       "a": "A Taylor expansion around the current point, using the gradient (and optionally the Hessian) to build a linear or quadratic approximation that's accurate close to that point",
-      "b": "Bayes' theorem",
-      "c": "A random sample of the cost function's values",
-      "d": "The determinant of the cost function"
+      "b": "Bayes' theorem, which updates the cost function's expected behavior near the current point using a prior belief about its shape, the same way it revises a churn estimate using new evidence.",
+      "c": "A random sample of the cost function's values taken near the current point, averaged together to approximate the local behavior",
+      "d": "The determinant of the cost function's Hessian at the current point, which by itself approximates the function's local behavior"
     },
     "correct": "a",
     "theory": {
@@ -559,9 +559,9 @@
     "question": "A recommendation model's parameters are updated using a randomly-selected small batch of user interactions on each step, rather than the company's full multi-million-row interaction log. What is this approach called, and what is the main trade-off compared to computing the gradient on the entire dataset every step?",
     "options": {
       "a": "Stochastic (or mini-batch) gradient descent; it makes each step much cheaper to compute, at the cost of each individual gradient estimate being noisier and less precise than the full-dataset gradient",
-      "b": "Batch gradient descent; it always converges faster with no downside",
-      "c": "Newton's method; it eliminates the need for a learning rate",
-      "d": "Regularization; it prevents overfitting by definition"
+      "b": "Batch gradient descent; computing the gradient from the full multi-million-row log every step always converges faster and carries no downside",
+      "c": "Newton's method; using a randomly-selected small batch each step is exactly how Newton's method eliminates the need to choose a learning rate",
+      "d": "Regularization; sampling a small random batch of interactions each step is itself a form of regularization that prevents overfitting by definition"
     },
     "correct": "a",
     "theory": {
@@ -578,10 +578,10 @@
     "topic": "vector-calculus",
     "question": "In a two-layer forecasting model, the final error depends on layer-2 weights directly, and depends on layer-1 weights only indirectly (through layer-2's output). To compute the gradient with respect to layer-1 weights, which technique is required, and why?",
     "options": {
-      "a": "None — layer-1 weights don't need gradients since they aren't directly connected to the error",
+      "a": "None — layer-1 weights don't need gradients at all, since only weights directly connected to the error output require updating during training",
       "b": "The chain rule, applied repeatedly backward through the layers, because layer-1's effect on the error passes through layer-2, so their sensitivities must be multiplied together",
-      "c": "Bayes' theorem, to invert the direction of causality",
-      "d": "Matrix inversion of the entire network"
+      "c": "Bayes' theorem, which is needed to invert the direction of causality between layer-1's weights and the final error signal",
+      "d": "Matrix inversion of the entire network's combined weight matrices, which directly produces the sensitivity of the error to every layer-1 weight without applying the chain rule at any layer."
     },
     "correct": "b",
     "theory": {
@@ -600,9 +600,9 @@
     "question": "A vector-valued function f(x) = Ax, where A is an M-by-N matrix and x is an N-dimensional vector, maps x to an M-dimensional output. What are the dimensions of the gradient (Jacobian) of f with respect to x?",
     "options": {
       "a": "M x N, matching A itself, since each of the M outputs' sensitivity to each of the N inputs must be recorded",
-      "b": "N x N",
-      "c": "1 x 1, a single number",
-      "d": "M x M"
+      "b": "N x N, matching the number of input dimensions squared, since the Jacobian of a linear map always takes the shape of a square matrix",
+      "c": "1 x 1, a single number, since the Jacobian of any linear transformation always collapses down to one overall sensitivity value",
+      "d": "M x M, matching the number of outputs, since the Jacobian only needs to capture how each output relates to the other outputs"
     },
     "correct": "a",
     "theory": {
@@ -620,10 +620,10 @@
     "topic": "probability-statistics",
     "question": "A retail analyst models 'number of items returned per order' as a random variable. Why is this specifically a discrete random variable rather than a continuous one?",
     "options": {
-      "a": "Because it can never equal zero",
-      "b": "Because it depends on customer behavior",
+      "a": "Because the number of items returned per order can never equal zero for any customer, and any random variable whose observed values are always strictly positive is automatically classified as discrete rather than continuous by definition.",
+      "b": "Because it depends on customer behavior, and any variable whose value is shaped by human decisions and choices rather than a physical measurement process is automatically classified as a discrete random variable",
       "c": "Because its possible outcomes are countable, distinct values (0, 1, 2, 3...) with no fractional values in between, unlike a continuous variable such as 'exact weight of the returned package' which can take any value in a range",
-      "d": "Because it always has exactly two outcomes"
+      "d": "Because it always has exactly two possible outcomes, either an item is returned or it isn't, which is the defining feature that separates a discrete random variable from a continuous one in probability theory"
     },
     "correct": "c",
     "theory": {
@@ -641,9 +641,9 @@
     "question": "A probability distribution over 'weekly units sold' assigns 40% probability to 100 units, 35% to 150 units, and 25% to 200 units. What does this distribution let a planner compute that a single point forecast ('expect 145 units') cannot?",
     "options": {
       "a": "The full range of plausible outcomes and their relative likelihoods, enabling risk-aware decisions like how much safety stock to hold against the less-likely-but-possible 200-unit scenario",
-      "b": "The exact profit for each outcome",
-      "c": "The distribution guarantees which of the three outcomes will actually occur",
-      "d": "Nothing extra — a distribution and a point forecast carry the same information"
+      "b": "The exact profit generated by each of the three sales outcomes, calculated directly from the unit price and cost figures involved",
+      "c": "The distribution guarantees exactly which of the three outcomes will actually occur, removing the need to plan for more than one scenario",
+      "d": "Nothing extra — a probability distribution and a single point forecast carry exactly the same information, just expressed in different formats, and either is equally sufficient for setting safety stock policy."
     },
     "correct": "a",
     "theory": {
@@ -660,9 +660,9 @@
     "topic": "probability-statistics",
     "question": "A marketing promotion has a 30% chance of generating $50,000 in extra revenue and a 70% chance of generating $5,000. What is the expected value of running this promotion?",
     "options": {
-      "a": "$27,500, the simple average of the two dollar figures",
-      "b": "$5,000, the more likely outcome",
-      "c": "$50,000, the best-case outcome",
+      "a": "$27,500, obtained by taking the simple average of the two dollar figures without weighting either one by how likely it is to occur",
+      "b": "$5,000, since expected value always equals whichever single outcome has the highest probability of occurring, regardless of the other outcome",
+      "c": "$50,000, since expected value represents the best-case outcome a business should plan around when evaluating an uncertain promotion",
       "d": "$18,500 — computed as 0.30 x $50,000 plus 0.70 x $5,000, the probability-weighted average of the possible outcomes"
     },
     "correct": "d",
@@ -680,10 +680,10 @@
     "topic": "probability-statistics",
     "question": "Two demand forecasts both have an expected value of 1,000 units per week, but Forecast A has a variance of 25 and Forecast B has a variance of 10,000. What does the variance difference tell an operations manager?",
     "options": {
-      "a": "Variance measures the total demand across both forecasts combined",
-      "b": "The two forecasts are describing different products",
+      "a": "Variance measures the total combined demand across both Forecast A and Forecast B, added together into a single aggregate figure that operations planners use in place of tracking each forecast separately during weekly planning.",
+      "b": "The two forecasts must be describing entirely different products, since two forecasts built around the exact same expected value of 1,000 units could never legitimately have different variances",
       "c": "Forecast A's actual outcomes are expected to cluster tightly around 1,000, while Forecast B's outcomes are expected to swing much more widely, even though both forecasts predict the same average — B carries far more risk",
-      "d": "Forecast B is more accurate on average, since it has a bigger number"
+      "d": "Forecast B is more accurate on average than Forecast A, since a larger variance number reflects a more thoroughly analyzed, higher-confidence forecast built from a larger underlying sample of data"
     },
     "correct": "c",
     "theory": {
@@ -701,9 +701,9 @@
     "question": "Why might an operations manager prefer to report demand uncertainty as a standard deviation of '50 units' rather than a variance of '2,500 units squared,' even though they carry the same information?",
     "options": {
       "a": "Standard deviation is the square root of variance, which puts it back into the original units (units of product) rather than squared units, making it directly comparable to and interpretable alongside the demand figure itself",
-      "b": "Variance can only be computed for continuous random variables",
-      "c": "Standard deviation is always a smaller number, so it looks better in reports",
-      "d": "Standard deviation and variance measure entirely different, unrelated properties"
+      "b": "Standard deviation can only be computed for continuous random variables measured on a precise numeric scale, so a demand forecast reported in whole units of product requires variance to be reported instead",
+      "c": "Standard deviation is always a smaller number than variance for any dataset, so managers prefer reporting it in demand forecasts because the smaller figure makes the underlying uncertainty look less severe",
+      "d": "Standard deviation and variance measure entirely different, unrelated properties of a demand distribution, which is exactly why both numbers are reported together rather than one being derived from the other through any simple calculation."
     },
     "correct": "a",
     "theory": {
@@ -721,9 +721,9 @@
     "question": "An analyst computes the covariance between weekly advertising spend and weekly sales across 52 weeks of data and gets a large positive number. What does that positive covariance indicate?",
     "options": {
       "a": "When advertising spend is above its own average in a given week, sales also tend to be above their own average that week (and vice versa) — the two variables tend to move together",
-      "b": "Advertising spend causes sales to increase, with certainty",
-      "c": "Advertising spend and sales are measured in the same units",
-      "d": "The covariance value directly gives the exact percentage increase in sales per dollar of ad spend"
+      "b": "Advertising spend causes sales to increase with certainty, since a large positive covariance is direct mathematical proof of a causal relationship between the two, ruling out seasonality or any other confounding factor.",
+      "c": "Advertising spend and sales must be measured in the same units, since covariance can only be computed between two variables sharing a common scale",
+      "d": "The covariance value directly gives the exact percentage increase in sales produced by every additional dollar spent on advertising"
     },
     "correct": "a",
     "theory": {
@@ -740,9 +740,9 @@
     "topic": "probability-statistics",
     "question": "Why do analysts usually convert covariance into a correlation coefficient before reporting the relationship between two business metrics, such as ad spend and sales?",
     "options": {
-      "a": "Correlation always equals covariance divided by 2",
-      "b": "Correlation and covariance measure completely unrelated things",
-      "c": "Correlation eliminates the need to collect more than one data point",
+      "a": "Correlation always equals covariance divided by 2, a fixed conversion factor that works regardless of the two variables' original units",
+      "b": "Correlation and covariance measure completely unrelated statistical properties, so converting between them requires an entirely separate calculation",
+      "c": "Correlation eliminates the need to collect more than one data point, since a single paired observation is enough to compute it reliably",
       "d": "Correlation normalizes covariance to always fall between -1 and 1, making the strength of the relationship directly comparable across different variable pairs regardless of their original units or scale"
     },
     "correct": "d",
@@ -760,10 +760,10 @@
     "topic": "probability-statistics",
     "question": "In a fraud-detection model, 'transaction amount' and 'time of day' are treated as statistically independent random variables for a simplifying assumption. What does that independence assumption specifically claim?",
     "options": {
-      "a": "That transaction amount and time of day always have the same average value",
-      "b": "That fraud can never occur at certain times of day",
+      "a": "That transaction amount and time of day always have the exact same average value, which is what statistical independence formally requires between any two variables, regardless of how they actually behave.",
+      "b": "That fraud can never occur at certain times of day, since treating the two variables as independent rules out those time windows entirely",
       "c": "That knowing the time of day gives no information whatsoever about the likely transaction amount, and vice versa — the two variables' probabilities don't influence each other",
-      "d": "That transaction amount and time of day are the same variable measured twice"
+      "d": "That transaction amount and time of day are effectively the same underlying variable measured twice, just expressed in different units"
     },
     "correct": "c",
     "theory": {
@@ -781,9 +781,9 @@
     "question": "A quality-control system knows that 2% of all incoming shipments are defective overall. It also knows that among defective shipments, 90% come from Supplier X, but among non-defective shipments, only 15% come from Supplier X. What kind of probability is '90% of defective shipments come from Supplier X'?",
     "options": {
       "a": "A conditional probability — the probability of Supplier X, given that the shipment is already known to be defective, written P(Supplier X | defective)",
-      "b": "A marginal probability",
-      "c": "An expected value",
-      "d": "A covariance"
+      "b": "A marginal probability, since it describes Supplier X's overall share of shipments without reference to whether they are defective, reflecting only Supplier X's overall shipment volume.",
+      "c": "An expected value, computed by weighting Supplier X's shipment volume by the overall 2% defect rate across all shipments",
+      "d": "A covariance, measuring how strongly the supplier identity and the defect outcome move together across the shipment records"
     },
     "correct": "a",
     "theory": {
@@ -800,10 +800,10 @@
     "topic": "probability-statistics",
     "question": "Using the setup from math-039 (2% of shipments defective overall; P(Supplier X | defective) = 90%; P(Supplier X | not defective) = 15%), a manager actually wants to know the reverse question: given that a shipment comes from Supplier X, what's the probability it's defective? What tool computes that?",
     "options": {
-      "a": "The two conditional probabilities are already the same number, so no further calculation is needed",
+      "a": "The two conditional probabilities, P(Supplier X | defective) and P(defective | Supplier X), are already mathematically identical, because conditional probability is symmetric in both directions by definition.",
       "b": "Bayes' theorem, which uses the known conditional probabilities plus the overall (prior) defect rate to invert the direction of conditioning, from P(Supplier X | defective) to P(defective | Supplier X)",
-      "c": "The correlation coefficient between defect status and supplier",
-      "d": "The variance of the defect rate"
+      "c": "The correlation coefficient between defect status and supplier, which directly converts one conditional probability into its reverse",
+      "d": "The variance of the overall defect rate, which by itself determines how the direction of conditioning between supplier and defect status should be reversed"
     },
     "correct": "b",
     "theory": {
@@ -820,10 +820,10 @@
     "topic": "probability-statistics",
     "question": "In a Bayesian model estimating the probability that a customer will churn, the model starts with a 'prior' belief of 10% churn probability based on historical company-wide data. After observing that this specific customer hasn't logged in for 60 days, the model updates to a 'posterior' churn probability of 45%. What role did the 60-day login gap play?",
     "options": {
-      "a": "It had no mathematical effect on the churn estimate",
+      "a": "It had no mathematical effect on the churn estimate; the jump from 10% to 45% came entirely from the model being retrained on an entirely different, more recent batch of customer data",
       "b": "It served as new evidence; combined with the prior via Bayes' theorem (weighted by how likely that evidence is under churning vs. non-churning customers, the likelihood), it updated the belief from the general 10% to a customer-specific 45%",
-      "c": "It replaced the prior entirely, making the historical data irrelevant",
-      "d": "It changed the definition of what 'churn' means"
+      "c": "It replaced the prior entirely, meaning the general 10% historical churn rate was discarded and played no further role at all in the final, customer-specific probability estimate",
+      "d": "It changed the underlying definition of what counts as 'churn' for this particular customer, rather than actually updating the churn probability estimate itself through Bayesian reasoning"
     },
     "correct": "b",
     "theory": {
@@ -841,10 +841,10 @@
     "topic": "probability-statistics",
     "question": "A joint probability table shows the likelihood of every combination of 'purchase channel' (online/in-store) and 'payment method' (card/cash). If you sum across all payment methods for the 'online' row, what have you computed?",
     "options": {
-      "a": "The covariance between channel and payment method",
-      "b": "The conditional probability of card payment given online purchase",
+      "a": "The covariance between purchase channel and payment method, summarizing how strongly the two variables move together across the entire cross-tabulated table.",
+      "b": "The conditional probability of paying by card given that the purchase happened online, isolated entirely from the in-store totals.",
       "c": "The marginal probability of purchasing online — the overall probability of that one event, obtained by summing out (averaging over) the other variable",
-      "d": "The expected value of the payment method"
+      "d": "The expected value of the payment method variable, treating card and cash as numeric codes averaged across the online row"
     },
     "correct": "c",
     "theory": {
@@ -861,10 +861,10 @@
     "topic": "probability-statistics",
     "question": "Daily transaction amounts at a retail chain are found to follow a distribution that is symmetric, bell-shaped, and fully described by just two numbers: a mean and a standard deviation. What distribution is this, and why is it so central to statistics and business analytics?",
     "options": {
-      "a": "The uniform distribution; it is central because all outcomes are equally likely",
+      "a": "The uniform distribution; it is central to business analytics because every possible transaction amount within the observed historical range is treated as equally likely to occur on any given day",
       "b": "The Gaussian (normal) distribution; it's central because it arises naturally whenever many small independent effects add together, and its shape is fully captured by just its mean and standard deviation, making it simple to work with analytically",
-      "c": "The Poisson distribution; it is central because it only applies to counts of rare events",
-      "d": "The binomial distribution; it is central because it requires exactly two possible outcomes"
+      "c": "The Poisson distribution; it is central here because it specifically models symmetric, bell-shaped data using a single rate parameter that captures both the average and the spread of the data at once",
+      "d": "The binomial distribution; it is central here because a symmetric, bell-shaped pattern only ever arises from a variable that has exactly two possible outcomes, like a coin flip repeated many times"
     },
     "correct": "b",
     "theory": {
@@ -881,10 +881,10 @@
     "topic": "probability-statistics",
     "question": "An analyst repeatedly draws random samples of 100 customers from a much larger customer base and computes the average spend for each sample. Even though individual customer spend is heavily skewed (most spend little, a few spend a lot), the distribution of these 100-customer sample averages looks approximately normal (bell-shaped). What explains this?",
     "options": {
-      "a": "A data entry error, since skewed data should always produce skewed averages",
-      "b": "The samples must not actually be random",
+      "a": "A data entry error somewhere in the sampling process, since averages computed from skewed underlying data should always come out skewed too",
+      "b": "The samples must not actually be random, since a truly random sample from skewed data would always preserve that same skew in its averages",
       "c": "The Central Limit Theorem, which states that the distribution of sample averages tends toward a normal distribution as sample size grows, regardless of the shape of the underlying individual-level distribution",
-      "d": "The averages are normal only because spend happens to already be normally distributed"
+      "d": "The averages are normal only because individual customer spend happens to already be normally distributed underneath the apparent skew"
     },
     "correct": "c",
     "theory": {
@@ -901,9 +901,9 @@
     "topic": "probability-statistics",
     "question": "A team fits a Gaussian distribution to historical delivery times by choosing the mean and standard deviation values that make the observed data 'most probable' under that distributional assumption. What is this fitting procedure called?",
     "options": {
-      "a": "Principal Component Analysis",
-      "b": "Bayes' theorem, since any parameter-fitting is automatically Bayesian",
-      "c": "Gradient descent, which is only used for neural networks",
+      "a": "Principal Component Analysis, which fits a Gaussian by finding the two directions of delivery-time variation that explain the data best",
+      "b": "Bayes' theorem, since choosing a mean and standard deviation to fit observed data is automatically a Bayesian procedure by definition",
+      "c": "Gradient descent, a technique that is exclusively used for training neural networks and cannot be applied to fitting a simple distribution like this one, since it relies on backpropagation through layers.",
       "d": "Maximum Likelihood Estimation (MLE) — choosing the parameter values that maximize the probability (likelihood) of having observed the actual data you collected"
     },
     "correct": "d",
@@ -921,10 +921,10 @@
     "topic": "probability-statistics",
     "question": "A real-estate analytics report on home prices in a neighborhood shows the mean price is $850,000, but the median price is $520,000. What does this large gap between mean and median most likely indicate?",
     "options": {
-      "a": "The mean and median measure completely unrelated properties of the data with no meaningful comparison possible",
+      "a": "The mean and median measure completely unrelated properties of the data, so the size of the gap between the two numbers carries no real interpretation, making it pointless to report both figures together.",
       "b": "The distribution is likely right-skewed — a small number of very high-priced homes are pulling the mean upward, while the median (the true middle value) is less affected by those extreme outliers",
-      "c": "A calculation error, since mean and median should always be close",
-      "d": "There are exactly two homes in the dataset"
+      "c": "A calculation error somewhere in the report, since the mean and median of any real dataset should always come out close to each other",
+      "d": "There are exactly two homes in the dataset, one very expensive and one very cheap, which is the only way a mean and median can differ this much"
     },
     "correct": "b",
     "theory": {
@@ -941,10 +941,10 @@
     "topic": "probability-statistics",
     "question": "In a retail dataset, the mode of 'shirt size purchased' is 'Medium.' What does the mode specifically tell an inventory planner that the mean could not?",
     "options": {
-      "a": "The mode and the mean will always be equal for categorical data",
+      "a": "The mode and the mean will always come out equal for categorical data like shirt size, since both measures describe the data's central tendency",
       "b": "The mode identifies the single most frequently occurring category, which is meaningful even for non-numeric (categorical) data like shirt size, where computing a mathematical average makes no sense",
-      "c": "The mode gives the average shirt size numerically, just like the mean",
-      "d": "The mode is only defined for continuous numeric variables"
+      "c": "The mode gives the average shirt size numerically, in exactly the same way the mean would if sizes were converted to numbers first",
+      "d": "The mode is only defined for continuous numeric variables measured on a precise scale, so it cannot actually be applied to shirt size"
     },
     "correct": "b",
     "theory": {
@@ -961,10 +961,10 @@
     "topic": "probability-statistics",
     "question": "A supply-chain risk model treats 'supplier delay in days' as a random variable with a known distribution, then uses that distribution to estimate the probability that total delay across 3 independent suppliers exceeds 10 days. Why is the assumption of independence between suppliers important here, and what would break if it were false?",
     "options": {
-      "a": "Independence doesn't affect the calculation at all",
-      "b": "Independence guarantees all three suppliers will have identical average delays",
+      "a": "Independence doesn't affect the calculation at all, since combining probability distributions to analyze the sum of several random variables works identically whether or not the underlying suppliers are actually correlated with one another",
+      "b": "Independence guarantees that all three suppliers will experience identical average delays and identical variability, since independent random variables are mathematically required to share the exact same underlying probability distribution",
       "c": "The calculation of the combined delay's probability relies on how the individual delay distributions combine; if the suppliers' delays were actually correlated (e.g., all affected by the same regional weather event), treating them as independent would understate the true probability of a severe combined delay",
-      "d": "Independence is only relevant for discrete random variables, not continuous ones like delay in days"
+      "d": "Independence is only a relevant assumption for discrete random variables like item counts, not continuous ones like delay measured in days, so it can safely be ignored when modeling continuous supplier delay distributions like this one"
     },
     "correct": "c",
     "theory": {
@@ -982,9 +982,9 @@
     "topic": "probability-statistics",
     "question": "A customer-segmentation model assumes purchase amount follows a Gaussian distribution, but the real data is heavily right-skewed with many small purchases and a few very large ones. What practical problem does this mismatch create?",
     "options": {
-      "a": "The mean of a skewed distribution cannot be computed",
-      "b": "None — Gaussian assumptions work equally well regardless of the true shape of the data",
-      "c": "Skewed data automatically becomes Gaussian after enough observations, so no adjustment is needed",
+      "a": "The mean of a skewed distribution cannot be mathematically computed at all using standard formulas, so the customer-segmentation model would fail to produce any output or threshold whatsoever",
+      "b": "None — Gaussian-based statistics and thresholds work equally well no matter the true shape of the underlying purchase data, since every distribution converges to a Gaussian once summarized by its mean, making transformation unnecessary.",
+      "c": "Skewed data automatically becomes Gaussian once enough observations are collected into the segmentation model, so the mismatch resolves itself naturally without requiring any adjustment",
       "d": "Any statistic or threshold derived from the Gaussian assumption (like 'values beyond 2 standard deviations are outliers') will misrepresent the real data, since a skewed distribution doesn't share the Gaussian's symmetric, thin-tailed shape"
     },
     "correct": "d",
@@ -1003,9 +1003,9 @@
     "topic": "probability-statistics",
     "question": "A/B test results show Group A converted at 5.2% and Group B converted at 5.8%, based on 1,000 visitors per group. A colleague says 'B is clearly better, ship it.' What statistical concept is the colleague ignoring?",
     "options": {
-      "a": "The mode of the conversion rate",
-      "b": "Nothing; with any sample size, a higher observed rate always means a genuinely better variant",
-      "c": "The Jacobian of the conversion function",
+      "a": "The mode of the conversion rate, since the single most frequently occurring conversion outcome recorded across both test groups is what should determine which variant gets declared the winner and shipped to every visitor going forward",
+      "b": "Nothing; with any sample size, however small, a higher observed conversion rate in a single test run always reflects a genuinely and permanently better-performing variant that should be rolled out to all visitors immediately",
+      "c": "The Jacobian of the conversion function, which would reveal precisely whether the observed 0.6 percentage-point gap between the two groups is large enough to act on with confidence before shipping the change to production",
       "d": "Sampling variability — with only 1,000 visitors per group, the observed difference could easily be due to random chance rather than a real underlying difference, which is exactly what statistical significance testing (built on the probability concepts in this course) is designed to check"
     },
     "correct": "d",
@@ -1024,10 +1024,10 @@
     "topic": "optimization",
     "question": "A logistics company wants to choose delivery routes that minimize total fuel cost. In optimization terms, what is 'total fuel cost' called, and what is the general goal?",
     "options": {
-      "a": "The constraint; the goal is to keep it fixed",
-      "b": "The gradient; the goal is to maximize it",
+      "a": "The constraint; the goal is to keep total fuel cost fixed at its current level while the route choices are freely adjusted",
+      "b": "The gradient; the goal is to maximize it so that fuel cost increases as quickly as possible with each route change",
       "c": "The objective function; the goal is to find the input values (route choices) that minimize it",
-      "d": "The prior; the goal is to update it with new evidence"
+      "d": "The prior; the goal is to update the fuel cost belief with new evidence gathered from each completed delivery route"
     },
     "correct": "c",
     "theory": {
@@ -1045,9 +1045,9 @@
     "question": "The same logistics company wants to minimize fuel cost, but only among route plans that keep total driver hours under 40 per week. What role does the driver-hours limit play in the optimization problem?",
     "options": {
       "a": "It is a constraint — a condition the solution must satisfy, which narrows the search to only the feasible route plans, rather than being the thing being optimized itself",
-      "b": "It has no mathematical role; constraints are just suggestions",
-      "c": "It is the objective function",
-      "d": "It replaces the need for an objective function entirely"
+      "b": "It has no real mathematical role in the optimization; constraints like the driver-hours limit are just informal suggestions for planners",
+      "c": "It is the objective function itself, meaning the optimization is now actually trying to minimize driver hours rather than fuel cost",
+      "d": "It replaces the need for an objective function entirely, since satisfying the driver-hours limit alone is enough to fully define the optimal route plan without referencing fuel cost."
     },
     "correct": "a",
     "theory": {
@@ -1065,9 +1065,9 @@
     "question": "To solve the constrained fuel-cost problem from math-052 using Lagrange multipliers, what is the general strategy?",
     "options": {
       "a": "Combine the objective function and the constraint into a single new function (the Lagrangian), using a multiplier variable that effectively converts the constrained problem into an equivalent unconstrained one that can be solved with ordinary gradient-based tools",
-      "b": "Replace the objective function with the constraint",
-      "c": "Randomly try route plans until one satisfies the constraint",
-      "d": "Ignore the constraint entirely and solve the unconstrained problem"
+      "b": "Replace the fuel-cost objective function entirely with the driver-hours constraint itself, then solve for whichever specific route plan happens to satisfy that 40-hour limit exactly, disregarding cost altogether",
+      "c": "Randomly generate a large number of candidate route plans and check each one against the 40-hour driver constraint in turn, keeping whichever randomly generated plan happens to satisfy it first",
+      "d": "Ignore the driver-hours constraint entirely and solve the unconstrained fuel-cost problem instead, since Lagrange multipliers are only meant to be applied once all constraints have been removed from consideration"
     },
     "correct": "a",
     "theory": {
@@ -1084,10 +1084,10 @@
     "topic": "optimization",
     "question": "After solving the constrained fuel-cost optimization, the Lagrange multiplier on the driver-hours constraint comes out to 340. What does that number mean in business terms?",
     "options": {
-      "a": "It means exactly 340 driver-hours are required",
-      "b": "It represents the total fuel cost in dollars",
+      "a": "It means exactly 340 driver-hours are required each and every week for the route plan to remain feasible at its current optimal fuel cost, regardless of any other resource",
+      "b": "It represents the total fuel cost in dollars for the entire optimal route plan each week, independent of the driver-hours limit or any other constraint used in the model",
       "c": "It approximates the marginal value of relaxing the constraint — roughly, allowing one additional driver-hour per week would be expected to reduce total fuel cost by about $340, making it the 'shadow price' of that constraint",
-      "d": "It has no business meaning; it is a purely internal mathematical artifact"
+      "d": "It has no business meaning; the multiplier is a purely internal mathematical artifact of the solving method with no real-world interpretation"
     },
     "correct": "c",
     "theory": {
@@ -1105,9 +1105,9 @@
     "topic": "optimization",
     "question": "A company's cost-minimization problem is convex, and its constraints are also convex. Why does this combination make the optimization problem especially trustworthy to solve automatically, without a human manually checking every candidate solution?",
     "options": {
-      "a": "Convex constraints make the objective function irrelevant",
-      "b": "Convexity guarantees the constraints will never bind",
-      "c": "Convex optimization problems always have exactly one feasible solution",
+      "a": "Convex constraints make the objective function completely irrelevant to the outcome, since the shape of the feasible region by itself fully determines what the optimal cost will always turn out to be",
+      "b": "Convexity guarantees that none of the constraints will ever actually bind at the optimal solution, leaving the company effectively free of its resource limits once the whole problem has been solved",
+      "c": "Convex optimization problems always have exactly one feasible solution available in total, since convexity of the constraints collapses the entire feasible region down to a single specific point",
       "d": "A convex objective with convex constraints guarantees any local optimum found is also the global optimum over the entire feasible region, so a standard solver's answer can be trusted as truly the best feasible solution, not just a locally good one"
     },
     "correct": "d",
@@ -1125,10 +1125,10 @@
     "topic": "optimization",
     "question": "A regression model predicting home prices fits the training data almost perfectly but performs poorly on new listings. A data scientist adds an L2 regularization penalty term to the cost function to discourage excessively large coefficients. How does this relate to the earlier idea of constrained optimization?",
     "options": {
-      "a": "Regularization is only applicable to convex optimization problems, never non-convex ones",
+      "a": "Regularization is only applicable to convex optimization problems, since a penalty term added to a non-convex cost function has no defined mathematical effect on the resulting coefficients",
       "b": "Adding a penalty term for large coefficients is mathematically similar to imposing a soft constraint that limits how large the coefficients can get, trading a slightly worse fit on training data for coefficients that generalize better to new data",
-      "c": "Regularization has no mathematical connection to constraints; it is a purely different technique",
-      "d": "Regularization always increases the training error to exactly zero"
+      "c": "Regularization has no mathematical connection to constrained optimization at all; it is a completely separate technique built on entirely different principles, sharing no machinery, calculus, or feasible-region reasoning with it whatsoever.",
+      "d": "Regularization always increases the training error until it reaches exactly zero on the training set, which is precisely what allows the resulting model to generalize better to new data"
     },
     "correct": "b",
     "theory": {
@@ -1146,9 +1146,9 @@
     "topic": "optimization",
     "question": "Two models are compared: Model A fits the training data almost perfectly but performs much worse on a held-out test set. Model B fits the training data less well but performs about the same on training and test data. From an optimization perspective, what has likely happened to Model A?",
     "options": {
-      "a": "The comparison is meaningless without knowing the exact learning rate used",
-      "b": "Model B has a bug, since a worse training fit can never be preferable",
-      "c": "Model A found the true global minimum of the real-world cost function and should always be preferred",
+      "a": "The comparison between Model A and Model B is entirely meaningless without knowing the exact learning rate and number of training epochs each one used during fitting.",
+      "b": "Model B likely has a bug somewhere in its training code, since a model that fits the training data less well than another can never actually be the preferable choice, no matter what the test-set performance shows.",
+      "c": "Model A found the true global minimum of the real-world cost function, and its near-perfect training fit means it should always be preferred",
       "d": "Model A has likely overfit — it has effectively optimized itself too closely to the specific noise in the training sample rather than the true underlying pattern, so its 'excellent' training performance doesn't generalize"
     },
     "correct": "d",
@@ -1167,10 +1167,10 @@
     "topic": "optimization",
     "question": "The manufacturer's production-planning problem from math-003 (choose quantities to minimize cost subject to resource limits) has a 'primal' formulation. It also has a 'dual' formulation, whose variables directly correspond to the shadow prices of each resource constraint. Why might a manager care about solving the dual problem as well as the primal?",
     "options": {
-      "a": "The dual problem replaces the objective function with a probability distribution",
+      "a": "The dual problem replaces the original cost-minimization objective entirely with a probability distribution over possible production plans, which the manager then samples from directly to decide on quantities",
       "b": "The dual problem's solution directly reveals the marginal value of each scarce resource — how much the optimal cost would improve per additional unit of that resource — which is exactly the kind of 'is it worth buying more capacity' information the multiplier interpretation in math-054 provides",
-      "c": "The dual problem is just a duplicate of the primal with no additional information",
-      "d": "Solving the dual is only possible when the primal problem has no solution"
+      "c": "The dual problem is just a mathematical duplicate of the primal formulation, producing exactly the same set of numbers in a different notation, with no additional business information beyond what the primal already shows on its own",
+      "d": "Solving the dual problem is only mathematically possible in cases where the primal production-planning problem itself turns out to have no feasible solution at all, making the dual a fallback rather than a complement"
     },
     "correct": "b",
     "theory": {
@@ -1188,9 +1188,9 @@
     "topic": "optimization",
     "question": "Plain gradient descent uses only first derivatives (the gradient) to decide each step's direction. Newton's method additionally uses the Hessian (second derivatives, from math-023) to decide each step. What practical advantage does incorporating curvature information typically provide?",
     "options": {
-      "a": "Newton's method guarantees convergence even on non-differentiable functions",
-      "b": "Curvature information has no effect on convergence speed",
-      "c": "Newton's method eliminates the need for an objective function",
+      "a": "Newton's method guarantees convergence even on functions that aren't differentiable anywhere, since it relies entirely on curvature information rather than needing any slope information at all, even without a gradient.",
+      "b": "Curvature information from the Hessian has no measurable effect on convergence speed at all, and only ever changes how numerically stable each individual step of the update turns out to be, not how fast it converges.",
+      "c": "Newton's method eliminates the need for an objective function entirely, since the Hessian matrix alone is already enough information to determine the optimal parameter values directly, without ever evaluating the gradient",
       "d": "By accounting for how the slope itself is changing (curvature), Newton's method can often take more direct steps toward the minimum and converge in fewer iterations than plain gradient descent, though computing and using the Hessian is more expensive per step"
     },
     "correct": "d",
@@ -1210,9 +1210,9 @@
     "question": "A budget-allocation optimization has a constraint written as 'total spend <= $500,000' (an inequality, not an exact equality like the earlier resource examples). Why does this inequality form require a more general set of optimality conditions (informally, the KKT conditions) than the pure Lagrange-multiplier approach used for equality constraints?",
     "options": {
       "a": "An inequality constraint might or might not be 'active' (binding exactly at the limit) at the optimal solution, so the optimality conditions must additionally account for whether the constraint is actually constraining the solution, unlike an equality constraint which always holds exactly by definition",
-      "b": "KKT conditions apply only to problems with no objective function",
-      "c": "Inequality constraints cannot be handled mathematically at all",
-      "d": "Inequality constraints always make a problem non-convex"
+      "b": "KKT conditions apply only to optimization problems that have no objective function at all defined, relying purely on the constraints themselves to fully define what counts as an acceptable solution to the manager",
+      "c": "Inequality constraints like a total spending cap cannot be handled mathematically using standard optimization theory at all, which is why hard budget limits are typically dropped from the model before it is solved in practice",
+      "d": "Inequality constraints such as a total spending cap always convert an otherwise convex optimization problem into a non-convex one the moment they are added to the budget-allocation formulation being solved"
     },
     "correct": "a",
     "theory": {
