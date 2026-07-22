@@ -68,6 +68,7 @@ export default function Trainer({ course, onBack }) {
     const q = session.questions[session.idx];
     const correct = key === q.correct;
     const cards = { ...progress.cards, [q.id]: { ...progress.cards[q.id] } };
+    cards[q.id].seen = true;
     if (correct) {
       cards[q.id].correct++;
       setSession((s) => ({ ...s, correct: s.correct + 1 }));
