@@ -1,4 +1,5 @@
 import { COURSES } from '../data/courses';
+import { useFavoriteCourses } from '../hooks/useFavoriteCourses';
 
 const SQL_TOTAL = 26;
 const UNCATEGORIZED = 'More Courses';
@@ -67,7 +68,7 @@ function groupByCategory(courses) {
   return groups;
 }
 
-function DashCard({ course, stats, onSelect }) {
+function DashCard({ course, stats, onSelect, isFavorite, onToggleFavorite }) {
   const statusClass = !stats.started ? 'unstarted' : stats.attention ? 'attention' : 'ontrack';
 
   return (
@@ -76,6 +77,14 @@ function DashCard({ course, stats, onSelect }) {
         <span className="dash-icon">{course.icon}</span>
         <h3>{course.title}</h3>
         {stats.attention && <span className="dash-flag" title="Needs attention">⚠</span>}
+        <button
+          className={`dash-fav-btn${isFavorite ? ' active' : ''}`}
+          onClick={(e) => { e.stopPropagation(); onToggleFavorite(course.id); }}
+          title={isFavorite ? 'Remove from My Focus' : 'Add to My Focus — courses you want to practice more'}
+          aria-label={isFavorite ? 'Remove from My Focus' : 'Add to My Focus'}
+        >
+          {isFavorite ? '⭐' : '☆'}
+        </button>
       </div>
 
       {stats.kind !== 'ielts' && !stats.started && <p className="dash-empty">Not started yet</p>}
@@ -121,39 +130,50 @@ function DashCard({ course, stats, onSelect }) {
 }
 
 export default function Dashboard({ onSelect, onBack }) {
+  const { isFavorite, toggleFavorite } = useFavoriteCourses();
   const groups = groupByCategory(COURSES);
   const withStats = groups.map((g) => ({
     ...g,
     entries: g.courses.map((course) => ({ course, stats: statsFor(course) })),
   }));
 
-  const needsAttention = withStats
-    .flatMap((g) => g.entries)
-    .filter((e) => e.stats.attention);
+  const allEntries = withStats.flatMap((g) => g.entries);
+  const myFocus = allEntries.filter((e) => isFavorite(e.course.id));
+  const needsAttention = allEntries.filter((e) => e.stats.attention);
+
+  const renderCard = ({ course, stats }) => (
+    <DashCard
+      key={course.id}
+      course={course}
+      stats={stats}
+      onSelect={onSelect}
+      isFavorite={isFavorite(course.id)}
+      onToggleFavorite={toggleFavorite}
+    />
+  );
 
   return (
     <div className="hub-wrap dash-wrap">
       <h1>Your Progress<br /><span>How each course is going</span></h1>
 
+      {myFocus.length > 0 && (
+        <section className="hub-section">
+          <h2 className="hub-section-title">⭐ My Focus</h2>
+          <div className="hub-grid">{myFocus.map(renderCard)}</div>
+        </section>
+      )}
+
       {needsAttention.length > 0 && (
         <section className="hub-section">
           <h2 className="hub-section-title">⚠ Needs Attention</h2>
-          <div className="hub-grid">
-            {needsAttention.map(({ course, stats }) => (
-              <DashCard key={course.id} course={course} stats={stats} onSelect={onSelect} />
-            ))}
-          </div>
+          <div className="hub-grid">{needsAttention.map(renderCard)}</div>
         </section>
       )}
 
       {withStats.map((group) => (
         <section className="hub-section" key={group.name}>
           <h2 className="hub-section-title">{group.name}</h2>
-          <div className="hub-grid">
-            {group.entries.map(({ course, stats }) => (
-              <DashCard key={course.id} course={course} stats={stats} onSelect={onSelect} />
-            ))}
-          </div>
+          <div className="hub-grid">{group.entries.map(renderCard)}</div>
         </section>
       ))}
 

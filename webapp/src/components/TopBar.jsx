@@ -1,5 +1,41 @@
 import { useEffect, useState } from 'react';
 import AuthButton from './AuthButton';
+import { useAuth } from '../context/AuthContext';
+import { saveAllProgress } from '../lib/saveAllProgress';
+
+function SaveProgressButton() {
+  const { user } = useAuth();
+  const [status, setStatus] = useState('idle'); // idle | saving | saved | error
+
+  if (!user) return null;
+
+  const handleSave = async () => {
+    if (status === 'saving') return;
+    setStatus('saving');
+    try {
+      await saveAllProgress(user.uid);
+      setStatus('saved');
+    } catch (err) {
+      console.error('Save Progress failed:', err);
+      setStatus('error');
+    } finally {
+      setTimeout(() => setStatus('idle'), 2200);
+    }
+  };
+
+  const label = { idle: '💾 Save Progress', saving: '⏳ Saving…', saved: '✓ Saved', error: '✗ Save failed' }[status];
+
+  return (
+    <button
+      className={`save-progress-btn ${status}`}
+      onClick={handleSave}
+      disabled={status === 'saving'}
+      title="Push your progress on this device to the cloud right now"
+    >
+      {label}
+    </button>
+  );
+}
 
 function FullscreenButton() {
   const [isFs, setIsFs] = useState(!!document.fullscreenElement);
@@ -40,6 +76,7 @@ export default function TopBar({ title, onTitleClick, onDashboardClick }) {
       <button className="dashboard-btn" onClick={onDashboardClick} title="Your progress" aria-label="Your progress">
         📊<span className="dashboard-btn-label">Progress</span>
       </button>
+      <SaveProgressButton />
       <AuthButton />
       <FullscreenButton />
     </div>
