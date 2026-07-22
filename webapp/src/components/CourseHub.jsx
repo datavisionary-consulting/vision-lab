@@ -21,7 +21,7 @@ export default function CourseHub({ onSelect }) {
   const groups = groupByCategory(COURSES);
   return (
     <div className="hub-wrap">
-      <h1>Exam Trainer<br /><span>Choose a course</span></h1>
+      <h1 className="cc-heading">Campaigns<br /><span>Choose your next campaign</span></h1>
       {groups.map((group) => (
         <section className="hub-section" key={group.name}>
           {groups.length > 1 && <h2 className="hub-section-title">{group.name}</h2>}

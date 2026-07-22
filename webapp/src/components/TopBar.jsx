@@ -69,12 +69,32 @@ function FullscreenButton() {
   );
 }
 
-export default function TopBar({ title, onTitleClick, onDashboardClick }) {
+function RankBadge({ rank, totalXp }) {
+  if (!rank) return null;
+  return (
+    <div className="rank-badge" title={`${totalXp.toLocaleString()} XP${rank.next ? ` · ${rank.xpForNext - rank.xpIntoRank} XP to ${rank.next}` : ' · Max rank'}`}>
+      <span className="rank-badge-icon" style={{ color: rank.color }} aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+          <circle cx="12" cy="9" r="5" />
+          <path d="M9 13.5L7 21l5-2.4L17 21l-2-7.5" />
+        </svg>
+      </span>
+      <span className="rank-badge-name">{rank.name}</span>
+      <span className="rank-badge-bar"><i style={{ width: `${rank.pct}%`, background: rank.color }} /></span>
+    </div>
+  );
+}
+
+export default function TopBar({ title, onTitleClick, onDashboardClick, rank, totalXp }) {
   return (
     <div className="top-bar">
       <div className="top-bar-title" onClick={onTitleClick}>{title}</div>
-      <button className="dashboard-btn" onClick={onDashboardClick} title="Your progress" aria-label="Your progress">
-        📊<span className="dashboard-btn-label">Progress</span>
+      <RankBadge rank={rank} totalXp={totalXp} />
+      <button className="dashboard-btn" onClick={onDashboardClick} title="Your journey" aria-label="Your journey">
+        <span className="dashboard-btn-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M5 18V13M12 18V8M19 18V5" /></svg>
+        </span>
+        <span className="dashboard-btn-label">Journey</span>
       </button>
       <SaveProgressButton />
       <AuthButton />

@@ -2,13 +2,28 @@
   --bg:#1a1a2e;--surf:#242444;--surf2:#2f2f54;--border:#3d3d68;
   --acc:#c8943a;--acc2:#d9ac5c;--green:#2d7d6f;--red:#c0392b;
   --yellow:#e67e22;--cyan:#4a6580;--ielts:#7c5cbf;--text:#e8e4dc;--muted:#a89f93;--r:12px;
+  --font-display:'Cinzel',serif;--font-body:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --rank-recruit:#8a8496;--rank-cadet:#7fa08c;--rank-operative:#4a9bb0;--rank-specialist:#5c7fbf;
+  --rank-veteran:#9a6fc4;--rank-elite:#c8943a;--rank-master:#d9ac5c;--rank-legend:#e0b567;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+body{font-family:var(--font-body);background:var(--bg);color:var(--text);min-height:100vh}
 
 /* ── TOP BAR ── */
 .top-bar{display:flex;align-items:center;background:var(--surf);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
-.top-bar-title{flex:1;padding:14px 16px;font-size:.9rem;font-weight:700;color:var(--acc2);cursor:pointer}
+.top-bar-title{flex:1;padding:14px 16px;font-family:var(--font-display);font-size:.85rem;font-weight:700;letter-spacing:.03em;color:var(--acc2);cursor:pointer;white-space:nowrap}
+.dashboard-btn-icon{display:inline-flex;width:13px;height:13px;vertical-align:-2px;margin-right:2px}
+.dashboard-btn-icon svg{display:block;width:100%;height:100%}
+
+/* ── RANK BADGE (top bar) ── */
+.rank-badge{display:flex;align-items:center;gap:7px;padding:5px 12px;border:1px solid var(--border);border-radius:8px;margin-right:6px;flex:0 0 auto;cursor:default}
+.rank-badge-icon{width:14px;height:14px;color:var(--acc2);flex:0 0 auto}
+.rank-badge-icon svg{display:block;width:100%;height:100%}
+.rank-badge-name{font-family:var(--font-display);font-size:.72rem;font-weight:700;color:var(--text);white-space:nowrap}
+.rank-badge-bar{display:block;width:34px;height:3px;border-radius:2px;background:var(--surf2);overflow:hidden;flex:0 0 auto}
+.rank-badge-bar i{display:block;height:100%;background:var(--acc);border-radius:2px}
+@media(max-width:640px){.rank-badge-bar{display:none}.rank-badge{padding:5px 9px}}
+@media(max-width:420px){.rank-badge-name{display:none}}
 .fullscreen-btn{flex:0 0 auto;display:flex;align-items:center;justify-content:center;padding:0 16px;border:none;background:none;color:var(--muted);cursor:pointer;transition:color .15s;opacity:.6}
 .fullscreen-btn:hover{color:var(--acc2);opacity:1}
 .fullscreen-btn svg{display:block}
@@ -349,6 +364,29 @@ textarea.writing-editor{min-height:400px}
 .dash-num{font-size:1rem;font-weight:700;color:var(--acc2)}
 .dash-num.warn{color:var(--red)}
 .dash-lbl{font-size:.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:.03em}
+
+/* ── COMMAND CENTER (rank / XP) ── */
+.cc-heading{font-family:var(--font-display);letter-spacing:.01em}
+.cc-rank-panel{display:flex;align-items:center;gap:18px;width:100%;max-width:900px;background:linear-gradient(135deg,var(--surf) 0%,var(--surf2) 100%);border:1px solid var(--border);border-radius:var(--r);padding:18px 22px}
+.cc-medallion{width:52px;height:52px;flex:0 0 auto}
+.cc-rank-info{flex:1;min-width:0}
+.cc-rank-name{font-family:var(--font-display);font-size:1.05rem;font-weight:700;color:var(--text)}
+.cc-rank-xp{font-size:.74rem;color:var(--muted);margin-top:3px;font-variant-numeric:tabular-nums}
+.cc-rank-bar{height:4px;background:var(--bg);border-radius:2px;margin-top:8px;overflow:hidden}
+.cc-rank-bar i{display:block;height:100%;background:var(--acc);border-radius:2px;transition:width .4s ease}
+.cc-rank-stat{display:flex;flex-direction:column;align-items:center;gap:2px;padding-left:18px;border-left:1px solid var(--border);flex:0 0 auto}
+.cc-rank-stat-num{font-family:var(--font-display);font-size:1.15rem;font-weight:700;color:var(--acc2)}
+.cc-rank-stat-lbl{font-size:.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;white-space:nowrap}
+@media(max-width:560px){.cc-rank-panel{flex-wrap:wrap;gap:12px}.cc-rank-stat{border-left:none;padding-left:0;flex-direction:row;gap:8px}}
+
+/* ── RANK UP TOAST ── */
+.rank-up-toast{position:fixed;right:20px;bottom:20px;z-index:1000;display:flex;align-items:center;gap:12px;background:var(--surf);border:1px solid var(--acc);border-radius:10px;padding:14px 18px;box-shadow:0 16px 34px -12px rgba(0,0,0,.55);animation:rank-up-in .45s ease-out both}
+.rank-up-toast .rank-up-icon{width:22px;height:22px;color:var(--acc2);flex:0 0 auto}
+.rank-up-toast .rank-up-icon svg{display:block;width:100%;height:100%}
+.rank-up-toast b{display:block;font-family:var(--font-display);font-size:.85rem;letter-spacing:.02em}
+.rank-up-toast span{display:block;font-size:.76rem;color:var(--muted);margin-top:2px}
+@keyframes rank-up-in{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+@media(prefers-reduced-motion:reduce){.rank-up-toast{animation:none}}
 
 /* ── FOOTER ── */
 .site-footer{background:var(--surf);border-top:1px solid var(--border);padding:8px 24px;text-align:center}

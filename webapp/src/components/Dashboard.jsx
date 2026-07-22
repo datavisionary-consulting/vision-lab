@@ -129,7 +129,7 @@ function DashCard({ course, stats, onSelect, isFavorite, onToggleFavorite }) {
   );
 }
 
-export default function Dashboard({ onSelect, onBack }) {
+export default function Dashboard({ onSelect, onBack, rank, totalXp }) {
   const { isFavorite, toggleFavorite } = useFavoriteCourses();
   const groups = groupByCategory(COURSES);
   const withStats = groups.map((g) => ({
@@ -140,6 +140,7 @@ export default function Dashboard({ onSelect, onBack }) {
   const allEntries = withStats.flatMap((g) => g.entries);
   const myFocus = allEntries.filter((e) => isFavorite(e.course.id));
   const needsAttention = allEntries.filter((e) => e.stats.attention);
+  const activeCourses = allEntries.filter((e) => e.stats.started).length;
 
   const renderCard = ({ course, stats }) => (
     <DashCard
@@ -154,11 +155,38 @@ export default function Dashboard({ onSelect, onBack }) {
 
   return (
     <div className="hub-wrap dash-wrap">
-      <h1>Your Progress<br /><span>How each course is going</span></h1>
+      <h1 className="cc-heading">Command Center<br /><span>Your journey across every campaign</span></h1>
+
+      {rank && (
+        <section className="cc-rank-panel">
+          <svg className="cc-medallion" viewBox="0 0 48 48" aria-hidden="true">
+            <circle cx="24" cy="24" r="20" fill="var(--surf2)" stroke={rank.color} strokeWidth="1.3" />
+            <circle cx="24" cy="24" r="15.5" fill="none" stroke={rank.color} strokeWidth="1" opacity=".5" />
+            <g stroke={rank.color} strokeWidth="1" opacity=".7">
+              <line x1="24" y1="3" x2="24" y2="7" /><line x1="24" y1="41" x2="24" y2="45" />
+              <line x1="3" y1="24" x2="7" y2="24" /><line x1="41" y1="24" x2="45" y2="24" />
+              <line x1="9.5" y1="9.5" x2="12.3" y2="12.3" /><line x1="35.7" y1="35.7" x2="38.5" y2="38.5" />
+              <line x1="9.5" y1="38.5" x2="12.3" y2="35.7" /><line x1="35.7" y1="12.3" x2="38.5" y2="9.5" />
+            </g>
+            <text x="24" y="29" textAnchor="middle" fontFamily="Cinzel, serif" fontSize="10" fill={rank.color}>{rank.index + 1}</text>
+          </svg>
+          <div className="cc-rank-info">
+            <div className="cc-rank-name">{rank.name}</div>
+            <div className="cc-rank-xp">
+              {totalXp.toLocaleString()} XP{rank.next ? ` · ${(rank.xpForNext - rank.xpIntoRank).toLocaleString()} XP to ${rank.next}` : ' · Max rank reached'}
+            </div>
+            <div className="cc-rank-bar"><i style={{ width: `${rank.pct}%`, background: rank.color }} /></div>
+          </div>
+          <div className="cc-rank-stat">
+            <span className="cc-rank-stat-num">{activeCourses}/{allEntries.length}</span>
+            <span className="cc-rank-stat-lbl">Campaigns active</span>
+          </div>
+        </section>
+      )}
 
       {myFocus.length > 0 && (
         <section className="hub-section">
-          <h2 className="hub-section-title">⭐ My Focus</h2>
+          <h2 className="hub-section-title">★ Priority Campaigns</h2>
           <div className="hub-grid">{myFocus.map(renderCard)}</div>
         </section>
       )}
@@ -178,7 +206,7 @@ export default function Dashboard({ onSelect, onBack }) {
       ))}
 
       <button className="btn-secondary" style={{ width: '100%', maxWidth: '480px' }} onClick={onBack}>
-        ← Back to courses
+        ← Back to Campaigns
       </button>
     </div>
   );

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { getCourse } from './data/courses';
+import { useGamification } from './hooks/useGamification';
 import TopBar from './components/TopBar';
 import CourseHub from './components/CourseHub';
 import Dashboard from './components/Dashboard';
@@ -9,6 +10,7 @@ import IeltsReadingTrainer from './components/IeltsReadingTrainer';
 import IeltsListeningTrainer from './components/IeltsListeningTrainer';
 import IeltsWritingTrainer from './components/IeltsWritingTrainer';
 import IeltsSpeakingTrainer from './components/IeltsSpeakingTrainer';
+import RankUpToast from './components/RankUpToast';
 
 const KIND_COMPONENT = {
   trainer: Trainer,
@@ -22,6 +24,7 @@ const KIND_COMPONENT = {
 export default function App() {
   const [activeCourseId, setActiveCourseId] = useState(null);
   const [showDashboard, setShowDashboard] = useState(false);
+  const { totalXp, rank, justRankedUp, clearRankUp } = useGamification();
 
   const goHub = () => {
     setActiveCourseId(null);
@@ -40,10 +43,11 @@ export default function App() {
 
   return (
     <>
-      <TopBar title="Exam Trainer" onTitleClick={goHub} onDashboardClick={openDashboard} />
+      <TopBar title="Command Center" onTitleClick={goHub} onDashboardClick={openDashboard} rank={rank} totalXp={totalXp} />
+      <RankUpToast rankName={justRankedUp} onDone={clearRankUp} />
 
       {!course && !showDashboard && <CourseHub onSelect={setActiveCourseId} />}
-      {!course && showDashboard && <Dashboard onSelect={selectFromDashboard} onBack={goHub} />}
+      {!course && showDashboard && <Dashboard onSelect={selectFromDashboard} onBack={goHub} rank={rank} totalXp={totalXp} />}
       {CourseComponent && <CourseComponent course={course} onBack={goHub} />}
 
       <footer className="site-footer">

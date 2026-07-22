@@ -119,7 +119,7 @@ export default function Trainer({ course, onBack }) {
   if (view === 'home') {
     return (
       <div className="home-wrap">
-        <h1>{course.title}<br /><span>Exam Trainer</span></h1>
+        <h1>{course.title}<br /><span>Campaign Briefing</span></h1>
         <p className="subtitle">Spaced repetition · {questions.length} questions</p>
         <div className="stats-grid">
           <div className="stat-box"><div className="num">{questions.length}</div><div className="lbl">Total</div></div>
