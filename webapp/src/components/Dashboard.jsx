@@ -68,15 +68,27 @@ function groupByCategory(courses) {
   return groups;
 }
 
+function DashRing({ pct, warn }) {
+  return (
+    <div className="dash-ring" style={{ '--pct': pct, '--ring-color': warn ? 'var(--red)' : 'var(--acc)' }}>
+      <span>{pct}%</span>
+    </div>
+  );
+}
+
 function DashCard({ course, stats, onSelect, isFavorite, onToggleFavorite }) {
   const statusClass = !stats.started ? 'unstarted' : stats.attention ? 'attention' : 'ontrack';
+  const pct =
+    stats.kind === 'trainer' ? Math.round((stats.seen / stats.total) * 100) :
+    stats.kind === 'sql' ? Math.round((stats.solved / stats.total) * 100) : null;
 
   return (
     <div className={`dash-card ${statusClass}${course.enabled ? '' : ' disabled'}`} onClick={() => course.enabled && onSelect(course.id)}>
       <div className="dash-card-head">
-        <span className="dash-icon">{course.icon}</span>
+        <span className="dash-icon-chip">{course.icon}</span>
         <h3>{course.title}</h3>
         {stats.attention && <span className="dash-flag" title="Needs attention">⚠</span>}
+        {stats.started && pct !== null && <DashRing pct={pct} warn={stats.attention} />}
         <button
           className={`dash-fav-btn${isFavorite ? ' active' : ''}`}
           onClick={(e) => { e.stopPropagation(); onToggleFavorite(course.id); }}
@@ -90,24 +102,18 @@ function DashCard({ course, stats, onSelect, isFavorite, onToggleFavorite }) {
       {stats.kind !== 'ielts' && !stats.started && <p className="dash-empty">Not started yet</p>}
 
       {stats.kind === 'trainer' && stats.started && (
-        <>
-          <div className="dash-bar"><div className="dash-bar-fill" style={{ width: `${(stats.seen / stats.total) * 100}%` }} /></div>
-          <div className="dash-stats-row">
-            <div><span className="dash-num">{stats.seen}/{stats.total}</span><span className="dash-lbl">Seen</span></div>
-            <div><span className={`dash-num${stats.due > 0 ? ' warn' : ''}`}>{stats.due}</span><span className="dash-lbl">Due now</span></div>
-            <div><span className="dash-num">{stats.accuracy === null ? '—' : `${stats.accuracy}%`}</span><span className="dash-lbl">Accuracy</span></div>
-          </div>
-        </>
+        <div className="dash-stats-row">
+          <div><span className="dash-num">{stats.seen}/{stats.total}</span><span className="dash-lbl">Seen</span></div>
+          <div><span className={`dash-num${stats.due > 0 ? ' warn' : ''}`}>{stats.due}</span><span className="dash-lbl">Due now</span></div>
+          <div><span className="dash-num">{stats.accuracy === null ? '—' : `${stats.accuracy}%`}</span><span className="dash-lbl">Accuracy</span></div>
+        </div>
       )}
 
       {stats.kind === 'sql' && stats.started && (
-        <>
-          <div className="dash-bar"><div className="dash-bar-fill" style={{ width: `${(stats.solved / stats.total) * 100}%` }} /></div>
-          <div className="dash-stats-row">
-            <div><span className="dash-num">{stats.solved}/{stats.total}</span><span className="dash-lbl">Solved</span></div>
-            <div><span className="dash-num">{stats.accuracy === null ? '—' : `${stats.accuracy}%`}</span><span className="dash-lbl">Accuracy</span></div>
-          </div>
-        </>
+        <div className="dash-stats-row">
+          <div><span className="dash-num">{stats.solved}/{stats.total}</span><span className="dash-lbl">Solved</span></div>
+          <div><span className="dash-num">{stats.accuracy === null ? '—' : `${stats.accuracy}%`}</span><span className="dash-lbl">Accuracy</span></div>
+        </div>
       )}
 
       {stats.kind === 'ielts' && (

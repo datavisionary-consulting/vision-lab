@@ -6,6 +6,13 @@
   --rank-recruit:#8a8496;--rank-cadet:#7fa08c;--rank-operative:#4a9bb0;--rank-specialist:#5c7fbf;
   --rank-veteran:#9a6fc4;--rank-elite:#c8943a;--rank-master:#d9ac5c;--rank-legend:#e0b567;
 }
+/* Bronze palette — a restrained, all-warm alternate to the default indigo/gold
+   "Classic" world above. Only shell tokens shift; functional colors (correct/
+   wrong/SQL/IELTS accents) stay put so nothing reads as broken elsewhere. */
+:root[data-palette="bronze"]{
+  --bg:#15130f;--surf:#1c1912;--surf2:#241f16;--border:#332c1f;
+  --acc:#c9974a;--acc2:#e0b567;
+}
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:var(--font-body);background:var(--bg);color:var(--text);min-height:100vh}
 
@@ -24,6 +31,12 @@ body{font-family:var(--font-body);background:var(--bg);color:var(--text);min-hei
 .rank-badge-bar i{display:block;height:100%;background:var(--acc);border-radius:2px}
 @media(max-width:640px){.rank-badge-bar{display:none}.rank-badge{padding:5px 9px}}
 @media(max-width:420px){.rank-badge-name{display:none}}
+
+.palette-toggle{flex:0 0 auto;display:flex;align-items:center;gap:6px;padding:6px 12px;border:1px solid var(--border);border-radius:8px;background:none;color:var(--muted);cursor:pointer;font-size:.78rem;font-weight:600;transition:all .15s;margin-right:6px}
+.palette-toggle:hover{color:var(--acc2);border-color:var(--acc)}
+.palette-toggle-icon{width:13px;height:13px;flex:0 0 auto}
+.palette-toggle-icon svg{display:block;width:100%;height:100%}
+@media(max-width:760px){.palette-toggle-label{display:none}.palette-toggle{padding:6px 10px}}
 .fullscreen-btn{flex:0 0 auto;display:flex;align-items:center;justify-content:center;padding:0 16px;border:none;background:none;color:var(--muted);cursor:pointer;transition:color .15s;opacity:.6}
 .fullscreen-btn:hover{color:var(--acc2);opacity:1}
 .fullscreen-btn svg{display:block}
@@ -49,7 +62,7 @@ body{font-family:var(--font-body);background:var(--bg);color:var(--text);min-hei
 .hub-card{background:var(--surf);border:1px solid var(--border);border-radius:var(--r);padding:20px;cursor:pointer;transition:all .15s;text-align:left}
 .hub-card:hover{border-color:var(--acc);background:var(--surf2)}
 .hub-card.disabled{opacity:.4;cursor:not-allowed}
-.hub-card .hub-icon{font-size:1.8rem;margin-bottom:8px}
+.hub-card .hub-icon{width:44px;height:44px;border-radius:10px;background:var(--surf2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:12px}
 .hub-card h3{font-size:1rem;margin-bottom:4px}
 .hub-card p{font-size:.78rem;color:var(--muted)}
 .hub-card .hub-soon{font-size:.68rem;color:var(--yellow);margin-top:8px;font-weight:600;text-transform:uppercase;letter-spacing:.04em}
@@ -348,10 +361,12 @@ textarea.writing-editor{min-height:400px}
 .dash-card.ontrack{border-left-color:var(--green)}
 .dash-card.attention{border-left-color:var(--red)}
 .dash-card.unstarted{border-left-color:var(--border)}
-.dash-card-head{display:flex;align-items:center;gap:8px;margin-bottom:10px}
-.dash-card-head .dash-icon{font-size:1.3rem}
+.dash-card-head{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.dash-icon-chip{width:34px;height:34px;border-radius:8px;background:var(--surf2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:1.05rem;flex:0 0 auto}
 .dash-card-head h3{font-size:.92rem;flex:1}
 .dash-flag{color:var(--red);font-size:.85rem}
+.dash-ring{--pct:0;--ring-color:var(--acc);width:38px;height:38px;border-radius:50%;flex:0 0 auto;background:conic-gradient(var(--ring-color) calc(var(--pct)*1%), var(--surf2) 0);display:flex;align-items:center;justify-content:center}
+.dash-ring span{width:29px;height:29px;border-radius:50%;background:var(--surf);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:.58rem;font-weight:700;color:var(--acc2)}
 .dash-fav-btn{background:none;border:none;color:var(--muted);cursor:pointer;font-size:1rem;line-height:1;padding:2px;transition:color .15s}
 .dash-fav-btn:hover{color:var(--yellow)}
 .dash-fav-btn.active{color:var(--yellow)}
@@ -367,7 +382,10 @@ textarea.writing-editor{min-height:400px}
 
 /* ── COMMAND CENTER (rank / XP) ── */
 .cc-heading{font-family:var(--font-display);letter-spacing:.01em}
-.cc-rank-panel{display:flex;align-items:center;gap:18px;width:100%;max-width:900px;background:linear-gradient(135deg,var(--surf) 0%,var(--surf2) 100%);border:1px solid var(--border);border-radius:var(--r);padding:18px 22px}
+.cc-rank-panel{position:relative;overflow:hidden;display:flex;align-items:center;gap:18px;width:100%;max-width:900px;background:linear-gradient(135deg,var(--surf) 0%,var(--surf2) 100%);border:1px solid var(--border);border-radius:var(--r);padding:18px 22px}
+.cc-rank-panel::before,.cc-rank-panel::after{content:'';position:absolute;right:-40px;top:50%;transform:translateY(-50%);border-radius:50%;border:1px solid color-mix(in srgb, var(--acc) 14%, transparent);pointer-events:none}
+.cc-rank-panel::before{width:220px;height:220px}
+.cc-rank-panel::after{width:150px;height:150px;right:-5px}
 .cc-medallion{width:52px;height:52px;flex:0 0 auto}
 .cc-rank-info{flex:1;min-width:0}
 .cc-rank-name{font-family:var(--font-display);font-size:1.05rem;font-weight:700;color:var(--text)}

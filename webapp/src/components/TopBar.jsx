@@ -69,6 +69,43 @@ function FullscreenButton() {
   );
 }
 
+const PALETTE_KEY = 'vlab_palette_v1';
+
+function PaletteToggle() {
+  const [palette, setPalette] = useState(
+    () => (document.documentElement.getAttribute('data-palette') === 'bronze' ? 'bronze' : 'classic')
+  );
+
+  const toggle = () => {
+    const next = palette === 'bronze' ? 'classic' : 'bronze';
+    if (next === 'classic') {
+      document.documentElement.removeAttribute('data-palette');
+    } else {
+      document.documentElement.setAttribute('data-palette', next);
+    }
+    try {
+      localStorage.setItem(PALETTE_KEY, next);
+    } catch {
+      /* ignore */
+    }
+    setPalette(next);
+  };
+
+  const nextLabel = palette === 'bronze' ? 'Classic' : 'Bronze';
+
+  return (
+    <button className="palette-toggle" onClick={toggle} title={`Switch to ${nextLabel} palette`} aria-label={`Switch to ${nextLabel} palette`}>
+      <span className="palette-toggle-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+          <circle cx="9" cy="9" r="5" />
+          <circle cx="15" cy="15" r="5" />
+        </svg>
+      </span>
+      <span className="palette-toggle-label">{palette === 'bronze' ? 'Bronze' : 'Classic'}</span>
+    </button>
+  );
+}
+
 function RankBadge({ rank, totalXp }) {
   if (!rank) return null;
   return (
@@ -98,6 +135,7 @@ export default function TopBar({ title, onTitleClick, onDashboardClick, rank, to
       </button>
       <SaveProgressButton />
       <AuthButton />
+      <PaletteToggle />
       <FullscreenButton />
     </div>
   );
