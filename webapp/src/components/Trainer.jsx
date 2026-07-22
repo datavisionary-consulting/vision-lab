@@ -10,6 +10,7 @@ const MODES = [
   { id: 'smart', title: '🧠 Smart Mode', desc: '60% new + 40% review of mistakes. Best for daily practice.' },
   { id: 'new', title: '✨ New Only', desc: "Questions you haven't answered yet." },
   { id: 'review', title: '🔁 Review Only', desc: 'Questions due for review or previously failed.' },
+  { id: 'favorites', title: '⭐ Favorites', desc: "Only questions you've starred." },
   { id: 'random', title: '🎲 Random', desc: 'All questions, no filtering.' },
 ];
 
@@ -28,6 +29,10 @@ export default function Trainer({ course, onBack }) {
 
   const doneCount = useMemo(
     () => Object.values(progress.cards).filter((c) => c.seen).length,
+    [progress.cards]
+  );
+  const favoriteCount = useMemo(
+    () => Object.values(progress.cards).filter((c) => c.favorite).length,
     [progress.cards]
   );
   const globalPct = progress.totalAnswered
@@ -81,6 +86,11 @@ export default function Trainer({ course, onBack }) {
     setAnswered(true);
   };
 
+  const toggleFavorite = (qId) => {
+    const cards = { ...progress.cards, [qId]: { ...progress.cards[qId], favorite: !progress.cards[qId].favorite } };
+    saveProgress({ ...progress, cards });
+  };
+
   const rateAndNext = (rating) => {
     const q = session.questions[session.idx];
     const cards = { ...progress.cards, [q.id]: { ...progress.cards[q.id] } };
@@ -128,7 +138,7 @@ export default function Trainer({ course, onBack }) {
           {MODES.map((m) => (
             <div key={m.id} className={`mode-card${mode === m.id ? ' selected' : ''}`} onClick={() => setMode(m.id)}>
               <h3>{m.title}</h3>
-              <p>{m.desc}</p>
+              <p>{m.id === 'favorites' ? `${favoriteCount} starred question${favoriteCount === 1 ? '' : 's'}` : m.desc}</p>
             </div>
           ))}
         </div>
@@ -201,7 +211,17 @@ export default function Trainer({ course, onBack }) {
       <div className="quiz-wrap">
         <div className="quiz-header">
           <span className="quiz-progress-text">{session.idx + 1} / {total}</span>
-          <button className="btn-ghost" onClick={goHome}>← Exit</button>
+          <div className="quiz-header-actions">
+            <button
+              className={`favorite-btn${card.favorite ? ' active' : ''}`}
+              onClick={() => toggleFavorite(q.id)}
+              title={card.favorite ? 'Unmark favorite' : 'Mark as favorite'}
+              aria-label={card.favorite ? 'Unmark favorite' : 'Mark as favorite'}
+            >
+              {card.favorite ? '⭐' : '☆'}
+            </button>
+            <button className="btn-ghost" onClick={goHome}>← Exit</button>
+          </div>
         </div>
         <div className="progress-bar"><div className="progress-fill" style={{ width: `${(session.idx / total) * 100}%` }} /></div>
         <div className="tag-row">

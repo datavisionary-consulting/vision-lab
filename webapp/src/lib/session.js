@@ -19,12 +19,18 @@ export function filterByTopic(questions, topic) {
   return questions.filter((q) => q.topic === topic || (q.topics && q.topics.includes(topic)));
 }
 
-// mode: 'smart' | 'new' | 'review' | 'random'
+// mode: 'smart' | 'new' | 'review' | 'random' | 'favorites'
 export function buildSession(pool, cards, mode, count) {
   const now = Date.now();
   const N = Math.min(count, pool.length);
 
   if (mode === 'random') return shuffle([...pool]).slice(0, N);
+
+  if (mode === 'favorites') {
+    const favs = pool.filter((q) => cards[q.id]?.favorite);
+    const f = shuffle([...favs]).slice(0, N);
+    return f.length ? f : null;
+  }
 
   const due = pool.filter((q) => cards[q.id].seen && cards[q.id].due <= now);
   const unseen = pool.filter((q) => !cards[q.id].seen);

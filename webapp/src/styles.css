@@ -65,6 +65,10 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .quiz-progress-text{color:var(--muted);font-size:.82rem}
 .btn-ghost{background:none;border:1px solid var(--border);color:var(--muted);border-radius:8px;padding:5px 12px;cursor:pointer;font-size:.8rem;transition:all .15s}
 .btn-ghost:hover{border-color:var(--acc);color:var(--text)}
+.quiz-header-actions{display:flex;align-items:center;gap:8px}
+.favorite-btn{background:none;border:1px solid var(--border);color:var(--muted);border-radius:8px;padding:5px 10px;cursor:pointer;font-size:1rem;line-height:1;transition:all .15s}
+.favorite-btn:hover{border-color:var(--yellow);color:var(--yellow)}
+.favorite-btn.active{border-color:var(--yellow);color:var(--yellow);background:#e67e2211}
 .progress-bar{height:4px;background:var(--surf2);border-radius:2px;margin-bottom:16px;overflow:hidden}
 .progress-fill{height:100%;background:var(--acc);border-radius:2px;transition:width .3s}
 .tag-row{display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap}

@@ -16,5 +16,5 @@ export function sm2(card, rating) {
 }
 
 export function newCard() {
-  return { ease: 2.5, interval: 0, due: 0, seen: false, correct: 0, wrong: 0 };
+  return { ease: 2.5, interval: 0, due: 0, seen: false, correct: 0, wrong: 0, favorite: false };
 }
