@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
-import { doc, getDoc, setDoc, serverTimestamp } from 'firebase/firestore';
+import { doc, onSnapshot, setDoc, serverTimestamp } from 'firebase/firestore';
 import { db as firestore } from '../firebase';
 import { useAuth } from '../context/AuthContext';
 import { newCard } from '../lib/sm2';
@@ -34,7 +34,6 @@ function mergeCards(localCards, cloudCards) {
 export function useCourseProgress(course, questions) {
   const { user } = useAuth();
   const [state, setState] = useState(() => loadLocal(course.storageKey));
-  const mergedForUidRef = useRef(null);
   const debounceRef = useRef(null);
 
   // Ensure every question in the bank has a card, without clobbering existing progress.
@@ -53,20 +52,23 @@ export function useCourseProgress(course, questions) {
     });
   }, [questions]);
 
-  // One-time merge on sign-in (per uid+course): pull cloud progress, keep the
-  // more-mature card per question, upload if no cloud doc exists yet.
+  // Live sync while signed in: subscribe to this course's cloud doc so
+  // progress made on another device shows up here automatically, without
+  // needing a manual page reload. On each snapshot, keep the more-mature
+  // card per question (never let a stale device silently overwrite a more
+  // advanced one); if no cloud doc exists yet, seed it from local. Skips
+  // the local-echo snapshot of our own pending writes (hasPendingWrites) so
+  // it only reacts to genuinely new data — our own or another device's.
   useEffect(() => {
-    if (!user) {
-      mergedForUidRef.current = null;
-      return;
-    }
-    const mergeKey = `${user.uid}:${course.id}`;
-    if (mergedForUidRef.current === mergeKey) return;
-    mergedForUidRef.current = mergeKey;
+    if (!user) return;
 
     const ref = doc(firestore, 'users', user.uid, 'progress', course.id);
-    getDoc(ref)
-      .then((snap) => {
+    let sawFirstSnapshot = false;
+
+    const unsubscribe = onSnapshot(
+      ref,
+      (snap) => {
+        if (snap.metadata.hasPendingWrites) return;
         if (snap.exists()) {
           const cloud = snap.data();
           setState((prev) => {
@@ -80,7 +82,7 @@ export function useCourseProgress(course, questions) {
             localStorage.setItem(course.storageKey, JSON.stringify(merged));
             return merged;
           });
-        } else {
+        } else if (!sawFirstSnapshot) {
           setState((prev) => {
             setDoc(ref, { ...prev, updatedAt: serverTimestamp() }).catch((err) =>
               console.error('Firestore initial upload failed:', err)
@@ -88,8 +90,12 @@ export function useCourseProgress(course, questions) {
             return prev;
           });
         }
-      })
-      .catch((err) => console.error('Firestore initial sync failed:', err));
+        sawFirstSnapshot = true;
+      },
+      (err) => console.error('Firestore sync failed:', err)
+    );
+
+    return unsubscribe;
   }, [user, course.id, course.storageKey]);
 
   const save = useCallback(
