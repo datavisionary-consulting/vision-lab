@@ -1,4 +1,7 @@
 import { useCallback, useState } from 'react';
+import { useAuth } from '../context/AuthContext';
+import { useFirestoreSync } from './useFirestoreSync';
+import { mergeIeltsProgress } from '../lib/mergeIeltsProgress';
 
 const KEY = 'vlab_progress_ielts-writing_v1';
 
@@ -13,12 +16,18 @@ function load() {
 }
 
 export function useIeltsWritingProgress() {
+  const { user } = useAuth();
   const [progress, setProgress] = useState(load);
+  const { writeThrough } = useFirestoreSync({ user, courseId: 'ielts-writing', storageKey: KEY, setState: setProgress, mergeFn: mergeIeltsProgress });
 
-  const save = useCallback((next) => {
-    setProgress(next);
-    localStorage.setItem(KEY, JSON.stringify(next));
-  }, []);
+  const save = useCallback(
+    (next) => {
+      setProgress(next);
+      localStorage.setItem(KEY, JSON.stringify(next));
+      writeThrough(next);
+    },
+    [writeThrough]
+  );
 
   const recordAttempt = useCallback(
     (testId, level, { task1WordCount, task1Band, task2WordCount, task2Band, overallBand }) => {
