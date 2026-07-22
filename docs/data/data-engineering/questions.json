@@ -2,7 +2,7 @@
   {
     "id": "deng-001",
     "topic": "pipeline-design",
-    "question": "Andina Retail Group's nightly pipeline sometimes fails partway through and gets manually re-run from the start. An engineer designs the pipeline so that re-running it with the same input always produces the same final result, with no duplicate rows and no doubled totals, no matter how many times it's re-run. What property is this pipeline designed to have?",
+    "question": "A retail company's nightly pipeline sometimes fails partway through and gets manually re-run from the start. An engineer designs the pipeline so that re-running it with the same input always produces the same final result, with no duplicate rows and no doubled totals, no matter how many times it's re-run. What property is this pipeline designed to have?",
     "options": {
       "a": "Partitioning — splitting a table's rows into date-based physical segments — is what actually guarantees a re-run pipeline never produces duplicate rows, since each partition tracks its own independent write history and prevents any overlap between runs",
       "b": "Normalization — restructuring data to eliminate redundant columns across related tables — is the property that makes a pipeline safe to re-run, since a properly normalized schema cannot physically store the same fact twice no matter how many times it's loaded",
@@ -19,7 +19,7 @@
   {
     "id": "deng-002",
     "topic": "pipeline-design",
-    "question": "A data engineer needs to reprocess six months of Andina Retail Group's historical sales data after discovering a bug in a currency-conversion transformation. Because the pipeline was built with idempotent, date-partitioned writes, what does this 'backfill' operation look like in practice?",
+    "question": "A data engineer needs to reprocess six months of a retail company's historical sales data after discovering a bug in a currency-conversion transformation. Because the pipeline was built with idempotent, date-partitioned writes, what does this 'backfill' operation look like in practice?",
     "options": {
       "a": "Backfilling requires first fully deleting the entire multi-year table and manually reloading it from the original source files, since a partition-based pipeline has no way to recompute only the affected date range without starting completely over, a pattern that holds consistently across most production data-engineering pipelines at this scale",
       "b": "Because idempotent pipelines already wrote each date's output once, the only way to correct history is to append a compensating adjustment row for each error rather than re-running the original pipeline logic against the affected dates",
@@ -36,7 +36,7 @@
   {
     "id": "deng-003",
     "topic": "pipeline-design",
-    "question": "Andina Retail Group's ingestion pipeline reads a checkpoint value (the timestamp of the last successfully processed record) before each run, and only processes records newer than that checkpoint, updating the checkpoint only after a batch is confirmed fully written. Why update the checkpoint only after confirming the write succeeded, rather than at the start of the run?",
+    "question": "A retail company's ingestion pipeline reads a checkpoint value (the timestamp of the last successfully processed record) before each run, and only processes records newer than that checkpoint, updating the checkpoint only after a batch is confirmed fully written. Why update the checkpoint only after confirming the write succeeded, rather than at the start of the run?",
     "options": {
       "a": "Updating the checkpoint before the write begins lets the pipeline start reading the next batch of records in parallel while the current write is still finishing, which always produces a measurable speed improvement with no correctness cost, which is why most teams operating at this scale standardize on exactly this approach",
       "b": "Checkpoints are recorded purely so operators can see progress bars in the monitoring dashboard, and moving the checkpoint update earlier or later in the run has no bearing on which records eventually get written to the target table",
@@ -53,7 +53,7 @@
   {
     "id": "deng-004",
     "topic": "pipeline-design",
-    "question": "A pipeline design decision at Andina Retail Group is whether transformation steps should be 'pure' — depending only on their explicit inputs, with no hidden dependence on when the code happens to run or what state some other unrelated process left behind. Why does this matter for a data pipeline specifically?",
+    "question": "A pipeline design decision at a retail company is whether transformation steps should be 'pure' — depending only on their explicit inputs, with no hidden dependence on when the code happens to run or what state some other unrelated process left behind. Why does this matter for a data pipeline specifically?",
     "options": {
       "a": "A pure, input-determined transformation produces the same output every time given the same input data, which makes it predictable, testable in isolation, and safe to re-run or backfill — whereas a transformation with hidden dependencies (like silently reading 'today's date' from the system clock instead of an explicit parameter) can behave inconsistently between a live run and a later backfill of the same historical date",
       "b": "Purity matters only for pipelines written in strictly functional programming languages like Haskell or Scala, where the compiler enforces the absence of side effects — it has no real bearing on transformations written in ordinary Python or SQL, which are architecturally incapable of being structured this way no matter how carefully the engineer designs the logic, a distinction that becomes especially clear once the pipeline runs against real production volumes",
@@ -70,7 +70,7 @@
   {
     "id": "deng-005",
     "topic": "pipeline-design",
-    "question": "Andina Retail Group's data engineering team debates whether a given transformation step should live inside the extraction script itself, or be split into a separate, distinct step. What general pipeline design principle argues for keeping extraction, transformation, and loading as clearly separated steps rather than one large combined script?",
+    "question": "A retail company's data engineering team debates whether a given transformation step should live inside the extraction script itself, or be split into a separate, distinct step. What general pipeline design principle argues for keeping extraction, transformation, and loading as clearly separated steps rather than one large combined script?",
     "options": {
       "a": "Combining extraction, transformation, and loading into a single monolithic script always executes measurably faster in every case, since the runtime avoids the overhead of passing data between separate processes, serializing intermediate results, or writing temporary files to disk between each individually-run stage",
       "b": "Separating concerns into distinct steps makes each one independently testable, reusable, and debuggable — if a pipeline fails, a clear step boundary tells you exactly which stage failed (extraction couldn't reach the source, transformation logic threw an error, or the load step couldn't write to the target) rather than leaving the failure buried somewhere inside one large, tangled script",
@@ -87,11 +87,11 @@
   {
     "id": "deng-006",
     "topic": "pipeline-design",
-    "question": "A junior engineer at Andina Retail Group proposes hardcoding the current year into a pipeline's SQL query ('WHERE YEAR(order_date) = 2026') so it only processes this year's orders. A senior engineer pushes back. What pipeline design problem does the hardcoded year create?",
+    "question": "A junior engineer at a retail company proposes hardcoding the current year into a pipeline's SQL query ('WHERE YEAR(order_date) = 2026') so it only processes this year's orders. A senior engineer pushes back. What pipeline design problem does the hardcoded year create?",
     "options": {
       "a": "Hardcoding a literal year value into a WHERE clause forces the database engine to recompile the entire query execution plan from scratch on every single run, since the query optimizer is structurally unable to cache or reuse an execution plan for a query containing a hardcoded literal the way it reliably can for a fully parameterized, dynamic query",
       "b": "It breaks the pure, input-driven design principle from deng-004 and requires someone to remember to manually update the hardcoded year in the code itself every January, rather than deriving the correct year from an explicit, passed-in parameter — a maintenance burden and a likely source of a very predictable annual bug if forgotten",
-      "c": "There is no real problem here, since Andina Retail Group's fiscal calendar effectively resets every January regardless of pipeline design, meaning a hardcoded year filter would still need to be manually updated at that point even if the value had originally come from an explicit configuration parameter instead",
+      "c": "There is no real problem here, since the retail company's fiscal calendar effectively resets every January regardless of pipeline design, meaning a hardcoded year filter would still need to be manually updated at that point even if the value had originally come from an explicit configuration parameter instead",
       "d": "This kind of hardcoded-value staleness issue is specific to Python-based transformation scripts, since a SQL WHERE clause re-evaluates its filter condition fresh against the live database schema on every single run and is therefore structurally immune to becoming stale the way a cached Python variable can"
     },
     "correct": "b",
@@ -104,7 +104,7 @@
   {
     "id": "deng-007",
     "topic": "pipeline-design",
-    "question": "Andina Retail Group's pipeline retries a failed API call to a shipping carrier's tracking service up to 3 times, waiting progressively longer between each attempt (1 second, then 4 seconds, then 16 seconds) rather than retrying instantly three times in a row. What is this waiting pattern called, and why is it preferred over immediate retries?",
+    "question": "A retail company's pipeline retries a failed API call to a shipping carrier's tracking service up to 3 times, waiting progressively longer between each attempt (1 second, then 4 seconds, then 16 seconds) rather than retrying instantly three times in a row. What is this waiting pattern called, and why is it preferred over immediate retries?",
     "options": {
       "a": "Exponential backoff — increasing the delay between successive retry attempts — reduces the chance of hammering an already-struggling or rate-limited external system with a rapid burst of retries, which could make a temporary problem worse (or trigger the carrier's own rate limiting) rather than giving the system a reasonable chance to recover before trying again",
       "b": "Exponential backoff means each successive retry attempt is automatically routed to a different, randomly-selected replica of the API endpoint, spreading the retried requests evenly across multiple backend servers so that no single server ever receives more than one retry attempt for the same originally failed call",
@@ -121,7 +121,7 @@
   {
     "id": "deng-008",
     "topic": "pipeline-design",
-    "question": "After 3 retries with exponential backoff (deng-007), Andina Retail Group's pipeline still can't reach the shipping carrier's API for a specific batch of tracking updates. Instead of crashing the entire nightly pipeline and blocking every other unrelated job, the failed batch is routed to a separate 'dead-letter' location for later inspection, while the rest of the pipeline continues. What does this dead-letter pattern accomplish?",
+    "question": "After 3 retries with exponential backoff (deng-007), a retail company's pipeline still can't reach the shipping carrier's API for a specific batch of tracking updates. Instead of crashing the entire nightly pipeline and blocking every other unrelated job, the failed batch is routed to a separate 'dead-letter' location for later inspection, while the rest of the pipeline continues. What does this dead-letter pattern accomplish?",
     "options": {
       "a": "This pattern requires stopping and manually restarting the entire nightly pipeline from scratch every single time any individual record or batch fails, since Airflow has no built-in mechanism for isolating one problematic batch from the rest of an otherwise-healthy run without triggering a full, disruptive pipeline restart from the very beginning",
       "b": "Dead-letter queues are a concept that only applies to real-time streaming message brokers like Kafka or Kinesis, and batch pipelines built with Airflow and Delta tables have no meaningful equivalent mechanism for isolating and preserving a specific batch that repeatedly fails to process through the normal pipeline path",
@@ -138,7 +138,7 @@
   {
     "id": "deng-009",
     "topic": "orchestration-airflow",
-    "question": "Andina Retail Group's data team uses Apache Airflow to schedule and manage its pipelines, defining each pipeline as a DAG (Directed Acyclic Graph). What does the 'acyclic' part of that name specifically mean for how a pipeline's steps can be structured?",
+    "question": "A retail company's data team uses Apache Airflow to schedule and manage its pipelines, defining each pipeline as a DAG (Directed Acyclic Graph). What does the 'acyclic' part of that name specifically mean for how a pipeline's steps can be structured?",
     "options": {
       "a": "Acyclic means the DAG must contain exactly one single task with absolutely no dependencies connecting it to any other task in the pipeline, since introducing even a single dependency edge between two tasks would technically convert the entire graph into a cyclic structure by strict mathematical definition",
       "b": "Acyclic refers to the DAG's default visual color scheme in the Airflow web interface, which distinguishes successfully completed tasks from ones still queued or currently running, and carries no implication whatsoever about how the underlying tasks are actually allowed to depend on one another",
@@ -155,7 +155,7 @@
   {
     "id": "deng-010",
     "topic": "orchestration-airflow",
-    "question": "In an Airflow DAG for Andina Retail Group's nightly pipeline, a 'sensor' task waits for a specific file to land in cloud storage before the downstream extraction task begins, rather than the extraction task simply running on a fixed schedule and hoping the file has already arrived. What problem does using a sensor solve?",
+    "question": "In an Airflow DAG for a retail company's nightly pipeline, a 'sensor' task waits for a specific file to land in cloud storage before the downstream extraction task begins, rather than the extraction task simply running on a fixed schedule and hoping the file has already arrived. What problem does using a sensor solve?",
     "options": {
       "a": "Sensors in Airflow are capable only of detecting the simple passage of a fixed amount of wall-clock time, such as waiting exactly five minutes before proceeding, and have no built-in capability to actively check for the existence of a file or any other genuine external condition in cloud storage, a pattern that holds consistently across most production data-engineering pipelines at this scale",
       "b": "A sensor task always executes and immediately reports success the instant it begins running, regardless of whether the specific external condition it was actually configured to check for — like a file's existence — has genuinely become true yet or not at that moment",
@@ -172,7 +172,7 @@
   {
     "id": "deng-011",
     "topic": "orchestration-airflow",
-    "question": "Andina Retail Group needs to backfill three months of a pipeline that failed to run correctly, and their orchestrator supports scheduling each historical run with the actual date it's meant to represent as a parameter, distinct from the date it happens to physically execute on. What does this date-parameterization capability let the pipeline do?",
+    "question": "A retail company needs to backfill three months of a pipeline that failed to run correctly, and their orchestrator supports scheduling each historical run with the actual date it's meant to represent as a parameter, distinct from the date it happens to physically execute on. What does this date-parameterization capability let the pipeline do?",
     "options": {
       "a": "This capability has no relationship to backfilling at all and exists purely to control how dates are formatted for display purposes in the orchestrator's web interface calendar view, with no effect on which parameters a pipeline run actually receives when it executes",
       "b": "It lets a single pipeline definition be re-executed once per historical date being backfilled, with each run receiving the specific date it's representing as an explicit parameter — directly enabling both the idempotent backfill pattern from deng-002 and the pure, parameter-driven transformation logic from deng-004, rather than the pipeline needing to guess the relevant date from the system clock at the moment it happens to run",
@@ -189,7 +189,7 @@
   {
     "id": "deng-012",
     "topic": "orchestration-airflow",
-    "question": "Andina Retail Group's DAG has a task that transforms data and a separate downstream task that sends a Slack notification if the transformation task failed. Airflow lets this notification task be configured to run only when its upstream dependency fails, rather than the default behavior of only running after success. What does this trigger-rule flexibility support?",
+    "question": "A retail company's DAG has a task that transforms data and a separate downstream task that sends a Slack notification if the transformation task failed. Airflow lets this notification task be configured to run only when its upstream dependency fails, rather than the default behavior of only running after success. What does this trigger-rule flexibility support?",
     "options": {
       "a": "Trigger rules in Airflow can only be configured on the very first task at the start of a DAG, since every downstream task automatically inherits whatever trigger rule was set on the upstream root task with no ability to override it individually further downstream",
       "b": "It lets the orchestrator express not just the 'happy path' where every task succeeds in sequence, but also alternate paths for handling failure — like sending an alert, cleaning up a partial write, or routing to a dead-letter step (deng-008) — directly connecting to the proactive monitoring and alerting principle covered generally in this training platform's Data Architecture course",
@@ -206,7 +206,7 @@
   {
     "id": "deng-013",
     "topic": "orchestration-airflow",
-    "question": "Two of Andina Retail Group's DAG tasks read from the same source table but are otherwise unrelated to each other — neither one's output feeds into the other. In the DAG's dependency graph, should one be made to depend on the other?",
+    "question": "Two of a retail company's DAG tasks read from the same source table but are otherwise unrelated to each other — neither one's output feeds into the other. In the DAG's dependency graph, should one be made to depend on the other?",
     "options": {
       "a": "No — dependency edges in a DAG should reflect genuine data or execution dependencies (this task's output is required before that task can run), not simply that two tasks happen to touch the same source table; wiring them together with an artificial dependency would force them to run sequentially when they could otherwise safely run in parallel, wasting time for no correctness benefit",
       "b": "DAGs are technically restricted to containing at most one single task that reads from any given source table, meaning a second task needing the same table must instead read from a separately duplicated copy of that table created specifically for it",
@@ -223,7 +223,7 @@
   {
     "id": "deng-014",
     "topic": "orchestration-airflow",
-    "question": "Andina Retail Group's DAG author separates a 'run dbt transformations' task from a 'refresh Power BI dataset' task into two distinct DAG tasks, connected by a dependency, rather than combining both actions into a single Python function inside one task. What DAG design principle does keeping tasks small and single-purpose support?",
+    "question": "A retail company's DAG author separates a 'run dbt transformations' task from a 'refresh Power BI dataset' task into two distinct DAG tasks, connected by a dependency, rather than combining both actions into a single Python function inside one task. What DAG design principle does keeping tasks small and single-purpose support?",
     "options": {
       "a": "Splitting the dbt run and the Power BI refresh into two separate tasks provides no actual benefit and exists purely as an arbitrary stylistic convention some teams follow, with no real difference in debuggability, retryability, or how execution logs end up organized",
       "b": "Smaller, single-purpose tasks give Airflow finer-grained visibility and control — a failure clearly points to exactly which specific action failed (transformations vs. the downstream refresh), each task can be retried independently without necessarily re-running the other, and execution history/logs are cleanly separated by concern, rather than one large task's logs mixing together two logically distinct operations",
@@ -240,7 +240,7 @@
   {
     "id": "deng-015",
     "topic": "orchestration-airflow",
-    "question": "Andina Retail Group's DAG is configured with a max_active_runs setting of 1, meaning only one instance of the DAG can be actively running at a time — if yesterday's run is still in progress, today's scheduled run waits rather than starting concurrently. Why might this be a deliberate, important setting for a pipeline that writes to a shared target table?",
+    "question": "A retail company's DAG is configured with a max_active_runs setting of 1, meaning only one instance of the DAG can be actively running at a time — if yesterday's run is still in progress, today's scheduled run waits rather than starting concurrently. Why might this be a deliberate, important setting for a pipeline that writes to a shared target table?",
     "options": {
       "a": "This setting exists purely to reduce the total number of log entries generated and displayed in the Airflow web interface over time, and has no actual relationship to whether the underlying data written to the target table ends up correct or not, a pattern that holds consistently across most production data-engineering pipelines at this scale",
       "b": "max_active_runs has no relationship to data correctness whatsoever and instead only limits how many separate browser tabs a given user is permitted to have open while viewing that DAG's status page in the Airflow web interface at the same time",
@@ -257,7 +257,7 @@
   {
     "id": "deng-016",
     "topic": "dbt-transformation",
-    "question": "Andina Retail Group's data team adopts dbt (data build tool) to manage their SQL transformation logic that turns bronze/silver raw tables into gold-layer, business-ready tables. What does dbt fundamentally let a team do that hand-written, loosely organized SQL scripts typically don't provide as cleanly?",
+    "question": "A retail company's data team adopts dbt (data build tool) to manage their SQL transformation logic that turns bronze/silver raw tables into gold-layer, business-ready tables. What does dbt fundamentally let a team do that hand-written, loosely organized SQL scripts typically don't provide as cleanly?",
     "options": {
       "a": "dbt functions as a complete replacement for a data warehouse itself, storing and persisting transformed data directly within its own internal storage engine rather than running SQL transformations against an already-existing warehouse or lakehouse, which is why most teams operating at this scale standardize on exactly this approach, following the same operational logic teams apply when scaling the rest of their pipeline infrastructure, since treating this in isolation tends to create inconsistencies elsewhere in the system",
       "b": "dbt eliminates the need to write any SQL whatsoever, since it automatically generates all necessary transformation logic purely from the raw table schemas it detects, requiring no business logic input from the data team at any stage of the project",
@@ -291,7 +291,7 @@
   {
     "id": "deng-018",
     "topic": "dbt-transformation",
-    "question": "A dbt model for Andina Retail Group's gold_daily_sales table is configured with a 'materialization' setting of table (fully rebuilding the table on every run) versus incremental (only processing and adding new/changed rows since the last run). Why might the team choose incremental materialization for this specific model?",
+    "question": "A dbt model for a retail company's gold_daily_sales table is configured with a 'materialization' setting of table (fully rebuilding the table on every run) versus incremental (only processing and adding new/changed rows since the last run). Why might the team choose incremental materialization for this specific model?",
     "options": {
       "a": "For a large table that's already mostly built from prior runs, incremental materialization avoids the cost of fully reprocessing the entire historical dataset every single run — directly mirroring the incremental-loading efficiency principle covered generally in this training platform's Data Architecture course — processing only the new or changed data instead",
       "b": "Incremental materialization is only available for dbt models containing fewer than 100 total rows, which makes it structurally unsuitable for any model whose underlying table has grown beyond that fairly small row-count threshold",
@@ -308,7 +308,7 @@
   {
     "id": "deng-019",
     "topic": "dbt-transformation",
-    "question": "A dbt model at Andina Retail Group has a built-in test configured: unique and not_null on the order_id column of the gold_daily_sales table. What does dbt do with this test, and when?",
+    "question": "A dbt model at a retail company has a built-in test configured: unique and not_null on the order_id column of the gold_daily_sales table. What does dbt do with this test, and when?",
     "options": {
       "a": "dbt's built-in test framework is only capable of checking whether a model's compiled SQL is free of syntax errors, and has no mechanism whatsoever for evaluating whether the actual resulting data genuinely satisfies a business rule like uniqueness, following the same operational logic teams apply when scaling the rest of their pipeline infrastructure, a distinction that becomes especially clear once the pipeline runs against real production volumes over multiple release cycles rather than a single isolated test run",
       "b": "Configuring a unique test on the order_id column causes dbt to automatically and silently delete any duplicate rows it happens to find from the underlying table during the test run, without ever notifying anyone that a removal occurred",
@@ -325,7 +325,7 @@
   {
     "id": "deng-020",
     "topic": "dbt-transformation",
-    "question": "Andina Retail Group's dbt project automatically generates a data lineage graph and searchable documentation site from the models and their ref() relationships, without the team needing to separately maintain a hand-written diagram. Why does this automated documentation tend to stay more accurate over time than manually maintained documentation?",
+    "question": "A retail company's dbt project automatically generates a data lineage graph and searchable documentation site from the models and their ref() relationships, without the team needing to separately maintain a hand-written diagram. Why does this automated documentation tend to stay more accurate over time than manually maintained documentation?",
     "options": {
       "a": "Documentation generated automatically from model code is always meaningfully less detailed and less useful to a reader than documentation a person deliberately sits down and writes by hand, since automated generation cannot capture business context",
       "b": "Because the documentation and lineage graph are generated directly from the actual model code and its real ref() dependencies, they automatically stay in sync as the codebase evolves — a manually maintained diagram, by contrast, requires someone to remember to update it every time the pipeline changes, and drifts out of accuracy the moment that discipline lapses",
@@ -342,7 +342,7 @@
   {
     "id": "deng-021",
     "topic": "dbt-transformation",
-    "question": "A dbt 'macro' at Andina Retail Group encapsulates a reusable snippet of SQL logic — converting a raw currency code and amount into a standardized USD value — that's called from a dozen different models across the project, rather than that same conversion logic being copy-pasted into each of those twelve models individually. What problem does this macro reuse solve?",
+    "question": "A dbt 'macro' at a retail company encapsulates a reusable snippet of SQL logic — converting a raw currency code and amount into a standardized USD value — that's called from a dozen different models across the project, rather than that same conversion logic being copy-pasted into each of those twelve models individually. What problem does this macro reuse solve?",
     "options": {
       "a": "Macros in dbt are restricted to being called exactly once across an entire project, which makes reusing the exact same currency-conversion macro across twelve separate models technically impossible under dbt's own execution model",
       "b": "Calling the same macro from different models causes the underlying SQL logic to execute differently and can produce different numeric conversion results each time, depending entirely on which specific model happens to be calling it",
@@ -359,7 +359,7 @@
   {
     "id": "deng-022",
     "topic": "testing-cicd",
-    "question": "Before merging a change to Andina Retail Group's pipeline code, the team's CI (Continuous Integration) system automatically runs a suite of unit tests against small, known sample inputs, checking that the transformation logic produces the exact expected outputs. What does this automated testing step protect against that manual code review alone might miss?",
+    "question": "Before merging a change to a retail company's pipeline code, the team's CI (Continuous Integration) system automatically runs a suite of unit tests against small, known sample inputs, checking that the transformation logic produces the exact expected outputs. What does this automated testing step protect against that manual code review alone might miss?",
     "options": {
       "a": "Automated tests concretely verify the code's actual runtime behavior against known inputs and outputs every single time a change is proposed, catching subtle logic errors or unintended side effects a human reviewer reading the code might reasonably overlook, and doing so consistently and repeatedly rather than depending on a reviewer's attention and thoroughness varying from one review to the next",
       "b": "CI-based automated testing is only capable of checking whether submitted code adheres to a specific formatting and linting style, and has no mechanism whatsoever for verifying whether that code actually produces genuinely correct output, a distinction that becomes especially clear once the pipeline runs against real production volumes, following the same operational logic teams apply when scaling the rest of their pipeline infrastructure, since treating this in isolation tends to create inconsistencies elsewhere in the system",
@@ -376,7 +376,7 @@
   {
     "id": "deng-023",
     "topic": "testing-cicd",
-    "question": "Andina Retail Group's CI pipeline runs both unit tests (testing individual transformation functions with small, hand-crafted sample data) and dbt data tests (checking real assertions against actual data, per deng-019). What distinct kind of problem does each type of test catch that the other typically wouldn't?",
+    "question": "A retail company's CI pipeline runs both unit tests (testing individual transformation functions with small, hand-crafted sample data) and dbt data tests (checking real assertions against actual data, per deng-019). What distinct kind of problem does each type of test catch that the other typically wouldn't?",
     "options": {
       "a": "Unit tests and dbt data tests are functionally identical mechanisms under the hood, and running both together in the same CI pipeline will always catch exactly the same category of underlying problem in exactly the same way",
       "b": "Data tests are only capable of running before a change has been deployed to any environment at all, while unit tests are structurally only able to run after that same code has already been fully deployed into production",
@@ -393,7 +393,7 @@
   {
     "id": "deng-024",
     "topic": "testing-cicd",
-    "question": "Andina Retail Group's CI/CD pipeline automatically deploys a pipeline change to a staging environment first, runs the full test suite there against realistic (but non-production) data, and only promotes the change to production after staging tests pass. Why maintain a separate staging environment rather than testing changes directly against production?",
+    "question": "A retail company's CI/CD pipeline automatically deploys a pipeline change to a staging environment first, runs the full test suite there against realistic (but non-production) data, and only promotes the change to production after staging tests pass. Why maintain a separate staging environment rather than testing changes directly against production?",
     "options": {
       "a": "A staging environment can only meaningfully be used for testing how Power BI reports render visually, and has no real application to testing the correctness of a data pipeline's underlying transformation logic before it ships to production",
       "b": "Staging and production environments are, by definition, always technically identical to each other in every respect, including data volume and infrastructure sizing, which makes maintaining them as genuinely separate environments largely meaningless, following the same operational logic teams apply when scaling the rest of their pipeline infrastructure",
@@ -410,7 +410,7 @@
   {
     "id": "deng-025",
     "topic": "testing-cicd",
-    "question": "A pipeline change at Andina Retail Group passes all tests in staging and gets deployed to production, but a subtle bug still causes incorrect revenue figures for two days before anyone notices. The team's post-incident review adds a new automated data test specifically checking that daily revenue never differs by more than 50% from the same day the previous week. What does adding this kind of test after an incident illustrate about how test suites mature over time?",
+    "question": "A pipeline change at a retail company passes all tests in staging and gets deployed to production, but a subtle bug still causes incorrect revenue figures for two days before anyone notices. The team's post-incident review adds a new automated data test specifically checking that daily revenue never differs by more than 50% from the same day the previous week. What does adding this kind of test after an incident illustrate about how test suites mature over time?",
     "options": {
       "a": "Adding a new automated test in direct response to this specific incident guarantees, as a direct consequence, that no other, structurally different bug could ever again occur anywhere within that same revenue pipeline going forward",
       "b": "A sanity-check test comparing today's revenue figures against a similar recent period is technically impossible to express as an automated dbt-style data test, since doing so would require comparing two entirely separate table snapshots at once, a pattern that holds consistently across most production data-engineering pipelines at this scale, which is why most teams operating at this scale standardize on exactly this approach, documenting it explicitly in their runbooks so the reasoning survives staff turnover",
@@ -427,7 +427,7 @@
   {
     "id": "deng-026",
     "topic": "incremental-and-cdc",
-    "question": "Andina Retail Group's incremental pipeline uses a 'high-water mark' — the maximum updated_at timestamp successfully processed so far — to decide which rows to pull on each run (WHERE updated_at > high_water_mark). What subtle risk does this simple approach have if the source system's clock and the pipeline's clock aren't perfectly synchronized, or if rows can be inserted slightly out of timestamp order?",
+    "question": "A retail company's incremental pipeline uses a 'high-water mark' — the maximum updated_at timestamp successfully processed so far — to decide which rows to pull on each run (WHERE updated_at > high_water_mark). What subtle risk does this simple approach have if the source system's clock and the pipeline's clock aren't perfectly synchronized, or if rows can be inserted slightly out of timestamp order?",
     "options": {
       "a": "This high-water-mark approach carries no risk whatsoever under any circumstances, and remains perfectly reliable regardless of whether the source system's clock is properly synchronized with the pipeline's own clock or not at any given moment, which is why most teams operating at this scale standardize on exactly this approach",
       "b": "This particular ordering risk only ever applies to real-time streaming pipelines processing continuous event data, and has no actual relevance to a batch pipeline using a simple high-water-mark timestamp filter run on a fixed schedule",
@@ -444,7 +444,7 @@
   {
     "id": "deng-027",
     "topic": "incremental-and-cdc",
-    "question": "To avoid the high-water-mark timestamp risk from deng-026 entirely, Andina Retail Group's team considers switching to true Change Data Capture (CDC), reading directly from the source database's transaction log rather than filtering by an updated_at column. Why does log-based CDC sidestep the ordering and clock-synchronization problem?",
+    "question": "To avoid the high-water-mark timestamp risk from deng-026 entirely, a retail company's team considers switching to true Change Data Capture (CDC), reading directly from the source database's transaction log rather than filtering by an updated_at column. Why does log-based CDC sidestep the ordering and clock-synchronization problem?",
     "options": {
       "a": "A database's transaction log records every insert, update, and delete in the exact, true order they were committed by the database itself, so a CDC tool reading that log directly doesn't depend on any application-level timestamp column (which can be missing, inconsistently set, or affected by clock differences) at all — it captures changes based on the database's own authoritative, guaranteed-accurate record of what actually happened and when",
       "b": "CDC fundamentally requires that the source system maintain no transaction log of any kind, relying entirely instead on a separate, manually-maintained change-tracking table that application code must always remember to update on every write, a distinction that becomes especially clear once the pipeline runs against real production volumes, a distinction that becomes especially clear once the pipeline runs against real production volumes over multiple release cycles rather than a single isolated test run",
@@ -461,7 +461,7 @@
   {
     "id": "deng-028",
     "topic": "incremental-and-cdc",
-    "question": "Andina Retail Group receives the same sales record twice from an upstream system due to a network retry that succeeded on both attempts (the source system's own retry logic wasn't itself idempotent). Downstream, the pipeline needs to ensure this duplicate doesn't double-count revenue. What deduplication approach correctly handles this?",
+    "question": "A retail company receives the same sales record twice from an upstream system due to a network retry that succeeded on both attempts (the source system's own retry logic wasn't itself idempotent). Downstream, the pipeline needs to ensure this duplicate doesn't double-count revenue. What deduplication approach correctly handles this?",
     "options": {
       "a": "The correct fix is to deduplicate strictly based on the exact arrival timestamp recorded for each received record, since two records that arrived at genuinely different timestamps must always represent two distinct, separate real-world sales events, consistent with how this trade-off is typically handled in modern data platform architecture",
       "b": "Deduplication in this scenario should be handled purely by row count, discarding whichever half of the total received records happens to be the numerically larger batch and keeping only the smaller, presumably original set of records",
@@ -478,7 +478,7 @@
   {
     "id": "deng-029",
     "topic": "incremental-and-cdc",
-    "question": "A streaming pipeline at Andina Retail Group processes sales events, but occasionally an event for a transaction that happened at 2:58 PM arrives at 3:05 PM, after a 3:00 PM hourly aggregation window has already closed and been reported. What is this general problem called, and what streaming concept specifically addresses it?",
+    "question": "A streaming pipeline at a retail company processes sales events, but occasionally an event for a transaction that happened at 2:58 PM arrives at 3:05 PM, after a 3:00 PM hourly aggregation window has already closed and been reported. What is this general problem called, and what streaming concept specifically addresses it?",
     "options": {
       "a": "The late-arriving-data problem described here only ever affects batch pipelines that read from static files, and has no real relevance to a genuinely streaming pipeline processing continuous, real-time sales events as they occur",
       "b": "The only available fix for this problem is to simply and permanently discard any event that arrives even a single second later than its associated aggregation window's official closing time, with no other configurable option available",
@@ -495,12 +495,12 @@
   {
     "id": "deng-030",
     "topic": "incremental-and-cdc",
-    "question": "Andina Retail Group's pipeline needs to detect not just new and updated sales records, but also records that were deleted from the source system entirely (e.g., a cancelled order removed outright rather than marked with a status flag). Why is detecting deletes generally harder than detecting inserts and updates in a simple timestamp-based incremental approach?",
+    "question": "A retail company's pipeline needs to detect not just new and updated sales records, but also records that were deleted from the source system entirely (e.g., a cancelled order removed outright rather than marked with a status flag). Why is detecting deletes generally harder than detecting inserts and updates in a simple timestamp-based incremental approach?",
     "options": {
       "a": "Deletes can only ever be detected by manually and periodically re-comparing every single row of the entire source table against every row of the entire target table, since no more targeted or efficient technique for detecting deletions actually exists, a pattern that holds consistently across most production data-engineering pipelines at this scale, consistent with how this trade-off is typically handled in modern data platform architecture, particularly once multiple downstream consumers start depending on the same output",
       "b": "Detecting a physically deleted record is, somewhat counterintuitively, actually easier to accomplish using a simple updated_at timestamp filter than detecting either a freshly inserted or a recently updated row would ever be",
       "c": "A timestamp-based WHERE updated_at > high_water_mark query can only ever find rows that still exist in the source and were recently touched — a row that's been physically deleted no longer exists to be queried at all, so a simple incremental filter has no way to notice its absence, unlike log-based CDC (deng-027), which explicitly captures delete events as they happen in the transaction log, including the deletion itself as a recorded, capturable event",
-      "d": "This distinction carries no real practical relevance for Andina Retail Group's pipeline design, since source systems in real-world production environments essentially never actually delete records outright once those records have been created"
+      "d": "This distinction carries no real practical relevance for the retail company's pipeline design, since source systems in real-world production environments essentially never actually delete records outright once those records have been created"
     },
     "correct": "c",
     "theory": {
@@ -512,7 +512,7 @@
   {
     "id": "deng-031",
     "topic": "data-contracts-observability",
-    "question": "Andina Retail Group's e-commerce platform team and data engineering team agree on an explicit 'data contract' for the orders event stream — a formally documented, versioned schema specifying exactly which fields will always be present, their types, and what changes require advance notice. What problem does establishing this kind of explicit contract prevent?",
+    "question": "A retail company's e-commerce platform team and data engineering team agree on an explicit 'data contract' for the orders event stream — a formally documented, versioned schema specifying exactly which fields will always be present, their types, and what changes require advance notice. What problem does establishing this kind of explicit contract prevent?",
     "options": {
       "a": "This kind of formal, explicit data agreement is only genuinely relevant when data is actively being shared across the boundary with an external company or partner, and carries no meaningful value between two teams inside the same organization, which is why most teams operating at this scale standardize on exactly this approach, following the same operational logic teams apply when scaling the rest of their pipeline infrastructure, since treating this in isolation tends to create inconsistencies elsewhere in the system",
       "b": "Establishing a documented data contract between the two teams guarantees, as a direct consequence, that the upstream e-commerce platform's underlying schema will never change again for the entire remaining lifetime of the pipeline",
@@ -521,7 +521,7 @@
     },
     "correct": "c",
     "theory": {
-      "text": "A data contract addresses a very real organizational failure mode: the team building and evolving a source system (like Andina's e-commerce platform) often has no direct visibility into who downstream depends on their data, or exactly how — from their perspective, renaming a field or changing its meaning might look like a harmless internal implementation detail, while to a downstream pipeline built assuming the old field name or meaning, it's a breaking change that silently corrupts results or crashes outright. An explicit, documented, versioned contract makes this dependency visible and creates a shared process (advance notice, versioning, a deprecation period) for evolving the schema without blindsiding downstream consumers — directly extending the data-ownership and governance principles covered generally in this training platform's Data Architecture course into a concrete, proactive agreement between two specific teams.",
+      "text": "A data contract addresses a very real organizational failure mode: the team building and evolving a source system (like the retail company's e-commerce platform) often has no direct visibility into who downstream depends on their data, or exactly how — from their perspective, renaming a field or changing its meaning might look like a harmless internal implementation detail, while to a downstream pipeline built assuming the old field name or meaning, it's a breaking change that silently corrupts results or crashes outright. An explicit, documented, versioned contract makes this dependency visible and creates a shared process (advance notice, versioning, a deprecation period) for evolving the schema without blindsiding downstream consumers — directly extending the data-ownership and governance principles covered generally in this training platform's Data Architecture course into a concrete, proactive agreement between two specific teams.",
       "source": "dbt Labs official documentation — Model contracts",
       "sourceUrl": "https://docs.getdbt.com/docs/collaborate/govern/model-contracts"
     }
@@ -529,7 +529,7 @@
   {
     "id": "deng-032",
     "topic": "data-contracts-observability",
-    "question": "Andina Retail Group's pipeline has an automated 'data observability' check that alerts the team if the row count of a daily table load falls outside the normal historical range (say, more than 40% below the typical daily volume), even without any explicit test asserting a specific business rule. What kind of problem is this volume-anomaly check designed to catch, distinct from the explicit dbt-style tests covered earlier (deng-019)?",
+    "question": "A retail company's pipeline has an automated 'data observability' check that alerts the team if the row count of a daily table load falls outside the normal historical range (say, more than 40% below the typical daily volume), even without any explicit test asserting a specific business rule. What kind of problem is this volume-anomaly check designed to catch, distinct from the explicit dbt-style tests covered earlier (deng-019)?",
     "options": {
       "a": "This kind of automated check is only capable of detecting problems with a table's declared schema, such as a missing column, and has no real capability to flag an unexpected problem with the actual quantity of data that was loaded",
       "b": "Volume-anomaly checks that compare against historical norms are functionally identical to dbt's explicit unique and not_null tests, and provide no genuinely distinct category of additional protection beyond what those explicit tests already catch, a distinction that becomes especially clear once the pipeline runs against real production volumes, a pattern that holds consistently across most production data-engineering pipelines at this scale, and one that shows up repeatedly once the system is under real load rather than in a small test environment",
@@ -546,7 +546,7 @@
   {
     "id": "deng-033",
     "topic": "data-contracts-observability",
-    "question": "Andina Retail Group's data platform team defines a Service Level Agreement (SLA) for a critical pipeline: 'gold_daily_sales must be fully refreshed and available by 6 AM local time every day.' Why is stating this expectation explicitly, as a formal SLA, more useful to the business than simply having the pipeline 'run sometime overnight' with no stated commitment?",
+    "question": "A retail company's data platform team defines a Service Level Agreement (SLA) for a critical pipeline: 'gold_daily_sales must be fully refreshed and available by 6 AM local time every day.' Why is stating this expectation explicitly, as a formal SLA, more useful to the business than simply having the pipeline 'run sometime overnight' with no stated commitment?",
     "options": {
       "a": "SLAs of this kind can only legitimately be applied to external, customer-facing services with a paying client on the other end, and have no genuine, legitimate application to an internal data pipeline serving the company's own teams",
       "b": "An explicit SLA gives downstream stakeholders (like the executives relying on a morning dashboard) a concrete, agreed-upon expectation to plan around, and gives the data team a clear, measurable target to build monitoring and alerting against — 'the pipeline is late' only has a precise, actionable meaning once there's a stated deadline to be late relative to",
@@ -563,7 +563,7 @@
   {
     "id": "deng-034",
     "topic": "data-contracts-observability",
-    "question": "Andina Retail Group's data platform tracks 'data freshness' as a monitored metric — the time elapsed since a given table was last successfully updated — alongside row-count anomaly detection (deng-032) and SLA tracking (deng-033). Why is freshness tracked as its own distinct metric, separate from simply checking whether the pipeline job itself reported success?",
+    "question": "A retail company's data platform tracks 'data freshness' as a monitored metric — the time elapsed since a given table was last successfully updated — alongside row-count anomaly detection (deng-032) and SLA tracking (deng-033). Why is freshness tracked as its own distinct metric, separate from simply checking whether the pipeline job itself reported success?",
     "options": {
       "a": "A pipeline job's freshness and its self-reported technical success status always mean exactly the same underlying thing in practice, which makes tracking them as two genuinely separate, independent metrics fundamentally redundant work, following the same operational logic teams apply when scaling the rest of their pipeline infrastructure, a distinction that becomes especially clear once the pipeline runs against real production volumes over multiple release cycles rather than a single isolated test run",
       "b": "A pipeline job can report technical success (no errors thrown, exit code zero) while still not actually having updated the target table with new data — for instance, if it silently processed zero new rows due to an upstream issue — so directly measuring the table's actual last-updated timestamp catches a category of 'silent staleness' that a job's own self-reported success status would completely miss",
@@ -580,7 +580,7 @@
   {
     "id": "deng-035",
     "topic": "api-and-file-formats",
-    "question": "Andina Retail Group's pipeline pulls order data from a third-party marketplace's REST API, which returns results in pages of 100 records at a time, requiring the pipeline to make repeated requests with an incrementing page parameter until an empty page signals the end. What is this pattern called, and why does it matter for pipeline design?",
+    "question": "A retail company's pipeline pulls order data from a third-party marketplace's REST API, which returns results in pages of 100 records at a time, requiring the pipeline to make repeated requests with an incrementing page parameter until an empty page signals the end. What is this pattern called, and why does it matter for pipeline design?",
     "options": {
       "a": "Pagination is fundamentally a database-specific storage and indexing concept borrowed from how relational tables are physically laid out on disk, and carries no genuine relevance to how a REST API structures and returns its results to a caller, a pattern that holds consistently across most production data-engineering pipelines at this scale, consistent with how this trade-off is typically handled in modern data platform architecture, particularly once multiple downstream consumers start depending on the same output",
       "b": "Pagination — a common API design pattern for returning large result sets in manageable chunks rather than one enormous response — and pipeline code integrating with such an API must correctly loop through every page (handling the possibility of a page-count changing mid-loop, rate limits between requests, and knowing when to stop) rather than assuming a single request will return the complete dataset",
@@ -597,7 +597,7 @@
   {
     "id": "deng-036",
     "topic": "api-and-file-formats",
-    "question": "Andina Retail Group's pipeline calling an external shipping carrier's API hits the carrier's documented rate limit (a maximum number of requests allowed per minute) during a particularly large batch job. What should well-designed pipeline code do when it receives a rate-limit response (commonly HTTP status 429) from an external API?",
+    "question": "A retail company's pipeline calling an external shipping carrier's API hits the carrier's documented rate limit (a maximum number of requests allowed per minute) during a particularly large batch job. What should well-designed pipeline code do when it receives a rate-limit response (commonly HTTP status 429) from an external API?",
     "options": {
       "a": "Recognize the rate-limit signal explicitly and respond by pausing (often for a duration the API itself suggests via a response header) before retrying, ideally combined with the exponential backoff pattern from deng-007, rather than either crashing outright or blindly hammering the API with more immediate requests that would just keep getting rejected",
       "b": "Receiving a 429 rate-limit response from an external API means the pipeline's own integration code has an unfixable, permanent structural bug, and no amount of additional retry or backoff logic could ever meaningfully resolve that underlying condition, which is why most teams operating at this scale standardize on exactly this approach, following the same operational logic teams apply when scaling the rest of their pipeline infrastructure, since treating this in isolation tends to create inconsistencies elsewhere in the system",
@@ -614,7 +614,7 @@
   {
     "id": "deng-037",
     "topic": "api-and-file-formats",
-    "question": "Andina Retail Group's engineers are choosing a file format for a bronze-layer landing zone receiving raw event data: JSON (a text-based, self-describing format) versus Avro (a compact, binary, schema-based format). What trade-off should drive this decision?",
+    "question": "A retail company's engineers are choosing a file format for a bronze-layer landing zone receiving raw event data: JSON (a text-based, self-describing format) versus Avro (a compact, binary, schema-based format). What trade-off should drive this decision?",
     "options": {
       "a": "JSON is human-readable and flexible (useful for debugging and for data whose structure might be genuinely unclear or evolving early on), but is larger and slower to parse at scale, with no enforced schema; Avro is more compact and faster to process, and carries an explicit schema alongside the data (supporting safer schema evolution), but is not human-readable without tooling — the right choice depends on whether debuggability/flexibility or storage/processing efficiency matters more for that specific landing zone",
       "b": "JSON files are structurally incapable of being read or processed by Spark or any other distributed processing engine under any circumstances, which makes JSON an entirely non-viable choice for a Spark-based bronze landing zone, a distinction that becomes especially clear once the pipeline runs against real production volumes, a pattern that holds consistently across most production data-engineering pipelines at this scale, and one that shows up repeatedly once the system is under real load rather than in a small test environment",
@@ -631,7 +631,7 @@
   {
     "id": "deng-038",
     "topic": "api-and-file-formats",
-    "question": "Andina Retail Group's engineer chooses to compress a large landing-zone file using Snappy compression (fast to compress and decompress, but a lower compression ratio) rather than Gzip (slower, but compresses more tightly). Why might Snappy be the better choice specifically for data that will be read frequently by many downstream Spark jobs?",
+    "question": "A retail company's engineer chooses to compress a large landing-zone file using Snappy compression (fast to compress and decompress, but a lower compression ratio) rather than Gzip (slower, but compresses more tightly). Why might Snappy be the better choice specifically for data that will be read frequently by many downstream Spark jobs?",
     "options": {
       "a": "Snappy always produces a measurably smaller compressed output file than Gzip does, for absolutely every possible type and shape of input data, with no compression-ratio trade-off between the two algorithms whatsoever in practice, consistent with how this trade-off is typically handled in modern data platform architecture, which is why most teams operating at this scale standardize on exactly this approach, documenting it explicitly in their runbooks so the reasoning survives staff turnover",
       "b": "The specific compression algorithm chosen for a landing-zone file has no measurable effect on either the resulting file's size on disk or the amount of processing time required by downstream jobs to actually read that file back",
@@ -648,7 +648,7 @@
   {
     "id": "deng-039",
     "topic": "api-and-file-formats",
-    "question": "Andina Retail Group's team is deciding whether a new integration with a supplier's inventory system should be built as a batch nightly file export/import, or as a real-time API integration. What business consideration should most directly drive this choice, given everything covered across this course?",
+    "question": "A retail company's team is deciding whether a new integration with a supplier's inventory system should be built as a batch nightly file export/import, or as a real-time API integration. What business consideration should most directly drive this choice, given everything covered across this course?",
     "options": {
       "a": "Real-time API integrations are always strictly and unconditionally superior to a batch file-based integration in absolutely every conceivable business scenario, leaving no legitimate remaining use case where batch processing still makes sense, following the same operational logic teams apply when scaling the rest of their pipeline infrastructure, a distinction that becomes especially clear once the pipeline runs against real production volumes over multiple release cycles rather than a single isolated test run",
       "b": "How time-sensitive the actual business decisions relying on that data genuinely are — if inventory levels only need to inform next-day replenishment planning, a simpler, more reliable nightly batch integration is likely sufficient and easier to build and maintain; if the business needs near-real-time visibility (say, to prevent overselling an item that just sold out), the added complexity of a real-time API integration is more likely justified",
@@ -682,7 +682,7 @@
   {
     "id": "deng-041",
     "topic": "pipeline-design",
-    "question": "Andina Retail Group's pipeline implements a Slowly Changing Dimension Type 2 pattern (introduced from a modeling angle in this training platform's Data Architecture course) for its product-price dimension, using a MERGE statement that closes out the old price row and inserts a new one whenever a product's price changes. Why must this specific MERGE logic be written carefully to remain idempotent (deng-001)?",
+    "question": "A retail company's pipeline implements a Slowly Changing Dimension Type 2 pattern (introduced from a modeling angle in this training platform's Data Architecture course) for its product-price dimension, using a MERGE statement that closes out the old price row and inserts a new one whenever a product's price changes. Why must this specific MERGE logic be written carefully to remain idempotent (deng-001)?",
     "options": {
       "a": "SCD Type 2 logic is inherently and automatically idempotent by its very definition as a modeling pattern, regardless of the specific way the underlying MERGE statement implementing that pattern happens to actually be written",
       "b": "This particular scenario involving a price-change MERGE has no genuine relationship to the general idempotency principle introduced earlier in this course, since SCD Type 2 is purely a modeling concept unrelated to how re-runs are handled, which is why most teams operating at this scale standardize on exactly this approach, following the same operational logic teams apply when scaling the rest of their pipeline infrastructure, since treating this in isolation tends to create inconsistencies elsewhere in the system",
@@ -699,7 +699,7 @@
   {
     "id": "deng-042",
     "topic": "orchestration-airflow",
-    "question": "Andina Retail Group's DAG has a timeout configured on its 'extract from shipping carrier API' task — if the task hasn't completed within 30 minutes, Airflow forcibly marks it failed rather than letting it run indefinitely. Why is an explicit timeout a valuable safeguard, separate from the retry and backoff logic covered earlier (deng-007)?",
+    "question": "A retail company's DAG has a timeout configured on its 'extract from shipping carrier API' task — if the task hasn't completed within 30 minutes, Airflow forcibly marks it failed rather than letting it run indefinitely. Why is an explicit timeout a valuable safeguard, separate from the retry and backoff logic covered earlier (deng-007)?",
     "options": {
       "a": "Without a timeout, a task that's genuinely hung (not failing outright, just never completing — for instance, waiting forever on a connection that will never respond) could block the entire DAG indefinitely, consuming a worker slot and delaying every downstream task with no automatic recovery; a timeout guarantees the task eventually fails explicitly, which then allows the normal retry/backoff and alerting logic to actually kick in",
       "b": "Configuring an explicit timeout on a task guarantees that the task will always complete successfully within that specified time limit, regardless of whatever underlying connectivity or performance issue might otherwise be occurring on the API side, a distinction that becomes especially clear once the pipeline runs against real production volumes, a pattern that holds consistently across most production data-engineering pipelines at this scale, and one that shows up repeatedly once the system is under real load rather than in a small test environment",
@@ -716,7 +716,7 @@
   {
     "id": "deng-043",
     "topic": "dbt-transformation",
-    "question": "Andina Retail Group's dbt project organizes models into three subdirectories — staging (light cleaning close to source structure), intermediate (business logic joins), and marts (final business-ready tables) — closely mirroring the bronze/silver/gold layering from this platform's Data Architecture and Spark courses. Why is this kind of consistent layering convention valuable across a growing dbt project?",
+    "question": "A retail company's dbt project organizes models into three subdirectories — staging (light cleaning close to source structure), intermediate (business logic joins), and marts (final business-ready tables) — closely mirroring the bronze/silver/gold layering from this platform's Data Architecture and Spark courses. Why is this kind of consistent layering convention valuable across a growing dbt project?",
     "options": {
       "a": "A consistent, well-understood layering convention gives every model an obvious, predictable place to live based on what stage of transformation it represents, making a large project navigable for new team members and making it immediately clear which models are safe for other tools (like Power BI) to build directly on top of (the marts layer) versus which are internal implementation details not meant for external consumption (staging and intermediate)",
       "b": "dbt technically requires that every model in a project live together inside a single flat directory, with no meaningful subdirectory organization like staging, intermediate, or marts actually permitted by the underlying tool itself",
@@ -733,7 +733,7 @@
   {
     "id": "deng-044",
     "topic": "testing-cicd",
-    "question": "Andina Retail Group's CI pipeline is configured to run its full test suite (unit tests, dbt data tests, and integration tests) automatically on every single pull request, before a human reviewer even looks at the code. Why run automated tests before human review, rather than after a reviewer has already approved the change?",
+    "question": "A retail company's CI pipeline is configured to run its full test suite (unit tests, dbt data tests, and integration tests) automatically on every single pull request, before a human reviewer even looks at the code. Why run automated tests before human review, rather than after a reviewer has already approved the change?",
     "options": {
       "a": "Running automated tests first means a reviewer's time is spent evaluating changes that have already cleared basic, objective correctness checks, rather than spending review time on a change that a simple, fast, automated test would have already caught as broken — letting the fast, cheap automated checks filter out obvious problems before the slower, more expensive human review step",
       "b": "Running the full automated test suite before a human reviewer looks at a pull request guarantees, as a direct consequence, that manual code review can be safely eliminated from the workflow entirely going forward for every future change, following the same operational logic teams apply when scaling the rest of their pipeline infrastructure, a distinction that becomes especially clear once the pipeline runs against real production volumes over multiple release cycles rather than a single isolated test run",
@@ -750,7 +750,7 @@
   {
     "id": "deng-045",
     "topic": "testing-cicd",
-    "question": "A dbt model change at Andina Retail Group passes all existing tests, but a reviewer notices the change subtly alters what a downstream marts-layer table represents, likely breaking an existing Power BI report that depends on it, even though the change is 'more correct.' What does this scenario illustrate about the limits of an automated test suite, however thorough?",
+    "question": "A dbt model change at a retail company passes all existing tests, but a reviewer notices the change subtly alters what a downstream marts-layer table represents, likely breaking an existing Power BI report that depends on it, even though the change is 'more correct.' What does this scenario illustrate about the limits of an automated test suite, however thorough?",
     "options": {
       "a": "A downstream impact like this — a subtle change to what a marts-layer table represents — can only ever realistically be caught by an automated test suite, and could never actually be identified through ordinary human code review instead",
       "b": "An automated test suite can only ever verify what someone thought to write an assertion for — it has no way to know that a given table is being relied upon by a specific downstream Power BI report in a way that a change, even a technically 'more correct' one, might break; this is exactly the kind of gap that data contracts (deng-031) and human review, working together with automated tests, are meant to help close",
@@ -767,7 +767,7 @@
   {
     "id": "deng-046",
     "topic": "incremental-and-cdc",
-    "question": "Andina Retail Group's incremental pipeline processes new orders using a 10-minute overlap window before its high-water mark (re-checking data from slightly before the mark, per the mitigation mentioned in deng-026), and deduplicates on order_id to handle any records reprocessed by that overlap. What property must the pipeline's write step have for this overlap-plus-deduplication approach to work correctly?",
+    "question": "A retail company's incremental pipeline processes new orders using a 10-minute overlap window before its high-water mark (re-checking data from slightly before the mark, per the mitigation mentioned in deng-026), and deduplicates on order_id to handle any records reprocessed by that overlap. What property must the pipeline's write step have for this overlap-plus-deduplication approach to work correctly?",
     "options": {
       "a": "The write step has no particular idempotency requirement in this scenario, and a plain, simple append-only write handles the overlap-window approach equally well regardless of how wide that overlap window happens to be configured",
       "b": "The overlap window's size and the deduplication logic applied to reprocessed records are entirely unrelated concerns from how the pipeline's write step actually persists data into its target table on each individual run",
@@ -784,7 +784,7 @@
   {
     "id": "deng-047",
     "topic": "incremental-and-cdc",
-    "question": "Andina Retail Group's CDC pipeline captures an UPDATE event changing an order's status from 'pending' to 'completed,' but the pipeline's target table processes events out of order, applying an older 'pending' status event after the newer 'completed' one has already been applied, incorrectly reverting the order's status. What CDC pipeline design element specifically prevents this kind of out-of-order-application problem?",
+    "question": "A retail company's CDC pipeline captures an UPDATE event changing an order's status from 'pending' to 'completed,' but the pipeline's target table processes events out of order, applying an older 'pending' status event after the newer 'completed' one has already been applied, incorrectly reverting the order's status. What CDC pipeline design element specifically prevents this kind of out-of-order-application problem?",
     "options": {
       "a": "Tracking and comparing event ordering explicitly — for instance, using a sequence number or the source transaction log's own log sequence number (LSN) captured alongside each event — and only applying an incoming change if its sequence number is genuinely newer than what's already been applied to the target, rather than blindly applying every event strictly in the order it happens to be received by the downstream pipeline",
       "b": "This kind of out-of-order event-application problem is structurally impossible to occur in any CDC-based pipeline by design, and therefore requires no special sequence-tracking or ordering-comparison logic of any kind to be built",
@@ -801,7 +801,7 @@
   {
     "id": "deng-048",
     "topic": "incremental-and-cdc",
-    "question": "Andina Retail Group considers whether its supplier-inventory integration (from deng-039) should use CDC given that the supplier's system is a third-party platform the team doesn't control or have direct database access to. What does this constraint reveal about a real limitation of CDC as a technique?",
+    "question": "A retail company considers whether its supplier-inventory integration (from deng-039) should use CDC given that the supplier's system is a third-party platform the team doesn't control or have direct database access to. What does this constraint reveal about a real limitation of CDC as a technique?",
     "options": {
       "a": "This particular access constraint has no real bearing on the choice between true CDC and a simpler timestamp-based incremental approach, since both techniques require exactly the same level of direct access to a source system regardless of ownership",
       "b": "CDC can be applied identically and with equal ease to literally any data source whatsoever, including a fully external, third-party platform the team has no direct database or infrastructure access to, with no practical constraint involved",
@@ -818,7 +818,7 @@
   {
     "id": "deng-049",
     "topic": "data-contracts-observability",
-    "question": "Andina Retail Group's data contract (deng-031) for the orders event stream specifies a schema version number, and the upstream e-commerce team plans to add a new required field. Rather than changing the existing schema in place, they publish it as 'version 2' while continuing to also emit 'version 1' events for a defined transition period. What migration strategy does this represent, and why is it valuable?",
+    "question": "A retail company's data contract (deng-031) for the orders event stream specifies a schema version number, and the upstream e-commerce team plans to add a new required field. Rather than changing the existing schema in place, they publish it as 'version 2' while continuing to also emit 'version 1' events for a defined transition period. What migration strategy does this represent, and why is it valuable?",
     "options": {
       "a": "This particular versioned-publishing approach offers no genuine practical benefit over simply changing the existing schema in place immediately, and breaking any downstream pipeline that wasn't already perfectly coordinated with that change",
       "b": "Publishing both a version 1 and a version 2 of the same event stream simultaneously requires, as a strict technical constraint, that the two versions contain byte-for-byte identical underlying data at all times during the transition",
@@ -835,7 +835,7 @@
   {
     "id": "deng-050",
     "topic": "data-contracts-observability",
-    "question": "Andina Retail Group's data observability tooling flags an anomaly: the null rate in the shipping_address field of the orders table jumped from a typical 2% to 35% overnight. Investigation reveals the upstream mobile app team shipped a change that made that field optional under a new checkout flow, without realizing downstream reporting depended on it being reliably populated. What does this incident illustrate about the relationship between observability and data contracts?",
+    "question": "A retail company's data observability tooling flags an anomaly: the null rate in the shipping_address field of the orders table jumped from a typical 2% to 35% overnight. Investigation reveals the upstream mobile app team shipped a change that made that field optional under a new checkout flow, without realizing downstream reporting depended on it being reliably populated. What does this incident illustrate about the relationship between observability and data contracts?",
     "options": {
       "a": "Data observability tooling of the kind described here is only capable of detecting problems with a table's overall row count, and has no genuine capability to detect a meaningful shift in a specific individual field's null rate",
       "b": "Observability and data contracts serve complementary roles: the contract (deng-031) is meant to prevent this kind of surprise proactively, by requiring advance coordination before a breaking change like 'this field is no longer guaranteed to be populated'; observability is the reactive safety net that catches it anyway when, in practice, a contract wasn't consulted or was violated — together they provide layered protection where a determined failure of one layer is still likely to be caught by the other",
@@ -852,7 +852,7 @@
   {
     "id": "deng-051",
     "topic": "data-contracts-observability",
-    "question": "Andina Retail Group tracks a 'mean time to detect' (MTTD) metric for data incidents — how long, on average, it takes from when a data problem actually starts to when the team first becomes aware of it — alongside a 'mean time to resolve' (MTTR) metric. Why might a team specifically invest in reducing MTTD, separate from also working on MTTR?",
+    "question": "A retail company tracks a 'mean time to detect' (MTTD) metric for data incidents — how long, on average, it takes from when a data problem actually starts to when the team first becomes aware of it — alongside a 'mean time to resolve' (MTTR) metric. Why might a team specifically invest in reducing MTTD, separate from also working on MTTR?",
     "options": {
       "a": "Metrics like MTTD and MTTR can only be meaningfully applied to traditional software application incidents, and carry no legitimate, coherent application to data pipeline incidents specifically, which follow a fundamentally different failure pattern",
       "b": "A fast resolution process still doesn't help if the problem goes completely undetected for days before anyone starts resolving it — MTTD and MTTR measure two genuinely different parts of the incident timeline (how long until you notice, versus how long to fix once noticed), and the observability investments covered throughout this topic (freshness monitoring, anomaly detection) are specifically aimed at reducing MTTD, complementing separate investments (like better runbooks or faster rollback tooling) aimed at reducing MTTR",
@@ -869,7 +869,7 @@
   {
     "id": "deng-052",
     "topic": "api-and-file-formats",
-    "question": "Andina Retail Group's pipeline authenticates to a partner's API using an OAuth 2.0 access token that expires after 1 hour, requiring the pipeline to periodically refresh it using a longer-lived refresh token. Why does this token-expiration design benefit the partner exposing the API, and what must the pipeline's code correctly handle as a result?",
+    "question": "A retail company's pipeline authenticates to a partner's API using an OAuth 2.0 access token that expires after 1 hour, requiring the pipeline to periodically refresh it using a longer-lived refresh token. Why does this token-expiration design benefit the partner exposing the API, and what must the pipeline's code correctly handle as a result?",
     "options": {
       "a": "Token expiration of this kind exists purely to intentionally inconvenience API consumers and to justify additional developer-support overhead for the partner, and serves no legitimate underlying security purpose whatsoever in practice",
       "b": "Properly written pipeline code should simply ignore the fact that an access token has expired entirely, and should continue sending requests using that same now-expired token indefinitely without ever attempting to refresh it at all",
@@ -886,7 +886,7 @@
   {
     "id": "deng-053",
     "topic": "api-and-file-formats",
-    "question": "Andina Retail Group evaluates switching its bronze-layer landing format from JSON to Parquet for a specific high-volume source, even though the source's raw data arrives as JSON from the API. Given Parquet is a columnar format (covered in this platform's Data Architecture and Spark courses) and this data will initially just be landed as-is with minimal transformation, is converting to Parquet immediately at landing time actually a clear win?",
+    "question": "A retail company evaluates switching its bronze-layer landing format from JSON to Parquet for a specific high-volume source, even though the source's raw data arrives as JSON from the API. Given Parquet is a columnar format (covered in this platform's Data Architecture and Spark courses) and this data will initially just be landed as-is with minimal transformation, is converting to Parquet immediately at landing time actually a clear win?",
     "options": {
       "a": "This particular landing-format decision has no genuine relationship to the earlier JSON-versus-Avro trade-off discussed in this course, since Parquet's columnar storage model is an entirely unrelated concept operating at a different layer",
       "b": "Converting raw JSON data into Parquet format at the landing stage is technically impossible to actually implement, and has therefore never been attempted in any real-world production data pipeline built on Spark or Databricks",
@@ -903,7 +903,7 @@
   {
     "id": "deng-054",
     "topic": "api-and-file-formats",
-    "question": "Andina Retail Group's pipeline integrates with a supplier's SFTP (secure file transfer) server, downloading a new inventory file that's dropped there nightly, rather than the supplier offering any REST API. Why might a data engineering team encounter integration methods like SFTP file drops, alongside modern APIs and CDC, in real-world practice?",
+    "question": "A retail company's pipeline integrates with a supplier's SFTP (secure file transfer) server, downloading a new inventory file that's dropped there nightly, rather than the supplier offering any REST API. Why might a data engineering team encounter integration methods like SFTP file drops, alongside modern APIs and CDC, in real-world practice?",
     "options": {
       "a": "SFTP file drops represent a purely historical curiosity from an earlier era of enterprise integration, with no legitimate ongoing use in any real-world data engineering context in a modern, cloud-native organization operating today",
       "b": "A data engineering team should always flatly refuse to integrate with any external partner system that doesn't already offer a modern REST API, treating that refusal as standard, non-negotiable practice regardless of the actual business need",
@@ -920,10 +920,10 @@
   {
     "id": "deng-055",
     "topic": "pipeline-design",
-    "question": "Andina Retail Group's team debates whether a new pipeline's business logic (currency conversion, revenue calculation rules) should live inside dbt SQL models, or inside upstream PySpark transformation code, given that both tools are available in their Databricks/Fabric environment. What consideration should most reasonably guide this choice?",
+    "question": "A retail company's team debates whether a new pipeline's business logic (currency conversion, revenue calculation rules) should live inside dbt SQL models, or inside upstream PySpark transformation code, given that both tools are available in their Databricks/Fabric environment. What consideration should most reasonably guide this choice?",
     "options": {
       "a": "SQL-expressible business logic (joins, aggregations, conditional calculations) is often more accessible to a broader range of team members — including SQL-comfortable analysts, echoing the multi-language collaboration theme from this platform's Spark course — and benefits directly from dbt's built-in testing, documentation, and lineage tooling covered in this course; more complex logic requiring custom Python (like calling an external API mid-transformation, or complex iterative algorithms) is often better suited to PySpark — the choice should follow which tool's strengths genuinely fit the specific logic involved, not an arbitrary default",
-      "b": "All meaningful business logic within Andina Retail Group's pipelines should always be written exclusively in PySpark, with dbt reserved purely for defining empty table shells that contain no actual transformation logic of their own",
+      "b": "All meaningful business logic within the retail company's pipelines should always be written exclusively in PySpark, with dbt reserved purely for defining empty table shells that contain no actual transformation logic of their own",
       "c": "This particular choice between dbt and PySpark has no genuine practical trade-offs worth weighing, since the two tools are functionally and syntactically identical to one another in essentially every meaningful respect that matters",
       "d": "Business logic like currency conversion and revenue calculation should always be independently duplicated in both dbt and PySpark simultaneously, maintaining two separate, independently-updated copies of that same logic at all times"
     },
@@ -937,7 +937,7 @@
   {
     "id": "deng-056",
     "topic": "orchestration-airflow",
-    "question": "Andina Retail Group's platform team maintains a shared library of reusable Airflow custom operators (pre-built task types like 'ExtractFromShopifyOperator' and 'LoadToDeltaOperator') that individual pipeline authors import and configure with parameters, rather than each pipeline author writing raw extraction and loading code from scratch every time. What benefit does this shared-operator approach provide?",
+    "question": "A retail company's platform team maintains a shared library of reusable Airflow custom operators (pre-built task types like 'ExtractFromShopifyOperator' and 'LoadToDeltaOperator') that individual pipeline authors import and configure with parameters, rather than each pipeline author writing raw extraction and loading code from scratch every time. What benefit does this shared-operator approach provide?",
     "options": {
       "a": "It centralizes and standardizes common, error-prone logic (like the retry/backoff handling from deng-007, or the idempotent-write patterns from deng-001) in one well-tested, reviewed place, so individual pipeline authors can focus on their pipeline's specific business logic and simply configure a trusted, reusable building block, rather than each person separately reinventing (and potentially getting subtly wrong) the same underlying resilience patterns",
       "b": "Custom Airflow operators exist purely to make a DAG's graph visualization more visually colorful and organized in the web interface, with no actual bearing on genuine code reuse or on the pipeline's underlying operational reliability",
@@ -954,7 +954,7 @@
   {
     "id": "deng-057",
     "topic": "testing-cicd",
-    "question": "Andina Retail Group's team writes a unit test that deliberately feeds a transformation function a malformed input — a record with a negative quantity value, which should never legitimately occur but theoretically could due to an upstream data-quality problem — and asserts that the function correctly rejects or flags it rather than silently processing it as if it were valid. What kind of testing practice does this represent?",
+    "question": "A retail company's team writes a unit test that deliberately feeds a transformation function a malformed input — a record with a negative quantity value, which should never legitimately occur but theoretically could due to an upstream data-quality problem — and asserts that the function correctly rejects or flags it rather than silently processing it as if it were valid. What kind of testing practice does this represent?",
     "options": {
       "a": "This particular kind of deliberately-invalid-input test can only meaningfully be written for streaming pipelines processing continuous events, and has no real applicability to the batch pipeline transformations covered throughout most of this course",
       "b": "Writing and running this kind of edge-case test guarantees, as a direct consequence, that no upstream source system will ever again send a negative quantity value into the pipeline once that specific test has been added to the suite",
@@ -971,7 +971,7 @@
   {
     "id": "deng-058",
     "topic": "testing-cicd",
-    "question": "Andina Retail Group's CI pipeline runs its integration test suite (spinning up a real, temporary test database and running the actual pipeline code against it end to end) separately from its much faster unit test suite, and only after unit tests have already passed. Why structure testing in these distinct, increasingly expensive tiers rather than running everything together every time?",
+    "question": "A retail company's CI pipeline runs its integration test suite (spinning up a real, temporary test database and running the actual pipeline code against it end to end) separately from its much faster unit test suite, and only after unit tests have already passed. Why structure testing in these distinct, increasingly expensive tiers rather than running everything together every time?",
     "options": {
       "a": "Unit tests and integration tests always exercise and verify exactly the same underlying category of behavior in a pipeline, which makes the distinction drawn between these two separate testing tiers largely arbitrary and unnecessary",
       "b": "This particular tiered-testing structure has no genuine relationship to the fast-cheap-checks-before-expensive-checks efficiency principle already discussed earlier in this course regarding automated tests running before human review",
@@ -988,7 +988,7 @@
   {
     "id": "deng-059",
     "topic": "incremental-and-cdc",
-    "question": "Andina Retail Group's team is designing a new pipeline and must decide, from scratch, whether to build it as full-reload batch, incremental batch with a high-water mark, or streaming with CDC. Given everything covered across this course, what should primarily drive this choice?",
+    "question": "A retail company's team is designing a new pipeline and must decide, from scratch, whether to build it as full-reload batch, incremental batch with a high-water mark, or streaming with CDC. Given everything covered across this course, what should primarily drive this choice?",
     "options": {
       "a": "This particular architectural decision has no real trade-offs meaningfully worth weighing between the three approaches, and can reasonably be made arbitrarily by whichever engineer happens to be building the pipeline that particular week",
       "b": "The genuine business requirements for data freshness and completeness, weighed against the real engineering complexity and cost each approach demands: full reload is simplest but wasteful and slow at scale; incremental batch is more efficient but carries the ordering and delete-detection limitations covered in this topic; CDC/streaming offers the freshest, most complete picture but requires real infrastructure investment and source-system access that isn't always available (deng-048) — the right choice matches engineering investment to actual need, not to whichever approach sounds most sophisticated",
@@ -1005,7 +1005,7 @@
   {
     "id": "deng-060",
     "topic": "data-contracts-observability",
-    "question": "Having worked through pipeline design, orchestration, dbt, testing, incremental/CDC processing, and observability, what role does a data engineer at a company like Andina Retail Group ultimately play in the broader organization, beyond simply 'writing pipelines that move data from A to B'?",
+    "question": "Having worked through pipeline design, orchestration, dbt, testing, incremental/CDC processing, and observability, what role does a data engineer at a retail company ultimately play in the broader organization, beyond simply 'writing pipelines that move data from A to B'?",
     "options": {
       "a": "A data engineer builds and maintains the trustworthy, resilient infrastructure that lets every other part of the business — finance, marketing, supply chain, executives — confidently make decisions based on data, which requires treating reliability, correctness, freshness, and clear communication about data's guarantees (via contracts and observability) as first-class engineering responsibilities, not just moving bytes from one system to another as quickly as possible",
       "b": "A data engineer's responsibilities begin and end with writing correct SQL and Python code, with no meaningful or genuine broader connection to how the rest of the business actually consumes or relies upon the resulting data downstream",

@@ -10,7 +10,7 @@
       "Fabric",
       "Platform Context"
     ],
-    "question": "Andina Retail Group's data engineering lead is deciding whether the team should learn 'raw' open-source Apache Spark or go straight to learning it inside Databricks and Microsoft Fabric. Why does learning Spark in the context of a specific platform matter for a working data team?",
+    "question": "A retail company's data engineering lead is deciding whether the team should learn 'raw' open-source Apache Spark or go straight to learning it inside Databricks and Microsoft Fabric. Why does learning Spark in the context of a specific platform matter for a working data team?",
     "options": {
       "a": "Databricks Runtime and the Fabric Spark engine are each separate forks that Microsoft and Databricks maintain independently of the open-source Apache Spark project, so code written against one platform's DataFrame API frequently needs to be rewritten before it will run on the other, since each fork maintains its own separate implementation of core execution internals like partitioning, shuffle behavior, and the lazy-evaluation engine that underlies query planning",
       "b": "Raw open-source Spark uses the RDD API as its primary interface, while Databricks and Fabric notebooks are built entirely around a proprietary query language that replaced DataFrames and Spark SQL, so transformation logic has to be rewritten when moving between the open-source and platform versions",
@@ -19,7 +19,7 @@
     },
     "correct": "d",
     "theory": {
-      "text": "The DataFrame API, Spark SQL syntax, and core execution concepts (partitions, shuffles, lazy evaluation) genuinely are the same Apache Spark underneath both platforms — that foundational knowledge transfers directly. But almost no team today provisions its own bare-metal Spark cluster and hand-configures it the way early Spark adopters did; instead, they open a Databricks or Fabric notebook, where cluster provisioning, storage integration, job scheduling, and governance are all handled by the platform. This course is redesigned around exactly that reality: the same Spark fundamentals, but taught through the lens of how they actually show up in a Databricks or Fabric notebook, since that's the environment Andina Retail Group's team — and most working data engineers — actually spend their day in.",
+      "text": "The DataFrame API, Spark SQL syntax, and core execution concepts (partitions, shuffles, lazy evaluation) genuinely are the same Apache Spark underneath both platforms — that foundational knowledge transfers directly. But almost no team today provisions its own bare-metal Spark cluster and hand-configures it the way early Spark adopters did; instead, they open a Databricks or Fabric notebook, where cluster provisioning, storage integration, job scheduling, and governance are all handled by the platform. This course is redesigned around exactly that reality: the same Spark fundamentals, but taught through the lens of how they actually show up in a Databricks or Fabric notebook, since that's the environment the retail company's team — and most working data engineers — actually spend their day in.",
       "source": "Microsoft Learn, Azure Databricks documentation — Compute",
       "sourceUrl": "https://learn.microsoft.com/en-us/azure/databricks/compute/"
     }
@@ -35,7 +35,7 @@
       "Clusters",
       "Notebooks"
     ],
-    "question": "An analyst opens a Databricks notebook to explore Andina Retail Group's sales data, writes some PySpark code, and runs a cell. What actually executes that code behind the scenes?",
+    "question": "An analyst opens a Databricks notebook to explore a retail company's sales data, writes some PySpark code, and runs a cell. What actually executes that code behind the scenes?",
     "options": {
       "a": "The notebook is attached to a cluster — a set of cloud virtual machines (a driver plus, usually, several worker nodes) running the Databricks Runtime — and the notebook's code is sent to that cluster to execute, with results streamed back to the notebook cell",
       "b": "The notebook itself directly runs Python and Spark code inside the web browser, using the browser's JavaScript engine to interpret the PySpark commands locally, with no separate compute cluster or driver process involved in executing the cell",
@@ -60,7 +60,7 @@
       "All-Purpose Clusters",
       "Job Clusters"
     ],
-    "question": "Andina Retail Group's data team has two very different Databricks workloads: an analyst interactively exploring data in a notebook throughout the day, and a nightly scheduled job that transforms sales data and then should shut down immediately. Why would the team typically use an 'all-purpose cluster' for the first and a 'job cluster' for the second?",
+    "question": "A retail company's data team has two very different Databricks workloads: an analyst interactively exploring data in a notebook throughout the day, and a nightly scheduled job that transforms sales data and then should shut down immediately. Why would the team typically use an 'all-purpose cluster' for the first and a 'job cluster' for the second?",
     "options": {
       "a": "Job clusters are restricted to running only SQL-based tasks and cannot execute Python or Scala notebooks, while all-purpose clusters are restricted to Python only, which is why a scheduled Python transformation job must always run on an all-purpose cluster instead, a language restriction enforced through the cluster policy settings an administrator configures when the workspace is first provisioned",
       "b": "All-purpose clusters and job clusters run on identical underlying virtual machine images and configuration, so the only real difference between them is the label shown in the Databricks UI -- functionally, a job scheduled against either type behaves exactly the same way",
@@ -85,7 +85,7 @@
       "Spark Pools",
       "Notebooks"
     ],
-    "question": "A colleague on Andina Retail Group's BI team, more familiar with Power BI than with data engineering, opens a Fabric notebook for the first time to run some PySpark against the company's Lakehouse. What provides the Spark compute behind that Fabric notebook, and how does it typically compare to manually configuring a Databricks cluster?",
+    "question": "A colleague on a retail company's BI team, more familiar with Power BI than with data engineering, opens a Fabric notebook for the first time to run some PySpark against the company's Lakehouse. What provides the Spark compute behind that Fabric notebook, and how does it typically compare to manually configuring a Databricks cluster?",
     "options": {
       "a": "Every Fabric notebook requires the workspace admin to manually specify the exact node type, node count, and autoscaling range before the notebook can attach to any compute, since Fabric -- unlike Databricks -- does not ship with any default or pre-configured pool option, a manual sizing requirement carried over unchanged from how a Databricks all-purpose cluster's node type and autoscaling range are configured before first use",
       "b": "Fabric notebooks run against a Spark pool — either a 'starter pool' (pre-warmed, ready in seconds, with a default configuration) or a custom pool the workspace admin configures — and starter pools in particular are designed to minimize the setup friction a less infrastructure-focused user like a BI analyst would otherwise face compared to manually sizing and launching a Databricks cluster",
@@ -110,7 +110,7 @@
       "Capacity Units",
       "Cost Model"
     ],
-    "question": "Andina Retail Group's finance team is comparing how Databricks and Fabric charge for compute. In Databricks, compute is essentially paid for cluster by cluster. How does Fabric's capacity-based billing model differ conceptually?",
+    "question": "A retail company's finance team is comparing how Databricks and Fabric charge for compute. In Databricks, compute is essentially paid for cluster by cluster. How does Fabric's capacity-based billing model differ conceptually?",
     "options": {
       "a": "A Fabric capacity is a shared pool of compute (measured in Capacity Units) purchased once at the workspace/tenant level, and it's drawn on by every Fabric workload running against it — Spark notebooks, Power BI report refreshes, Data Factory pipelines, and more — rather than each workload being billed as its own separate cluster the way Databricks clusters are",
       "b": "Fabric bills each individual notebook cell execution as a separate metered event, similar to a serverless function invocation, so running the same ten-cell notebook twice in a day generates twenty distinct billing line items rather than drawing from one ongoing capacity pool",
@@ -119,7 +119,7 @@
     },
     "correct": "a",
     "theory": {
-      "text": "This is a genuinely important architectural and financial difference for a business evaluating the two platforms, and it directly matters to someone with the user's own BI and business background. Databricks compute costs are generally tied to specific clusters being spun up and run — Andina's Spark job cluster cost is its own line item, separate from any other Databricks workload. Fabric instead sells a single capacity (an SKU sized in Capacity Units) that's shared across the entire Fabric experience for a workspace or tenant — a Spark notebook run, a Power BI dataset refresh, and a Data Factory pipeline all draw from the same underlying capacity pool. This unification simplifies procurement and capacity planning (one number to size and budget for) but also means workloads can compete with each other for the same finite capacity, which is a trade-off worth understanding before choosing either platform for a given team's needs.",
+      "text": "This is a genuinely important architectural and financial difference for a business evaluating the two platforms, and it directly matters to someone with the user's own BI and business background. Databricks compute costs are generally tied to specific clusters being spun up and run — the retail company's Spark job cluster cost is its own line item, separate from any other Databricks workload. Fabric instead sells a single capacity (an SKU sized in Capacity Units) that's shared across the entire Fabric experience for a workspace or tenant — a Spark notebook run, a Power BI dataset refresh, and a Data Factory pipeline all draw from the same underlying capacity pool. This unification simplifies procurement and capacity planning (one number to size and budget for) but also means workloads can compete with each other for the same finite capacity, which is a trade-off worth understanding before choosing either platform for a given team's needs.",
       "source": "Microsoft Learn, Azure Databricks documentation — Compute",
       "sourceUrl": "https://learn.microsoft.com/en-us/azure/databricks/compute/"
     }
@@ -133,7 +133,7 @@
       "Databricks Runtime",
       "Photon"
     ],
-    "question": "When Andina Retail Group's engineer creates a Databricks cluster, they must choose a 'Databricks Runtime' version, and can optionally enable 'Photon.' What are these two choices actually configuring?",
+    "question": "When a retail company's engineer creates a Databricks cluster, they must choose a 'Databricks Runtime' version, and can optionally enable 'Photon.' What are these two choices actually configuring?",
     "options": {
       "a": "The Databricks Runtime is Databricks' own packaged distribution of Apache Spark plus additional performance optimizations and pre-installed libraries; Photon is an optional native, vectorized query execution engine (built in C++, compatible with Spark's DataFrame and SQL APIs) that can be enabled on supported runtimes to accelerate SQL and DataFrame workloads",
       "b": "Photon is a standalone reporting accelerator that caches query results for Power BI dashboards; it operates independently of the Spark execution engine and has no effect on how DataFrame or Spark SQL operations are actually executed on the cluster",
@@ -142,7 +142,7 @@
     },
     "correct": "a",
     "theory": {
-      "text": "The Databricks Runtime is one of the concrete things you're actually paying for and benefiting from when you choose Databricks over configuring open-source Spark yourself: it bundles a tested, optimized version of Apache Spark with performance improvements, bug fixes, and commonly-needed libraries pre-installed, all validated to work together as one coherent package, refreshed on a regular release cadence. Photon is a further, more specific optimization layered on top — a rewritten, natively-compiled execution engine that can transparently speed up many SQL and DataFrame operations without requiring any code changes, since it plugs in underneath the same familiar DataFrame and SQL APIs. For a data team like Andina's, enabling Photon on production workloads is often one of the simplest ways to meaningfully cut both runtime and cost, precisely because it requires no rewriting of existing PySpark or Spark SQL code.",
+      "text": "The Databricks Runtime is one of the concrete things you're actually paying for and benefiting from when you choose Databricks over configuring open-source Spark yourself: it bundles a tested, optimized version of Apache Spark with performance improvements, bug fixes, and commonly-needed libraries pre-installed, all validated to work together as one coherent package, refreshed on a regular release cadence. Photon is a further, more specific optimization layered on top — a rewritten, natively-compiled execution engine that can transparently speed up many SQL and DataFrame operations without requiring any code changes, since it plugs in underneath the same familiar DataFrame and SQL APIs. For a data team like the retail company's, enabling Photon on production workloads is often one of the simplest ways to meaningfully cut both runtime and cost, precisely because it requires no rewriting of existing PySpark or Spark SQL code.",
       "source": "Microsoft Learn, Azure Databricks documentation — Compute",
       "sourceUrl": "https://learn.microsoft.com/en-us/azure/databricks/compute/"
     }
@@ -158,7 +158,7 @@
       "Multi-language",
       "Magic Commands"
     ],
-    "question": "In a single Databricks (or Fabric) notebook, an engineer writes a PySpark DataFrame transformation in one cell, then writes a Spark SQL query against a temporary view in the very next cell, using a %sql magic command. Why does this multi-language flexibility matter in practice for a team like Andina Retail Group's?",
+    "question": "In a single Databricks (or Fabric) notebook, an engineer writes a PySpark DataFrame transformation in one cell, then writes a Spark SQL query against a temporary view in the very next cell, using a %sql magic command. Why does this multi-language flexibility matter in practice for a team like a retail company's?",
     "options": {
       "a": "It lets different people on the same team work in the language they're most comfortable with — a data engineer might prefer PySpark for complex transformation logic, while a BI-leaning analyst might prefer writing familiar SQL — all against the same underlying DataFrames and tables within one notebook, without needing to convert the whole workflow to a single language",
       "b": "The %sql magic command is simply syntax highlighting applied to a cell -- under the hood, Databricks silently converts whatever SQL you type into an equivalent PySpark DataFrame call before running it, so there is no functional difference between writing %sql and writing plain PySpark yourself, since the notebook's execution engine parses the SQL text into the same logical plan objects a PySpark DataFrame call would generate before handing it off to the cluster",
@@ -167,7 +167,7 @@
     },
     "correct": "a",
     "theory": {
-      "text": "Both Databricks and Fabric notebooks support this kind of per-cell language switching via magic commands (%python, %sql, %scala, %r), and it's a genuinely practical feature, not just a convenience trick. A DataFrame registered as a temporary view (or a table already sitting in the Lakehouse/catalog) can be queried with familiar SQL in one cell and then handed back to more complex PySpark transformation logic in the next, which matters for teams with mixed skill sets — exactly the situation at a company like Andina Retail Group, where some contributors come from a stronger BI/SQL background (echoing this whole training platform's DAX and SQL courses) and others are more comfortable writing procedural PySpark code.",
+      "text": "Both Databricks and Fabric notebooks support this kind of per-cell language switching via magic commands (%python, %sql, %scala, %r), and it's a genuinely practical feature, not just a convenience trick. A DataFrame registered as a temporary view (or a table already sitting in the Lakehouse/catalog) can be queried with familiar SQL in one cell and then handed back to more complex PySpark transformation logic in the next, which matters for teams with mixed skill sets — exactly the situation at the retail company, where some contributors come from a stronger BI/SQL background (echoing this whole training platform's DAX and SQL courses) and others are more comfortable writing procedural PySpark code.",
       "source": "Microsoft Learn, Azure Databricks documentation — Compute",
       "sourceUrl": "https://learn.microsoft.com/en-us/azure/databricks/compute/"
     }
@@ -181,7 +181,7 @@
       "Autoscaling",
       "Cost Management"
     ],
-    "question": "Andina Retail Group's nightly Databricks job processes a highly variable amount of data — light on slow days, much heavier during promotional weekends. The cluster is configured with autoscaling enabled, with a minimum and maximum worker count. What problem does autoscaling solve here?",
+    "question": "A retail company's nightly Databricks job processes a highly variable amount of data — light on slow days, much heavier during promotional weekends. The cluster is configured with autoscaling enabled, with a minimum and maximum worker count. What problem does autoscaling solve here?",
     "options": {
       "a": "Enabling autoscaling guarantees that a job finishes in a fixed, predictable amount of time no matter how much data it processes, since the cluster automatically adds enough nodes to keep total runtime constant even on the heaviest promotional-weekend volumes",
       "b": "Autoscaling in Databricks adjusts the amount of attached storage available to a cluster as data volume grows, but the number of worker nodes actually processing the job stays fixed at whatever value was set when the cluster was created",
@@ -231,7 +231,7 @@
       "Microsoft Fabric",
       "Comparison"
     ],
-    "question": "Andina Retail Group's leadership asks: 'if we might eventually use both Databricks and Fabric, or switch between them, how much of what our team learns will actually transfer?' What is the most accurate answer given what both platforms are built on?",
+    "question": "A retail company's leadership asks: 'if we might eventually use both Databricks and Fabric, or switch between them, how much of what our team learns will actually transfer?' What is the most accurate answer given what both platforms are built on?",
     "options": {
       "a": "Fabric began as Microsoft's original implementation of Databricks technology before Databricks became an independent company, and Microsoft has continued maintaining Fabric as that same original codebase rather than developing it as a separate, independently evolving product",
       "b": "PySpark code transfers directly between Databricks and Fabric since both run the same Python engine, but Spark SQL syntax differs enough between the two platforms that queries written for one typically need to be substantially rewritten before they will run correctly on the other",
@@ -255,7 +255,7 @@
       "Delta Lake",
       "ACID Transactions"
     ],
-    "question": "Andina Retail Group's raw sales data used to be stored as plain Parquet files, but the team is migrating everything to Delta Lake tables in both their Databricks and Fabric environments. What does Delta Lake add on top of plain Parquet files that makes this migration worthwhile?",
+    "question": "A retail company's raw sales data used to be stored as plain Parquet files, but the team is migrating everything to Delta Lake tables in both their Databricks and Fabric environments. What does Delta Lake add on top of plain Parquet files that makes this migration worthwhile?",
     "options": {
       "a": "Delta Lake's main contribution is a more efficient compression scheme that produces smaller files on disk than plain Parquet; the reliability and consistency guarantees a table has are otherwise unchanged, since Delta reads and writes data the same way plain Parquet does",
       "b": "Delta Lake adds a transaction log that gives plain Parquet-based tables ACID guarantees (so concurrent readers and writers never see a corrupted, half-written state), along with schema enforcement, versioning, and other reliability features that raw Parquet files alone don't provide",
@@ -279,7 +279,7 @@
       "Time Travel",
       "Versioning"
     ],
-    "question": "An analyst at Andina Retail Group accidentally overwrites a Delta table with an incorrect transformation, corrupting last week's sales figures. Because the table is Delta format (whether stored in Databricks or in a Fabric Lakehouse), what recovery option does 'time travel' provide?",
+    "question": "An analyst at a retail company accidentally overwrites a Delta table with an incorrect transformation, corrupting last week's sales figures. Because the table is Delta format (whether stored in Databricks or in a Fabric Lakehouse), what recovery option does 'time travel' provide?",
     "options": {
       "a": "Time travel in Delta Lake tracks how a table's column definitions have changed over time, letting you inspect what the schema looked like at a past version, but it does not retain the actual row-level data from earlier versions once a table has been overwritten",
       "b": "Recovering an earlier version of a Delta table depends on a separate backup and restore system that the team must configure and maintain outside of Delta Lake, since the transaction log itself only records metadata about writes, not the data needed to reconstruct them",
@@ -304,7 +304,7 @@
       "MERGE",
       "Upserts"
     ],
-    "question": "Every night, Andina Retail Group receives a batch of updated inventory counts, some for products already in the Delta table and some brand new. Rather than deleting and reloading the whole table, the team uses a Delta MERGE statement. What does MERGE let them do in one atomic operation?",
+    "question": "Every night, a retail company receives a batch of updated inventory counts, some for products already in the Delta table and some brand new. Rather than deleting and reloading the whole table, the team uses a Delta MERGE statement. What does MERGE let them do in one atomic operation?",
     "options": {
       "a": "MERGE (an 'upsert') lets you match incoming source rows against the target table on a key, and in a single atomic statement, update matching rows, insert new rows that don't yet exist, and optionally delete rows that meet other conditions — all without a separate delete-then-reload step or the risk of an inconsistent in-between state",
       "b": "MERGE INTO was introduced as a Fabric-specific extension to Spark SQL for working with OneLake tables, and Databricks handles the same update-or-insert scenario through an entirely separate mechanism since MERGE itself has no equivalent implementation there",
@@ -313,7 +313,7 @@
     },
     "correct": "a",
     "theory": {
-      "text": "MERGE INTO is the standard, idiomatic way to handle exactly this kind of incremental update-or-insert scenario in Delta Lake, and it works identically whether the table lives in Databricks or in a Fabric Lakehouse, since it's a Delta Lake capability, not a platform-specific one. Instead of the older, riskier pattern of deleting the whole table and reloading it from scratch (which briefly leaves the table in an inconsistent or empty state, and wastes effort re-writing unchanged rows), MERGE matches incoming rows against the target on a specified key and applies WHEN MATCHED (update) and WHEN NOT MATCHED (insert) logic — sometimes also WHEN NOT MATCHED BY SOURCE (delete) — as one atomic transaction. For a nightly inventory refresh like Andina's, this is both more efficient and safer than a naive full reload.",
+      "text": "MERGE INTO is the standard, idiomatic way to handle exactly this kind of incremental update-or-insert scenario in Delta Lake, and it works identically whether the table lives in Databricks or in a Fabric Lakehouse, since it's a Delta Lake capability, not a platform-specific one. Instead of the older, riskier pattern of deleting the whole table and reloading it from scratch (which briefly leaves the table in an inconsistent or empty state, and wastes effort re-writing unchanged rows), MERGE matches incoming rows against the target on a specified key and applies WHEN MATCHED (update) and WHEN NOT MATCHED (insert) logic — sometimes also WHEN NOT MATCHED BY SOURCE (delete) — as one atomic transaction. For a nightly inventory refresh like the retail company's, this is both more efficient and safer than a naive full reload.",
       "source": "Delta Lake official documentation",
       "sourceUrl": "https://docs.delta.io/latest/index.html"
     }
@@ -330,7 +330,7 @@
       "Z-ORDER",
       "Performance"
     ],
-    "question": "After months of small, frequent nightly inserts, Andina Retail Group's sales Delta table has accumulated thousands of tiny underlying files, and queries filtering by store_id have gotten noticeably slower. What do OPTIMIZE and ZORDER BY specifically address here?",
+    "question": "After months of small, frequent nightly inserts, a retail company's sales Delta table has accumulated thousands of tiny underlying files, and queries filtering by store_id have gotten noticeably slower. What do OPTIMIZE and ZORDER BY specifically address here?",
     "options": {
       "a": "OPTIMIZE works by permanently deleting any file version that isn't part of the table's current state, which makes it functionally identical to VACUUM -- the main difference being that OPTIMIZE also happens to run on a schedule rather than needing to be triggered manually, running automatically every time a background compaction timer elapses on the cluster, independent of any explicit OPTIMIZE command an engineer writes",
       "b": "ZORDER BY is restricted to a table's declared primary key column -- attempting to Z-order on any other column, such as store_id, would be rejected, since Z-ordering depends on the same uniqueness guarantees a primary key provides",
@@ -355,7 +355,7 @@
       "VACUUM",
       "Storage Costs"
     ],
-    "question": "Andina Retail Group's cloud storage bill for its Delta tables keeps climbing even though the 'live' tables aren't actually growing that fast. The team learns this is partly because of old, no-longer-referenced data files left behind by frequent OPTIMIZE and MERGE operations. What does the VACUUM command do about this?",
+    "question": "A retail company's cloud storage bill for its Delta tables keeps climbing even though the 'live' tables aren't actually growing that fast. The team learns this is partly because of old, no-longer-referenced data files left behind by frequent OPTIMIZE and MERGE operations. What does the VACUUM command do about this?",
     "options": {
       "a": "VACUUM is a Databricks-specific maintenance command tied to the Databricks Runtime's storage layer; because Fabric's Delta tables in OneLake use a different underlying storage mechanism, they don't accumulate old unreferenced files the way Databricks tables do and have no equivalent need for VACUUM",
       "b": "VACUUM works by scanning a table's small files and compacting them into fewer, larger files, which makes it functionally identical to OPTIMIZE -- the main practical difference being that VACUUM also happens to be the recommended command to run after a MERGE operation",
@@ -364,7 +364,7 @@
     },
     "correct": "c",
     "theory": {
-      "text": "Every time OPTIMIZE compacts files or MERGE rewrites data, the old versions of those files aren't necessarily deleted right away — Delta Lake deliberately keeps them around for a while specifically so time travel (S-12) can still reach back to recent past versions of the table. But left unchecked indefinitely, this accumulation of superseded files quietly inflates storage costs, which is exactly the symptom Andina's team is seeing. VACUUM is the maintenance operation that cleans this up: it permanently removes files that are no longer part of the table's current state and are older than a configured retention threshold (commonly 7 days by default), balancing 'don't waste money storing files nobody can query anymore' against 'don't delete the safety net time travel depends on' — a genuinely important operational trade-off to get right on any Delta table, in either Databricks or Fabric.",
+      "text": "Every time OPTIMIZE compacts files or MERGE rewrites data, the old versions of those files aren't necessarily deleted right away — Delta Lake deliberately keeps them around for a while specifically so time travel (S-12) can still reach back to recent past versions of the table. But left unchecked indefinitely, this accumulation of superseded files quietly inflates storage costs, which is exactly the symptom the retail company's team is seeing. VACUUM is the maintenance operation that cleans this up: it permanently removes files that are no longer part of the table's current state and are older than a configured retention threshold (commonly 7 days by default), balancing 'don't waste money storing files nobody can query anymore' against 'don't delete the safety net time travel depends on' — a genuinely important operational trade-off to get right on any Delta table, in either Databricks or Fabric.",
       "source": "Delta Lake official documentation",
       "sourceUrl": "https://docs.delta.io/latest/index.html"
     }
@@ -378,7 +378,7 @@
       "Delta Lake",
       "Schema Evolution"
     ],
-    "question": "A source system feeding Andina Retail Group's Delta table adds a new column, promo_code, that didn't exist before. Without any special handling, a plain append write with the new column would normally fail against the existing table's schema. What Delta Lake feature specifically addresses this?",
+    "question": "A source system feeding a retail company's Delta table adds a new column, promo_code, that didn't exist before. Without any special handling, a plain append write with the new column would normally fail against the existing table's schema. What Delta Lake feature specifically addresses this?",
     "options": {
       "a": "Schema evolution (enabled via an option like mergeSchema, or automatically under certain Delta configurations) allows a write containing new columns to safely extend a Delta table's schema, rather than either failing outright or silently corrupting the existing data",
       "b": "A Delta table's schema is fixed permanently at the moment the table is first created, and no configuration option or write mode exists that allows new columns like promo_code to ever be added to that table afterward, regardless of how the write is issued",
@@ -403,7 +403,7 @@
       "Lakehouse",
       "OneLake"
     ],
-    "question": "Andina Retail Group's team creates a 'Lakehouse' item in a Fabric workspace to hold their sales data. What are the two main areas a Fabric Lakehouse organizes data into, and what's the difference between them?",
+    "question": "A retail company's team creates a 'Lakehouse' item in a Fabric workspace to hold their sales data. What are the two main areas a Fabric Lakehouse organizes data into, and what's the difference between them?",
     "options": {
       "a": "A Lakehouse's 'Files' area holds arbitrary raw files in their native format (like a traditional data lake), while its 'Tables' area holds structured, managed Delta tables that are automatically discoverable and queryable — including through the Lakehouse's auto-generated SQL analytics endpoint, which lets you run T-SQL against those Delta tables",
       "b": "A Lakehouse's Files and Tables areas are really just two different display views of the exact same underlying folder -- any file placed in Files automatically appears as a queryable table, and there's no actual structural distinction between raw files and managed Delta tables, since the Tables view simply re-renders whatever file listing already exists in Files without applying any Delta transaction log or schema registration on top of it",
@@ -449,7 +449,7 @@
       "Microsoft Fabric",
       "Shortcuts"
     ],
-    "question": "Andina Retail Group has raw shipment data sitting in an existing Azure Data Lake Storage account, separate from Fabric. Rather than copying that data into OneLake, the team creates a 'shortcut' in their Fabric Lakehouse pointing to it. What does a shortcut actually do?",
+    "question": "A retail company has raw shipment data sitting in an existing Azure Data Lake Storage account, separate from Fabric. Rather than copying that data into OneLake, the team creates a 'shortcut' in their Fabric Lakehouse pointing to it. What does a shortcut actually do?",
     "options": {
       "a": "Creating a shortcut triggers an immediate, one-time copy of the entire referenced dataset into OneLake, and once that copy completes, Fabric automatically deletes the data from its original external location to avoid keeping two redundant copies",
       "b": "A shortcut creates a virtual reference within OneLake to data that physically still resides in its original location (whether external storage like ADLS, or another OneLake location entirely), letting Fabric items query it as if it were natively stored in OneLake, without duplicating the underlying data or requiring an ETL copy step",
@@ -458,7 +458,7 @@
     },
     "correct": "b",
     "theory": {
-      "text": "Shortcuts solve a genuinely practical problem: forcing every piece of data an organization wants to analyze in Fabric to first be physically copied into OneLake would be wasteful (duplicated storage costs) and would introduce staleness (the copy drifting out of sync with the original source). A shortcut instead creates a virtual pointer — Fabric items querying through that shortcut read the data directly from wherever it actually lives, whether that's an external Azure Data Lake Storage account, an Amazon S3 bucket, or even another team's OneLake location entirely — with no physical copy created in OneLake itself. For a scenario like Andina's shipment data already sitting in existing cloud storage, a shortcut lets the Fabric Lakehouse incorporate that data into unified analysis immediately, without a wasteful and potentially stale migration step.",
+      "text": "Shortcuts solve a genuinely practical problem: forcing every piece of data an organization wants to analyze in Fabric to first be physically copied into OneLake would be wasteful (duplicated storage costs) and would introduce staleness (the copy drifting out of sync with the original source). A shortcut instead creates a virtual pointer — Fabric items querying through that shortcut read the data directly from wherever it actually lives, whether that's an external Azure Data Lake Storage account, an Amazon S3 bucket, or even another team's OneLake location entirely — with no physical copy created in OneLake itself. For a scenario like the retail company's shipment data already sitting in existing cloud storage, a shortcut lets the Fabric Lakehouse incorporate that data into unified analysis immediately, without a wasteful and potentially stale migration step.",
       "source": "Delta Lake official documentation",
       "sourceUrl": "https://docs.delta.io/latest/index.html"
     }
@@ -474,7 +474,7 @@
       "Direct Lake",
       "Power BI"
     ],
-    "question": "Andina Retail Group's Power BI reports used to either Import a copy of the data (requiring scheduled refreshes) or use DirectQuery (querying the source live, but often slower). Fabric's 'Direct Lake' mode is presented as a third option specifically for Delta tables in OneLake. What makes Direct Lake different from both older approaches?",
+    "question": "A retail company's Power BI reports used to either Import a copy of the data (requiring scheduled refreshes) or use DirectQuery (querying the source live, but often slower). Fabric's 'Direct Lake' mode is presented as a third option specifically for Delta tables in OneLake. What makes Direct Lake different from both older approaches?",
     "options": {
       "a": "Direct Lake mode lets Power BI load a Delta table's Parquet columns directly into memory straight from OneLake, without a separate Import-and-refresh ETL step and without the query-time round-trip overhead DirectQuery typically has — effectively combining Import's speed with DirectQuery's freshness",
       "b": "Direct Lake mode still requires the report author to manually export the Delta table's data and import it into Power BI Desktop before each report refresh, functioning as a more convenient packaging of the same Import-and-refresh workflow rather than a genuinely new access mode, with the export-and-load step simply triggered from within the Lakehouse interface instead of Power BI Desktop's own Get Data dialog",
@@ -499,7 +499,7 @@
       "DataFrames",
       "Delta Lake"
     ],
-    "question": "Inside a Databricks or Fabric notebook, an engineer wants to load Andina Retail Group's sales Delta table into a DataFrame for further transformation. Which approach reflects how this is idiomatically done against a managed Delta table (as opposed to a raw file path)?",
+    "question": "Inside a Databricks or Fabric notebook, an engineer wants to load a retail company's sales Delta table into a DataFrame for further transformation. Which approach reflects how this is idiomatically done against a managed Delta table (as opposed to a raw file path)?",
     "options": {
       "a": "Delta tables registered in Unity Catalog or a Fabric Lakehouse can only be queried through Spark SQL statements; the PySpark DataFrame API has no method for reading a managed Delta table directly, so any DataFrame-based transformation first requires converting a SQL query result, typically by wrapping a spark.sql(...) call's output and manually reconstructing it into a new DataFrame object before any further transformation can proceed",
       "b": "df = spark.table(\"sales\") (or spark.read.table(\"sales\")) reads a managed, catalog-registered Delta table directly by its name, which is generally preferred over a raw file path once a table has been registered in Unity Catalog (Databricks) or the Fabric Lakehouse's Tables area, since it doesn't require knowing or hardcoding the underlying storage path",
@@ -523,7 +523,7 @@
       "PySpark",
       "DataFrame Transformations"
     ],
-    "question": "An engineer wants to find all of Andina Retail Group's completed orders over $500, keeping only the order_id, customer_id, and total_amount columns. Which PySpark expression correctly does this?",
+    "question": "An engineer wants to find all of a retail company's completed orders over $500, keeping only the order_id, customer_id, and total_amount columns. Which PySpark expression correctly does this?",
     "options": {
       "a": "df.select(\"order_id\", \"customer_id\", \"total_amount\").filter(col(\"status\") == \"completed\" and col(\"total_amount\") > 500)",
       "b": "df.where(\"status\" == \"completed\", \"total_amount\" > 500).selectExpr(\"order_id, customer_id, total_amount\")",
@@ -548,7 +548,7 @@
       "withColumn",
       "Expressions"
     ],
-    "question": "Andina Retail Group's analyst needs to add a new column, revenue, computed as quantity times unit_price, to a DataFrame of order line items. Which PySpark pattern correctly does this?",
+    "question": "A retail company's analyst needs to add a new column, revenue, computed as quantity times unit_price, to a DataFrame of order line items. Which PySpark pattern correctly does this?",
     "options": {
       "a": "df[\"revenue\"] = df[\"quantity\"] * df[\"unit_price\"] -- the same in-place column assignment syntax pandas users rely on, since PySpark DataFrames support direct bracket-based item assignment that mutates the existing df the same way a pandas DataFrame would",
       "b": "df.revenue = df.quantity * df.unit_price, relying on direct attribute assignment to add the new column to the existing DataFrame object in place, the same pattern that works for simple column assignment in a pandas DataFrame",
@@ -572,7 +572,7 @@
       "groupBy",
       "Aggregations"
     ],
-    "question": "Andina Retail Group wants total revenue and order count per store, computed from a PySpark DataFrame of completed order line items. Which pattern correctly builds this aggregation?",
+    "question": "A retail company wants total revenue and order count per store, computed from a PySpark DataFrame of completed order line items. Which pattern correctly builds this aggregation?",
     "options": {
       "a": "df.select(\"store_id\").sum(\"quantity\", \"unit_price\").count(\"order_id\") -- chaining sum() and count() directly onto a selected set of columns, computing both aggregates in a single pass without an explicit groupBy() call",
       "b": "df.groupBy(\"store_id\").agg(sum(col(\"quantity\") * col(\"unit_price\")).alias(\"total_revenue\"), countDistinct(\"order_id\").alias(\"order_count\"))",
@@ -595,7 +595,7 @@
       "PySpark",
       "Joins"
     ],
-    "question": "An engineer needs to join Andina Retail Group's orders DataFrame to its customers DataFrame, keeping every order even if (unexpectedly) a matching customer record is missing. Which join type and syntax correctly express this?",
+    "question": "An engineer needs to join a retail company's orders DataFrame to its customers DataFrame, keeping every order even if (unexpectedly) a matching customer record is missing. Which join type and syntax correctly express this?",
     "options": {
       "a": "orders_df.merge(customers_df, on=\"customer_id\") -- pandas' merge() method, which PySpark DataFrames also support directly for joining two tables on a shared key column",
       "b": "orders_df.join(customers_df, orders_df.customer_id == customers_df.customer_id, \"inner\")",
@@ -618,7 +618,7 @@
       "PySpark",
       "Window Functions"
     ],
-    "question": "Andina Retail Group wants to rank products by revenue within each category, using PySpark rather than SQL, mirroring the 'top product per category' pattern already covered in this platform's SQL course. Which pattern correctly does this?",
+    "question": "A retail company wants to rank products by revenue within each category, using PySpark rather than SQL, mirroring the 'top product per category' pattern already covered in this platform's SQL course. Which pattern correctly does this?",
     "options": {
       "a": "df.window(\"category\", \"revenue\").rank() -- calling a window() method directly on the DataFrame with the partition and order columns passed as arguments, then chaining .rank() to assign a rank within each group",
       "b": "df.orderBy(\"category\", \"revenue\").limit(1) -- sorting the entire DataFrame by category and then revenue, then taking only the single top row overall rather than the top row within each individual category group",
@@ -642,7 +642,7 @@
       "PySpark",
       "Null Handling"
     ],
-    "question": "A batch of Andina Retail Group's shipment records has some rows with a missing carrier_name. The team wants to fill missing carrier names with 'Unknown' rather than dropping those rows entirely. Which PySpark pattern does this correctly?",
+    "question": "A batch of a retail company's shipment records has some rows with a missing carrier_name. The team wants to fill missing carrier names with 'Unknown' rather than dropping those rows entirely. Which PySpark pattern does this correctly?",
     "options": {
       "a": "df.filter(col(\"carrier_name\").isNotNull())",
       "b": "df.replace(\"carrier_name\", \"Unknown\")",
@@ -691,7 +691,7 @@
       "Delta Lake",
       "Writing Data"
     ],
-    "question": "After transforming a day's worth of Andina Retail Group's sales data, an engineer wants to append the results to an existing Delta table named sales_clean. Which write pattern correctly does this?",
+    "question": "After transforming a day's worth of a retail company's sales data, an engineer wants to append the results to an existing Delta table named sales_clean. Which write pattern correctly does this?",
     "options": {
       "a": "df.write.insertOnly(\"sales_clean\") -- using a dedicated insert-only write mode that appends new rows to the target table while automatically skipping any duplicates it detects, without requiring an explicit mode argument",
       "b": "df.write.format(\"delta\").mode(\"overwrite\").saveAsTable(\"sales_clean\") — overwriting is functionally identical to appending in Delta Lake",
@@ -737,7 +737,7 @@
       "Shuffles",
       "Performance"
     ],
-    "question": "Andina Retail Group's engineer notices that a groupBy().agg() aggregation and a join on mismatched keys both run noticeably slower and generate a lot of network activity across the cluster, compared to a simple filter(). What underlying Spark operation is responsible for that cost in both cases?",
+    "question": "A retail company's engineer notices that a groupBy().agg() aggregation and a join on mismatched keys both run noticeably slower and generate a lot of network activity across the cluster, compared to a simple filter(). What underlying Spark operation is responsible for that cost in both cases?",
     "options": {
       "a": "Shuffles are purely an internal logging mechanism Spark uses to record which executor ran which task for later debugging purposes, and they have no actual effect on execution time, network usage, or disk I/O during a job's real processing",
       "b": "A shuffle — redistributing data across the cluster's partitions so that rows sharing the same key end up on the same executor, which is required for grouping and most joins to compute a correct result, and which involves genuinely expensive network transfer and disk I/O between nodes, unlike a filter which can be applied independently within each partition with no data movement at all",
@@ -761,7 +761,7 @@
       "Partitioning",
       "Query Performance"
     ],
-    "question": "Andina Retail Group's sales Delta table is partitioned by order_date. A query filtering WHERE order_date = '2026-06-15' runs dramatically faster than a query with no date filter at all, even though both scan the 'same' table. Why?",
+    "question": "A retail company's sales Delta table is partitioned by order_date. A query filtering WHERE order_date = '2026-06-15' runs dramatically faster than a query with no date filter at all, even though both scan the 'same' table. Why?",
     "options": {
       "a": "Partitioning a Delta table by order_date has no effect on how a query actually reads data from storage; the speed difference between the two queries here is better explained by temporary network conditions or caching from a previous run rather than the table's physical layout",
       "b": "Partition pruning lets Spark's query planner recognize that only the files belonging to the '2026-06-15' partition need to be read at all, skipping every other partition's files entirely, rather than scanning the full table and filtering afterward",
@@ -807,7 +807,7 @@
       "Broadcast Joins",
       "Performance"
     ],
-    "question": "Andina Retail Group joins its enormous orders table (hundreds of millions of rows) against a small products lookup table (a few hundred rows). A plain join would shuffle both tables across the cluster; a broadcast join avoids most of that cost. How does a broadcast join work?",
+    "question": "A retail company joins its enormous orders table (hundreds of millions of rows) against a small products lookup table (a few hundred rows). A plain join would shuffle both tables across the cluster; a broadcast join avoids most of that cost. How does a broadcast join work?",
     "options": {
       "a": "A broadcast join sends a complete copy of the small table to every executor in the cluster, so each executor can perform the join locally against its own slice of the large table with no shuffle of the large table needed at all — appropriate specifically when one side of the join is small enough to fit comfortably in memory on every executor",
       "b": "A broadcast join eliminates the need to specify a join key entirely -- instead of matching rows on a shared column, every executor pairs rows from the small products table with rows from its local slice of orders based on their position in each dataset, without any key comparison at all, since the broadcasted copy is simply zipped row-by-row against each executor's local partition in whatever order the two datasets happen to already be sorted in",
@@ -831,7 +831,7 @@
       "Cost Management",
       "Cluster Sizing"
     ],
-    "question": "Andina Retail Group's monthly Databricks bill is higher than expected. An audit finds several all-purpose clusters left running overnight with nobody actively using them, and a couple of jobs provisioned with far more worker nodes than their actual data volume ever needs. What general principle does this situation illustrate?",
+    "question": "A retail company's monthly Databricks bill is higher than expected. An audit finds several all-purpose clusters left running overnight with nobody actively using them, and a couple of jobs provisioned with far more worker nodes than their actual data volume ever needs. What general principle does this situation illustrate?",
     "options": {
       "a": "The only real lever a team has over Databricks costs is abandoning the platform entirely and moving workloads back to self-managed, on-premises hardware -- once a team has committed to cloud Spark compute, idle clusters and oversized node counts are largely unavoidable overhead built into the platform's pricing model, since neither auto-termination settings nor autoscaling ranges give a team any meaningful control over how much idle or oversized compute actually gets billed each month",
       "b": "Databricks charges a single flat monthly fee per workspace regardless of how many clusters are provisioned, how many worker nodes each one runs, or how long any of them stay active, so leaving all-purpose clusters running overnight has no measurable effect on the actual monthly bill",
@@ -855,7 +855,7 @@
       "Data Skew",
       "Performance"
     ],
-    "question": "Andina Retail Group's orders are heavily concentrated in a few large countries, with many smaller countries having very few orders. A groupBy(\"country\") aggregation runs slowly, with most executors finishing quickly while one or two lag far behind. What is this problem called, and why does it happen?",
+    "question": "A retail company's orders are heavily concentrated in a few large countries, with many smaller countries having very few orders. A groupBy(\"country\") aggregation runs slowly, with most executors finishing quickly while one or two lag far behind. What is this problem called, and why does it happen?",
     "options": {
       "a": "This uneven executor finishing time is a normal, unavoidable characteristic of any groupBy() operation, occurring at random regardless of how the underlying data is distributed across keys, and it has no specific name, diagnosable cause, or mitigation technique within Spark",
       "b": "This lagging-executor pattern is a limitation specific to Fabric's shared Spark pools, caused by other tenants' workloads competing for the same capacity unit allocation; the equivalent groupBy(\"country\") aggregation run on a dedicated Databricks cluster would distribute evenly across executors regardless of how orders are concentrated by country",
@@ -879,7 +879,7 @@
       "Query Plans",
       "Debugging Performance"
     ],
-    "question": "Andina Retail Group's engineer wants to understand exactly why a particular PySpark query is slow — specifically, whether it's triggering a shuffle, a broadcast join, or reading more data than expected. What tool built into Spark lets them inspect this?",
+    "question": "A retail company's engineer wants to understand exactly why a particular PySpark query is slow — specifically, whether it's triggering a shuffle, a broadcast join, or reading more data than expected. What tool built into Spark lets them inspect this?",
     "options": {
       "a": "Spark provides no built-in way to inspect what a query actually plans to do before or after it runs; diagnosing whether a slow query is caused by a shuffle, a broadcast join, or excessive data scanning has to be done through trial and error, by removing pieces of the query and re-timing it",
       "b": "df.explain() (or the visual query plan in the Spark UI's SQL tab) shows the logical and physical execution plan Spark's Catalyst optimizer generated for that DataFrame, revealing exactly which operations (shuffles, broadcasts, filters, scans) will actually run and in what order",
@@ -903,7 +903,7 @@
       "File Formats",
       "Performance"
     ],
-    "question": "A new engineer on Andina Retail Group's team suggests storing all Spark tables as CSV files 'because they're simple and human-readable,' instead of using Delta (Parquet-based) tables. What performance and reliability trade-off does this suggestion overlook?",
+    "question": "A new engineer on a retail company's team suggests storing all Spark tables as CSV files 'because they're simple and human-readable,' instead of using Delta (Parquet-based) tables. What performance and reliability trade-off does this suggestion overlook?",
     "options": {
       "a": "CSV and Delta/Parquet are functionally and performance-wise identical storage formats underneath -- both store data in the same columnar, compressed layout on disk, and the only real difference between choosing one over the other is the file extension and how the data happens to look when opened in a plain text editor, since Spark's reader applies the exact same columnar compression and page-skipping logic to both formats once either file has been loaded into an executor's memory",
       "b": "CSV is a row-based, uncompressed, schema-less text format that requires reading and parsing every column of every row even when only a few columns are needed, and offers none of Delta Lake's ACID transactions, schema enforcement, or time travel — Parquet-based Delta tables are columnar and compressed, letting engines skip irrelevant columns and read far less data, while also providing all of the reliability guarantees covered earlier in this course",
@@ -927,7 +927,7 @@
       "Partitioning",
       "Design Decisions"
     ],
-    "question": "Andina Retail Group is deciding how to partition its massive orders Delta table. One engineer suggests partitioning by customer_id (millions of distinct values), while another suggests partitioning by order_date (a few hundred distinct values spanning the table's history). Which choice is generally better, and why?",
+    "question": "A retail company is deciding how to partition its massive orders Delta table. One engineer suggests partitioning by customer_id (millions of distinct values), while another suggests partitioning by order_date (a few hundred distinct values spanning the table's history). Which choice is generally better, and why?",
     "options": {
       "a": "Delta Lake technically only permits partitioning on a column of date or timestamp type; attempting to designate a column like customer_id as a partition key would be rejected outright, regardless of how many distinct values it has or how commonly it's used in filters",
       "b": "Partitioning by customer_id is always the superior choice here, since more partitions unconditionally improve query performance -- with millions of distinct customer_id values, the orders table would be split into millions of partitions, and more partitions always means faster reads no matter their individual size, because each additional partition lets a separate executor pick up a slightly smaller slice of the scan in parallel regardless of how much per-file listing and metadata overhead that huge partition count introduces",
@@ -975,7 +975,7 @@
       "Jobs",
       "Orchestration"
     ],
-    "question": "Andina Retail Group needs three notebooks to run in a specific order every night — extract raw sales data, then clean it, then build the gold-layer reporting tables — with the second and third steps only running if the previous one succeeds. What Databricks feature is purpose-built for this kind of scheduled, multi-step, dependency-aware orchestration?",
+    "question": "A retail company needs three notebooks to run in a specific order every night — extract raw sales data, then clean it, then build the gold-layer reporting tables — with the second and third steps only running if the previous one succeeds. What Databricks feature is purpose-built for this kind of scheduled, multi-step, dependency-aware orchestration?",
     "options": {
       "a": "Each of the three notebooks would have to be manually opened and run by a person every single night in the correct order, since Databricks provides no built-in mechanism for scheduling notebooks or defining dependencies between them -- any automation would require a separate third-party scheduling tool",
       "b": "Workflows is purely a visual organization feature within the Databricks UI, letting you arrange notebooks into folders and diagrams for documentation purposes, but it has no actual scheduling engine or execution capability behind it -- running the notebooks still has to happen through some other mechanism, such as a person manually opening and running each of the three notebooks in sequence every night, or a separate external cron job triggering them individually",
@@ -1009,7 +1009,7 @@
     },
     "correct": "d",
     "theory": {
-      "text": "This directly parallels S-41 from the Fabric side: just as Databricks Workflows chains notebook tasks together with dependencies and scheduling, Fabric's Data Factory pipelines (inherited conceptually from Azure Data Factory) chain activities together — running a Spark notebook, copying data between locations, invoking a low-code Dataflow Gen2 transformation, or even triggering another nested pipeline — with the same kind of dependency logic (only run this next step if the previous one succeeded, or branch differently on failure) and scheduling. For a team like Andina's potentially working across both platforms, recognizing that 'Databricks Workflows' and 'Fabric pipelines' are two platform-specific answers to the exact same underlying orchestration need is more useful than memorizing either one in isolation.",
+      "text": "This directly parallels S-41 from the Fabric side: just as Databricks Workflows chains notebook tasks together with dependencies and scheduling, Fabric's Data Factory pipelines (inherited conceptually from Azure Data Factory) chain activities together — running a Spark notebook, copying data between locations, invoking a low-code Dataflow Gen2 transformation, or even triggering another nested pipeline — with the same kind of dependency logic (only run this next step if the previous one succeeded, or branch differently on failure) and scheduling. For a team like a retail company's potentially working across both platforms, recognizing that 'Databricks Workflows' and 'Fabric pipelines' are two platform-specific answers to the exact same underlying orchestration need is more useful than memorizing either one in isolation.",
       "source": "Microsoft Learn, Azure Databricks documentation — Jobs (Lakeflow Jobs)",
       "sourceUrl": "https://learn.microsoft.com/en-us/azure/databricks/jobs/"
     }
@@ -1024,7 +1024,7 @@
       "Governance",
       "Databricks"
     ],
-    "question": "Andina Retail Group's Databricks environment spans multiple workspaces (one per region), and the company wants centralized, consistent access control over who can query the sales tables, regardless of which workspace someone is working in. What Databricks feature is purpose-built for this?",
+    "question": "A retail company's Databricks environment spans multiple workspaces (one per region), and the company wants centralized, consistent access control over who can query the sales tables, regardless of which workspace someone is working in. What Databricks feature is purpose-built for this?",
     "options": {
       "a": "Unity Catalog's permission model only governs access to Python notebook files and source code repositories stored in a workspace; controlling who can query a Delta table like the sales tables described here still has to be configured through each workspace's separate, built-in table-level permissions",
       "b": "Access control over Delta tables in Databricks can only ever be configured separately within each individual workspace's own local permission settings, with no built-in mechanism to define a single access rule, like restricting the sales tables, that automatically applies consistently across every regional workspace, so a rule restricting the sales tables has to be manually re-entered in each region's workspace separately",
@@ -1054,11 +1054,11 @@
       "a": "Fabric has no meaningful access control mechanism of its own; any user who holds any valid Microsoft account, regardless of which organization issued it, is automatically granted full view and edit access to every workspace and every piece of data across the entire tenant",
       "b": "Fabric's governance and permission settings can only be defined on individual Power BI reports through the Power BI service's own sharing dialog; Lakehouse tables, notebooks, and other Fabric items have no equivalent permission model and remain accessible to anyone with workspace access by default, leaving every Lakehouse table and notebook readable and writable by any user added to the workspace, with no row-level, column-level, or item-specific restriction achievable through any Fabric-native setting",
       "c": "Fabric applies role-based permissions at the workspace level (who can view, edit, or manage items in a given workspace), plus finer-grained item-level and OneLake data-level security (including capabilities like row-level and column-level security on Lakehouse tables), all integrated with the same Microsoft Entra ID (Azure AD) identity system used across the broader Microsoft 365 and Azure ecosystem",
-      "d": "Fabric requires its own entirely separate identity provider and permissions system, disconnected from Microsoft Entra ID and the rest of the Microsoft 365 and Azure ecosystem, meaning a company like Andina Retail Group would need to create and maintain a second, parallel set of user accounts just for Fabric"
+      "d": "Fabric requires its own entirely separate identity provider and permissions system, disconnected from Microsoft Entra ID and the rest of the Microsoft 365 and Azure ecosystem, meaning a retail company would need to create and maintain a second, parallel set of user accounts just for Fabric"
     },
     "correct": "c",
     "theory": {
-      "text": "Fabric's governance model layers permissions at multiple levels — workspace-level roles determine who can generally view, contribute to, or administer a workspace, while more granular item-level and OneLake data-level security (including row-level and column-level security options on Lakehouse tables) allow finer control over specific data, similar in spirit to Unity Catalog's fine-grained access control but implemented through Fabric's own model. A genuinely practical advantage for an organization already invested in the Microsoft ecosystem is that all of this integrates with the same Microsoft Entra ID identity system used for Microsoft 365, Power BI, and Azure more broadly — meaning a company like Andina Retail Group doesn't need to manage a separate identity system just for its Fabric data platform.",
+      "text": "Fabric's governance model layers permissions at multiple levels — workspace-level roles determine who can generally view, contribute to, or administer a workspace, while more granular item-level and OneLake data-level security (including row-level and column-level security options on Lakehouse tables) allow finer control over specific data, similar in spirit to Unity Catalog's fine-grained access control but implemented through Fabric's own model. A genuinely practical advantage for an organization already invested in the Microsoft ecosystem is that all of this integrates with the same Microsoft Entra ID identity system used for Microsoft 365, Power BI, and Azure more broadly — meaning the retail company doesn't need to manage a separate identity system just for its Fabric data platform.",
       "source": "Microsoft Learn, Azure Databricks documentation — Jobs (Lakeflow Jobs)",
       "sourceUrl": "https://learn.microsoft.com/en-us/azure/databricks/jobs/"
     }
@@ -1074,7 +1074,7 @@
       "Fabric Git Integration",
       "CI/CD"
     ],
-    "question": "Andina Retail Group's data engineering team wants their notebook code kept in Git, with proper version history, branching, and code review, rather than living only inside the platform's own notebook storage. What capability, present in both Databricks and Fabric, supports this?",
+    "question": "A retail company's data engineering team wants their notebook code kept in Git, with proper version history, branching, and code review, rather than living only inside the platform's own notebook storage. What capability, present in both Databricks and Fabric, supports this?",
     "options": {
       "a": "Databricks Repos and Fabric's Git integration both let a workspace sync directly with a Git provider (like Azure DevOps or GitHub), so notebooks and other workspace items can be committed, branched, and reviewed using standard Git workflows, rather than relying solely on the platform's own internal notebook version history",
       "b": "Setting up version control for a Fabric or Databricks workspace requires manually exporting each notebook to a local machine, committing it to Git through a separate desktop Git client, and then manually re-importing the updated file back into the workspace, since neither platform offers a direct, in-workspace sync capability",
@@ -1083,7 +1083,7 @@
     },
     "correct": "a",
     "theory": {
-      "text": "Both platforms recognize that a team's actual codebase — including data transformation logic living in notebooks — deserves the same software engineering discipline (version history, branching, pull-request review, rollback capability) as any other production code, not just the platform's own basic internal notebook revision history. Databricks Repos and Fabric's Git integration both connect a workspace directly to an external Git provider, letting engineers work in feature branches, open pull requests for review before merging changes into a production branch, and maintain a genuine audit trail of who changed what and why — directly supporting the kind of CI/CD discipline a maturing data engineering practice, like the one Andina Retail Group is building, increasingly needs as its pipelines grow more complex and more people contribute to them.",
+      "text": "Both platforms recognize that a team's actual codebase — including data transformation logic living in notebooks — deserves the same software engineering discipline (version history, branching, pull-request review, rollback capability) as any other production code, not just the platform's own basic internal notebook revision history. Databricks Repos and Fabric's Git integration both connect a workspace directly to an external Git provider, letting engineers work in feature branches, open pull requests for review before merging changes into a production branch, and maintain a genuine audit trail of who changed what and why — directly supporting the kind of CI/CD discipline a maturing data engineering practice, like the one the retail company is building, increasingly needs as its pipelines grow more complex and more people contribute to them.",
       "source": "Microsoft Learn, Azure Databricks documentation — Jobs (Lakeflow Jobs)",
       "sourceUrl": "https://learn.microsoft.com/en-us/azure/databricks/jobs/"
     }
@@ -1097,16 +1097,16 @@
       "Delta Sharing",
       "Data Sharing"
     ],
-    "question": "Andina Retail Group wants to securely share a specific subset of its sales data with an external logistics partner, without giving that partner direct access to its Databricks workspace or copying the data into a separate file and emailing it. What capability addresses this?",
+    "question": "A retail company wants to securely share a specific subset of its sales data with an external logistics partner, without giving that partner direct access to its Databricks workspace or copying the data into a separate file and emailing it. What capability addresses this?",
     "options": {
-      "a": "Delta Sharing requires the receiving logistics partner to also be a paying Databricks customer running a workspace configured identically to Andina's own, since the protocol depends on both sides running the exact same Databricks Runtime version and cluster setup to establish a valid sharing connection",
+      "a": "Delta Sharing requires the receiving logistics partner to also be a paying Databricks customer running a workspace configured identically to the retail company's own, since the protocol depends on both sides running the exact same Databricks Runtime version and cluster setup to establish a valid sharing connection",
       "b": "Delta Sharing is designed purely for sharing tables between different workspaces within the same originating company's Databricks account; it has no mechanism for granting a genuinely external organization, like an outside logistics partner, access to any shared data at all",
       "c": "The only practical way to get a subset of live sales data into an external logistics partner's hands is to periodically export it to a CSV file and send that file as an email attachment, since Delta tables have no built-in mechanism for controlled, ongoing external access",
       "d": "Delta Sharing is an open protocol for securely sharing live Delta tables (or subsets of them) with external recipients, letting them query the shared data directly (even without their own Databricks account, using any Delta Sharing-compatible client) without physically copying or duplicating the underlying data"
     },
     "correct": "d",
     "theory": {
-      "text": "Delta Sharing addresses a genuinely common cross-organization business need — sharing data with an external partner, supplier, or customer — securely and without the usual bad options of either granting broad direct access to internal systems or manually exporting and emailing static file extracts that immediately go stale. Because it's an open protocol (not a proprietary Databricks-only format), a recipient can query shared data using various Delta Sharing-compatible tools, even without their own Databricks deployment, while the sharing organization retains control over exactly what's shared and can revoke access at any time. For a business like Andina Retail Group with international logistics partners and suppliers — exactly the kind of cross-border data-sharing need this training platform's Data Architecture course discusses generally around API integration with external partners — this is a meaningfully safer and more maintainable alternative to ad hoc file exports.",
+      "text": "Delta Sharing addresses a genuinely common cross-organization business need — sharing data with an external partner, supplier, or customer — securely and without the usual bad options of either granting broad direct access to internal systems or manually exporting and emailing static file extracts that immediately go stale. Because it's an open protocol (not a proprietary Databricks-only format), a recipient can query shared data using various Delta Sharing-compatible tools, even without their own Databricks deployment, while the sharing organization retains control over exactly what's shared and can revoke access at any time. For a business like the retail company with international logistics partners and suppliers — exactly the kind of cross-border data-sharing need this training platform's Data Architecture course discusses generally around API integration with external partners — this is a meaningfully safer and more maintainable alternative to ad hoc file exports.",
       "source": "Microsoft Learn, Azure Databricks documentation — Jobs (Lakeflow Jobs)",
       "sourceUrl": "https://learn.microsoft.com/en-us/azure/databricks/jobs/"
     }
@@ -1121,7 +1121,7 @@
       "Delta Live Tables",
       "Declarative Pipelines"
     ],
-    "question": "Instead of writing a notebook full of manually-sequenced PySpark transformation steps, Andina Retail Group's engineer instead declares a set of tables and the SQL or PySpark logic defining how each one is derived from the last, and lets Databricks Delta Live Tables (DLT) figure out the execution order and manage the pipeline's operation. What is the core difference in approach this represents?",
+    "question": "Instead of writing a notebook full of manually-sequenced PySpark transformation steps, a retail company's engineer instead declares a set of tables and the SQL or PySpark logic defining how each one is derived from the last, and lets Databricks Delta Live Tables (DLT) figure out the execution order and manage the pipeline's operation. What is the core difference in approach this represents?",
     "options": {
       "a": "Delta Live Tables is functionally identical to writing a plain PySpark notebook with manually sequenced steps -- the engineer still has to explicitly write out the execution order, handle failures, and manage incremental processing themselves, with DLT only providing a different visual layout for viewing the same notebook code, since the declared table definitions and expectations are merely cosmetic annotations that DLT displays in its pipeline graph without changing how the underlying steps actually execute",
       "b": "DLT is a declarative pipeline framework — you describe the desired end-state tables and their transformation logic (and optional data-quality expectations), and the platform handles determining execution order, incremental processing, error handling, and pipeline monitoring, in contrast to imperative notebook code where the engineer manually sequences every step and handles failure logic themselves",
@@ -1145,7 +1145,7 @@
       "Medallion Architecture",
       "Bronze Silver Gold"
     ],
-    "question": "Andina Retail Group's Databricks pipeline organizes tables as bronze_orders (raw ingested data), silver_orders (cleaned and validated), and gold_daily_sales (aggregated, business-ready). This bronze/silver/gold naming was introduced generally in this training platform's Data Architecture course. How does it concretely show up as actual Delta tables in a Databricks or Fabric pipeline?",
+    "question": "A retail company's Databricks pipeline organizes tables as bronze_orders (raw ingested data), silver_orders (cleaned and validated), and gold_daily_sales (aggregated, business-ready). This bronze/silver/gold naming was introduced generally in this training platform's Data Architecture course. How does it concretely show up as actual Delta tables in a Databricks or Fabric pipeline?",
     "options": {
       "a": "Implementing the medallion architecture correctly requires storing bronze, silver, and gold tables in three completely different, unrelated storage systems -- for example, bronze in a plain cloud storage bucket, silver in a separate relational database, and gold in yet another dedicated data warehouse product entirely outside the Lakehouse or catalog, with each layer's transformation step reading its input across that storage boundary through a separate, manually configured connector rather than a shared Delta table reference registered in one place",
       "b": "Bronze, silver, and gold are purely conceptual labels used in architecture diagrams and documentation; in an actual running Databricks or Fabric pipeline, all of the raw, cleaned, and aggregated data lives together in a single physical table, distinguished only by a status column rather than by genuinely separate tables",
@@ -1169,7 +1169,7 @@
       "Job Monitoring",
       "Alerting"
     ],
-    "question": "Andina Retail Group's nightly Databricks Workflow job fails silently one night due to a malformed source file, and nobody notices until three days later when the sales dashboard shows suspiciously stale data. What operational practice, available in both Databricks Workflows and Fabric pipelines, is meant to prevent exactly this kind of delayed discovery?",
+    "question": "A retail company's nightly Databricks Workflow job fails silently one night due to a malformed source file, and nobody notices until three days later when the sales dashboard shows suspiciously stale data. What operational practice, available in both Databricks Workflows and Fabric pipelines, is meant to prevent exactly this kind of delayed discovery?",
     "options": {
       "a": "Neither Databricks Workflows nor Fabric pipelines offer any mechanism for being notified when a scheduled job fails; the only way to catch a failure like the malformed source file described here is to manually re-open and manually re-run every scheduled job each morning to check whether it completed successfully overnight",
       "b": "Once a Databricks Workflow or Fabric pipeline has been scheduled and successfully run at least once, the underlying platform guarantees it will never fail on any subsequent run, which is why configuring failure notifications is considered an unnecessary feature by both platforms' own documentation",
@@ -1193,7 +1193,7 @@
       "Platform Comparison",
       "Decision Factors"
     ],
-    "question": "Andina Retail Group's leadership is deciding how heavily to invest in Databricks versus Microsoft Fabric going forward. Given everything covered in this course, what is the most balanced way to frame that decision?",
+    "question": "A retail company's leadership is deciding how heavily to invest in Databricks versus Microsoft Fabric going forward. Given everything covered in this course, what is the most balanced way to frame that decision?",
     "options": {
       "a": "Both platforms are built on the same core Apache Spark and Delta Lake foundation, so the underlying data engineering skills transfer either way; the practical decision instead tends to hinge on factors like how deeply the organization is already invested in the Microsoft ecosystem (Power BI, Azure, Microsoft 365), how much value Direct Lake's tight Power BI integration or Fabric's unified capacity billing offers versus Databricks' more mature and specialized tooling like Unity Catalog and Delta Live Tables, and each platform's specific pricing model for the organization's actual workload patterns",
       "b": "Because both platforms share the exact same underlying Spark engine, Delta table format, cluster configuration options, governance model, and pricing structure, the choice between Databricks and Fabric has no genuine technical or financial basis at all -- leadership should instead decide based on which platform's branding and marketing materials the organization finds more appealing, since every other factor is functionally identical",
@@ -1202,7 +1202,7 @@
     },
     "correct": "a",
     "theory": {
-      "text": "This closes out the course by returning to the throughline established in S-10: because both platforms share the same Spark-and-Delta foundation, the deepest technical skills this course has built up transfer regardless of which platform Andina Retail Group ultimately leans on more heavily — and many organizations pragmatically use elements of both rather than treating it as a strict either/or choice. The genuinely differentiating factors are more organizational and strategic than technical: existing investment in the Microsoft ecosystem tends to favor Fabric's tight integration (especially Direct Lake's Power BI benefits, directly relevant given this whole platform's DAX and BI focus); specialized, mature data engineering and governance tooling (Unity Catalog, Delta Live Tables, Delta Sharing) tends to favor Databricks; and each platform's specific cost model needs to be evaluated against the organization's actual, real-world workload patterns — exactly the kind of business-and-technology judgment call a BI-minded professional with an international-business background is well positioned to help make.",
+      "text": "This closes out the course by returning to the throughline established in S-10: because both platforms share the same Spark-and-Delta foundation, the deepest technical skills this course has built up transfer regardless of which platform the retail company ultimately leans on more heavily — and many organizations pragmatically use elements of both rather than treating it as a strict either/or choice. The genuinely differentiating factors are more organizational and strategic than technical: existing investment in the Microsoft ecosystem tends to favor Fabric's tight integration (especially Direct Lake's Power BI benefits, directly relevant given this whole platform's DAX and BI focus); specialized, mature data engineering and governance tooling (Unity Catalog, Delta Live Tables, Delta Sharing) tends to favor Databricks; and each platform's specific cost model needs to be evaluated against the organization's actual, real-world workload patterns — exactly the kind of business-and-technology judgment call a BI-minded professional with an international-business background is well positioned to help make.",
       "source": "Microsoft Learn, Azure Databricks documentation — Jobs (Lakeflow Jobs)",
       "sourceUrl": "https://learn.microsoft.com/en-us/azure/databricks/jobs/"
     }
@@ -1217,7 +1217,7 @@
       "Structured Streaming",
       "Real-Time Processing"
     ],
-    "question": "Andina Retail Group wants its inventory dashboard to update within seconds of a sale happening, rather than waiting for the nightly batch job — directly echoing the streaming-versus-batch discussion in this training platform's Data Architecture course. What is Spark Structured Streaming, and how does it relate to the batch DataFrame code covered earlier in this course?",
+    "question": "A retail company wants its inventory dashboard to update within seconds of a sale happening, rather than waiting for the nightly batch job — directly echoing the streaming-versus-batch discussion in this training platform's Data Architecture course. What is Spark Structured Streaming, and how does it relate to the batch DataFrame code covered earlier in this course?",
     "options": {
       "a": "Structured Streaming requires writing pipeline logic in an entirely separate, streaming-specific language distinct from PySpark's DataFrame API -- the filters, joins, and aggregations covered earlier in this course have to be rewritten from scratch in this new syntax before they can be applied to a continuously-arriving stream of data",
       "b": "Structured Streaming lets you write essentially the same DataFrame transformation code covered throughout this course (filters, joins, aggregations) against a continuously-arriving stream of data instead of a fixed, static table, with Spark handling the incremental, ongoing processing of new data as it arrives rather than processing a single fixed batch once",
@@ -1241,7 +1241,7 @@
       "Auto Loader",
       "Incremental Ingestion"
     ],
-    "question": "Andina Retail Group's point-of-sale systems drop new sales files into cloud storage continuously throughout the day. Rather than re-scanning the entire storage location on every run to figure out which files are new, the team uses Databricks Auto Loader. What problem does Auto Loader specifically solve?",
+    "question": "A retail company's point-of-sale systems drop new sales files into cloud storage continuously throughout the day. Rather than re-scanning the entire storage location on every run to figure out which files are new, the team uses Databricks Auto Loader. What problem does Auto Loader specifically solve?",
     "options": {
       "a": "Auto Loader efficiently and incrementally detects and ingests only new files as they land in cloud storage (using techniques like tracking file notifications or an internal checkpoint of already-processed files), avoiding the cost and slowness of repeatedly listing and comparing an entire storage location's full file inventory on every run",
       "b": "Auto Loader requires an engineer to manually type out the exact filename of every single new sales file as it lands in cloud storage, entering each one into a configuration list before Auto Loader will pick it up -- it has no capability to automatically detect that a new, previously unlisted file has arrived",
@@ -1266,7 +1266,7 @@
       "Eventstream",
       "Real-Time Intelligence"
     ],
-    "question": "Andina Retail Group wants to capture live GPS tracking events from delivery trucks (echoing the streaming supply-chain example from this training platform's Data Architecture course) directly within Fabric, without standing up a separate messaging infrastructure from scratch. What Fabric capability is purpose-built for ingesting this kind of continuous event stream?",
+    "question": "A retail company wants to capture live GPS tracking events from delivery trucks (echoing the streaming supply-chain example from this training platform's Data Architecture course) directly within Fabric, without standing up a separate messaging infrastructure from scratch. What Fabric capability is purpose-built for ingesting this kind of continuous event stream?",
     "options": {
       "a": "Fabric Eventstream, part of Fabric's Real-Time Intelligence experience, provides a no-code/low-code way to ingest, transform, and route continuous streams of events (like GPS pings or IoT sensor data) into destinations like a Lakehouse table or a KQL database for real-time querying, without needing to separately provision and manage message-queue infrastructure",
       "b": "Eventstream is purely a data visualization feature within Fabric's Real-Time Intelligence experience, providing charts and dashboards for data that has already been ingested through some other means; it has no actual capability to ingest, transform, or route incoming GPS or IoT event data itself",
@@ -1275,7 +1275,7 @@
     },
     "correct": "a",
     "theory": {
-      "text": "This is Fabric's answer to the same real-time event-ingestion need discussed generally (via message queues and event-driven architecture) in this training platform's Data Architecture course, and specifically the GPS-tracking supply-chain scenario used as an example there. Eventstream provides a visual, low-code way to define event sources, apply lightweight transformations in-flight, and route the resulting stream to one or more destinations — commonly a Lakehouse table for later Spark or SQL analysis, or a KQL (Kusto Query Language) database for the kind of fast, ad hoc real-time querying Fabric's Real-Time Intelligence experience is built around — letting a team like Andina's build real-time delivery tracking without first having to separately stand up and operate dedicated message-queue infrastructure.",
+      "text": "This is Fabric's answer to the same real-time event-ingestion need discussed generally (via message queues and event-driven architecture) in this training platform's Data Architecture course, and specifically the GPS-tracking supply-chain scenario used as an example there. Eventstream provides a visual, low-code way to define event sources, apply lightweight transformations in-flight, and route the resulting stream to one or more destinations — commonly a Lakehouse table for later Spark or SQL analysis, or a KQL (Kusto Query Language) database for the kind of fast, ad hoc real-time querying Fabric's Real-Time Intelligence experience is built around — letting a team like the retail company's build real-time delivery tracking without first having to separately stand up and operate dedicated message-queue infrastructure.",
       "source": "Microsoft Learn, Azure Databricks documentation — Structured Streaming",
       "sourceUrl": "https://learn.microsoft.com/en-us/azure/databricks/structured-streaming/"
     }
@@ -1291,7 +1291,7 @@
       "Triggers",
       "Output Modes"
     ],
-    "question": "Andina Retail Group's streaming inventory pipeline is configured with a trigger interval of 'every 1 minute' and an output mode of 'append.' What do these two settings actually control?",
+    "question": "A retail company's streaming inventory pipeline is configured with a trigger interval of 'every 1 minute' and an output mode of 'append.' What do these two settings actually control?",
     "options": {
       "a": "Both the trigger interval and the output mode settings only control how the streaming job's monitoring dashboard is visually formatted and refreshed in the Databricks or Fabric UI, with no actual effect on how frequently new data is processed or how results get written to the destination table",
       "b": "The output mode setting determines which specific cloud provider -- Azure, AWS, or GCP -- the streaming job's compute is provisioned on, and has no actual relationship to how or when results get written to the destination; that behavior is instead entirely controlled by the trigger interval alone, since output mode is read once at cluster creation time to decide which cloud region hosts the compute, not on every micro-batch write",
@@ -1300,7 +1300,7 @@
     },
     "correct": "d",
     "theory": {
-      "text": "These two settings are genuinely central to tuning a streaming pipeline's behavior for the specific business need it serves. The trigger interval is a practical middle ground between true continuous processing (processing every single event essentially instantly, which is possible but resource-intensive) and traditional batch processing (a fixed daily or hourly schedule) — a 1-minute trigger means Andina's inventory numbers are 'near-real-time,' updated every minute rather than instantaneously or once a day, a reasonable trade-off for many business needs. Output mode determines what actually gets written on each trigger: 'append' is right for a stream where each new row is a genuinely new fact (like a new sale) that should just be added; other modes (like 'complete' or 'update') are needed instead when the stream is computing an ongoing aggregate that needs its previous values corrected or replaced, not just added to.",
+      "text": "These two settings are genuinely central to tuning a streaming pipeline's behavior for the specific business need it serves. The trigger interval is a practical middle ground between true continuous processing (processing every single event essentially instantly, which is possible but resource-intensive) and traditional batch processing (a fixed daily or hourly schedule) — a 1-minute trigger means the retail company's inventory numbers are 'near-real-time,' updated every minute rather than instantaneously or once a day, a reasonable trade-off for many business needs. Output mode determines what actually gets written on each trigger: 'append' is right for a stream where each new row is a genuinely new fact (like a new sale) that should just be added; other modes (like 'complete' or 'update') are needed instead when the stream is computing an ongoing aggregate that needs its previous values corrected or replaced, not just added to.",
       "source": "Microsoft Learn, Azure Databricks documentation — Structured Streaming",
       "sourceUrl": "https://learn.microsoft.com/en-us/azure/databricks/structured-streaming/"
     }
@@ -1315,7 +1315,7 @@
       "MLflow",
       "Experiment Tracking"
     ],
-    "question": "Andina Retail Group's data science team is training several versions of a demand-forecasting model, tweaking parameters each time, and wants to keep track of exactly which parameters and resulting accuracy each version had. Databricks includes MLflow natively for this purpose (and it's also usable from Fabric). What problem does MLflow's experiment tracking solve?",
+    "question": "A retail company's data science team is training several versions of a demand-forecasting model, tweaking parameters each time, and wants to keep track of exactly which parameters and resulting accuracy each version had. Databricks includes MLflow natively for this purpose (and it's also usable from Fabric). What problem does MLflow's experiment tracking solve?",
     "options": {
       "a": "MLflow is primarily a tool for tracking how frequently a Power BI report is viewed and by which users; it has no meaningful relationship to logging or comparing the parameters and results of machine learning model training runs, despite being bundled into the Databricks workspace",
       "b": "MLflow experiment tracking is a capability available exclusively within Fabric's data science experience, built specifically around Fabric's notebook environment; Databricks has no native, built-in support for MLflow despite MLflow originally having been created as an open-source project",
@@ -1339,7 +1339,7 @@
       "Model Registry",
       "MLOps"
     ],
-    "question": "After identifying the best-performing demand-forecasting model version from several MLflow-tracked experiments, Andina Retail Group's team wants a clear, governed way to promote that specific model version from 'staging' to 'production,' so downstream systems know exactly which version is currently authoritative. What MLflow capability supports this?",
+    "question": "After identifying the best-performing demand-forecasting model version from several MLflow-tracked experiments, a retail company's team wants a clear, governed way to promote that specific model version from 'staging' to 'production,' so downstream systems know exactly which version is currently authoritative. What MLflow capability supports this?",
     "options": {
       "a": "Promoting a demand-forecasting model version to production in MLflow requires manually locating and renaming the model's underlying files within cloud storage, with no built-in lifecycle stages, approval tracking, or record of which specific file corresponds to the currently authoritative production version",
       "b": "MLflow has no concept of model versioning, staging, or promotion at all -- every model version logged from every training run is treated as permanently and equally valid, with no mechanism to distinguish an experimental candidate from the version downstream systems should actually treat as authoritative in production, leaving that determination entirely to whichever run happens to have been logged most recently in the experiment's tracking history",
@@ -1364,7 +1364,7 @@
       "PySpark",
       "Machine Learning"
     ],
-    "question": "Before training a demand-forecasting model, Andina Retail Group's data science team needs to compute rolling 7-day and 30-day average sales per product as input features, across millions of rows. Why would they do this feature engineering step using PySpark DataFrame operations (like window functions) rather than pulling all the raw data into a single-machine tool like pandas first?",
+    "question": "Before training a demand-forecasting model, a retail company's data science team needs to compute rolling 7-day and 30-day average sales per product as input features, across millions of rows. Why would they do this feature engineering step using PySpark DataFrame operations (like window functions) rather than pulling all the raw data into a single-machine tool like pandas first?",
     "options": {
       "a": "PySpark and pandas use fundamentally different arithmetic under the hood, so computing the exact same 7-day rolling average calculation on the exact same data would produce numerically different, incompatible results depending on which of the two tools performed the computation",
       "b": "There is no meaningful scale consideration involved in this choice -- a single-machine tool like pandas processes a multi-million-row dataset just as quickly and using just as little memory as PySpark's distributed engine does, since both ultimately rely on the same underlying computational approach regardless of data volume, because both tools load the same in-memory columnar array representation under the hood and simply expose different syntax on top of that identical single-machine execution model",
@@ -1373,7 +1373,7 @@
     },
     "correct": "c",
     "theory": {
-      "text": "This question ties the whole course's DataFrame and window-function content (S-21 through S-30) directly to a genuine machine learning use case, which is exactly the kind of connective thread this training platform's courses are built around: rolling averages are naturally expressed with the same window function machinery covered in S-26 (a Window.partitionBy(\"product_id\").orderBy(\"date\").rowsBetween(-6, 0) style window for a 7-day rolling average), and running that computation through Spark's distributed engine means it scales across a cluster rather than requiring the entire dataset to be pulled into and held in a single machine's memory, the way a single-node tool like pandas would require. For a company at Andina Retail Group's scale, doing feature engineering directly in Spark — rather than exporting data out to a smaller, single-machine tool first — is often the only practical way to prepare model-ready features from the full historical dataset rather than a downsampled subset of it.",
+      "text": "This question ties the whole course's DataFrame and window-function content (S-21 through S-30) directly to a genuine machine learning use case, which is exactly the kind of connective thread this training platform's courses are built around: rolling averages are naturally expressed with the same window function machinery covered in S-26 (a Window.partitionBy(\"product_id\").orderBy(\"date\").rowsBetween(-6, 0) style window for a 7-day rolling average), and running that computation through Spark's distributed engine means it scales across a cluster rather than requiring the entire dataset to be pulled into and held in a single machine's memory, the way a single-node tool like pandas would require. For a company at the retail company's scale, doing feature engineering directly in Spark — rather than exporting data out to a smaller, single-machine tool first — is often the only practical way to prepare model-ready features from the full historical dataset rather than a downsampled subset of it.",
       "source": "Microsoft Learn, Azure Databricks documentation — Structured Streaming",
       "sourceUrl": "https://learn.microsoft.com/en-us/azure/databricks/structured-streaming/"
     }
@@ -1389,7 +1389,7 @@
       "Model Inference",
       "PySpark"
     ],
-    "question": "Once Andina Retail Group's demand-forecasting model is trained and registered (S-56), the team needs to apply it to generate forecasts for every product across every store, every night. Why would this batch inference step typically be run as a Spark job rather than a single-machine script?",
+    "question": "Once a retail company's demand-forecasting model is trained and registered (S-56), the team needs to apply it to generate forecasts for every product across every store, every night. Why would this batch inference step typically be run as a Spark job rather than a single-machine script?",
     "options": {
       "a": "Applying a trained model's predictions across every product-store combination in the business is itself a large-scale, embarrassingly parallel computation — well suited to distributing the work across a Spark cluster's executors, and MLflow models can be loaded as a Spark-compatible function (a UDF) specifically to make this straightforward within the same DataFrame-based workflow already covered throughout this course",
       "b": "Generating a forecast for every product-store combination can only ever be done manually, one prediction at a time, by an engineer individually invoking the model against each row -- MLflow and Spark together offer no automated, batch, or distributed way to apply a trained model across many rows at once",
@@ -1413,7 +1413,7 @@
       "Structured Streaming",
       "Delta Lake"
     ],
-    "question": "Andina Retail Group's Structured Streaming inventory job writes its continuously-updating results into a Delta table, which downstream Power BI reports and other batch jobs also query. Why does writing streaming output specifically to a Delta table (rather than, say, a plain folder of raw files) matter here?",
+    "question": "A retail company's Structured Streaming inventory job writes its continuously-updating results into a Delta table, which downstream Power BI reports and other batch jobs also query. Why does writing streaming output specifically to a Delta table (rather than, say, a plain folder of raw files) matter here?",
     "options": {
       "a": "Because Delta tables provide the same ACID transaction guarantees covered earlier in this course (S-11) regardless of whether the writer is a batch job or a streaming job, downstream readers (whether a Power BI report, a batch job, or another streaming job) never see a partially-written, inconsistent intermediate state, even while the streaming job is continuously writing new data in the background",
       "b": "Writing the streaming inventory job's output to a Delta table instead of a plain folder of raw files provides no measurable advantage for downstream readers like Power BI or batch jobs, since both storage approaches offer the exact same consistency guarantees while data is being continuously written in the background",
@@ -1438,16 +1438,16 @@
       "Databricks",
       "Microsoft Fabric"
     ],
-    "question": "Having worked through this course's foundations, Delta Lake, PySpark, performance, orchestration/governance, and streaming/ML topics, what is the single throughline connecting all of it back to how Andina Retail Group's data team actually works day to day?",
+    "question": "Having worked through this course's foundations, Delta Lake, PySpark, performance, orchestration/governance, and streaming/ML topics, what is the single throughline connecting all of it back to how a retail company's data team actually works day to day?",
     "options": {
       "a": "The single most valuable skill for a modern data engineer is memorizing the exact location of every button and menu option in each platform's UI, since Spark and Delta Lake concepts themselves change too frequently between product releases to be worth learning deeply compared to the day-to-day mechanics of clicking through Databricks or Fabric",
-      "b": "Apache Spark's core DataFrame concepts and Delta Lake's table format are the shared, portable foundation underneath both Databricks and Fabric, and this course has deliberately taught that foundation through the lens of how it's actually configured, operated, governed, and paid for on each real platform, rather than as abstract theory disconnected from the tools a working data team, like Andina's, genuinely uses",
+      "b": "Apache Spark's core DataFrame concepts and Delta Lake's table format are the shared, portable foundation underneath both Databricks and Fabric, and this course has deliberately taught that foundation through the lens of how it's actually configured, operated, governed, and paid for on each real platform, rather than as abstract theory disconnected from the tools a working data team, like the retail company's, genuinely uses",
       "c": "The foundations, Delta Lake, PySpark, performance, orchestration, and streaming/ML topics covered in this course are each self-contained subjects with no real conceptual connection between them -- understanding partitioning from the performance topic, for instance, offers no useful carryover to reasoning about Delta table design or streaming pipeline behavior",
       "d": "Databricks and Fabric are built on entirely separate, unrelated processing engines and table formats that happen to share similar marketing terminology, so none of the DataFrame, Spark SQL, or Delta Lake concepts a team learns on one platform has any real bearing on how the other platform actually works underneath"
     },
     "correct": "b",
     "theory": {
-      "text": "This closes the course by tying every topic back to the reason it was redesigned in the first place: generic Spark trivia, disconnected from any real platform, risks teaching syntax without the operational judgment a working data engineer actually needs — when to use a job cluster versus an all-purpose cluster, why a table's storage bill keeps growing, how to trace a silent pipeline failure, which platform's governance model fits an organization's needs. By consistently grounding every concept in how it actually shows up in Databricks and Fabric — the same two platforms Andina Retail Group's team, and the user of this training platform, are actually building toward — this course aims to leave you able to open either platform's notebook, recognize what you're looking at, and reason about it with real platform context, not just recall a definition from a textbook.",
+      "text": "This closes the course by tying every topic back to the reason it was redesigned in the first place: generic Spark trivia, disconnected from any real platform, risks teaching syntax without the operational judgment a working data engineer actually needs — when to use a job cluster versus an all-purpose cluster, why a table's storage bill keeps growing, how to trace a silent pipeline failure, which platform's governance model fits an organization's needs. By consistently grounding every concept in how it actually shows up in Databricks and Fabric — the same two platforms the retail company's team, and the user of this training platform, are actually building toward — this course aims to leave you able to open either platform's notebook, recognize what you're looking at, and reason about it with real platform context, not just recall a definition from a textbook.",
       "source": "Microsoft Learn, Azure Databricks documentation — Structured Streaming",
       "sourceUrl": "https://learn.microsoft.com/en-us/azure/databricks/structured-streaming/"
     }

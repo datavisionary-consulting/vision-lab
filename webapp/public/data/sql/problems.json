@@ -15,7 +15,7 @@
       "order_items",
       "orders"
     ],
-    "problem": "You're the analyst embedded with Andina Retail Group's category management team. Before the quarterly buying meeting, the category managers need one number each: which product categories are actually generating revenue, so warehouse space and reorder budget get allocated to what's selling, not what's just sitting on shelves.\n\nReturn:\n- `category`\n- `total_revenue` — SUM(quantity × unit_price), rounded to 2 decimals\n- `order_count` — number of distinct completed orders containing that category\n\nRequirements:\n- Only include **completed** orders (exclude cancelled and pending — a cancelled order never actually moved inventory).\n- Sort by total_revenue descending.",
+    "problem": "You're the analyst embedded with a retail company's category management team. Before the quarterly buying meeting, the category managers need one number each: which product categories are actually generating revenue, so warehouse space and reorder budget get allocated to what's selling, not what's just sitting on shelves.\n\nReturn:\n- `category`\n- `total_revenue` — SUM(quantity × unit_price), rounded to 2 decimals\n- `order_count` — number of distinct completed orders containing that category\n\nRequirements:\n- Only include **completed** orders (exclude cancelled and pending — a cancelled order never actually moved inventory).\n- Sort by total_revenue descending.",
     "expected_columns": [
       "category",
       "total_revenue",
@@ -47,7 +47,7 @@
       "customers",
       "orders"
     ],
-    "problem": "Andina Retail Group's wholesale division onboarded a batch of new B2B accounts last year, but growth hasn't reached out to all of them — some registered and never placed a single order. Marketing wants a clean re-engagement list before the next regional sales push.\n\nReturn:\n- `customer_id`\n- `customer_name`\n- `country`\n\nOrder by customer_name ascending.",
+    "problem": "A retail company's wholesale division onboarded a batch of new B2B accounts last year, but growth hasn't reached out to all of them — some registered and never placed a single order. Marketing wants a clean re-engagement list before the next regional sales push.\n\nReturn:\n- `customer_id`\n- `customer_name`\n- `country`\n\nOrder by customer_name ascending.",
     "expected_columns": [
       "customer_id",
       "customer_name",
@@ -82,7 +82,7 @@
       "order_items",
       "orders"
     ],
-    "problem": "The merchandising team at Andina Retail Group is planning next month's homepage banners and wants them to feature what's actually driving revenue, not just what's popular by unit count.\n\nReturn:\n- `product_name`\n- `category`\n- `units_sold` — total quantity sold\n- `total_revenue` — SUM(quantity × unit_price), rounded to 2 decimals\n\nOnly completed orders. Top 5 by revenue.",
+    "problem": "The merchandising team at a retail company is planning next month's homepage banners and wants them to feature what's actually driving revenue, not just what's popular by unit count.\n\nReturn:\n- `product_name`\n- `category`\n- `units_sold` — total quantity sold\n- `total_revenue` — SUM(quantity × unit_price), rounded to 2 decimals\n\nOnly completed orders. Top 5 by revenue.",
     "expected_columns": [
       "product_name",
       "category",
@@ -115,7 +115,7 @@
     "schema_used": [
       "orders"
     ],
-    "problem": "Andina Retail Group's operations team plans warehouse staffing shifts a month ahead, and they need a trend line of demand, not raw daily noise.\n\nReturn:\n- `month` — formatted as 'YYYY-MM'\n- `total_orders` — count of non-cancelled orders\n- `unique_customers` — distinct customers who placed orders\n\nSort by month ascending.",
+    "problem": "A retail company's operations team plans warehouse staffing shifts a month ahead, and they need a trend line of demand, not raw daily noise.\n\nReturn:\n- `month` — formatted as 'YYYY-MM'\n- `total_orders` — count of non-cancelled orders\n- `unique_customers` — distinct customers who placed orders\n\nSort by month ascending.",
     "expected_columns": [
       "month",
       "total_orders",
@@ -148,7 +148,7 @@
       "orders",
       "order_items"
     ],
-    "problem": "AOV (Average Order Value) is one of the KPIs Andina Retail Group's finance team tracks every board meeting, alongside revenue and margin. Calculate the average value of a completed order.\n\nReturn a single value:\n- `avg_order_value` — average of per-order totals, rounded to 2 decimals\n\nNote: This is NOT the same as AVG(unit_price). Each order has a total, and you want the average of those totals.",
+    "problem": "AOV (Average Order Value) is one of the KPIs a retail company's finance team tracks every board meeting, alongside revenue and margin. Calculate the average value of a completed order.\n\nReturn a single value:\n- `avg_order_value` — average of per-order totals, rounded to 2 decimals\n\nNote: This is NOT the same as AVG(unit_price). Each order has a total, and you want the average of those totals.",
     "expected_columns": [
       "avg_order_value"
     ],
@@ -180,7 +180,7 @@
       "orders",
       "order_items"
     ],
-    "problem": "Andina Retail Group's finance team needs a full customer-level revenue report for a board review — every customer on the books, even the ones (like Omega GmbH) who registered but have never actually purchased. Those should still appear, with 0 sales, not silently disappear from the report.\n\nReturn:\n- `customer_name`\n- `country`\n- `total_sales` — SUM(quantity × unit_price) for completed orders only, rounded to 2 decimals. Show 0.00 for customers with no sales.\n\nSort by total_sales descending.",
+    "problem": "A retail company's finance team needs a full customer-level revenue report for a board review — every customer on the books, even the ones (like Omega GmbH) who registered but have never actually purchased. Those should still appear, with 0 sales, not silently disappear from the report.\n\nReturn:\n- `customer_name`\n- `country`\n- `total_sales` — SUM(quantity × unit_price) for completed orders only, rounded to 2 decimals. Show 0.00 for customers with no sales.\n\nSort by total_sales descending.",
     "expected_columns": [
       "customer_name",
       "country",
@@ -213,7 +213,7 @@
     "schema_used": [
       "orders"
     ],
-    "problem": "Andina Retail Group's growth team is deciding whether to invest in a loyalty program, and the business case hinges on one question: how much of the customer base already comes back for a second purchase versus buying once and disappearing?\n\nReturn a SINGLE ROW with:\n- `one_time_buyers` — count of customers with exactly 1 completed order\n- `repeat_buyers` — count of customers with 2+ completed orders\n- `repeat_rate_pct` — percentage of buyers who are repeat, rounded to 1 decimal",
+    "problem": "A retail company's growth team is deciding whether to invest in a loyalty program, and the business case hinges on one question: how much of the customer base already comes back for a second purchase versus buying once and disappearing?\n\nReturn a SINGLE ROW with:\n- `one_time_buyers` — count of customers with exactly 1 completed order\n- `repeat_buyers` — count of customers with 2+ completed orders\n- `repeat_rate_pct` — percentage of buyers who are repeat, rounded to 1 decimal",
     "expected_columns": [
       "one_time_buyers",
       "repeat_buyers",
@@ -246,7 +246,7 @@
       "orders",
       "order_items"
     ],
-    "problem": "Andina Retail Group's CFO opens every finance review with the same slide: revenue trend with growth rate, month over month, no exceptions.\n\nReturn:\n- `month` — YYYY-MM format\n- `revenue` — total completed revenue that month\n- `prev_month_revenue` — previous month's revenue (NULL for first month)\n- `growth_pct` — percentage change from previous month, rounded to 1 decimal (NULL for first month)\n\nSort by month ascending.",
+    "problem": "A retail company's CFO opens every finance review with the same slide: revenue trend with growth rate, month over month, no exceptions.\n\nReturn:\n- `month` — YYYY-MM format\n- `revenue` — total completed revenue that month\n- `prev_month_revenue` — previous month's revenue (NULL for first month)\n- `growth_pct` — percentage change from previous month, rounded to 1 decimal (NULL for first month)\n\nSort by month ascending.",
     "expected_columns": [
       "month",
       "revenue",
@@ -281,7 +281,7 @@
       "orders",
       "products"
     ],
-    "problem": "Andina Retail Group's e-commerce team wants to add a 'frequently bought together' widget to product pages, the same pattern used by major online retailers to lift basket size.\n\nReturn:\n- `product_a` — name of first product\n- `product_b` — name of second product (alphabetically after product_a to avoid duplicates)\n- `times_bought_together` — how many completed orders contain both products\n\nOnly show pairs that appear together at least once. Sort by times_bought_together DESC.",
+    "problem": "A retail company's e-commerce team wants to add a 'frequently bought together' widget to product pages, the same pattern used by major online retailers to lift basket size.\n\nReturn:\n- `product_a` — name of first product\n- `product_b` — name of second product (alphabetically after product_a to avoid duplicates)\n- `times_bought_together` — how many completed orders contain both products\n\nOnly show pairs that appear together at least once. Sort by times_bought_together DESC.",
     "expected_columns": [
       "product_a",
       "product_b",
@@ -314,7 +314,7 @@
       "employees",
       "salaries"
     ],
-    "problem": "Andina Retail Group's distribution-center network spans several countries, and HR needs the current active salary for every warehouse and logistics employee ahead of the annual compensation review. The salaries table keeps full salary history — a NULL `to_date` marks the salary that's currently in effect.\n\nReturn:\n- `employee_id`\n- `employee_name` — first_name + ' ' + last_name\n- `department`\n- `current_salary`\n- `effective_from` — when this salary started\n\nSort by department, then current_salary descending.",
+    "problem": "A retail company's distribution-center network spans several countries, and HR needs the current active salary for every warehouse and logistics employee ahead of the annual compensation review. The salaries table keeps full salary history — a NULL `to_date` marks the salary that's currently in effect.\n\nReturn:\n- `employee_id`\n- `employee_name` — first_name + ' ' + last_name\n- `department`\n- `current_salary`\n- `effective_from` — when this salary started\n\nSort by department, then current_salary descending.",
     "expected_columns": [
       "employee_id",
       "employee_name",
@@ -350,7 +350,7 @@
       "employees",
       "salaries"
     ],
-    "problem": "Ahead of budgeting season, Andina Retail Group's HR leadership wants a compensation overview across every department — from warehouse operations to corporate finance — using current salaries only.\n\nReturn:\n- `department`\n- `headcount` — number of employees\n- `avg_salary` — average current salary, rounded to 2 decimals\n- `min_salary`\n- `max_salary`\n- `salary_spread` — difference between max and min\n\nSort by avg_salary descending.",
+    "problem": "Ahead of budgeting season, a retail company's HR leadership wants a compensation overview across every department — from warehouse operations to corporate finance — using current salaries only.\n\nReturn:\n- `department`\n- `headcount` — number of employees\n- `avg_salary` — average current salary, rounded to 2 decimals\n- `min_salary`\n- `max_salary`\n- `salary_spread` — difference between max and min\n\nSort by avg_salary descending.",
     "expected_columns": [
       "department",
       "headcount",
@@ -387,7 +387,7 @@
       "customers",
       "orders"
     ],
-    "problem": "Andina Retail Group's customer success team suspects that a high cancellation rate is an early churn signal — customers who keep cancelling are often about to switch to a competitor. They want a shortlist to investigate.\n\nReturn only customers with at least 2 orders:\n- `customer_name`\n- `total_orders`\n- `cancelled` — count of cancelled orders\n- `cancellation_rate_pct` — rounded to 1 decimal\n\nSort by cancellation_rate_pct descending.",
+    "problem": "A retail company's customer success team suspects that a high cancellation rate is an early churn signal — customers who keep cancelling are often about to switch to a competitor. They want a shortlist to investigate.\n\nReturn only customers with at least 2 orders:\n- `customer_name`\n- `total_orders`\n- `cancelled` — count of cancelled orders\n- `cancellation_rate_pct` — rounded to 1 decimal\n\nSort by cancellation_rate_pct descending.",
     "expected_columns": [
       "customer_name",
       "total_orders",
@@ -421,7 +421,7 @@
       "orders",
       "order_items"
     ],
-    "problem": "Andina Retail Group's finance team is building a fundraising deck and wants a cumulative revenue chart — the classic 'up and to the right' line showing growth trajectory since day one, not just isolated daily figures.\n\nReturn per completed order date:\n- `order_date`\n- `daily_revenue` — total revenue that day\n- `running_total` — cumulative revenue from the beginning up to and including that day\n\nSort by order_date ascending.",
+    "problem": "A retail company's finance team is building a fundraising deck and wants a cumulative revenue chart — the classic 'up and to the right' line showing growth trajectory since day one, not just isolated daily figures.\n\nReturn per completed order date:\n- `order_date`\n- `daily_revenue` — total revenue that day\n- `running_total` — cumulative revenue from the beginning up to and including that day\n\nSort by order_date ascending.",
     "expected_columns": [
       "order_date",
       "daily_revenue",
@@ -455,7 +455,7 @@
       "orders",
       "order_items"
     ],
-    "problem": "Andina Retail Group's marketing team is studying what makes a strong first impression: does a customer's very first order size predict whether they'll come back? Step one is simply identifying each customer's first completed order and its value.\n\nReturn:\n- `customer_name`\n- `first_order_date`\n- `first_order_value` — total value of the first order (SUM of all items)\n\nSort by first_order_date ascending.",
+    "problem": "A retail company's marketing team is studying what makes a strong first impression: does a customer's very first order size predict whether they'll come back? Step one is simply identifying each customer's first completed order and its value.\n\nReturn:\n- `customer_name`\n- `first_order_date`\n- `first_order_value` — total value of the first order (SUM of all items)\n\nSort by first_order_date ascending.",
     "expected_columns": [
       "customer_name",
       "first_order_date",
@@ -488,7 +488,7 @@
       "employees",
       "salaries"
     ],
-    "problem": "Andina Retail Group's HR team is reviewing pay equity across its distribution network and wants to flag employees earning above their own department's average — a first pass before a deeper compensation audit.\n\nReturn:\n- `employee_name`\n- `department`\n- `salary` — current salary\n- `dept_avg` — average current salary in their department, rounded to 2 decimals\n\nSort by department, then salary descending.",
+    "problem": "A retail company's HR team is reviewing pay equity across its distribution network and wants to flag employees earning above their own department's average — a first pass before a deeper compensation audit.\n\nReturn:\n- `employee_name`\n- `department`\n- `salary` — current salary\n- `dept_avg` — average current salary in their department, rounded to 2 decimals\n\nSort by department, then salary descending.",
     "expected_columns": [
       "employee_name",
       "department",
@@ -521,7 +521,7 @@
     "schema_used": [
       "orders"
     ],
-    "problem": "Andina Retail Group's growth team is deciding whether new-customer acquisition spend is actually paying off, and the key metric is Month-1 retention: of the customers who made their first purchase in a given month, how many came back the very next month?\n\nSteps:\n1. Find each customer's first completed order — this defines their **cohort month**.\n2. Check if they placed another completed order in the calendar month immediately after.\n\nReturn:\n- `cohort` — YYYY-MM of the cohort (month of first order)\n- `cohort_size` — number of customers who first ordered that month\n- `retained_month1` — how many of them ordered again the next month\n- `retention_rate` — percentage, rounded to 1 decimal\n\nSort by cohort.",
+    "problem": "A retail company's growth team is deciding whether new-customer acquisition spend is actually paying off, and the key metric is Month-1 retention: of the customers who made their first purchase in a given month, how many came back the very next month?\n\nSteps:\n1. Find each customer's first completed order — this defines their **cohort month**.\n2. Check if they placed another completed order in the calendar month immediately after.\n\nReturn:\n- `cohort` — YYYY-MM of the cohort (month of first order)\n- `cohort_size` — number of customers who first ordered that month\n- `retained_month1` — how many of them ordered again the next month\n- `retention_rate` — percentage, rounded to 1 decimal\n\nSort by cohort.",
     "expected_columns": [
       "cohort",
       "cohort_size",
@@ -556,7 +556,7 @@
       "order_items",
       "orders"
     ],
-    "problem": "Andina Retail Group's merchandising team is refreshing category landing pages and wants each one anchored around its single best-selling product, by revenue.\n\nReturn:\n- `category`\n- `product_name`\n- `revenue` — total revenue from completed orders\n\nOne row per category. Sort by revenue descending.",
+    "problem": "A retail company's merchandising team is refreshing category landing pages and wants each one anchored around its single best-selling product, by revenue.\n\nReturn:\n- `category`\n- `product_name`\n- `revenue` — total revenue from completed orders\n\nOne row per category. Sort by revenue descending.",
     "expected_columns": [
       "category",
       "product_name",
@@ -591,7 +591,7 @@
       "order_items",
       "customers"
     ],
-    "problem": "Andina Retail Group's replenishment team wants to understand purchase cadence customer by customer — how many days typically pass between one order and the next — to time reorder reminder emails well.\n\nFor each completed order (except the first), calculate days since the customer's previous completed order.\n\nReturn:\n- `customer_name`\n- `order_date` — current order date\n- `order_value` — value of this order\n- `prev_order_date` — previous order date for this customer\n- `days_since_last_order` — integer days between orders\n\nOnly show rows where a previous order exists. Sort by customer_name, then order_date.",
+    "problem": "A retail company's replenishment team wants to understand purchase cadence customer by customer — how many days typically pass between one order and the next — to time reorder reminder emails well.\n\nFor each completed order (except the first), calculate days since the customer's previous completed order.\n\nReturn:\n- `customer_name`\n- `order_date` — current order date\n- `order_value` — value of this order\n- `prev_order_date` — previous order date for this customer\n- `days_since_last_order` — integer days between orders\n\nOnly show rows where a previous order exists. Sort by customer_name, then order_date.",
     "expected_columns": [
       "customer_name",
       "order_date",
@@ -626,7 +626,7 @@
       "employees",
       "salaries"
     ],
-    "problem": "Andina Retail Group's HR team is preparing for a compensation audit and needs a full paper trail of every salary change per employee — the old salary, the new salary, and the size of the raise.\n\nReturn:\n- `employee_name`\n- `period_start` — start date of the OLD salary\n- `period_end` — end date of the OLD salary\n- `salary` — old salary amount\n- `next_salary` — new salary amount after the raise\n- `pct_change` — percentage change, rounded to 1 decimal\n\nSort by employee_id, then period_start.",
+    "problem": "A retail company's HR team is preparing for a compensation audit and needs a full paper trail of every salary change per employee — the old salary, the new salary, and the size of the raise.\n\nReturn:\n- `employee_name`\n- `period_start` — start date of the OLD salary\n- `period_end` — end date of the OLD salary\n- `salary` — old salary amount\n- `next_salary` — new salary amount after the raise\n- `pct_change` — percentage change, rounded to 1 decimal\n\nSort by employee_id, then period_start.",
     "expected_columns": [
       "employee_name",
       "period_start",
@@ -663,7 +663,7 @@
       "orders",
       "customers"
     ],
-    "problem": "Andina Retail Group's retention team wants to move from reactive to proactive: instead of waiting for a customer to obviously churn, flag anyone who's already overdue for their next purchase based on their own historical buying rhythm.\n\nLogic: A customer is \"at risk\" if:\n- They have at least 2 completed orders (so we can establish a cadence)\n- The days since their last order > 1.5× the gap between their last two orders\n\nUse reference date **2023-06-01** as \"today\".\n\nReturn:\n- `customer_name`\n- `last_order_date`\n- `avg_days_between_orders` — gap between last two completed orders\n- `days_since_last` — days from last order to 2023-06-01\n\nSort by days_since_last descending.",
+    "problem": "A retail company's retention team wants to move from reactive to proactive: instead of waiting for a customer to obviously churn, flag anyone who's already overdue for their next purchase based on their own historical buying rhythm.\n\nLogic: A customer is \"at risk\" if:\n- They have at least 2 completed orders (so we can establish a cadence)\n- The days since their last order > 1.5× the gap between their last two orders\n\nUse reference date **2023-06-01** as \"today\".\n\nReturn:\n- `customer_name`\n- `last_order_date`\n- `avg_days_between_orders` — gap between last two completed orders\n- `days_since_last` — days from last order to 2023-06-01\n\nSort by days_since_last descending.",
     "expected_columns": [
       "customer_name",
       "last_order_date",
@@ -697,7 +697,7 @@
       "employees",
       "salaries"
     ],
-    "problem": "Andina Retail Group's HR leadership wants a single compensation overview showing each employee's rank within their own department and how far their pay sits from that department's average — without collapsing any individual employee detail into a summary row.\n\nReturn:\n- `department`\n- `employee_name`\n- `salary` — current salary\n- `salary_rank` — rank within department (1 = highest), ties share the same rank (use DENSE_RANK)\n- `dept_avg` — average salary in the department, rounded to 2 decimals\n- `diff_from_avg` — salary minus dept_avg, rounded to 2 decimals\n\nSort by department, then salary_rank.",
+    "problem": "A retail company's HR leadership wants a single compensation overview showing each employee's rank within their own department and how far their pay sits from that department's average — without collapsing any individual employee detail into a summary row.\n\nReturn:\n- `department`\n- `employee_name`\n- `salary` — current salary\n- `salary_rank` — rank within department (1 = highest), ties share the same rank (use DENSE_RANK)\n- `dept_avg` — average salary in the department, rounded to 2 decimals\n- `diff_from_avg` — salary minus dept_avg, rounded to 2 decimals\n\nSort by department, then salary_rank.",
     "expected_columns": [
       "department",
       "employee_name",
@@ -735,7 +735,7 @@
       "order_items",
       "products"
     ],
-    "problem": "Andina Retail Group's finance team wants their monthly board deck to show category revenue side by side, spreadsheet-style — one row per month, one column per category — rather than a long list they'd have to mentally cross-tabulate themselves.\n\nReturn:\n- `month` — YYYY-MM\n- `electronics` — revenue from Electronics\n- `furniture` — revenue from Furniture\n- `stationery` — revenue from Stationery\n- `total` — total across all categories\n\nCompleted orders only. Sort by month.",
+    "problem": "A retail company's finance team wants their monthly board deck to show category revenue side by side, spreadsheet-style — one row per month, one column per category — rather than a long list they'd have to mentally cross-tabulate themselves.\n\nReturn:\n- `month` — YYYY-MM\n- `electronics` — revenue from Electronics\n- `furniture` — revenue from Furniture\n- `stationery` — revenue from Stationery\n- `total` — total across all categories\n\nCompleted orders only. Sort by month.",
     "expected_columns": [
       "month",
       "electronics",
@@ -772,7 +772,7 @@
       "orders",
       "order_items"
     ],
-    "problem": "Andina Retail Group's data science team is building a customer-value segmentation model, and CLV (Customer Lifetime Value) is the foundational metric everything else gets built on top of. For each customer who has made at least one completed purchase:\n\nReturn:\n- `customer_name`\n- `country`\n- `lifetime_value` — total revenue, rounded to 2 decimals\n- `total_orders` — number of completed orders\n- `days_active` — days between first and last order (0 if only one order)\n- `avg_order_value` — lifetime_value / total_orders, rounded to 2 decimals\n- `pct_of_total_revenue` — this customer's % of all revenue, rounded to 2 decimals\n- `value_quartile` — 1 = top 25%, 4 = bottom 25% (use NTILE(4) by lifetime_value DESC)\n\nSort by lifetime_value descending.",
+    "problem": "A retail company's data science team is building a customer-value segmentation model, and CLV (Customer Lifetime Value) is the foundational metric everything else gets built on top of. For each customer who has made at least one completed purchase:\n\nReturn:\n- `customer_name`\n- `country`\n- `lifetime_value` — total revenue, rounded to 2 decimals\n- `total_orders` — number of completed orders\n- `days_active` — days between first and last order (0 if only one order)\n- `avg_order_value` — lifetime_value / total_orders, rounded to 2 decimals\n- `pct_of_total_revenue` — this customer's % of all revenue, rounded to 2 decimals\n- `value_quartile` — 1 = top 25%, 4 = bottom 25% (use NTILE(4) by lifetime_value DESC)\n\nSort by lifetime_value descending.",
     "expected_columns": [
       "customer_name",
       "country",
@@ -809,7 +809,7 @@
     "schema_used": [
       "employees"
     ],
-    "problem": "Andina Retail Group's HR team is documenting reporting lines across its regional distribution centers ahead of a reorganization, and they want the full org chart rendered as readable reporting-chain paths, not just a flat table of employee-to-manager IDs.\n\nReturn:\n- `level` — depth in hierarchy (top managers = 1)\n- `name` — full name\n- `department`\n- `path` — full reporting chain, e.g. \"Sarah Connor > John Smith\"\n\nSort by path (shows the tree structure naturally).",
+    "problem": "A retail company's HR team is documenting reporting lines across its regional distribution centers ahead of a reorganization, and they want the full org chart rendered as readable reporting-chain paths, not just a flat table of employee-to-manager IDs.\n\nReturn:\n- `level` — depth in hierarchy (top managers = 1)\n- `name` — full name\n- `department`\n- `path` — full reporting chain, e.g. \"Sarah Connor > John Smith\"\n\nSort by path (shows the tree structure naturally).",
     "expected_columns": [
       "level",
       "name",
@@ -844,7 +844,7 @@
       "orders",
       "products"
     ],
-    "problem": "Andina Retail Group's e-commerce team wants to go beyond simple co-purchase counts (covered in M-004) and understand co-purchases as a share of overall order volume — the foundation of real association-rule mining used to drive recommendation engines.\n\nReturn:\n- `product_a` — first product name\n- `product_b` — second product name\n- `co_purchase_count` — orders containing both products\n- `pct_of_orders` — what % of all completed orders contain this pair, rounded to 1 decimal\n\nOnly completed orders. Only pairs co-purchased at least once.\nSort by co_purchase_count DESC, then product_a.",
+    "problem": "A retail company's e-commerce team wants to go beyond simple co-purchase counts (covered in M-004) and understand co-purchases as a share of overall order volume — the foundation of real association-rule mining used to drive recommendation engines.\n\nReturn:\n- `product_a` — first product name\n- `product_b` — second product name\n- `co_purchase_count` — orders containing both products\n- `pct_of_orders` — what % of all completed orders contain this pair, rounded to 1 decimal\n\nOnly completed orders. Only pairs co-purchased at least once.\nSort by co_purchase_count DESC, then product_a.",
     "expected_columns": [
       "product_a",
       "product_b",
@@ -878,7 +878,7 @@
       "employees",
       "salaries"
     ],
-    "problem": "Andina Retail Group's compensation team is benchmarking pay across the whole company ahead of a market-rate adjustment, and they want a full statistical breakdown using percentile functions rather than simple department averages.\n\nReturn:\n- `employee_name`\n- `department`\n- `salary` — current salary\n- `salary_band` — 'Top 25%', 'Upper Mid', 'Lower Mid', 'Bottom 25%' based on NTILE(4)\n- `percentile_rank` — PERCENT_RANK as a percentage, rounded to 1 decimal (0 = lowest, 100 = highest)\n- `cumulative_dist` — CUME_DIST as a percentage, rounded to 1 decimal\n\nSort by salary descending.",
+    "problem": "A retail company's compensation team is benchmarking pay across the whole company ahead of a market-rate adjustment, and they want a full statistical breakdown using percentile functions rather than simple department averages.\n\nReturn:\n- `employee_name`\n- `department`\n- `salary` — current salary\n- `salary_band` — 'Top 25%', 'Upper Mid', 'Lower Mid', 'Bottom 25%' based on NTILE(4)\n- `percentile_rank` — PERCENT_RANK as a percentage, rounded to 1 decimal (0 = lowest, 100 = highest)\n- `cumulative_dist` — CUME_DIST as a percentage, rounded to 1 decimal\n\nSort by salary descending.",
     "expected_columns": [
       "employee_name",
       "department",
