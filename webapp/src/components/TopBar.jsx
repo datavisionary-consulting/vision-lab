@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import AuthButton from './AuthButton';
 import { useAuth } from '../context/AuthContext';
 import { saveAllProgress } from '../lib/saveAllProgress';
@@ -123,20 +123,59 @@ function RankBadge({ rank, totalXp }) {
 }
 
 export default function TopBar({ title, onTitleClick, onDashboardClick, rank, totalXp }) {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const actionsRef = useRef(null);
+  const menuBtnRef = useRef(null);
+
+  useEffect(() => {
+    if (!menuOpen) return;
+    const onOutside = (e) => {
+      if (actionsRef.current?.contains(e.target)) return;
+      if (menuBtnRef.current?.contains(e.target)) return;
+      setMenuOpen(false);
+    };
+    const onKey = (e) => {
+      if (e.key === 'Escape') setMenuOpen(false);
+    };
+    document.addEventListener('mousedown', onOutside);
+    document.addEventListener('keydown', onKey);
+    return () => {
+      document.removeEventListener('mousedown', onOutside);
+      document.removeEventListener('keydown', onKey);
+    };
+  }, [menuOpen]);
+
   return (
     <div className="top-bar">
       <div className="top-bar-title" onClick={onTitleClick}>{title}</div>
-      <RankBadge rank={rank} totalXp={totalXp} />
-      <button className="dashboard-btn" onClick={onDashboardClick} title="Your journey" aria-label="Your journey">
-        <span className="dashboard-btn-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M5 18V13M12 18V8M19 18V5" /></svg>
-        </span>
-        <span className="dashboard-btn-label">Journey</span>
+      <div
+        ref={actionsRef}
+        className={`topbar-actions${menuOpen ? ' mobile-open' : ''}`}
+        onClickCapture={() => setMenuOpen(false)}
+      >
+        <RankBadge rank={rank} totalXp={totalXp} />
+        <button className="dashboard-btn" onClick={onDashboardClick} title="Your journey" aria-label="Your journey">
+          <span className="dashboard-btn-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M5 18V13M12 18V8M19 18V5" /></svg>
+          </span>
+          <span className="dashboard-btn-label">Journey</span>
+        </button>
+        <SaveProgressButton />
+        <AuthButton />
+        <PaletteToggle />
+        <FullscreenButton />
+      </div>
+      <button
+        ref={menuBtnRef}
+        className="topbar-menu-btn"
+        onClick={() => setMenuOpen((o) => !o)}
+        aria-label="More options"
+        aria-expanded={menuOpen}
+      >
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+          <path d="M4 7h16M4 12h16M4 17h16" />
+        </svg>
       </button>
-      <SaveProgressButton />
-      <AuthButton />
-      <PaletteToggle />
-      <FullscreenButton />
     </div>
   );
 }

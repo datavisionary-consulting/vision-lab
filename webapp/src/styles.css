@@ -21,6 +21,34 @@ body{font-family:var(--font-body);background:var(--bg);color:var(--text);min-hei
 .top-bar-title{flex:1;padding:14px 16px;font-family:var(--font-display);font-size:.85rem;font-weight:700;letter-spacing:.03em;color:var(--acc2);cursor:pointer;white-space:nowrap}
 .dashboard-btn-icon{display:inline-flex;width:13px;height:13px;vertical-align:-2px;margin-right:2px}
 .dashboard-btn-icon svg{display:block;width:100%;height:100%}
+.topbar-actions{display:flex;align-items:center}
+.topbar-menu-btn{display:none;flex:0 0 auto;width:40px;height:40px;align-items:center;justify-content:center;border:none;background:none;color:var(--muted);cursor:pointer}
+.topbar-menu-btn svg{width:19px;height:19px;display:block}
+.topbar-menu-btn:hover{color:var(--acc2)}
+
+/* Below this width, the button cluster collapses into a "☰" dropdown so it
+   never overflows the viewport — see .topbar-actions.mobile-open below. */
+@media(max-width:700px){
+  .topbar-menu-btn{display:flex}
+  .topbar-actions{display:none}
+  .topbar-actions.mobile-open{
+    display:flex;flex-direction:column;align-items:stretch;gap:4px;
+    position:absolute;top:100%;right:10px;left:10px;
+    background:var(--surf);border:1px solid var(--border);border-radius:10px;
+    padding:10px;box-shadow:0 16px 34px -12px rgba(0,0,0,.55);z-index:200;
+  }
+  .topbar-actions.mobile-open>*{width:100%;margin-right:0;justify-content:flex-start}
+  .topbar-actions.mobile-open .rank-badge,
+  .topbar-actions.mobile-open .dashboard-btn,
+  .topbar-actions.mobile-open .save-progress-btn,
+  .topbar-actions.mobile-open .auth-btn,
+  .topbar-actions.mobile-open .palette-toggle,
+  .topbar-actions.mobile-open .fullscreen-btn{margin-bottom:0;padding:10px 12px}
+  .topbar-actions.mobile-open .rank-badge-name,
+  .topbar-actions.mobile-open .dashboard-btn-label,
+  .topbar-actions.mobile-open .palette-toggle-label{display:inline}
+  .topbar-actions.mobile-open .rank-badge-bar{display:block;width:60px;margin-left:auto}
+}
 
 /* ── RANK BADGE (top bar) ── */
 .rank-badge{display:flex;align-items:center;gap:7px;padding:5px 12px;border:1px solid var(--border);border-radius:8px;margin-right:6px;flex:0 0 auto;cursor:default}
@@ -365,8 +393,10 @@ textarea.writing-editor{min-height:400px}
 .dash-icon-chip{width:34px;height:34px;border-radius:8px;background:var(--surf2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:1.05rem;flex:0 0 auto}
 .dash-card-head h3{font-size:.92rem;flex:1}
 .dash-flag{color:var(--red);font-size:.85rem}
+.dash-ring-wrap{display:flex;flex-direction:column;align-items:center;gap:2px;flex:0 0 auto}
 .dash-ring{--pct:0;--ring-color:var(--acc);width:38px;height:38px;border-radius:50%;flex:0 0 auto;background:conic-gradient(var(--ring-color) calc(var(--pct)*1%), var(--surf2) 0);display:flex;align-items:center;justify-content:center}
 .dash-ring span{width:29px;height:29px;border-radius:50%;background:var(--surf);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:.58rem;font-weight:700;color:var(--acc2)}
+.dash-ring-lbl{font-size:.55rem;color:var(--muted);text-transform:uppercase;letter-spacing:.03em}
 .dash-fav-btn{background:none;border:none;color:var(--muted);cursor:pointer;font-size:1rem;line-height:1;padding:2px;transition:color .15s}
 .dash-fav-btn:hover{color:var(--yellow)}
 .dash-fav-btn.active{color:var(--yellow)}

@@ -68,10 +68,13 @@ function groupByCategory(courses) {
   return groups;
 }
 
-function DashRing({ pct, warn }) {
+function DashRing({ pct, label, warn }) {
   return (
-    <div className="dash-ring" style={{ '--pct': pct, '--ring-color': warn ? 'var(--red)' : 'var(--acc)' }}>
-      <span>{pct}%</span>
+    <div className="dash-ring-wrap" title={`${pct}% ${label.toLowerCase()}`}>
+      <div className="dash-ring" style={{ '--pct': pct, '--ring-color': warn ? 'var(--red)' : 'var(--acc)' }}>
+        <span>{pct}%</span>
+      </div>
+      <span className="dash-ring-lbl">{label}</span>
     </div>
   );
 }
@@ -81,6 +84,7 @@ function DashCard({ course, stats, onSelect, isFavorite, onToggleFavorite }) {
   const pct =
     stats.kind === 'trainer' ? Math.round((stats.seen / stats.total) * 100) :
     stats.kind === 'sql' ? Math.round((stats.solved / stats.total) * 100) : null;
+  const ringLabel = stats.kind === 'trainer' ? 'Seen' : 'Solved';
 
   return (
     <div className={`dash-card ${statusClass}${course.enabled ? '' : ' disabled'}`} onClick={() => course.enabled && onSelect(course.id)}>
@@ -88,7 +92,7 @@ function DashCard({ course, stats, onSelect, isFavorite, onToggleFavorite }) {
         <span className="dash-icon-chip">{course.icon}</span>
         <h3>{course.title}</h3>
         {stats.attention && <span className="dash-flag" title="Needs attention">⚠</span>}
-        {stats.started && pct !== null && <DashRing pct={pct} warn={stats.attention} />}
+        {stats.started && pct !== null && <DashRing pct={pct} label={ringLabel} warn={stats.attention} />}
         <button
           className={`dash-fav-btn${isFavorite ? ' active' : ''}`}
           onClick={(e) => { e.stopPropagation(); onToggleFavorite(course.id); }}
